@@ -5,7 +5,5 @@ public class Test_Run {
 		// TODO Auto-generated method stub
 		System.out.println("Hello World!");
 		System.out.println("Edit from Github");
-		//New comment
 	}
-
 }
