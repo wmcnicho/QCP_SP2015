@@ -36,6 +36,7 @@ public class TestGate {
 		MRegister register = new MRegister(noOfQbits);
 		GroverQCircuit groverCircuit = new GroverQCircuit(noOfQbits);
 		groverCircuit.setTarget(findThis);
+		groverCircuit.fill();
 		register.apply(groverCircuit);
 
 	}

@@ -15,10 +15,9 @@ public class GroverQCircuit extends QCircuit {
 		this.noOfQbits = noOfQbits;
 		noOfIterations = (int)((Math.PI/4.0)*(Math.sqrt(Math.pow(2, noOfQbits))-1))+2;
 		gates = new int[noOfIterations+1][3];
-		this.fill();
 	}
 	
-	private void fill(){
+	public void fill(){
 		for(int i=0; i<noOfIterations; i++){
 			if(i<noOfIterations-1){
 				gates[i][0]=1;
@@ -32,7 +31,9 @@ public class GroverQCircuit extends QCircuit {
 	}
 
 	public void setTarget(int findThis) {
-		this.findThis = findThis;
-		
+		this.findThis = findThis;	
+	}
+	public int getTarget(){
+		return findThis;
 	}
 }

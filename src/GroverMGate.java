@@ -13,6 +13,7 @@ public class GroverMGate extends MGate{
 	
 	public void setTarget(int findThis){
 		this.findThis = findThis;
+	//	System.out.println(findThis);
 	}
 	//Creates Grover step matrix, try to only call this once
 	//will always find list index 0
