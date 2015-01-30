@@ -1,7 +1,8 @@
+
 public class HadamardGate {
 	public static void main (String [] args){
 		//set total number of qubits
-		int numOfQubits = 3;
+		int numOfQubits = 13;
 		int maxNum = (int) Math.pow(2, numOfQubits) - 1;
 		
 		/*
@@ -15,7 +16,7 @@ public class HadamardGate {
 		Matrix hgate = new Matrix(maxNum+1, maxNum+1);
 		
 		//hgate applied to the following qubit only!
-		int qubitPos = 1;
+		int qubitPos = 2;
 		int mask = 1 << qubitPos;
 		
 		for (int i = 0; i <= maxNum; i++){	
@@ -33,7 +34,8 @@ public class HadamardGate {
 				hgate.setElement(i ^ mask, i, 1.0/Math.sqrt(2));
 			}
 		}
-		hgate.printMatrix();
+		//hgate.printMatrix();
+		log("done");
 	}
 		
 	public static void log(String str){

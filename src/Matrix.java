@@ -42,6 +42,16 @@ public class Matrix {
 		nf.setMaximumFractionDigits(2);
 		nf.setMinimumFractionDigits(2);
 	}
+	
+	public Matrix(Matrix m){
+		this(m.getRowDimension(),m.getColumnDimension());
+		this.matrix = new double [m.row][m.column];
+		for (int i = 0; i < this.matrix.length; i++){
+			for (int j = 0; j < this.matrix[i].length; j++){
+				this.matrix[i][j] = m.matrix[i][j];
+			}
+		}
+	}
 
 	//accessor methods
 	public void setElement(int i, int j, double value){
@@ -50,6 +60,9 @@ public class Matrix {
 		}
 	}
 	public double getElement(int i, int j){return matrix[i][j];}
+	
+	public int getRowDimension(){return matrix.length;}
+	public int getColumnDimension(){return matrix[0].length;}
 	
 	public String toString(){
 		String result = "";
