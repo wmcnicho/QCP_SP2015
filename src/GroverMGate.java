@@ -13,8 +13,8 @@ public class GroverMGate extends MGate{
 	
 	public void setTarget(int findThis){
 		this.findThis = findThis;
-	//	System.out.println(findThis);
 	}
+	
 	//Creates Grover step matrix, try to only call this once
 	//will always find list index 0
 	public Matrix output(int noOfQbits){
@@ -25,13 +25,19 @@ public class GroverMGate extends MGate{
 			oracle.setElement(i, i, 1);
 		}
 		oracle.setElement(findThis, findThis, -1);
+		Matrix rotation = new Matrix(maxNum, maxNum);
+		for(int i=0; i<maxNum; i++){
+			rotation.setElement(i, i, 1);
+		}
+		rotation.setElement(0, 0, -1);
 		MGate hadmard = new MHGate();
 		Matrix temp = new Matrix(maxNum, maxNum);
 		temp = hadmard.output(noOfQbits, 0);
 		for(int i=1; i<noOfQbits; i++){
 			temp = Matrix.multiply(temp, hadmard.output(noOfQbits, i));
 		}
-		Matrix out = Matrix.multiply(oracle, temp);
-		return Matrix.multiply(out, out);
+		Matrix out1 = Matrix.multiply(oracle, temp);
+		Matrix out2 = Matrix.multiply(rotation, temp);
+		return Matrix.multiply(out1, out2);
 	}
 }

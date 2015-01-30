@@ -49,7 +49,7 @@ public class MRegister implements IRegister{
 	public void measure(){
 		for(int i=0; i<amplitudes.getColumnDimension(); i++){
 			double probability = amplitudes.getElement(0, i)*amplitudes.getElement(0, i);
-			System.out.println("the probability of state "+(i+1)+" is "+probability);
+			System.out.println("the probability of state "+(i)+" is "+probability);
 		}
 	}
 	/*need to add all other gates, only required ones are implemented

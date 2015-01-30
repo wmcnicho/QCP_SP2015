@@ -30,8 +30,8 @@ public class TestGate {
 		System.out.println(sum);
 	}*/
 	public static void main (String [] args){
-		int noOfQbits = 8;
-		int findThis = 1;
+		int noOfQbits = 6;
+		int findThis = 56;
 		
 		MRegister register = new MRegister(noOfQbits);
 		GroverQCircuit groverCircuit = new GroverQCircuit(noOfQbits);
