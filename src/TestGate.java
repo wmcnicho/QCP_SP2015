@@ -30,14 +30,14 @@ public class TestGate {
 		System.out.println(sum);
 	}*/
 	public static void main (String [] args){
-		int noOfQbits = 6;
+		int noOfQbits = 11;
 		int findThis = 56;
-		
+		long t1 = System.nanoTime();
 		MRegister register = new MRegister(noOfQbits);
 		GroverQCircuit groverCircuit = new GroverQCircuit(noOfQbits);
 		groverCircuit.setTarget(findThis);
 		groverCircuit.fill();
 		register.apply(groverCircuit);
-
+		System.out.println(System.nanoTime()-t1);
 	}
 }
