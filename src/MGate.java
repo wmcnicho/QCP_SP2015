@@ -5,8 +5,8 @@ public abstract class MGate{
 	public abstract Matrix resultForOn();
 	public abstract Matrix resultForOff();
 
-	public MRegister output(MRegister input, int targetPos){
-		int maxNum = (int) Math.pow(2, input.numOfQubit()) - 1;
+	public Matrix output(int noOfQbits, int targetPos){
+		int maxNum = (int) Math.pow(2, noOfQbits) - 1;
 		int mask = 1 << targetPos;
 		
 		//create the gate in matrix representation
@@ -23,6 +23,6 @@ public abstract class MGate{
 			}
 		}
 		//gate.printMatrix();
-		return new MRegister(Matrix.multiply(gate, input.getAmplitude()));
+		return gate;
 	}
 }

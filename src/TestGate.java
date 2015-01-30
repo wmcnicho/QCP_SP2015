@@ -1,6 +1,7 @@
 
 
 public class TestGate {
+	/*
 	public static void main (String [] args){
 		MHGate hadamard = new MHGate();
 		MZGate zgate = new MZGate();
@@ -27,5 +28,12 @@ public class TestGate {
 			sum += Math.pow(out.getAmplitude(i),2);
 		}
 		System.out.println(sum);
+	}*/
+	public static void main (String [] args){
+		int noOfQbits = 8;
+		MRegister register = new MRegister(noOfQbits);
+
+		register.apply(new GroverQCircuit(noOfQbits));
+
 	}
 }

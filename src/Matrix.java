@@ -123,7 +123,6 @@ public class Matrix {
 			return new Matrix(0,0);
 		}
 	}
-	
 	public static boolean isSquareMatrix(Matrix m){
 		if (m.row == m.column) return true;
 		return false;

@@ -2,8 +2,8 @@
 
 public class MRegister implements IRegister{
 	private Matrix amplitudes;
-	private int numOfQubits;
-	private int numOfStates;
+	private final int numOfQubits;
+	private final int numOfStates;
 	
 	//constructor
 	//set the nth (count from 0) state with amplitude 1 but others to 0
@@ -17,10 +17,10 @@ public class MRegister implements IRegister{
 	public MRegister(int num){
 		numOfQubits = num;
 		numOfStates = (int) Math.pow(2, numOfQubits);
-		amplitudes = new Matrix(numOfStates,1);
-		double prob = 1.0 / numOfStates;
+		amplitudes = new Matrix(1, numOfStates);
+		double prob = 1.0 / Math.sqrt(numOfStates);
 		for (int i = 0; i < numOfStates; i++){
-			amplitudes.setElement(i, 0, prob);
+			amplitudes.setElement(0, i, prob);
 		}
 	}
 	public MRegister(Matrix amps){
@@ -39,7 +39,37 @@ public class MRegister implements IRegister{
 	
 	public void printAmplitude(){
 		for (int i = 0; i < numOfStates; i++){
-			System.out.println(amplitudes.getElement(i, 0));
+			System.out.println(amplitudes.getElement(0,i));
+		}
+	}
+	public void apply(Matrix gateMatrix) {
+		amplitudes=Matrix.multiply(amplitudes, gateMatrix);
+		
+	}
+	public void measure(){
+		for(int i=0; i<amplitudes.getColumnDimension(); i++){
+			double probability = amplitudes.getElement(0, i)*amplitudes.getElement(0, i);
+			System.out.println("the probability of state "+(i+1)+" is "+probability);
+		}
+	}
+	/*need to add all other gates, only required ones are implemented
+	 * 1-combined grover gate
+	 * 2-measure system
+	 */
+	public void apply(QCircuit circuit){
+		int[][] data = circuit.gates;
+		Matrix groverMatrix=null;
+		for(int i=0; i<data.length;i++){
+			if(data[i][0]==1){
+				if(groverMatrix==null){
+					GroverMGate grover = new GroverMGate();
+					groverMatrix = grover.output(numOfQubits);
+				}
+				this.apply(groverMatrix);
+			}
+			else if(data[i][0]==2){
+				this.measure();
+			}
 		}
 	}
 }
