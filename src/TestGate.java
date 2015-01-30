@@ -31,9 +31,12 @@ public class TestGate {
 	}*/
 	public static void main (String [] args){
 		int noOfQbits = 8;
+		int findThis = 1;
+		
 		MRegister register = new MRegister(noOfQbits);
-
-		register.apply(new GroverQCircuit(noOfQbits));
+		GroverQCircuit groverCircuit = new GroverQCircuit(noOfQbits);
+		groverCircuit.setTarget(findThis);
+		register.apply(groverCircuit);
 
 	}
 }

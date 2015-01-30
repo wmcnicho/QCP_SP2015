@@ -63,6 +63,7 @@ public class MRegister implements IRegister{
 			if(data[i][0]==1){
 				if(groverMatrix==null){
 					GroverMGate grover = new GroverMGate();
+					grover.setTarget(data[i][1]);
 					groverMatrix = grover.output(numOfQubits);
 				}
 				this.apply(groverMatrix);

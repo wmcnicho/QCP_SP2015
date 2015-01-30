@@ -9,7 +9,7 @@
 
 public class GroverQCircuit extends QCircuit {
 
-	int noOfIterations;
+	int noOfIterations, findThis;
 	
 	public GroverQCircuit(int noOfQbits){
 		this.noOfQbits = noOfQbits;
@@ -22,12 +22,17 @@ public class GroverQCircuit extends QCircuit {
 		for(int i=0; i<noOfIterations; i++){
 			if(i<noOfIterations-1){
 				gates[i][0]=1;
-				gates[i][1]=0;
+				gates[i][1]=findThis;
 			}
 			if(i==noOfIterations-1){
 				gates[i][0]=2;
 				gates[i][1]=0;
 			}
 		}
+	}
+
+	public void setTarget(int findThis) {
+		this.findThis = findThis;
+		
 	}
 }
