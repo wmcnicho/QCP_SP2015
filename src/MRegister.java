@@ -55,7 +55,7 @@ public class MRegister implements IRegister{
 
 	}
 	public void measure(){
-		double sum=0;
+	double sum=0;
 		for(int i=0; i<amplitudes.getColumnDimension(); i++){
 			double probability = amplitudes.getElement(0, i)*amplitudes.getElement(0, i);
 			sum+=probability;
@@ -109,102 +109,54 @@ public class MRegister implements IRegister{
 	//functional implementation of grover
 	//applies the Grover step once
 	public void applyGrover(int target){
-		boolean thread1 = false;
-		boolean thread2 = false;
+
 		int n=numOfStates;
 		double n2 = 2.0/(double)n;
-
+		
 		//create new matrix to store results
-		Matrix newAmp1 = new Matrix(1, numOfStates/2);
-		Matrix newAmp2 = new Matrix(1, numOfStates/2);
-
+		Matrix newAmp = new Matrix(1, numOfStates);
+		
 		//precompute everything for performance
-		double nonTargetNonDiagonalResult1;
-		double nonTargetDiagonalResult1;
-		double targetNonDiagonalResult1;
-		double targetDiagonalResult1;
-
-		targetNonDiagonalResult1 = -amplitudes.getElement(0, target)*n2;
-		targetDiagonalResult1 = (1-n2)*amplitudes.getElement(0, target);
+		double nonTargetNonDiagonalResult;
+		double nonTargetDiagonalResult;
+		double targetNonDiagonalResult;
+		double targetDiagonalResult;
+		
+		targetNonDiagonalResult = -amplitudes.getElement(0, target)*n2;
+		targetDiagonalResult = (1-n2)*amplitudes.getElement(0, target);
 		if(target==0){
-			nonTargetNonDiagonalResult1 = -amplitudes.getElement(0, 1)*n2;
-			nonTargetDiagonalResult1 = (1-n2)*amplitudes.getElement(0, 1);
+			nonTargetNonDiagonalResult = -amplitudes.getElement(0, 1)*n2;
+			nonTargetDiagonalResult = (1-n2)*amplitudes.getElement(0, 1);
 		}
 		else{
-			nonTargetNonDiagonalResult1 = -amplitudes.getElement(0, 0)*n2;
-			nonTargetDiagonalResult1 = (1-n2)*amplitudes.getElement(0, 0);
+			nonTargetNonDiagonalResult = -amplitudes.getElement(0, 0)*n2;
+			nonTargetDiagonalResult = (1-n2)*amplitudes.getElement(0, 0);
 		}
 		
-		double nonTargetNonDiagonalResult2=nonTargetNonDiagonalResult1;
-		double nonTargetDiagonalResult2=nonTargetDiagonalResult1;
-		double targetNonDiagonalResult2=targetNonDiagonalResult1;
-		double targetDiagonalResult2=targetDiagonalResult1;
-
-		Thread t1 = new Thread(){
-			public void run(){
-				for(int j=0; j<n/2; j++){
-					double sum = 0;
-					for(int k=0; k<n; k++){
-						//on the diagonal
-						if(k==j){
-							if(k==target){
-								sum-=targetDiagonalResult1;
-							}
-							else{
-								sum+=nonTargetDiagonalResult1;
-							}
-						}
-						//not on diagonal
-						else{
-							if(k==target){
-								sum-=targetNonDiagonalResult1;
-							}
-							else{
-								sum+=nonTargetNonDiagonalResult1;
-							}
-						}
+		for(int j=0; j<n; j++){
+			double sum = 0;
+			for(int k=0; k<n; k++){
+				//on the diagonal
+				if(k==j){
+					if(k==target){
+						sum-=targetDiagonalResult;
 					}
-					newAmp1.setElement(0, j, sum);
+					else{
+						sum+=nonTargetDiagonalResult;
+					}
+				}
+				//not on diagonal
+				else{
+					if(k==target){
+						sum-=targetNonDiagonalResult;
+					}
+					else{
+						sum+=nonTargetNonDiagonalResult;
+					}
 				}
 			}
-		};
-		Thread t2 = new Thread(){
-			public void run(){
-				for(int j=n/2; j<n; j++){
-					double sum = 0;
-					for(int k=0; k<n; k++){
-						//on the diagonal
-						if(k==j){
-							if(k==target){
-								sum-=targetDiagonalResult2;
-							}
-							else{
-								sum+=nonTargetDiagonalResult2;
-							}
-						}
-						//not on diagonal
-						else{
-							if(k==target){
-								sum-=targetNonDiagonalResult2;
-							}
-							else{
-								sum+=nonTargetNonDiagonalResult2;
-							}
-						}
-					}
-					newAmp2.setElement(0, j-n/2, sum);
-				}
-			}
-		};
-		t1.start();
-		t2.start();
-		while(t1.isAlive()&&t2.isAlive()){
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			newAmp.setElement(0, j, sum);
 		}
-		this.amplitudes=newAmp1;
+		this.amplitudes=newAmp;
 	}
 }

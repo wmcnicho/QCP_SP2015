@@ -17,7 +17,7 @@ public class TestGate {
 		System.out.println(sum);
 	}*/
 	public static void main (String [] args){
-		int noOfQbits = 10;
+		int noOfQbits = 15;
 		int findThis = 0;
 		long t1 = System.nanoTime();
 		MRegister register = MRegister.getInstance();
