@@ -25,8 +25,7 @@ public class TestGate {
 		GroverQCircuit groverCircuit = new GroverQCircuit(noOfQbits);
 		groverCircuit.setTarget(findThis);
 		groverCircuit.fill();
-		//register.apply(groverCircuit);
-		register.applyF();
+		register.apply(groverCircuit);
 		System.out.println(System.nanoTime()-t1);
 	}
 }

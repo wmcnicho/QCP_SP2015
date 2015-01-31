@@ -55,10 +55,13 @@ public class MRegister implements IRegister{
 
 	}
 	public void measure(){
+	double sum=0;
 		for(int i=0; i<amplitudes.getColumnDimension(); i++){
 			double probability = amplitudes.getElement(0, i)*amplitudes.getElement(0, i);
+			sum+=probability;
 			System.out.println("the probability of state "+(i)+" is "+probability);
 		}
+		System.out.println(sum);
 	}
 	/*need to add all other gates, only required ones are implemented
 	 * 1-combined grover gate
@@ -69,17 +72,16 @@ public class MRegister implements IRegister{
 		Matrix groverMatrix=null;
 		for(int i=0; i<data.length;i++){
 			if(data[i][0]==1){
-				System.out.println(i);
 
 				//Call functional implementation
-				//		this.applyGrover(data[i][1]);
+				this.applyGrover(data[i][1]);
 				//Matrix implementation
-				if(groverMatrix==null){
+				/*if(groverMatrix==null){
 					GroverMGate grover = new GroverMGate();
 					grover.setTarget(data[i][1]);
 					groverMatrix = grover.output(numOfQubits);
 				}
-				this.apply(groverMatrix); 
+				this.apply(groverMatrix); */
 
 			} 
 			else if(data[i][0]==2){
@@ -87,12 +89,7 @@ public class MRegister implements IRegister{
 			}
 		}
 	}
-	public void applyF(){
-		for(int i=0; i<16; i++){
-			this.applyGrover(0);
-		}
-		this.measure();
-	}
+
 	public void applyGate(MGate m, int targetQbit){
 		instance.amplitudes.multiplyBy(m.generateGate(numOfQubits,targetQbit));
 	}
@@ -110,33 +107,55 @@ public class MRegister implements IRegister{
 	}
 
 	//functional implementation of grover
+	//applies the Grover step once
 	public void applyGrover(int target){
-		//N on the whiteboard
+
 		int n=numOfStates;
-		//use 2/N a lot
 		double n2 = 2.0/(double)n;
+		
 		//create new matrix to store results
 		Matrix newAmp = new Matrix(1, numOfStates);
+		
+		//precompute everything for performance
+		double nonTargetNonDiagonalResult;
+		double nonTargetDiagonalResult;
+		double targetNonDiagonalResult;
+		double targetDiagonalResult;
+		
+		targetNonDiagonalResult = -amplitudes.getElement(0, target)*n2;
+		targetDiagonalResult = (1-n2)*amplitudes.getElement(0, target);
+		if(target==0){
+			nonTargetNonDiagonalResult = -amplitudes.getElement(0, 1)*n2;
+			nonTargetDiagonalResult = (1-n2)*amplitudes.getElement(0, 1);
+		}
+		else{
+			nonTargetNonDiagonalResult = -amplitudes.getElement(0, 0)*n2;
+			nonTargetDiagonalResult = (1-n2)*amplitudes.getElement(0, 0);
+		}
 		
 		for(int j=0; j<n; j++){
 			double sum = 0;
 			for(int k=0; k<n; k++){
-				double addThis = 0;
+				//on the diagonal
 				if(k==j){
-					addThis=(1-n2)*amplitudes.getElement(0, k);
+					if(k==target){
+						sum-=targetDiagonalResult;
+					}
+					else{
+						sum+=nonTargetDiagonalResult;
+					}
 				}
+				//not on diagonal
 				else{
-					addThis= -amplitudes.getElement(0, k)*n2;
-				}
-				if(k==target){
-					sum-=addThis;
-				}
-				else{
-					sum+=addThis;
+					if(k==target){
+						sum-=targetNonDiagonalResult;
+					}
+					else{
+						sum+=nonTargetNonDiagonalResult;
+					}
 				}
 			}
 			newAmp.setElement(0, j, sum);
-			//System.out.println(newAmp.getElement(0,k));
 		}
 		this.amplitudes=newAmp;
 	}
