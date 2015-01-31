@@ -84,6 +84,33 @@ public class Matrix {
 		}
 	}
 	
+	//matrix algebra methods
+	public void addBy(Matrix m){
+		if (canAdd(this,m)){
+			for (int i = 0; i < matrix.length; i++){
+				for (int j = 0; j < matrix[i].length; i++){
+					matrix[i][j] += m.matrix[i][j];
+				}
+			}
+		}
+	}
+	public void multiplyBy(Matrix m){
+		if (canMultiply(this,m)){
+			column = m.column;
+			double [][] result = new double [row][column];
+			for (int i = 0; i < result.length; i++){
+				for (int k = 0; k < result[i].length; k++){
+					double sum = 0;
+					for (int j = 0; j < this.column; j++){
+						sum += this.matrix[i][j] * m.matrix[j][k];
+					}
+					result[i][k] = sum;
+				}
+			}
+			matrix = result;
+		}
+	}
+	
 	//class methods
 	public static boolean canAdd(Matrix a, Matrix b){
 		return a.row == b.row && a.column == b.column;
@@ -122,81 +149,5 @@ public class Matrix {
 		} else {
 			return new Matrix(0,0);
 		}
-	}
-	
-	public static boolean isSquareMatrix(Matrix m){
-		if (m.row == m.column) return true;
-		return false;
-	}
-	
-	public static boolean isEqual(Matrix a, Matrix b, double tolerance){
-		if (!canAdd(a,b)) return false;
-		for (int i = 0; i < a.row; i++){
-			for (int j = 0; j < a.column; j++){
-				if (Math.abs(a.matrix[i][j] - b.matrix[i][j]) > tolerance) return false;
-			}
-		}
-		return true;
-	}
-	public static double det(Matrix m){
-		if (isSquareMatrix(m)) return cal_det(m);
-		return 0;
-	}
-	private static double cal_det(Matrix m){
-		double sum = 0;
-		if (m.row == 1 && m.column == 1){
-			return m.matrix[0][0];
-		} else {
-			for (int i = 0; i < m.column; i++){
-				sum += Math.pow(-1, i) * m.matrix[0][i] * cal_det(Matrix.reduceRowAndColumn(m, 0, i));
-			}
-			return sum;
-		}
-	}
-	
-	public static Matrix inverse(Matrix m){
-		double det = Matrix.det(m);
-		Matrix result = new Matrix(m.row, m.column);
-		if (det != 0){
-			for (int i = 0; i < m.row; i++){
-				for (int j = 0; j < m.column; j++){
-					result.matrix[i][j] =
-							1 / det * Math.pow(-1, i+j) * cal_det(Matrix.reduceRowAndColumn(m, j, i));
-				}
-			}
-			return result;
-		} else {
-			return new Matrix(0,0);
-		}
-	}
-
-	
-	public static boolean canReduceRow(Matrix a){
-		if (a.row > 0) return true;
-		return false;
-	}
-	public static boolean canReduceColumn(Matrix a){
-		if (a.column > 0) return true;
-		return false;
-	}
-	public static Matrix reduceRowAndColumn(Matrix a, int row, int col){
-		if (canReduceRow(a) && canReduceColumn(a)){
-			Matrix result = new Matrix(a.row-1, a.column-1);
-			int x = 0, y = 0;
-			for (int i = 0; i < a.row; i++){
-				if (i != row){
-					y = 0;
-					for (int j = 0; j < a.column; j++){
-						if (j != col){
-							result.matrix[x][y] = a.matrix[i][j];
-							y++;
-						}
-					}
-					x++;
-				}
-			}
-			return result;
-		}
-		return new Matrix(0,0);
 	}
 }
