@@ -17,15 +17,16 @@ public class TestGate {
 		System.out.println(sum);
 	}*/
 	public static void main (String [] args){
-		int noOfQbits = 11;
-		int findThis = 56;
+		int noOfQbits = 15;
+		int findThis = 0;
 		long t1 = System.nanoTime();
 		MRegister register = MRegister.getInstance();
 		register.setRegister(noOfQbits);
 		GroverQCircuit groverCircuit = new GroverQCircuit(noOfQbits);
 		groverCircuit.setTarget(findThis);
 		groverCircuit.fill();
-		register.apply(groverCircuit);
+		//register.apply(groverCircuit);
+		register.applyF();
 		System.out.println(System.nanoTime()-t1);
 	}
 }
