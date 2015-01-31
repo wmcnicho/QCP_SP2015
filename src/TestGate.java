@@ -21,6 +21,7 @@ public class TestGate {
 		int findThis = 56;
 		long t1 = System.nanoTime();
 		MRegister register = MRegister.getInstance();
+		register.setRegister(noOfQbits);
 		GroverQCircuit groverCircuit = new GroverQCircuit(noOfQbits);
 		groverCircuit.setTarget(findThis);
 		groverCircuit.fill();

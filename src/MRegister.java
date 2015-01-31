@@ -7,7 +7,7 @@ public class MRegister implements IRegister{
 	private int numOfStates = 0;
 	
 	/*
-	 * private constructors - exists to avoid automatic instantiation
+	 * private constructor - exists to avoid automatic instantiation
 	 */
 	private MRegister(){}
 
@@ -16,17 +16,17 @@ public class MRegister implements IRegister{
 	public void setRegister(int num, int n){
 		numOfQubits = num;
 		numOfStates = (int) Math.pow(2, numOfQubits);
-		amplitudes = new Matrix(numOfStates,1);
+		amplitudes = new Matrix(1,numOfStates);
 		amplitudes.setElement(n, 0, 1.0);
 	}
 	//set all the states with equal probs
 	public void setRegister(int num){
 		numOfQubits = num;
 		numOfStates = (int) Math.pow(2, numOfQubits);
-		amplitudes = new Matrix(numOfStates,1);
+		amplitudes = new Matrix(1,numOfStates);
 		double amp = Math.sqrt(1.0 / numOfStates);
 		for (int i = 0; i < numOfStates; i++){
-			amplitudes.setElement(i, 0, amp);
+			amplitudes.setElement(0, i, amp);
 		}
 	}
 	//set all the states with equal probs
