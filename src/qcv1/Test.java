@@ -24,12 +24,19 @@ public class Test {
 		int noOfQbits = 15;
 		int findThis = 0;
 		long t1 = System.nanoTime();
+		System.out.println("Starting Calculation...");
 		MRegister register = MRegister.getInstance();
 		register.setRegister(noOfQbits);
 		GroverCircuit groverCircuit = new GroverCircuit(noOfQbits);
 		groverCircuit.setTarget(findThis);
 		groverCircuit.fill();
 		computer.process(register, groverCircuit);
-		System.out.println(System.nanoTime()-t1);
+		
+		double runtime = (System.nanoTime()-t1)/(Math.pow(10,9));
+		int runtimeMins = (int) Math.floor(runtime/60.0);
+		int runtimeSecs = (int) (Math.floor(runtime) % 60);
+		int runtimeMSecs = (int) (Math.floor(runtime*1000) % 1000);
+		System.out.println("Calculation ended.");
+		System.out.println("Total Runtime: "+runtimeMins+" min "+runtimeSecs+" sec "+runtimeMSecs+" msecs");
 	}
 }
