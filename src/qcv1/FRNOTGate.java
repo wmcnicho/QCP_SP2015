@@ -2,15 +2,11 @@ package qcv1;
 
 
 public class FRNOTGate extends FRGate {
-	
-	private int targetQbit;
-	private int [] controlQbits = null;
-	
-	public FRNOTGate(int target){
-		targetQbit = target;
+	public FRNOTGate(int targetQbit){
+		super(null, targetQbit);
 	}
-	public FRNOTGate(int [] controls, int target){
-		controlQbits = controls;
+	public FRNOTGate(int [] controlQbits, int targetQbit){
+		super(controlQbits, targetQbit);
 	}
 	
 	public Matrix resultForOff(){
@@ -25,7 +21,4 @@ public class FRNOTGate extends FRGate {
 		m.setElement(1,0,0.0);
 		return m;
 	}
-	
-	public int getTargetQbit(){return targetQbit;}
-	public int [] getControlQbits(){return controlQbits;}
 }

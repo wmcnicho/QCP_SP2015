@@ -9,6 +9,9 @@ public class GateByGateCircuit implements QCircuit {
 		gates = new ArrayList<QGate>();
 	}
 	
+	public void addGate(QGate g){
+		gates.add(g); //add gate to the last position
+	}
 	public void addGate(int pos, QGate g){
 		gates.add(pos,g);
 	}
@@ -16,9 +19,11 @@ public class GateByGateCircuit implements QCircuit {
 		gates.remove(pos);
 	}
 	
-	public void updateRegister(QRegister reg){
+	public void applyCircuit(){
 		for (QGate g : gates){
-			g.applyTo(reg);
+			g.applyGate();
+			//MRegister.getInstance().getAmplitude().printMatrix();
+		//	System.out.println();
 		}
 	}
 }

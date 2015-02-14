@@ -30,8 +30,8 @@ public class GroverCircuit implements QCircuit{
 		return findThis;
 	}
 	
-	public void updateRegister(QRegister reg){
-		this.reg = reg;
+	public void applyCircuit(){
+		reg = MRegister.getInstance();
 		for(int i=0; i<gates.length;i++){
 			if(gates[i][0]==1){
 
@@ -100,6 +100,7 @@ public class GroverCircuit implements QCircuit{
 			}
 			newAmp.setElement(0, j, sum);
 		}
+		
 		reg.setAmplitude(newAmp);
 	}
 }

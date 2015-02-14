@@ -17,7 +17,7 @@ public class MRegister implements QRegister{
 		numOfQubits = num;
 		numOfStates = (int) Math.pow(2, numOfQubits);
 		amplitudes = new Matrix(1,numOfStates);
-		amplitudes.setElement(n, 0, 1.0);
+		amplitudes.setElement(0, n, 1.0);
 	}
 	//set all the states with equal probs
 	public void setRegister(int num){
@@ -32,7 +32,7 @@ public class MRegister implements QRegister{
 	//set all the states with equal probs
 	public void setRegister(Matrix amps){
 		amplitudes = new Matrix(amps);
-		numOfStates = amplitudes.getRowDimension();
+		numOfStates = amplitudes.getColumnDimension();
 		numOfQubits = (int) (Math.log(numOfStates)/Math.log(2));
 	}
 	

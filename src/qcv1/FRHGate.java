@@ -2,15 +2,11 @@ package qcv1;
 
 
 public class FRHGate extends FRGate{
-	
-	private int targetQbit;
-	private int [] controlQbits = null;
-	
-	public FRHGate(int target){
-		targetQbit = target;
+	public FRHGate(int targetQbit){
+		super(null, targetQbit);
 	}
-	public FRHGate(int [] controls, int target){
-		controlQbits = controls;
+	public FRHGate(int [] controlQbits, int targetQbit){
+		super(controlQbits, targetQbit);
 	}
 	
 	private final double factor = 1.0/Math.sqrt(2);
@@ -26,7 +22,4 @@ public class FRHGate extends FRGate{
 		m.setElement(1,0,-factor);
 		return m;
 	}
-	
-	public int getTargetQbit(){return targetQbit;}
-	public int [] getControlQbits(){return controlQbits;}
 }

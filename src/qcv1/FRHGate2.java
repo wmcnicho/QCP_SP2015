@@ -1,11 +1,14 @@
 package qcv1;
 
-public class MHGate extends MGate{
-	public MHGate(int targetQbit){
+
+public class FRHGate2 extends FRGate2{
+	public FRHGate2(int targetQbit){
 		super(null, targetQbit);
+		init();
 	}
-	public MHGate(int [] controlQbits, int targetQbit){
+	public FRHGate2(int [] controlQbits, int targetQbit){
 		super(controlQbits, targetQbit);
+		init();
 	}
 	
 	private final double factor = 1.0/Math.sqrt(2);

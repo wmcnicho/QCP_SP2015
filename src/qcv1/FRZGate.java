@@ -2,15 +2,11 @@ package qcv1;
 
 
 public class FRZGate extends FRGate {
-	
-	private int targetQbit;
-	private int [] controlQbits = null;
-	
-	public FRZGate(int target){
-		targetQbit = target;
+	public FRZGate(int targetQbit){
+		super(null, targetQbit);
 	}
-	public FRZGate(int [] controls, int target){
-		controlQbits = controls;
+	public FRZGate(int [] controlQbits, int targetQbit){
+		super(controlQbits, targetQbit);
 	}
 	
 	public Matrix resultForOff(){
@@ -25,7 +21,4 @@ public class FRZGate extends FRGate {
 		m.setElement(1,0,-1.0);
 		return m;
 	}
-	
-	public int getTargetQbit(){return targetQbit;}
-	public int [] getControlQbits(){return controlQbits;}
 }
