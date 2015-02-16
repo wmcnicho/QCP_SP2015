@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package qcv1;
 
 //import java.util.Enumeration;
@@ -355,16 +354,4 @@ public class SparseMatrix {
 		
 		return m3;
 	}
-	
-=======
-package qcv1;
-
-public class SparseMatrix {
-	private int Nrow;
-	private int Ncolumn;
-	
-	private int [] indexList;
-	
-	
->>>>>>> 128eaba147838fe5e8f135436e843a58286afd65
 }

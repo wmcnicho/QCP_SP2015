@@ -11,12 +11,8 @@ public class TestGrover {
 
 		GroverGateByGate grover = new GroverGateByGate(reg.numOfStates(), 2);
 		grover.applyCircuit();
-		reg.printAmplitude();
-		double totalProb = 0;
-		for (int i = 0; i < reg.numOfStates(); i++){
-			totalProb += Math.pow(reg.getAmplitude(i),2);
-		}
-		System.out.println(totalProb);
+		reg.measure();
+	
 		double runtime = (System.nanoTime()-t1)/(Math.pow(10,9));
 		int runtimeMins = (int) Math.floor(runtime/60.0);
 		int runtimeSecs = (int) (Math.floor(runtime) % 60);

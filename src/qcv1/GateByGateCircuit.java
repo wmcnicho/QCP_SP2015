@@ -15,6 +15,9 @@ public class GateByGateCircuit implements QCircuit {
 	public void addGate(int pos, QGate g){
 		gates.add(pos,g);
 	}
+	public QGate getGate(int pos){
+		return gates.get(pos);
+	}
 	public void removeGate(int pos){
 		gates.remove(pos);
 	}
@@ -22,8 +25,6 @@ public class GateByGateCircuit implements QCircuit {
 	public void applyCircuit(){
 		for (QGate g : gates){
 			g.applyGate();
-			//MRegister.getInstance().getAmplitude().printMatrix();
-		//	System.out.println();
 		}
 	}
 }

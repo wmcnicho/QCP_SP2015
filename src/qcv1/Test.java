@@ -21,7 +21,7 @@ public class Test {
 		
 		System.out.println(totalProb);
 		System.out.println(after - before);*/
-		int noOfQbits = 5;
+		int noOfQbits = 1;
 		int findThis = 0;
 		long t1 = System.nanoTime();
 		System.out.println("Starting Calculation...");

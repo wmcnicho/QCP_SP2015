@@ -25,7 +25,7 @@ public class GroverGateByGate extends GateByGateCircuit {
 		
 		//perform Hadamard on all qubits
 		for (int i = 0; i < MRegister.getInstance().numOfQubit(); i++){
-			addGate(new FRHGate2(null, i));
+			addGate(new FRHGate(null, i));
 		}
 		
 		//create phase shift gate - perform the 2|0><0| - I operation
@@ -42,9 +42,9 @@ public class GroverGateByGate extends GateByGateCircuit {
 		}
 		addGate(new PhaseShiftGate());
 		for (int i = 0; i < MRegister.getInstance().numOfQubit(); i++){
-			addGate(new FRHGate2(null, i));
+			addGate(getGate(1+i));
 		}
-		
+		System.out.println("Gate set up completed");
 	}
 	
 	public void applyCircuit(){
@@ -52,6 +52,7 @@ public class GroverGateByGate extends GateByGateCircuit {
 		final int iterations = (int) (Math.PI / 4.0 * Math.sqrt(numOfEntries));
 		for (int i = 0; i < iterations; i++){
 			super.applyCircuit();
+			//MRegister.getInstance().getAmplitude().printMatrix();
 		}
 	}
 }
