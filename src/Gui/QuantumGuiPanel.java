@@ -2,23 +2,44 @@ package Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
 public class QuantumGuiPanel extends JPanel implements ActionListener {
 	JTextArea console;
 	JButton start_butt;
+	JButton confirmOptions;
 	JProgressBar loadingBar;
+	
+	JComboBox gateRep;
+	JComboBox moreOptions;
+
+	JTextField qubitsNum;
+	
+	Boolean isLoaded;
+	Boolean qubitSet;
+	Boolean isReady;
+	
+	//center labels
+	JLabel data_status;
+	JLabel qubits;
+	JLabel gateType;
+	JLabel speedUps;
+	JLabel start;
 	
 	QuantumGuiPanel(){
 		setLayout(new BorderLayout());
@@ -65,43 +86,64 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		JPanel east = new JPanel();
 		east.setPreferredSize(new Dimension(200, 850));
 		east.setLayout(new BoxLayout(east, BoxLayout.Y_AXIS));
+		//east.setBackground(Color.DARK_GRAY);
 		
+		Vector<String> repList = new Vector<String>();
+		repList.add("Functional");
+		repList.add("String 2");
+		gateRep = new JComboBox(repList);
 		
-		JLabel matrixRep = new JLabel("Matrix Representation");
-		//TODO add drop down for Matrix Representation
 		
 		JLabel qubitsCount = new JLabel("Qubits");
-		//TODO add ticker
+		//TODO change this to a ticker
+		qubitsNum = new JTextField();
 		
-		JLabel extendedOptions = new JLabel("Speedup Options");
-		//TODO add drop down for multithreading/gpu options
+		Vector<String> optionList = new Vector<String>();
+		optionList.add("none");
+		optionList.add("String 2");
+		moreOptions = new JComboBox(optionList);
 		
-		east.add(matrixRep);
-		east.add(qubitsCount);
-		east.add(extendedOptions);
+		confirmOptions = new JButton("Confirm");
+		confirmOptions.addActionListener(this);
+		
+		east.add(new MyLabeledUnit(gateRep, "Gate Representation"));
+		east.add(new MyLabeledUnit(qubitsNum, "Qubits"));
+		east.add(new MyLabeledUnit(moreOptions, "Speedup Options"));
+		east.add(confirmOptions);
 		
 		add(east, BorderLayout.EAST);
 		
 		//Center checklist and go button
 		JPanel center = new JPanel();
-		//JButton center = new JButton("Center");
+		center.setBackground(Color.WHITE);
 		
 		//center.setPreferredSize(new Dimension(1000, 800));
 		//center.setMaximumSize(new Dimension(800, 800));
 		//center.setMinimumSize(new Dimension(1000, 800));
 		
 		
-		JLabel data_status = new JLabel("Not loaded");
-		JLabel qubits = new JLabel("Qubits: ");
-		JLabel start = new JLabel("Not Ready");
-		//TODO: add dropdown menu with different simulations
+		data_status = new JLabel("Not loaded");
+		qubits = new JLabel("Qubits: ");
+		gateType = new JLabel("Gate type: ");
+		speedUps = new JLabel("Speedups: ");
+		start = new JLabel("Not Ready");
+		Vector<String> simulationsList = new Vector<String>();
+		simulationsList.add("<none>");
+		simulationsList.add("Grover's algorithm");
+		//depending on selection this should expand to add more options
+		JComboBox simType = new JComboBox(simulationsList);
 		start_butt = new JButton("GO!");
 		start_butt.addActionListener(this);
 		center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
 		
+		
 		center.add(data_status);
 		center.add(qubits);
+		center.add(new MyLabeledUnit(simType, "Simulaton"));
+		center.add(gateType);
+		center.add(speedUps);
 		center.add(start);
+		
 		center.add(start_butt);
 	
 		add(center, BorderLayout.CENTER);
@@ -114,11 +156,53 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == start_butt){
-		console.append("Pressed shhit!\n");
+		if(e.getSource() == confirmOptions){
+		//edit the center stuff
+			gateRep.getSelectedItem().toString();
+			qubitsNum.getText();
+			moreOptions.getSelectedItem().toString();
+			
+			qubits.setText("Qubits: " + qubitsNum.getText());
+			//TODO set qubit number in local model
+			gateType.setText("Gate type: " + gateRep.getSelectedItem().toString());
+			speedUps.setText("Speedups: " + moreOptions.getSelectedItem().toString());
+			//TODO update start label and button
+			System.out.println("updated");
+		}
+		else if(e.getSource() == start_butt){
+		//given the following information, launch a simulation in a separate thread/threads
+			/*
+			 * number of Qubits
+			 * type of simulation
+			 * gate type
+			 * speedUp options
+			 * data loaded from file
+			 */
 		}
 		else{
-		console.append("huh?");
+		console.append("huh? action function unwritten");
 		}
 	}
+	
+	public class MyLabeledUnit extends JPanel{
+		Component component;
+		String s;
+		JLabel label;
+		public MyLabeledUnit(Component o, String s){
+			component = o;
+			o.setMaximumSize(new Dimension(150, 25));
+			this.s = s;
+			label = new JLabel(s);
+			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+			add(label);
+			add(o);
+		}
+		@Override
+		public void setVisible(boolean b){
+			component.setVisible(b);
+			label.setVisible(b);
+		}
+	}
+	
 }
+
