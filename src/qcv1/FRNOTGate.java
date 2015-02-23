@@ -1,4 +1,5 @@
 package qcv1;
+import Matrix.*;
 
 
 public class FRNOTGate extends FRGate {
@@ -9,14 +10,14 @@ public class FRNOTGate extends FRGate {
 		super(controlQbits, targetQbit);
 	}
 	
-	public Matrix resultForOff(){
-		Matrix m = new Matrix(2,1);
+	public DenseMatrix resultForOff(){
+		DenseMatrix m = new DenseMatrix(2,1);
 		m.setElement(0,0,0.0);
 		m.setElement(1,0,1.0);
 		return m;
 	}
-	public Matrix resultForOn(){
-		Matrix m = new Matrix(2,1);
+	public DenseMatrix resultForOn(){
+		DenseMatrix m = new DenseMatrix(2,1);
 		m.setElement(0,0,1.0);
 		m.setElement(1,0,0.0);
 		return m;

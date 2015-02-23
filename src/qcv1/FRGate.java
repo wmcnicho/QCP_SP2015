@@ -1,19 +1,21 @@
 package qcv1;
 
+import Matrix.*;
+
 public abstract class FRGate extends QGate {
 	
 	public FRGate(int [] controlQbits, int targetQbit){
 		super(controlQbits, targetQbit);
 	}
 	
-	public abstract Matrix resultForOn();
-	public abstract Matrix resultForOff();
+	public abstract DenseMatrix resultForOn();
+	public abstract DenseMatrix resultForOff();
 	
 	public void applyGate(){
 		//store the new amplitudes of the register
 		MRegister reg = MRegister.getInstance();
 		
-		Matrix amps = new Matrix(reg.numOfStates(), 1);
+		DenseMatrix amps = new DenseMatrix(reg.numOfStates(), 1);
 		final int mask = 1 << target;
 		
 		//check if there are any control qubits
