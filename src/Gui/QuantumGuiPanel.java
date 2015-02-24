@@ -19,6 +19,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
+import qcv1.*;
+
+
+
 public class QuantumGuiPanel extends JPanel implements ActionListener {
 	JTextArea console;
 	JButton start_butt;
@@ -181,6 +185,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			 * speedUp options
 			 * data loaded from file
 			 */
+        					QProcess sim = new QProcess();
         			}
 			};
 			runThread.start();

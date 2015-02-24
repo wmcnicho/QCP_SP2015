@@ -1,6 +1,6 @@
 package Matrix;
 
-public abstract class Matrix implements IMatrix {
+public abstract class Matrix {
 
 
 	//add and multiply
@@ -38,12 +38,7 @@ public abstract class Matrix implements IMatrix {
 	}
 	
 	
-	public static DenseMatrix Add(DenseMatrix a, SparseMatrix b){
-		return a;
-	}
-	public static DenseMatrix Add(SparseMatrix a, SparseMatrix b){
-		return null;
-	}
+
 
 	public static DenseMatrix Multiply(DenseMatrix a, DenseMatrix b){
 		int row = a.row;
@@ -106,12 +101,7 @@ public abstract class Matrix implements IMatrix {
 		return result;
 	}
 	
-	public static DenseMatrix Multiply(DenseMatrix a, SparseMatrix b){
-		return a;
-	}
-	public static DenseMatrix Multiply(SparseMatrix a, SparseMatrix b){
-		return null;
-	}
+	
 	public abstract void multiplyBy(DenseMatrix a);
 	
 }
