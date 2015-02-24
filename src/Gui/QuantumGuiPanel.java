@@ -170,6 +170,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			System.out.println("updated");
 		}
 		else if(e.getSource() == start_butt){
+			Thread runThread = new Thread(){
+        			public void run(){
+        			//call constructor
 		//given the following information, launch a simulation in a separate thread/threads
 			/*
 			 * number of Qubits
@@ -178,6 +181,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			 * speedUp options
 			 * data loaded from file
 			 */
+        			}
+			}
+			runThread.start();
 		}
 		else{
 		console.append("huh? action function unwritten");
