@@ -182,7 +182,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			 * data loaded from file
 			 */
         			}
-			}
+			};
 			runThread.start();
 		}
 		else{
