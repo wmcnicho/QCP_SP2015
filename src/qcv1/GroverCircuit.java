@@ -1,4 +1,5 @@
 package qcv1;
+import Matrix.*;
 
 public class GroverCircuit implements QCircuit{
 	private int noOfIterations, findThis;
@@ -57,7 +58,7 @@ public class GroverCircuit implements QCircuit{
 		double n2 = 2.0/(double)n;
 		
 		//create new matrix to store results
-		Matrix newAmp = new Matrix(1, n);
+		DenseMatrix newAmp = new DenseMatrix(1, n);
 		
 		//precompute everything for performance
 		double nonTargetNonDiagonalResult;

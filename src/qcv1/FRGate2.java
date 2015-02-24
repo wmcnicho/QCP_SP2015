@@ -1,4 +1,5 @@
 package qcv1;
+import Matrix.*;
 
 public abstract class FRGate2 extends QGate {
 	
@@ -36,14 +37,14 @@ public abstract class FRGate2 extends QGate {
 		}
 	}
 	
-	public abstract Matrix resultForOn();
-	public abstract Matrix resultForOff();
+	public abstract DenseMatrix resultForOn();
+	public abstract DenseMatrix resultForOff();
 	
 	public void applyGate(){
 		//store the new amplitudes of the register
 		MRegister reg = MRegister.getInstance();
 		
-		Matrix amps = new Matrix(1, reg.numOfStates());
+		DenseMatrix amps = new DenseMatrix(1, reg.numOfStates());
 		for (int i = 0; i < row.length; i++){
 			amps.setElement(0, row[i], amps.getElement(0, row[i]) + reg.getAmplitude(column[i]) * value[i]);
 		}

@@ -1,11 +1,14 @@
 package qcv1;
+import Matrix.*;
+
+
 public abstract class MGate extends QGate{
 	
-	private Matrix gate; //store the matrix that represents the gate
+	private DenseMatrix gate; //store the matrix that represents the gate
 	
 	//abstract methods
-	public abstract Matrix resultForOn();
-	public abstract Matrix resultForOff();
+	public abstract DenseMatrix resultForOn();
+	public abstract DenseMatrix resultForOff();
 	
 	//constructor
 	public MGate (int [] controlQbits, int targetQbit){
@@ -16,7 +19,7 @@ public abstract class MGate extends QGate{
 		final int mask = 1 << target;
 		
 		//create the gate in matrix representation
-		gate = new Matrix(maxNum+1, maxNum+1);
+		gate = new DenseMatrix(maxNum+1, maxNum+1);
 		
 		//check if there are any control qubits
 		if (controls != null){
@@ -44,7 +47,7 @@ public abstract class MGate extends QGate{
 	}
 	
 	//set the value for each element of the matrix
-	private void calcElement(Matrix gate, int i, int mask){
+	private void calcElement(DenseMatrix gate, int i, int mask){
 		//check if that qubit is 0 or 1
 		if ((i & mask) == mask){//qubit is 1
 			gate.setElement(i, i, resultForOn().getElement(1,0));

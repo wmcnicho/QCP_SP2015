@@ -3,13 +3,13 @@ package qcv1;
 public class TestGrover {
 	public static void main (String [] args){
 		MRegister reg = MRegister.getInstance();
-		reg.setRegister(15);
-		//reg.printAmplitude();
+		reg.setRegister(4);
+		reg.printAmplitude();
 		
 		long t1 = System.nanoTime();
 		System.out.println("Starting Calculation...");
 
-		GroverGateByGate grover = new GroverGateByGate(reg.numOfStates(), 2);
+		GroverGateByGate grover = new GroverGateByGate(reg.numOfStates(), 12);
 		grover.applyCircuit();
 		reg.measure();
 	
