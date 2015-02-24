@@ -1,0 +1,289 @@
+\documentclass[bibliography=totocnumbered]{article}
+%\usepackage[T1]{fontenc} Verpixelt!
+
+%\bibliographystyle{plain}
+
+\usepackage{geometry}
+\geometry{a4paper, left=40mm, right=40mm, top=45mm, bottom=35mm}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[german]{babel}
+%\usepackage{sistyle}
+%\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{forloop}
+\usepackage{icomma}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{wasysym}
+\usepackage{amsthm}
+
+\usepackage[final]{pdfpages}
+
+%\usepackage[style=authortitle-icomp]{biblatex}
+%\usepackage[babel,german=guillemets]{csquotes}
+%\bibliography{lit} 
+
+%\usepackage{floatflt}
+
+
+
+\usepackage[margin=5pt, font=small,labelfont=bf]{caption} %Sehr geiles Package
+\usepackage[margin=10pt, list=true, font=small, labelfont=bf, labelformat=brace, position=top]{subcaption} %Sehr geiles Package
+
+
+\usepackage{verbatim}
+%\usepackage{sverb}
+\usepackage{listings}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\definecolor{mylinkColor}{rgb}{0,0.14,0.4}
+
+\setlength{\fboxrule}{0.3mm}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\tiny,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+%Kopfzeile
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{} %Löscht Voreinstellungen
+\lhead{\nouppercase{\leftmark}}
+\rhead{Page \thepage \ of \pageref{LastPage}}
+%Kopfzeile Ende
+
+%-----------------------------------------------------------------------------------------
+% TITELBLATT
+%-----------------------------------------------------------------------------------------
+\newcommand{\titlename}{}
+
+\newcommand{\authorname}{Gennaro, Michael, Hunter, Christoph}
+
+\newcommand{\citeS}[1]{\textsuperscript{\cite{#1}}}
+\newcommand{\imgref}[1]{Fig.\,\ref{#1}}
+
+%\newcommand{\captionS}[1]{\textbf{\caption{\normalfont{\small #1}}}}
+
+
+
+
+
+{\small }
+
+\title{
+ \titlename\\
+  \vspace{2cm}
+  %\includegraphics[width=\textwidth]{Bilder/Title.PNG}
+  \vspace{1cm}
+}
+\author{\authorname}
+\date{}
+
+\usepackage{hyperref} 
+\usepackage{wrapfig}
+
+\usepackage[all]{hypcap} %Damit Verlinkungen auf Bilder richtig gemacht werden
+
+
+
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=false,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={\titlename},    % title
+    pdfauthor={\authorname},     % author
+    pdfsubject={},   % subject of the document
+    pdfcreator={},   % creator of the document
+    pdfproducer={}, % producer of the document
+    pdfkeywords={}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=mylinkColor,          % color of internal links (change box color with linkbordercolor)
+    citecolor=OliveGreen,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{bsp}[definition]{Example}
+
+\newtheoremstyle{NoticeStyle}% name of the style to be used
+  {}% measure of space to leave above the theorem. E.g.: 3pt
+  {}% measure of space to leave below the theorem. E.g.: 3pt
+  {}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {}% name of head font
+  {}% punctuation between head and body
+  {}% space after theorem head; " " = normal interword space
+  {}% Manually specify head
+ 
+\theoremstyle{NoticeStyle}
+
+\newcommand{\Anmerkung}[1]{
+	
+	\vspace{3pt}
+	\begin{tabular}{||p{0.9\textwidth}}
+		\textsc{Notice:} {\small #1}
+	\end{tabular}
+	
+	\vspace{3pt}
+}
+
+
+\begin{document}
+
+\newpage
+\begin{titlepage}
+	\centering
+	{\LARGE \textsc{The University of Edinburgh}}\\[5pt]
+	{\large \textsc{School of Physics and Astronomy}}\\
+	\vspace{80pt}
+	
+	\rule{\linewidth}{1pt}
+	{
+	\textbf{\LARGE Quantum Computing Project:\\Report}
+	}
+	\rule{\linewidth}{1pt}
+	
+%	\vspace{80pt}
+%	{\large
+%	A report\\as part of\\
+%	\textbf{}\\
+%	}
+	\vspace{80pt}
+	{\large
+		
+	}
+	
+	\vspace{50pt}
+	{\large
+	by\\
+	\textsc{Gennaro, Michael, Hunter, Christoph}
+	}
+	\vfill
+	{\large Edinburgh, 23rd of February 2015}
+\end{titlepage}
+
+\newpage
+
+
+%-----------------------------------------------------------------------------------------
+% INHALTSVERZEICHNIS
+%-----------------------------------------------------------------------------------------
+\tableofcontents
+\newpage
+
+
+%-----------------------------------------------------------------------------------------
+% INTRODUCTION
+%-----------------------------------------------------------------------------------------
+%
+\section{Introduction}
+
+
+%-----------------------------------------------------------------------------------------
+% THEORY
+%-----------------------------------------------------------------------------------------
+%
+\section{Theory}
+
+% - Explain why certain problems are rendered tractable by quantum computation with reference to the relevant concepts in quantum theory.
+
+\subsection{Quantum Computer}
+
+% - State some of the practical challenges in building a quantum computer.
+
+\subsection{Grover's Algorithm}
+
+
+%-----------------------------------------------------------------------------------------
+% METHODS
+%-----------------------------------------------------------------------------------------
+%
+\section{Methods}
+
+% - Describing our medium-scale application program and the work of our a co-operative team
+% - Describing collaborative development tools (Java) (such as version control systems (Git)).
+
+
+%-----------------------------------------------------------------------------------------
+% RESULTS
+%-----------------------------------------------------------------------------------------
+%
+\section{Results}
+% - Documentation that is comprehensible to a group of different programmers.
+
+
+\subsection{Grover's Algorithm}
+%Plot of Results
+
+
+%-----------------------------------------------------------------------------------------
+% DISCUSSION
+%-----------------------------------------------------------------------------------------
+%
+\section{Discussion}
+
+%-----------------------------------------------------------------------------------------
+% CONCLUSION
+%-----------------------------------------------------------------------------------------
+%
+\section{Conclusion}
+
+
+%-----------------------------------------------------------------------------------------
+% APPENDIX
+%-----------------------------------------------------------------------------------------
+%
+\section{Appendix}
+%
+
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{section}{References}
+
+\phantomsection
+\bibliographystyle{plaindin}
+\bibliography{lit}
+
+
+\end{document}
