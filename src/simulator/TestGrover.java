@@ -1,5 +1,8 @@
 package simulator;
 
+import simulator.frep.FRGrover;
+import simulator.mrep.MRegister;
+
 public class TestGrover {
 	public static void main (String [] args){
 		MRegister reg = MRegister.getInstance();

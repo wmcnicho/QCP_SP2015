@@ -1,5 +1,8 @@
 package complex;
 
+import simulator.frep.CFRGrover;
+import simulator.frep.CRegister;
+
 public class TestGrover {
 	public static void main (String [] args){
 		CRegister reg = CRegister.getInstance();

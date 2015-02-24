@@ -1,5 +1,8 @@
 package simulator;
 
+import simulator.mrep.MRegister;
+import simulator.mrep.Matrix;
+
 public class GroverCircuit implements QCircuit{
 	private int noOfIterations, findThis;
 	private int [][] gates;

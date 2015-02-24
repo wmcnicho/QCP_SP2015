@@ -1,7 +1,6 @@
 package simulator;
-import java.util.ArrayList;
 
-import complex.CRegister;
+import java.util.ArrayList;
 
 public class GateByGateCircuit implements QCircuit {
 	private ArrayList<QGate> gates = null;
