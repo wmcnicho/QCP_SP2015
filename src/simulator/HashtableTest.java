@@ -1,4 +1,4 @@
-package qcv1;
+package simulator;
 
 import java.util.Enumeration;
 import java.util.Hashtable;

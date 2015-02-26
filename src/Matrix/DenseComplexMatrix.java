@@ -32,6 +32,13 @@ public class DenseComplexMatrix extends Matrix implements IComplexMatrix{
 			imMatrix[i*column+j] = value[1];
 		}
 	}
+	
+	public void setElement(int i, int j, double real, double imag){
+		if (i >= 0 && j >= 0){
+			reMatrix[i*column+j] = real;
+			imMatrix[i*column+j] = imag;
+		}
+	}
 
 	public void setReElement(int i, int j, double value){
 		if (i >= 0 && j >= 0){

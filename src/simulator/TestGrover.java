@@ -1,13 +1,9 @@
-package qcv1;
+package simulator;
 
-public class QProcess {
-	public QProcess(){
-		 /* number of Qubits
-		 * type of simulation
-		 * gate type
-		 * speedUp options
-		 * data loaded from file
-		 * */
+import simulator.mrep.MRegister;
+
+public class TestGrover {
+	public static void main (String [] args){
 		MRegister reg = MRegister.getInstance();
 		reg.setRegister(4);
 		reg.printAmplitude();
@@ -29,6 +25,5 @@ public class QProcess {
 		int runtimeMSecs = (int) (Math.floor(runtime*1000) % 1000);
 		System.out.println("Calculation ended.");
 		System.out.println("Total Runtime: "+runtimeMins+" min "+runtimeSecs+" sec "+runtimeMSecs+" msecs");
-
 	}
 }

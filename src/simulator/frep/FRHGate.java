@@ -2,7 +2,7 @@ package simulator.frep;
 import Matrix.*;
 
 
-public class FRHGate extends FRGate{
+public class FRHGate extends FGate{
 	public FRHGate(int targetQbit){
 		super(null, targetQbit);
 	}

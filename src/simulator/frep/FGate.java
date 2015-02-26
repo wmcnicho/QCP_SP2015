@@ -1,21 +1,21 @@
-package qcv1;
+package simulator.frep;
 
-import Matrix.*;
+import simulator.QGate;
+import simulator.QRegister;
+import simulator.mrep.MRegister;
+import simulator.mrep.SparseMatrix;
 
-public abstract class FRGate extends QGate {
+public abstract class FGate implements QGate {
 	
-	public FRGate(int [] controlQbits, int targetQbit){
-		super(controlQbits, targetQbit);
+	public FGate(int [] controlQbits, int targetQbit){
+		
 	}
 	
 	public abstract DenseMatrix resultForOn();
 	public abstract DenseMatrix resultForOff();
 	
-	public void applyGate(){
-		//store the new amplitudes of the register
-		MRegister reg = MRegister.getInstance();
-		
-		DenseMatrix amps = new DenseMatrix(reg.numOfStates(), 1);
+	public void applyGate(QRegister reg){
+		SparseMatrix amps = new DenseMatrix(reg.numOfStates(), 1);
 		final int mask = 1 << target;
 		
 		//check if there are any control qubits

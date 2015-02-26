@@ -1,4 +1,5 @@
-package qcv1;
+package simulator;
+import simulator.mrep.MRegister;
 import Matrix.*;
 
 public class GroverCircuit implements QCircuit{

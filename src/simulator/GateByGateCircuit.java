@@ -1,4 +1,4 @@
-package qcv1;
+package simulator;
 import java.util.ArrayList;
 
 public class GateByGateCircuit implements QCircuit {
@@ -19,9 +19,9 @@ public class GateByGateCircuit implements QCircuit {
 		gates.remove(pos);
 	}
 	
-	public void applyCircuit(){
+	public void applyCircuit(QRegister reg){
 		for (QGate g : gates){
-			g.applyGate();
+			g.applyGate(reg);
 			//MRegister.getInstance().getAmplitude().printMatrix();
 		//	System.out.println();
 		}

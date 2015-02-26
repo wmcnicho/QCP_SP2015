@@ -2,26 +2,35 @@ package simulator.mrep;
 
 import simulator.QGate;
 import simulator.QRegister;
-import Matrix.*;
 
-public abstract class MGate extends QGate{
-	
-	private DenseComplexMatrix gate; //store the matrix that represents the gate
+public abstract class MGate implements QGate{
+	protected int target;
+	protected int [] controls = null;
+	protected int numOfStates;
+	private DenseMatrix gate; //store the matrix that represents the gate
 	
 	//abstract methods
-	public abstract DenseComplexMatrix resultForOn();
-	public abstract DenseComplexMatrix resultForOff();
+	public abstract DenseMatrix resultForOn();
+	public abstract DenseMatrix resultForOff();
 	
 	//constructor
-	public MGate (int [] controlQbits, int targetQbit){
-		super(controlQbits, targetQbit);
-		
+	public MGate (int [] controlQbits, int targetQbit, int numOfStates){
+		target = targetQbit;
+		controls = controlQbits;
+		this.numOfStates = numOfStates;
+	}
+	
+	/*
+	 * initialise the gate by creating the matrix that represents the
+	 * linear operation associated with the gate
+	 */
+	public void initGate(){
 		//find the matrix representation
-		final int maxNum = MRegister.getInstance().numOfStates() -1;
+		final int maxNum = numOfStates -1;
 		final int mask = 1 << target;
 		
 		//create the gate in matrix representation
-		gate = new DenseComplexMatrix(maxNum+1, maxNum+1);
+		gate = new DenseMatrix(numOfStates, numOfStates);
 		
 		//check if there are any control qubits
 		if (controls != null){
@@ -38,7 +47,7 @@ public abstract class MGate extends QGate{
 				if (allOn){
 					calcElement(gate,i,mask);
 				} else {//the state is not affected since qubit is zero
-					gate.setElement(i, i, 1.0);
+					gate.setElement(i, i, 1.0, 0.0);
 				}
 			}
 		} else {
@@ -49,7 +58,7 @@ public abstract class MGate extends QGate{
 	}
 	
 	//set the value for each element of the matrix
-	private void calcElement(DenseComplexMatrix gate, int i, int mask){
+	private void calcElement(DenseMatrix gate, int i, int mask){
 		//check if that qubit is 0 or 1
 		if ((i & mask) == mask){//qubit is 1
 			gate.setElement(i, i, resultForOn().getElement(1,0));
@@ -61,6 +70,6 @@ public abstract class MGate extends QGate{
 	}
 	
 	public void applyGate(QRegister reg){
-		reg.getAmplitude().multiplyBy(gate);
+		reg.getAmplitude().preMultiplyBy(gate);
 	}
 }

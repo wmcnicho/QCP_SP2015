@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
 import qcv1.*;
+import simulator.QProcess;
 
 
 
@@ -155,7 +156,6 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		
 		//WEST Currently empty
 		
-		
 	}
 
 	@Override
@@ -175,7 +175,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		}
 		else if(e.getSource() == start_butt){
 			Thread runThread = new Thread(){
-        			public void run(){
+        		public void run(){
         			//call constructor
 		//given the following information, launch a simulation in a separate thread/threads
 			/*
@@ -185,13 +185,13 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			 * speedUp options
 			 * data loaded from file
 			 */
-        					QProcess sim = new QProcess();
-        			}
+        				QProcess sim = new QProcess();
+        		}
 			};
 			runThread.start();
 		}
 		else{
-		console.append("huh? action function unwritten");
+			console.append("huh? action function unwritten");
 		}
 	}
 	

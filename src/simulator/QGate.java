@@ -1,13 +1,5 @@
 package simulator;
 
-public abstract class QGate {
-	protected int target;
-	protected int [] controls = null;
-
-	public QGate(int [] controlQbits, int targetQbit){
-		target = targetQbit;
-		controls = controlQbits;
-	}
-	
-	public abstract void applyGate(QRegister reg);
+public interface QGate {
+	public void applyGate(QRegister reg);
 }

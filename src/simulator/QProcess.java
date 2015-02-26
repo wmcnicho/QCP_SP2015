@@ -1,6 +1,5 @@
 package simulator;
 
-import qcv1.GroverGateByGate;
 import simulator.mrep.MRegister;
 
 public class QProcess {
@@ -11,21 +10,16 @@ public class QProcess {
 		 * speedUp options
 		 * data loaded from file
 		 * */
-		MRegister reg = MRegister.getInstance();
-		reg.setRegister(4);
-		reg.printAmplitude();
+		MRegister reg = new MRegister();
+		reg.setRegister(10);
+		//reg.printAmplitude();
 		
 		long t1 = System.nanoTime();
 		System.out.println("Starting Calculation...");
 
-		GroverGateByGate grover = new GroverGateByGate(reg.numOfStates(), 12);
-		grover.applyCircuit();
-		reg.printAmplitude();
-		double totalProb = 0;
-		for (int i = 0; i < reg.numOfStates(); i++){
-			totalProb += Math.pow(reg.getAmplitude(i),2);
-		}
-		System.out.println(totalProb);
+		GroverGateByGate grover = new GroverGateByGate(reg.numOfStates(), 0, reg.numOfQubit(), reg.numOfStates());
+		grover.applyCircuit(reg);
+		reg.measure();
 		double runtime = (System.nanoTime()-t1)/(Math.pow(10,9));
 		int runtimeMins = (int) Math.floor(runtime/60.0);
 		int runtimeSecs = (int) (Math.floor(runtime) % 60);
