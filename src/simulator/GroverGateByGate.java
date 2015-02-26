@@ -6,8 +6,10 @@ import simulator.mrep.MHGate;
 public class GroverGateByGate extends GateByGateCircuit {
 	private int targetIndex;
 	private int numOfEntries;
+	private GateRep gateRep;
 	
-	public GroverGateByGate(int num, int target, int numOfQubits, int numOfStates){
+	public GroverGateByGate(GateRep rep, int num, int target, int numOfQubits, int numOfStates){
+		gateRep = rep;
 		targetIndex = target;
 		numOfEntries = num;
 		
@@ -24,7 +26,7 @@ public class GroverGateByGate extends GateByGateCircuit {
 		
 		//perform Hadamard on all qubits
 		for (int i = 0; i < numOfQubits; i++){
-			addGate(new MHGate(null, i, numOfStates));
+			addGate(GateFactory.createHGate(gateRep, null, i, numOfStates));
 		}
 		
 		//create phase shift gate - perform the 2|0><0| - I operation
@@ -37,7 +39,7 @@ public class GroverGateByGate extends GateByGateCircuit {
 		}
 		addGate(new PhaseShiftGate());
 		for (int i = 0; i < numOfQubits; i++){
-			addGate(new MHGate(null, i, numOfStates));
+			addGate(getGate(1+i));
 		}
 		
 	}
@@ -45,8 +47,10 @@ public class GroverGateByGate extends GateByGateCircuit {
 	public void applyCircuit(QRegister reg){
 		//need to apply approximately r = pi/4 sqrt(N) times
 		final int iterations = (int) (Math.PI / 4.0 * Math.sqrt(numOfEntries));
+		
 		for (int i = 0; i < iterations; i++){
 			super.applyCircuit(reg);
+			System.out.println(i);
 		}
 	}
 }

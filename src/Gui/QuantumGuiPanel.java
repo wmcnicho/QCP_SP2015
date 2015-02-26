@@ -19,7 +19,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
-import qcv1.*;
 import simulator.QProcess;
 
 

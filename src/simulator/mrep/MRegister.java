@@ -4,62 +4,66 @@ import simulator.Complex;
 import simulator.QRegister;
 
 public class MRegister extends QRegister{
-	private DenseMatrix amplitudes = null;
+	private Matrix amplitudes = null;
 	private int numOfQubits = 0;
 	private int numOfStates = 0;
-
-	public MRegister() {}
-
-	//set the nth (count from 0) state with amplitude 1 but others to 0
-	public void setRegister(int num, int n){
+	private MatrixType type;
+	
+	//constructors
+	public MRegister(MatrixType t, int num){
+		type = t;
+		if (num < 1) num = 1;
 		numOfQubits = num;
 		numOfStates = (int) Math.pow(2, numOfQubits);
-		amplitudes = new DenseMatrix(numOfStates,1);
-		amplitudes.setElement(n, 0, 1.0, 0.0);
+		amplitudes = Matrix.create(type, numOfStates, 1);
 	}
-	//set all the states with equal probabilities (with real amplitudes)
-	public void setRegister(int num){
-		numOfQubits = num;
-		numOfStates = (int) Math.pow(2, numOfQubits);
-		amplitudes = new DenseMatrix(numOfStates, 1);
+	
+	public MRegister(MatrixType t, int num, int n){
+		this(t,num);
+		
+		if (n < 0 || n > numOfStates) n = 0;
+		amplitudes.set(n, 1.0, 0.0);
+	}
+		
+	public void setEqualAmplitude(){
 		double amp = Math.sqrt(1.0 / numOfStates);
 		for (int i = 0; i < numOfStates; i++){
-			amplitudes.setElement(i, 0, amp, 0.0);
+			amplitudes.set(i, 0, amp, 0.0);
 		}
 	}
 	
-	public void setAmplitude(DenseMatrix amps){
+	public void setAmplitude(Matrix amps){
 		amplitudes = amps;
 	}
 	public void setAmplitude(int qubitPos, double [] amps){
-		amplitudes.setElement(0, qubitPos, amps[0], amps[1]);
+		amplitudes.set(0, qubitPos, amps[0], amps[1]);
 	}
 	public void setAmplitude(int qubitPos, double real, double imag){
-		amplitudes.setElement(0, qubitPos, real, imag);
+		amplitudes.set(0, qubitPos, real, imag);
 	}
 
 	public int numOfQubit(){return numOfQubits;}
 	public int numOfStates(){return numOfStates;}
 	
-	public DenseMatrix getAmplitude(){
+	public Matrix getAmplitude(){
 		return amplitudes;
 	}
 	
 	public double [] getAmplitude(int i){
-		return amplitudes.getElement(0,i);
+		return amplitudes.get(0,i);
 	}
 
 
 	public void printAmplitude(){
 		for (int i = 0; i < numOfStates; i++){
-			System.out.println(amplitudes.getElement(0,i)[0] + " " + amplitudes.getElement(0,i)[1]);
+			System.out.println(amplitudes.get(0,i)[0] + " " + amplitudes.get(0,i)[1]);
 		}
 	}
 	
 	public void measure(){
 	double sum=0;
 		for(int i=0; i<numOfStates; i++){
-			double probability = Complex.magSquare(amplitudes.getElement(i, 0));
+			double probability = Complex.magSquare(amplitudes.get(i, 0));
 			sum+=probability;
 			System.out.println("the probability of state "+(i)+" is "+probability);
 		}

@@ -1,84 +1,98 @@
 package simulator.mrep;
 
-//import java.util.Enumeration;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
-//Class can handle a maximum of 59 Qubits 
-public class SparseMatrix {
-	private long Nrow;
-	private long Ncol;
+//Class can handle a maximum of 31 Qubits 
+public class SparseMatrix extends Matrix{
+	private int row;
+	private int column;
 	private long size;
 	
-	private Hashtable<Long, Double> EntryReal;
-	private Hashtable<Long, Double> EntryImag;
+	private Hashtable<Long, Double> entryReal;
+	private Hashtable<Long, Double> entryImag;
 	
 	
 	//constructors
-	public SparseMatrix(long nrow, long ncol){
+	public SparseMatrix(int nrow, int ncol){
 		this(nrow, ncol, new double[][]{{},{}});		
 	}
 	
-	public SparseMatrix(long nrowcol){
+	public SparseMatrix(int nrowcol){
 		this(nrowcol, nrowcol);
 	}
 	
-	public SparseMatrix(long nrowcol, double[][] initVals){
+	public SparseMatrix(int nrowcol, double[][] initVals){
 		this(nrowcol, nrowcol, initVals);
 	}
 	
-	public SparseMatrix(long nrow, long ncol, double[][] initVals){
+	public SparseMatrix(int nrow, int ncol, double[][] initVals){
 		if (nrow<1) nrow=1;
 		if (ncol<1) ncol=1;
 		
-		Nrow = nrow;
-		Ncol = ncol;
-		size = Nrow*Ncol;
+		row = nrow;
+		column = ncol;
+		size = (long) row*column;
 		
 		//System.out.println("SIZE:  "+size);
-		//System.out.println("Power: "+(long)Math.pow(2,60));
+		//System.out.println("Power: "+(int)Math.pow(2,60));
 		
-		EntryReal = new Hashtable<Long, Double>();
-		EntryImag = new Hashtable<Long, Double>();
+		entryReal = new Hashtable<Long, Double>();
+		entryImag = new Hashtable<Long, Double>();
 		
 		long max = initVals[0].length;
 		if (max>size) max=size;
 		
 		for (int n=0; n<max; n++){
-			setRealPart(n, initVals[0][n]);
+			setReal(n, initVals[0][n]);
 		}
 		
 		max = initVals[1].length;
 		if (max>size) max=size;
 		
 		for (int n=0; n<max; n++){
-			setImagPart(n, initVals[1][n]);
+			setImag(n, initVals[1][n]);
 		}
 	}
 	
-	//copy
-	public static SparseMatrix copy(SparseMatrix m1){
-		SparseMatrix m2 = new SparseMatrix(m1.Nrow, m1.Ncol);
-		m2.EntryReal = m1.EntryReal;
-		m2.EntryImag = m1.EntryImag;
-		return m2;
+	//deep copy constructor of original matrix
+	public SparseMatrix (SparseMatrix m1){
+		this(m1.row, m1.column);
+		this.entryReal = copyHashtable(m1.entryReal);
+		this.entryImag = copyHashtable(m1.entryImag);
+	}
+	
+	//deep copy a hashtable
+	private Hashtable<Long, Double> copyHashtable(Hashtable<Long, Double> input){
+		Hashtable<Long, Double> output = new Hashtable<Long, Double>(input.size());
+		for (long i : input.keySet()){
+			output.put(i,input.get(i));
+		}
+		return output;
 	}
 	
 	//Output-Function
+	public void printRealMatrix(){
+		
+	}
+	public void printImagMatrix(){
+		
+	}
 	public void printMatrix(){
 		String outString;
 		System.out.println("--------------");
 		System.out.println("Matrix-Output:");
 		System.out.println("--------------");
-		for(int m = 0; m<Nrow; m++){
+		for(int m = 0; m<row; m++){
 			outString="(";
-			for(int n = 0; n<Ncol; n++){
-				outString = outString + String.format("%6.2f", getRealPart(m, n)) + " ";
+			for(int n = 0; n<column; n++){
+				outString = outString + String.format("%6.2f", getReal(m, n)) + " ";
 			}
 			
 			outString = outString + ")     (";
 			
-			for(int n = 0; n<Ncol; n++){
-				outString = outString + String.format("%6.2f", getImagPart(m, n)) + " ";
+			for(int n = 0; n<column; n++){
+				outString = outString + String.format("%6.2f", getImag(m, n)) + " ";
 			}
 			
 			outString = outString + ")";
@@ -90,214 +104,310 @@ public class SparseMatrix {
 	//---------------------------------------------------------------------
 	//Get-Functions
 	//---------------------------------------------------------------------
-	public long getNrow(){
-		return Nrow;
-	}
-	public long getNcol(){
-		return Ncol;
-	}
+	public int getRowDimension(){return row;}
+	public int getColumnDimension(){return column;}
+	public long getSize(){return size;}
 	
-	public double getRealPart(long index){
+	public double getReal(long index){
 		if (index<0 || index>=size) System.err.println("Index "+index+" out of bounds");
-		
-		if (EntryReal.containsKey(index)){
-			return EntryReal.get(index);
+		if (entryReal.containsKey(index)){
+			return entryReal.get(index);
 		}
 		return 0;
 	}
 	
-	public double getRealPart(long row, long col){
-		return getRealPart(col + row*Ncol ); //as programmer we know the index starts from zero
+	public double getReal(int i, int j){
+		return getReal(j + i*column);
 	}
 	
-	public double getImagPart(long index){
+	public double getImag(long index){
 		if (index<0 || index>=size) System.err.println("Index "+index+" out of bounds");
-		
-		if (EntryImag.containsKey(index)){
-			return EntryImag.get(index);
+		if (entryImag.containsKey(index)){
+			return entryImag.get(index);
 		}
 		return 0;
 	}
+	public double getImag(int i, int j){
+		return getImag(j + i*column);
+	}
 	
-	public double getImagPart(long row, long col){
-		return getImagPart( col + row*Ncol );
+	public double [] get(long index){
+		return new double [] {getReal(index), getImag(index)};
+	}
+	public double [] get(int i, int j){
+		return get(j + i*column);
 	}
 	
 	public Hashtable<Long, Double> getHashReal(){
-		return EntryReal;
+		return entryReal;
 	}
-
 	public Hashtable<Long, Double> getHashImag(){
-		return EntryImag;
+		return entryImag;
 	}
 	
 	//---------------------------------------------------------------------
 	//Set-Functions
 	//---------------------------------------------------------------------
 	public void setHashReal(Hashtable<Long, Double> hash){
-		EntryReal=hash;
+		entryReal=hash;
 	}
 
 	public void setHashImag(Hashtable<Long, Double> hash){
-		EntryImag=hash;
+		entryImag=hash;
 	}
 	
-	public boolean setRealPart(long index, double realPart){
-		if (index>=0 && index<size){
-			if (realPart==0){
-				EntryReal.remove(index);
+	public void setReal(long index, double real){
+		if (index >= 0 && index < size){
+			if (real == 0){
+				entryReal.remove(index);
 			} else {
-				EntryReal.put(index, realPart);
+				entryReal.put(index, real);
 			}
-			return true;
 		}
-		return false;
+	}
+	public void setReal(int i, int j, double real){		
+		setReal(j + i*column , real);
 	}
 	
-	public boolean setImagPart(long index, double imagPart){
-		if (index>=0 && index<size){
-			if (imagPart==0){
-				EntryImag.remove(index);
+	public void setImag(long index, double imag){
+		if (index >= 0 && index < size){
+			if (imag == 0){
+				entryImag.remove(index);
 			} else {
-				EntryImag.put(index, imagPart);
+				entryImag.put(index, imag);
 			}
-			return true;
 		}
-		return false;
+	}
+	public void setImag(int i, int j, double imag){		
+		setImag(j + i*column , imag);
 	}
 	
-	public boolean setRealPart(long row, long col, double realPart){		
-		return setRealPart( col + row*Ncol , realPart);
+	public void set(long index, double real, double imag){
+		setReal(index, real);
+		setImag(index, imag);
+	}
+	public void set(int i, int j, double real, double imag){
+		setReal(j + i*column, real);
+		setImag(j + i*column, imag);
 	}
 	
-	public boolean setImagPart(long row, long col, double imagPart){		
-		return setImagPart( col + row*Ncol , imagPart);
+	public void set(long index, double [] z){
+		setReal(index, z[0]);
+		setImag(index, z[1]);
+	}
+	public void set(int i, int j, double [] z){
+		set(j + i*column, z);
 	}
 	
-	public boolean setEntry(long index, double realPart, double imagPart){
-		return (setRealPart(index, realPart) && setImagPart(index, imagPart));
+	//matrix algebra
+	public void addBy(Matrix m) {
+		if (canAdd(this,m)){
+			if (m instanceof SparseMatrix){
+				addBy((SparseMatrix) m);
+			} else {
+				for (long i = 0; i < m.getSize(); i++){
+					//add real part
+					if (m.getReal(i) != 0){
+						entryReal.put(i, entryReal.get(i) + m.getReal(i));
+					}
+					//add imaginary part
+					if (m.getImag(i) != 0){
+						entryImag.put(i, entryImag.get(i) + m.getImag(i));
+					}
+				}
+			}
+		}
 	}
 	
-	public boolean setEntry(long row, long col, double realPart, double imagPart){
-		return (setRealPart(col + row*Ncol, realPart) && setImagPart(col + row*Ncol, imagPart));
+	public void addBy(SparseMatrix m){
+		//add real part
+		for (long index : m.entryReal.keySet()){
+			entryReal.put(index, entryReal.get(index) + m.entryReal.get(index));
+		}
+		//add imaginary part
+		for (long index : m.entryImag.keySet()){
+			entryImag.put(index,  entryImag.get(index) + m.entryImag.get(index));
+		}
+	}
+	
+	public void preMultiplyBy(Matrix m){
+		if (canMultiply(m,this)){
+			int mrow = m.getRowDimension();
+			
+			Hashtable<Long, Double> real = new Hashtable<Long, Double>();
+			Hashtable<Long, Double> imag = new Hashtable<Long, Double>();
+			
+			double dReal, dImag;
+			for (int i = 0; i < mrow; i++){
+				for (int k = 0; k < column; k++){
+					dReal = 0;
+					dImag = 0;
+					for (int j = 0; j < row; j++){
+						dReal = dReal + m.getReal(i, j) * this.getReal(j, k) - m.getImag(i, j) * this.getImag(j, k);
+						dImag = dImag + m.getReal(i, j) * this.getImag(j, k) + m.getImag(i, j) * this.getReal(j, k);
+					}
+					if (dReal != 0){
+						real.put((long)i*column+k, dReal);
+					}
+					if (dImag != 0){
+						imag.put((long)i*column+k, dImag);
+					}
+				}
+			}
+			entryReal = real;
+			entryImag = imag;
+		}
+	}
+
+	public void preMultiplyBy(SparseMatrix m) {
+		
+		int row = m.row;
+		int column = this.column;
+		/*
+		 * ensure all keys for complex numbers with non-zero real or 
+		 * imaginary part are included
+		 */
+		
+		ArrayList<Long> index = new ArrayList<Long>();
+		index.addAll(m.entryReal.keySet());
+		for (Long i : entryImag.keySet()){
+			if (!index.contains(i)){
+				index.add(i);
+			}
+		}
+		
+		//instantiate the result hashtables
+		Hashtable<Long, Double> real = new Hashtable<Long, Double>();
+		Hashtable<Long, Double> imag = new Hashtable<Long, Double>();
+				
+		//perform the matrix multiplication
+		for (Long i : index){
+			//need to resolve the real and imag part
+			
+		}
+		
+	}
+
+	@Override
+	public void postMultiplyBy(Matrix m) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	//---------------------------------------------------------------------
 	// ADD-Matrix
 	//---------------------------------------------------------------------
-	static public SparseMatrix add(SparseMatrix m1, SparseMatrix m2){
-		long Nrow = m1.Nrow;
-		long Ncol = m1.Ncol;
+	/*public static SparseMatrix add(SparseMatrix m1, SparseMatrix m2){
+		int row = m1.row;
+		int column = m1.column;
 		
-		if (Nrow!=m2.Nrow || Ncol!=m2.Ncol){
+		if (row!=m2.row || column!=m2.column){
 			System.err.println("The matrices have different sizes!");
 			return null;
 		}
 		
 		SparseMatrix m3 = SparseMatrix.copy(m1);
 		
-		for (Long index : m2.EntryReal.keySet()){
-          m3.setRealPart(index, m1.getRealPart(index) + m2.EntryReal.get(index));
+		for (Long index : m2.entryReal.keySet()){
+          m3.setReal(index, m1.getReal(index) + m2.entryReal.get(index));
       }
 		
-		for (Long index : m2.EntryImag.keySet()){
-          m3.setImagPart(index, m1.getImagPart(index) + m2.EntryImag.get(index));
+		for (Long index : m2.entryImag.keySet()){
+          m3.setImag(index, m1.getImag(index) + m2.entryImag.get(index));
       }
 		
 		return m3;
 	}
 	
 	public boolean add(SparseMatrix m){
-		if (Nrow!=m.Nrow || Ncol!=m.Ncol){
+		if (row!=m.row || column!=m.column){
 			System.err.println("The matrices have different sizes!");
 			return false;
 		}
 		
-		for (Long index : m.EntryReal.keySet()){
-          setRealPart(index, getRealPart(index) + m.EntryReal.get(index));
+		for (Long index : m.entryReal.keySet()){
+          setReal(index, getReal(index) + m.entryReal.get(index));
       }
 
-		for (Long index : m.EntryImag.keySet()){
-          setImagPart(index, getImagPart(index) + m.EntryImag.get(index));
+		for (Long index : m.entryImag.keySet()){
+          setImag(index, getImag(index) + m.entryImag.get(index));
       }
 		
 		return true;
-	}
+	}*/
 	//---------------------------------------------------------------------
 	// SCALAR-Matrix
 	//---------------------------------------------------------------------
-	public boolean rescale(double d){
+	public void multiplyBy(double d){
 
-		for (Long index : EntryReal.keySet()){
-          setRealPart(index, d*getRealPart(index) );
+		for (Long index : entryReal.keySet()){
+          setReal(index, d*getReal(index) );
       }
-		for (Long index : EntryImag.keySet()){
-          setImagPart(index, d*getImagPart(index) );
+		for (Long index : entryImag.keySet()){
+          setImag(index, d*getImag(index) );
       }
-		
-		return true;
 	}
 	//---------------------------------------------------------------------
 	// TRANSPOSE-Matrix
 	//---------------------------------------------------------------------
-	public boolean transpose(){
-		Hashtable<Long, Double> EntryRealT = new Hashtable<Long, Double>();
-		Hashtable<Long, Double> EntryImagT = new Hashtable<Long, Double>();
+	/*public boolean transpose(){
+		Hashtable<Long, Double> entryRealT = new Hashtable<Long, Double>();
+		Hashtable<Long, Double> entryImagT = new Hashtable<Long, Double>();
 		
-		for (Long index : EntryReal.keySet()){
-          long m = (long) Math.ceil(((double)index)/Ncol);//row
-          long n = ((index-1) % Ncol)+1;//column
+		for (Long index : entryReal.keySet()){
+          int m = (int) Math.ceil(((double)index)/column);//row
+          int n = ((index-1) % column)+1;//column
           
-          EntryRealT.put(m + (n-1)*Nrow, EntryReal.get(index));
+          entryRealT.put(m + (n-1)*row, entryReal.get(index));
       }
-		for (Long index : EntryImag.keySet()){
-          long m = (long) Math.ceil(((double)index)/Ncol);//row
-          long n = ((index-1) % Ncol)+1;//column
+		for (Long index : entryImag.keySet()){
+          int m = (int) Math.ceil(((double)index)/column);//row
+          int n = ((index-1) % column)+1;//column
           
-          EntryImagT.put(m + (n-1)*Nrow, EntryImag.get(index));
+          entryImagT.put(m + (n-1)*row, entryImag.get(index));
       }
-		long temp = Nrow;
-		Nrow = Ncol;
-		Ncol = temp;
+		int temp = row;
+		row = column;
+		column = temp;
 		
-		EntryReal = EntryRealT;
-		EntryImag = EntryImagT;
+		entryReal = entryRealT;
+		entryImag = entryImagT;
 		
 		return true;
-	}
+	}*/
 	
 	//---------------------------------------------------------------------
 	// MULTIPLY-Matrix
 	//---------------------------------------------------------------------
-	static public SparseMatrix Multiply(SparseMatrix mL, SparseMatrix mR)
+	public static SparseMatrix Multiply(SparseMatrix mL, SparseMatrix mR)
 	//SLOW VERSION (but working correctly)
 	{
-		if (mL.Ncol != mR.Nrow){
+		if (mL.column != mR.row){
 			System.err.println("The matrices can't be multiplied!");
 			return null;
 		}
 		
-		SparseMatrix m3 = new SparseMatrix(mL.Nrow, mR.Ncol);
+		SparseMatrix m3 = new SparseMatrix(mL.row, mR.column);
 		
 		double dReal, dImag;
-		for (long m=0; m<mL.Nrow; m++){
-			for (long p=0; p<mR.Ncol; p++){
+		for (int m=0; m<mL.row; m++){
+			for (int p=0; p<mR.column; p++){
 				dReal=0;
 				dImag=0;
-				for (long n=0; n<mL.Ncol; n++){
+				for (int n=0; n<mL.column; n++){
 					//a1  mL.getRealPart(m, n)
 					//a2  mL.getImagPart(m, n)
 					//b1  mR.getRealPart(n, p)
 					//b2  mR.getImagPart(n, p)
 					
-					dReal = dReal + mL.getRealPart(m, n)*mR.getRealPart(n, p) - mL.getImagPart(m, n)*mR.getImagPart(n, p);
-					dImag = dImag + mL.getRealPart(m, n)*mR.getImagPart(n, p) + mL.getImagPart(m, n)*mR.getRealPart(n, p);
+					dReal = dReal + mL.getReal(m, n)*mR.getReal(n, p) - mL.getImag(m, n)*mR.getImag(n, p);
+					dImag = dImag + mL.getReal(m, n)*mR.getImag(n, p) + mL.getImag(m, n)*mR.getReal(n, p);
 				}
-				m3.setRealPart(m, p, dReal);
-				m3.setImagPart(m, p, dImag);
+				m3.setReal(m, p, dReal);
+				m3.setImag(m, p, dImag);
 			}
 		}
 		
 		return m3;
 	}
-}
+}	

@@ -1,6 +1,6 @@
 package simulator;
 
-import simulator.mrep.DenseMatrix;
+import simulator.mrep.Matrix;
 
 public abstract class QRegister {
 	public abstract int numOfQubit();
@@ -9,7 +9,7 @@ public abstract class QRegister {
 	public abstract void setAmplitude(int qubitPos, double [] amps);
 	public abstract void setAmplitude(int qubitPos, double real, double imag);
 	public abstract double [] getAmplitude(int qubitPos);
-	public abstract DenseMatrix getAmplitude();
+	public abstract Matrix getAmplitude();
 	public abstract void measure();
 }
 	

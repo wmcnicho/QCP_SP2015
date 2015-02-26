@@ -1,6 +1,8 @@
 package simulator;
 
 import simulator.mrep.MRegister;
+import simulator.mrep.Matrix;
+import simulator.mrep.MatrixType;
 
 public class QProcess {
 	public QProcess(){
@@ -10,14 +12,14 @@ public class QProcess {
 		 * speedUp options
 		 * data loaded from file
 		 * */
-		MRegister reg = new MRegister();
-		reg.setRegister(10);
-		//reg.printAmplitude();
+		MRegister reg = new MRegister(MatrixType.DENSE, 11);
+		reg.setEqualAmplitude();
 		
 		long t1 = System.nanoTime();
 		System.out.println("Starting Calculation...");
 
-		GroverGateByGate grover = new GroverGateByGate(reg.numOfStates(), 0, reg.numOfQubit(), reg.numOfStates());
+		GroverGateByGate grover = new GroverGateByGate(
+				GateRep.DENSE_MATRIX, reg.numOfStates(), 2, reg.numOfQubit(), reg.numOfStates());
 		grover.applyCircuit(reg);
 		reg.measure();
 		double runtime = (System.nanoTime()-t1)/(Math.pow(10,9));

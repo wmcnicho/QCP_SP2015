@@ -7,14 +7,15 @@ public abstract class MGate implements QGate{
 	protected int target;
 	protected int [] controls = null;
 	protected int numOfStates;
-	private DenseMatrix gate; //store the matrix that represents the gate
+	protected MatrixType matrixType;
+	private Matrix gate; //store the matrix that represents the gate
 	
 	//abstract methods
-	public abstract DenseMatrix resultForOn();
-	public abstract DenseMatrix resultForOff();
+	public abstract Matrix resultForOn();
+	public abstract Matrix resultForOff();
 	
 	//constructor
-	public MGate (int [] controlQbits, int targetQbit, int numOfStates){
+	public MGate (MatrixType rep, int [] controlQbits, int targetQbit, int numOfStates){
 		target = targetQbit;
 		controls = controlQbits;
 		this.numOfStates = numOfStates;
@@ -24,13 +25,13 @@ public abstract class MGate implements QGate{
 	 * initialise the gate by creating the matrix that represents the
 	 * linear operation associated with the gate
 	 */
-	public void initGate(){
+	public void initGate(MatrixType type){
 		//find the matrix representation
 		final int maxNum = numOfStates -1;
 		final int mask = 1 << target;
 		
 		//create the gate in matrix representation
-		gate = new DenseMatrix(numOfStates, numOfStates);
+		gate = Matrix.create(type, numOfStates, numOfStates);
 		
 		//check if there are any control qubits
 		if (controls != null){
@@ -47,7 +48,7 @@ public abstract class MGate implements QGate{
 				if (allOn){
 					calcElement(gate,i,mask);
 				} else {//the state is not affected since qubit is zero
-					gate.setElement(i, i, 1.0, 0.0);
+					gate.set(i, i, 1.0, 0.0);
 				}
 			}
 		} else {
@@ -58,14 +59,14 @@ public abstract class MGate implements QGate{
 	}
 	
 	//set the value for each element of the matrix
-	private void calcElement(DenseMatrix gate, int i, int mask){
+	private void calcElement(Matrix gate, int i, int mask){
 		//check if that qubit is 0 or 1
 		if ((i & mask) == mask){//qubit is 1
-			gate.setElement(i, i, resultForOn().getElement(1,0));
-			gate.setElement(i ^ mask, i, resultForOn().getElement(0,0));
+			gate.set(i, i, resultForOn().get(1,0));
+			gate.set(i ^ mask, i, resultForOn().get(0,0));
 		} else {//qubit is 0
-			gate.setElement(i, i, resultForOff().getElement(0,0));
-			gate.setElement(i ^ mask, i, resultForOff().getElement(1,0));
+			gate.set(i, i, resultForOff().get(0,0));
+			gate.set(i ^ mask, i, resultForOff().get(1,0));
 		}
 	}
 	

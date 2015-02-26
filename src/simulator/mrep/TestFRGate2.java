@@ -2,15 +2,16 @@ package simulator.mrep;
 
 import simulator.Complex;
 import simulator.GateByGateCircuit;
+import simulator.GateFactory;
+import simulator.GateRep;
 
 public class TestFRGate2 {
 	public static void main (String [] args){
-		MRegister reg = new MRegister();
-		reg.setRegister(2, 0);
+		MRegister reg = new MRegister(MatrixType.DENSE,12,0);
 		reg.printAmplitude();
 		GateByGateCircuit circuit = new GateByGateCircuit();
-		for (int i = 0; i < 2; i++){
-			circuit.addGate(i, new MHGate(null,i,reg.numOfStates()));
+		for (int i = 0; i < 12; i++){
+			circuit.addGate(i, GateFactory.createHGate(GateRep.SPARSE_MATRIX,null,i,reg.numOfStates()));
 		}
 		circuit.applyCircuit(reg);
 		reg.printAmplitude();
