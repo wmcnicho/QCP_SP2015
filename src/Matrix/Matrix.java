@@ -1,23 +1,23 @@
 package Matrix;
 
-public abstract class Matrix {
+public class Matrix {
 
 
 	//add and multiply
-	public static DenseMatrix Add(DenseMatrix a, DenseMatrix b){
+	public static RealMatrix Add(RealMatrix a, RealMatrix b){
 		int row = a.row;
 		int column = a.column;
-		DenseMatrix result = new DenseMatrix(row, column);
+		RealMatrix result = new RealMatrix(row, column);
 		for (int i = 0; i < row*column; i++){
 			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
 		}
 		return result;
 	}
 	
-	public static DenseComplexMatrix Add(DenseComplexMatrix a, DenseMatrix b){
+	public static ComplexMatrix Add(ComplexMatrix a, RealMatrix b){
 		int row = a.row;
 		int column = a.column;
-		DenseComplexMatrix result = new DenseComplexMatrix(row, column);
+		ComplexMatrix result = new ComplexMatrix(row, column);
 		for (int i = 0; i < row*column; i++){
 			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
 			result.reMatrix[i] = a.imMatrix[i];
@@ -26,10 +26,10 @@ public abstract class Matrix {
 		return result;
 	}
 	
-	public static DenseComplexMatrix Add(DenseComplexMatrix a, DenseComplexMatrix b){
+	public static ComplexMatrix Add(ComplexMatrix a, ComplexMatrix b){
 		int row = a.row;
 		int column = a.column;
-		DenseComplexMatrix result = new DenseComplexMatrix(row, column);
+		ComplexMatrix result = new ComplexMatrix(row, column);
 		for (int i = 0; i < row*column; i++){
 			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
 			result.imMatrix[i] = a.imMatrix[i] + b.imMatrix[i];
@@ -37,13 +37,10 @@ public abstract class Matrix {
 		return result;
 	}
 	
-	
-
-
-	public static DenseMatrix Multiply(DenseMatrix a, DenseMatrix b){
+	public static RealMatrix Multiply(RealMatrix a, RealMatrix b){
 		int row = a.row;
 		int column = b.column;
-		DenseMatrix result = new DenseMatrix(row, column);
+		RealMatrix result = new RealMatrix(row, column);
 		for(int global = 0; global<row*column; global++){
 			int i = global /row;
 			int j = global % row;
@@ -57,10 +54,10 @@ public abstract class Matrix {
 		return result;
 	}
 	
-	public static DenseComplexMatrix Multiply(DenseComplexMatrix a, DenseComplexMatrix b){
+	public static ComplexMatrix Multiply(ComplexMatrix a, ComplexMatrix b){
 		int row = a.row;
 		int column = b.column;
-		DenseComplexMatrix result = new DenseComplexMatrix(row, column);
+		ComplexMatrix result = new ComplexMatrix(row, column);
 		for(int global = 0; global<row*column; global++){
 			int i = global /row;
 			int j = global % row;
@@ -79,10 +76,10 @@ public abstract class Matrix {
 		return result;
 	}
 	
-	public static DenseComplexMatrix Multiply(DenseComplexMatrix a, DenseMatrix b){
+	public static ComplexMatrix Multiply(ComplexMatrix a, RealMatrix b){
 		int row = a.row;
 		int column = b.column;
-		DenseComplexMatrix result = new DenseComplexMatrix(row, column);
+		ComplexMatrix result = new ComplexMatrix(row, column);
 		for(int global = 0; global<row*column; global++){
 			int i = global /row;
 			int j = global % row;
@@ -101,7 +98,41 @@ public abstract class Matrix {
 		return result;
 	}
 	
+	public static ComplexMatrix Multiply(ComplexMatrix a, SparseMatrix b){
+		ComplexMatrix out = new ComplexMatrix(a.row, b.column);
+		for(int j=0; j<b.column; j++){
+			double reSum = 0.0;
+			double imSum = 0.0;
+
+			reSum+=a.reMatrix[b.rowIndex[2*j]]*b.reElements[j*2];
+			reSum+=a.reMatrix[b.rowIndex[2*j+1]]*b.reElements[j*2+1];
+			reSum-=a.imMatrix[b.rowIndex[2*j]]*b.imElements[j*2];
+			reSum-=a.imMatrix[b.rowIndex[2*j+1]]*b.imElements[j*2+1];
+			out.reMatrix[j]=reSum;
+			
+			imSum+=a.reMatrix[b.rowIndex[2*j]]*b.imElements[j*2];
+			imSum+=a.imMatrix[b.rowIndex[2*j+1]]*b.reElements[j*2+1];
+			imSum+=a.imMatrix[b.rowIndex[2*j]]*b.reElements[j*2];
+			imSum+=a.reMatrix[b.rowIndex[2*j+1]]*b.imElements[j*2+1];
+			out.imMatrix[j]=imSum;
+		}
+		return out;
+	}
 	
-	public abstract void multiplyBy(DenseMatrix a);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

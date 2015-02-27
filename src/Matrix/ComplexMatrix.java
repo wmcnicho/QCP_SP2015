@@ -3,7 +3,7 @@ package Matrix;
 
 import java.text.*;
 
-public class DenseComplexMatrix extends Matrix implements IComplexMatrix{
+public class ComplexMatrix implements IComplexMatrix{
 
 	protected int row;
 	protected int column;
@@ -12,7 +12,7 @@ public class DenseComplexMatrix extends Matrix implements IComplexMatrix{
 	private NumberFormat nf = NumberFormat.getNumberInstance();
 
 	//constructors
-	public DenseComplexMatrix(int m, int n){
+	public ComplexMatrix(int m, int n){
 		if (m < 0) m = 0;
 		row = m;
 		if (n < 0) n = 0;
@@ -85,24 +85,24 @@ public class DenseComplexMatrix extends Matrix implements IComplexMatrix{
 
 	//matrix algebra methods
 
-	public void addBy(DenseMatrix m){
+	public void addBy(RealMatrix m){
 		for (int i = 0; i < row; i++){
 			reMatrix[i] += m.reMatrix[i];
 		}
 	}
 
-	public void addBy(DenseComplexMatrix m){
+	public void addBy(ComplexMatrix m){
 		for (int i = 0; i < row; i++){
 			reMatrix[i] += m.reMatrix[i];
 			imMatrix[i] += m.imMatrix[i];
 		}
 	}
 
-	public void multiplyBy(DenseComplexMatrix m){
-		reMatrix = Matrix.Multiply(this, m).getElements();
+	public void multiplyBy(SparseMatrix gate){
+		reMatrix = Matrix.Multiply(this, gate).getElements();
 	}
 
-	public void multiplyBy(DenseMatrix m){
+	public void multiplyBy(RealMatrix m){
 		reMatrix = Matrix.Multiply(this, m).getElements();
 	}
 
@@ -111,11 +111,11 @@ public class DenseComplexMatrix extends Matrix implements IComplexMatrix{
 	}
 
 	//class methods
-	public static boolean canAdd(DenseMatrix a, DenseMatrix b){
+	public static boolean canAdd(RealMatrix a, RealMatrix b){
 		return a.row == b.row && a.column == b.column;
 	}
 
-	public static boolean canMultiply(DenseMatrix a, DenseMatrix b){
+	public static boolean canMultiply(RealMatrix a, RealMatrix b){
 		return a.column == b.row;
 	}
 }
