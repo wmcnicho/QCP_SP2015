@@ -7,10 +7,10 @@ import simulator.GateRep;
 
 public class TestFRGate2 {
 	public static void main (String [] args){
-		MRegister reg = new MRegister(MatrixType.DENSE,12,0);
-		reg.printAmplitude();
+		MRegister reg = new MRegister(MatrixType.SPARSE,3,0);
+		//reg.printAmplitude();
 		GateByGateCircuit circuit = new GateByGateCircuit();
-		for (int i = 0; i < 12; i++){
+		for (int i = 0; i < 3; i++){
 			circuit.addGate(i, GateFactory.createHGate(GateRep.SPARSE_MATRIX,null,i,reg.numOfStates()));
 		}
 		circuit.applyCircuit(reg);

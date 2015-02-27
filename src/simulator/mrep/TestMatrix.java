@@ -2,20 +2,20 @@ package simulator.mrep;
 
 public class TestMatrix {
 	public static void main (String [] args){
-		/*DenseMatrix a = new DenseMatrix(2,2);
-		a.setReal(new double [] {8,2,3,6});
-		a.setImag(new double [] {1,7,9,2});
+		SparseMatrix a = new SparseMatrix(2,2);
+		a.set(0,new double [] {8,1});
+		a.set(1,new double [] {2,7});
+		a.set(2,new double [] {3,9});
+		a.set(3,new double [] {6,2});
 		
-		DenseMatrix b = new DenseMatrix(2,2);
-		b.setReal(new double [] {3,4,5,1});
-		b.setImag(new double [] {1,6,2,7});
+		SparseMatrix b = new SparseMatrix(2,2);
+		b.set(0,new double [] {3,1});
+		b.set(1,new double [] {4,6});
+		b.set(2,new double [] {5,2});
+		b.set(3,new double [] {1,7});
 		
 		b.preMultiplyBy(a);
-		b.printMatrix();*/
+		b.printMatrix();
 		
-		int a = (int) Math.pow(2, 20);
-		int b = (int) Math.pow(2, 20);
-		long c = (long)a * b;
-		System.out.println(c);
 	}
 }

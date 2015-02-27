@@ -2,6 +2,10 @@ package simulator.mrep;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+import simulator.Complex;
 
 //Class can handle a maximum of 31 Qubits 
 public class SparseMatrix extends Matrix{
@@ -79,6 +83,13 @@ public class SparseMatrix extends Matrix{
 		
 	}
 	public void printMatrix(){
+		for (int i = 0; i < row; i++){
+			for (int j = 0; j < column; j++){
+				System.out.printf("%.2f + %.2fi\t",getReal(i*column+j),getImag(i*column+j));
+			}
+			System.out.println();
+		}
+		/*
 		String outString;
 		System.out.println("--------------");
 		System.out.println("Matrix-Output:");
@@ -98,7 +109,7 @@ public class SparseMatrix extends Matrix{
 			outString = outString + ")";
 			System.out.println(outString);
 		}
-		System.out.println("--------------");
+		System.out.println("--------------");*/
 	}
 	
 	//---------------------------------------------------------------------
@@ -113,7 +124,7 @@ public class SparseMatrix extends Matrix{
 		if (entryReal.containsKey(index)){
 			return entryReal.get(index);
 		}
-		return 0;
+		return 0.0;
 	}
 	
 	public double getReal(int i, int j){
@@ -125,7 +136,7 @@ public class SparseMatrix extends Matrix{
 		if (entryImag.containsKey(index)){
 			return entryImag.get(index);
 		}
-		return 0;
+		return 0.0;
 	}
 	public double getImag(int i, int j){
 		return getImag(j + i*column);
@@ -232,36 +243,39 @@ public class SparseMatrix extends Matrix{
 	
 	public void preMultiplyBy(Matrix m){
 		if (canMultiply(m,this)){
-			int mrow = m.getRowDimension();
-			
-			Hashtable<Long, Double> real = new Hashtable<Long, Double>();
-			Hashtable<Long, Double> imag = new Hashtable<Long, Double>();
-			
-			double dReal, dImag;
-			for (int i = 0; i < mrow; i++){
-				for (int k = 0; k < column; k++){
-					dReal = 0;
-					dImag = 0;
-					for (int j = 0; j < row; j++){
-						dReal = dReal + m.getReal(i, j) * this.getReal(j, k) - m.getImag(i, j) * this.getImag(j, k);
-						dImag = dImag + m.getReal(i, j) * this.getImag(j, k) + m.getImag(i, j) * this.getReal(j, k);
-					}
-					if (dReal != 0){
-						real.put((long)i*column+k, dReal);
-					}
-					if (dImag != 0){
-						imag.put((long)i*column+k, dImag);
+			if (m instanceof SparseMatrix){
+				preMultiplyBy((SparseMatrix) m);
+			} else {
+				int mrow = m.getRowDimension();
+				
+				Hashtable<Long, Double> real = new Hashtable<Long, Double>();
+				Hashtable<Long, Double> imag = new Hashtable<Long, Double>();
+				
+				double dReal, dImag;
+				for (int i = 0; i < mrow; i++){
+					for (int k = 0; k < column; k++){
+						dReal = 0;
+						dImag = 0;
+						for (int j = 0; j < row; j++){
+							dReal = dReal + m.getReal(i, j) * this.getReal(j, k) - m.getImag(i, j) * this.getImag(j, k);
+							dImag = dImag + m.getReal(i, j) * this.getImag(j, k) + m.getImag(i, j) * this.getReal(j, k);
+						}
+						if (dReal != 0){
+							real.put((long)i*column+k, dReal);
+						}
+						if (dImag != 0){
+							imag.put((long)i*column+k, dImag);
+						}
 					}
 				}
+				entryReal = real;
+				entryImag = imag;
 			}
-			entryReal = real;
-			entryImag = imag;
 		}
 	}
 
 	public void preMultiplyBy(SparseMatrix m) {
-		
-		int row = m.row;
+
 		int column = this.column;
 		/*
 		 * ensure all keys for complex numbers with non-zero real or 
@@ -281,11 +295,46 @@ public class SparseMatrix extends Matrix{
 		Hashtable<Long, Double> imag = new Hashtable<Long, Double>();
 				
 		//perform the matrix multiplication
-		for (Long i : index){
+		for (Long ij : index){
 			//need to resolve the real and imag part
-			
+			int i = (int) (ij / m.column);
+			int j = (int) (ij % m.column);
+			for (int k = 0; k < this.column; k++){
+				long jk = (long) j*column + k;
+				long ik = (long) i*column + k;
+				double [] z1 = m.get(ij);
+				double [] z2 = get(jk);
+
+				double [] result = Complex.multiply(z1, z2);
+				
+				if (real.containsKey(ik)){
+					real.put(ik, real.get(ik) + result[0]);
+				} else {
+					real.put(ik, result[0]);
+				}
+				if (imag.containsKey(ik)){
+					imag.put(ik, imag.get(ik) + result[1]);
+				} else {
+					imag.put(ik, result[1]);
+				}
+			}
 		}
 		
+		//remove any zero elements after the multiplication operation
+		Iterator<Entry<Long, Double>> it = real.entrySet().iterator();
+		while (it.hasNext()){
+			if (it.next().getValue() == 0){
+				it.remove();
+			}
+		}
+		it = imag.entrySet().iterator();
+		while (it.hasNext()){
+			if (it.next().getValue() == 0){
+				it.remove();
+			}
+		}
+		entryReal = real;
+		entryImag = imag;
 	}
 
 	@Override

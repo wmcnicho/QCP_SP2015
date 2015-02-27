@@ -2,6 +2,8 @@ package simulator;
 
 import java.util.ArrayList;
 
+import simulator.mrep.MRegister;
+
 public class GateByGateCircuit implements QCircuit {
 	private ArrayList<QGate> gates = null;
 	
@@ -26,6 +28,9 @@ public class GateByGateCircuit implements QCircuit {
 	public void applyCircuit(QRegister reg){
 		for (QGate g : gates){
 			g.applyGate(reg);
+			MRegister mreg = (MRegister) reg;
+			//mreg.printAmplitude();
+			//System.out.println();
 		}
 	}
 }

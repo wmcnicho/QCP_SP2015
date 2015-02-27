@@ -1,8 +1,5 @@
 package simulator;
 
-
-import simulator.mrep.MHGate;
-
 public class GroverGateByGate extends GateByGateCircuit {
 	private int targetIndex;
 	private int numOfEntries;
@@ -41,7 +38,7 @@ public class GroverGateByGate extends GateByGateCircuit {
 		for (int i = 0; i < numOfQubits; i++){
 			addGate(getGate(1+i));
 		}
-		
+		System.out.println("Gate setup completed.");
 	}
 	
 	public void applyCircuit(QRegister reg){
