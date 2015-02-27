@@ -4,9 +4,13 @@ public class GroverGateByGate extends GateByGateCircuit {
 	private int targetIndex;
 	private int numOfEntries;
 	
-	public GroverGateByGate(int num, int target){
+	public GroverGateByGate(String gateRep, int num, int target){
 		targetIndex = target;
 		numOfEntries = num;
+		
+		
+		
+		MRegister.getInstance().setRegister((int)Math.sqrt(numOfEntries));
 		
 		//build the circuit for one loop
 		
