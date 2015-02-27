@@ -21,6 +21,7 @@
 \usepackage{multirow}
 \usepackage{wasysym}
 \usepackage{amsthm}
+\usepackage{physics}
 
 \usepackage[final]{pdfpages}
 
@@ -193,10 +194,13 @@
 		
 	}
 	
-	\vspace{50pt}
+	\vspace{200pt}
 	{\large
 	by\\
-	\textsc{Gennaro, Michael, Hunter, Christoph}
+	\textsc{Michael Chiang\\
+	Gennaro di Pietro\\
+	William McNichols\\
+	Christoph Meßmer}
 	}
 	\vfill
 	{\large Edinburgh, 23rd of February 2015}
@@ -218,6 +222,13 @@
 %
 \section{Introduction}
 
+\subsection{Aims}
+
+\subsection{Background}
+
+%•	Comparison between classical and quantum computing
+%•	Practical challenges for building a quantum computer
+
 
 %-----------------------------------------------------------------------------------------
 % THEORY
@@ -225,23 +236,269 @@
 %
 \section{Theory}
 
+In this chapter we introduce the basic concepts of quantum computation, starting off with definitions of \hyperref[sec:Qubits]{\textbf{qubits}}, \hyperref[sec:Quantum register]{\textbf{quantum registers}} and the presentation of several \hyperref[sec:Quantum gates]{\textbf{quantum gates}}. Afterwards we will talk about two \hyperref[sec:Quantum algorithms]{\textbf{quantum algorithms}} that we implemented in our virtual quantum computer. The last chapter will briefly talk about the challenges of \hyperref[sec:Building a quantum computer]{\textbf{building a real quantum computer}}.
+
+\subsection{Qubits}\label{sec:Qubits}
+
+\subsubsection{Generalised bits}
+A qubit (from \textit{qu}antum \textit{bit}) is the smallest unit in a quantum computer and therefore the quantum mechanical \textbf{generalisation of a classical bit}, as it is used in computers nowadays. A classical bit has one and only one of the two possible states
+%
+\begin{align}
+	\ket{0} \quad \text{or} \quad \ket{1}
+\end{align}
+%
+at the same time, whereas a qubit is able to be in a state $\ket{\Psi}$ which is a superposition of these two classical states:
+%
+\begin{align}
+	\ket{\Psi} = \alpha \ket{0} + \beta \ket{1}, \quad \text{where }|\alpha|^2 + |\beta|^2 = 1	\label{eq:Superpos of qubit}
+\end{align}
+%
+%
+One can depict the states via matrices with basis $(\ket{0}, \ket{1})$:
+\begin{align}
+	\ket{0} = \begin{pmatrix}1\\0 \end{pmatrix}, \quad\quad \ket{1} = \begin{pmatrix}0\\1 \end{pmatrix}, \quad\quad \ket{\Psi} = \begin{pmatrix}\alpha\\\beta \end{pmatrix}
+\end{align}
+
+
+\subsubsection{Measurement}
+The superposition of states leads to a new understanding of measurement. There are two things to consider:
+\begin{enumerate}
+	\item \textbf{Probabilities $P$}\\
+	Given a classical state ($\ket{\Psi}$ either $\ket{0}$ or $\ket{1}$) the result of a measurement is certain (and trivial). That's no longer true for the quantum state: Given the state $\ket{\Psi}$ in Eq.\,\ref{eq:Superpos of qubit}, it is solely possible to calculate the \textbf{probabilities $P_\Psi$} of the outcome:
+	%
+	\begin{align}
+		P_\Psi(0) = \left|\braket{0}{\Psi}\right|^2 &= \left|   \alpha \underbrace{\braket{0}{0}}_{=1} + \beta \underbrace{\braket{0}{1}}_{=0}   \right|^2 = |\alpha|^2\\
+		P_\Psi(1) = \left|\braket{1}{\Psi}\right|^2 &= \left|   \alpha \underbrace{\braket{1}{0}}_{=0} + \beta \underbrace{\braket{1}{1}}_{=1}   \right|^2 = |\beta|^2
+	\end{align}
+	
+	\item \textbf{Collapse of $\ket{\Psi}$}\\
+	In classical measurements it is fair to say that the measurement itself has no (noticeable) influence on the result. This is no longer true in quantum mechanics: The wave function $\ket{\Psi}_i$ \textbf{collapses after a measurement} to a projection onto the measured eigenstate and therefore becomes a different state $\ket{\Psi}_f$:
+	%
+	\begin{align}
+		\ket{\Psi}_i = \alpha \ket{0} + \beta \ket{1}
+		\quad
+		\xrightarrow{\text{Measurement:  Value } m}
+		\quad
+		\ket{\Psi}_f=
+		\begin{cases}
+			\ket{0} \text{,  if } m=0\\
+			\ket{1} \text{,  if } m=1
+		\end{cases}
+	\end{align}
+
+\end{enumerate}
+
+
+
+\subsection{Quantum register}\label{sec:Quantum register}
+A quantum register of size $N$ is a \textbf{collection of $N$ qubits}. Therefore we get $2^N$ basic states:
+%
+\begin{align}
+	\ket{b_{N-1}} \otimes \ket{b_{N-2}} \otimes ... \otimes \ket{b_1} \otimes \ket{b_0}
+\end{align}
+%
+where $b_i \in \{0, 1\}$. One can interpret this chain of zeros and ones as binary code, able to store numbers in the range of $[0, 1, ... 2^N-1]$. For example for a 3-qubit system we get:
+%
+\begin{align*}
+	\ket{0} \otimes \ket{0} \otimes \ket{0} \equiv \ket{000} \equiv \ket{0} \quad\quad\quad
+	\ket{1} \otimes \ket{0} \otimes \ket{0} \equiv \ket{100} \equiv \ket{4}\\
+	\ket{0} \otimes \ket{0} \otimes \ket{1} \equiv \ket{001} \equiv \ket{1} \quad\quad\quad
+	\ket{1} \otimes \ket{0} \otimes \ket{1} \equiv \ket{101} \equiv \ket{5}\\
+	\ket{0} \otimes \ket{1} \otimes \ket{0} \equiv \ket{010} \equiv \ket{2} \quad\quad\quad
+	\ket{1} \otimes \ket{1} \otimes \ket{0} \equiv \ket{110} \equiv \ket{6}\\
+	\ket{0} \otimes \ket{1} \otimes \ket{1} \equiv \ket{011} \equiv \ket{3} \quad\quad\quad
+	\ket{1} \otimes \ket{1} \otimes \ket{1} \equiv \ket{111} \equiv \ket{7}
+\end{align*}
+%
+We call this collection the \textbf{computational basis} of our register.
+
+However, in contrast to a classical system, a quantum register is able to be in a \textbf{state of superposition} which turns out to be the fundamental advantage for quantum computation. If for example the second qubit is set to a superposition $\ket{\Psi_{b_1}}=\tfrac{1}{\sqrt{2}}\left(\begin{smallmatrix}
++1\\-1
+\end{smallmatrix}\right)$ the total state of the register will be:
+%
+\begin{align}
+	\ket{\Psi^\text{tot}} &= \ket{\Psi_{b_2}} \otimes \ket{\Psi_{b_1}} \otimes \ket{\Psi_{b_0}}\label{eq:stateProduct}\\
+			   &= \ket{0} \otimes \left[ \tfrac{1}{\sqrt{2}} \left(\ket{0} - \ket{1}\right) \right] \otimes \ket{1}\\
+			   &= \tfrac{1}{\sqrt{2}} \left[ \ket{001} - \ket{011}   \right]\\
+			   &\equiv \tfrac{1}{\sqrt{2}} \left[ \ket{1} - \ket{3}   \right]\label{eq:stateProduct2}
+\end{align} 
+%
+%Entangled states
+Eq.\,\ref{eq:stateProduct2} is always reducible to a (tensor) product of three single states, as Eq.\,\ref{eq:stateProduct} suggests. This is not always the case. Consider the 2-qubit system where
+%
+\begin{align}
+	\ket{\Psi^\text{ent}} = \tfrac{1}{\sqrt{2}}  \left[ \ket{00} + \ket{11} \right].
+\end{align}
+%
+There is no way to separate this wave function into a (tensor) product of two states
+$\{ \ket{\Psi_{b_1}}, \ket{\Psi_{b_0}} \}$. Thus, the state $\ket{\Psi^\text{ent}}$ is called \textbf{entangled}.
+
+\subsection{Quantum gates}\label{sec:Quantum gates}
+After defining the quantum register, we now want to process it through a number of so-called quantum gates. These are (mathematically spoken) \textbf{unitary operations} applied to our register in order to change its total state $\ket{\Psi^\text{tot}}$. Since we work in the Hilbert space, all our operations are \textbf{linear}, therefore we can represent any gate working on a $N$-qubit register by a $2^N \times 2^N$ matrix.
+
+In the following subsections we will first introduce the most important gates used in our project, and then speak about generalisations of these gates for bigger registers.
+
+\subsubsection{Not gate}
+The first example for a simple 1-qubit gate is the Not-gate. It simply maps the state $\ket{0}\rightarrow\ket{1}$ and vice versa and is therefore equivalent to a logic \textsc{Not}. The representing matrix in the computational basis $\{\ket{0}, \ket{1}\}$ is:
+%
+\begin{align}
+	& G^\text{not} =
+	\begin{pmatrix}
+		0 & 1\\
+		1 & 0
+	\end{pmatrix}\\
+	& G^\text{not} \ket{0} = \ket{1}\\
+	& G^\text{not} \ket{1} = \ket{0}
+\end{align}
+%
+However, this gate exists in exactly the same form for classical computation.
+
+\subsubsection{Hadamard gate}
+A common gate in quantum computation is the Hadamard gate. It performs the Hadamard transformation on a single qubit system in the following way:
+%
+\begin{align}
+	G^\text{H} & = 
+		\frac{1}{\sqrt{2}}
+		\begin{pmatrix}
+			1 & 1\\
+			1 & -1
+		\end{pmatrix}\\
+	G^\text{H} \ket{0} & = \tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\\
+	G^\text{H} \ket{1} & = \tfrac{\ket{0} - \ket{1}}{\sqrt{2}}
+\end{align}
+%
+The Hadamard gate is a 'real' quantum gate since it is able to set the state to a superposition of basic states.
+
+For a N-qubit system it is necessary to define on which qubit a gate is acting. In the following we will use the subscript to depict this: The gate $G_n$ is acting on the $n$-th qubit.
+
+Note that a combination of Hadamard gates acting on every single qubit in a $N$-qubit register with initial state $\ket{\Psi}=\ket{00...0}$ will lead to an \textbf{uniform superposition} of all basic states:
+%
+\begin{align}
+	\left(  \prod_{n=0}^{N-1} G^\text{H}_n  \right) \ket{\Psi}
+	&= G^\text{H}_{N-1} \underbrace{\ket{b_{N-1}}}_{=\ket{0}} \otimes ... \otimes G^\text{H}_{0} \underbrace{\ket{b_{0}}}_{=\ket{0}}\\
+	&= \tfrac{\ket{0} + \ket{1}}{\sqrt{2}} \otimes ... \otimes \tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\\
+	&= 2^{-\frac{N}{2}} \sum_{n=0}^{N-1} \ket{n}
+\end{align}
+%
+
+\subsubsection{Phase gate}
+The Hadamard gate already uses special properties of quantum computation, but all operations are part of the real subspace of the Hilbert space. In general the gates and quantum register can operate on a complex vector space. The phase gate is such a gate which is defined for a single qubit system as:
+%
+\begin{align}
+	G^\phi & = 
+			\begin{pmatrix}
+				1 & 0\\
+				0 & e^{i\phi}
+			\end{pmatrix}\\
+	G^\phi \ket{0} & = \ket{0}\\
+	G^\phi \ket{1} & = e^{i\phi} \ket{1}
+\end{align}
+%
+
+\subsubsection{Extension to bigger registers}
+As roughly mentioned before, any single qubit gate can by applied to the $n$-th qubit of a $N$-qubit register. Consider for example an arbitrary gate $G_1$ in a 2-qubit system. The resulting matrix $G_\text{tot}$ is:
+%
+\begin{align}
+	G_\text{tot} 
+	&= G_1 \otimes \underbrace{G_0}_{=\mathbb{I}_2}\\
+	&=
+	\begin{pmatrix}
+		g_{00} & g_{01}\\
+		g_{10} & g_{11}\\
+	\end{pmatrix}
+	\otimes
+	\begin{pmatrix}
+		1 & 0\\
+		0 & 1\\
+	\end{pmatrix}\\
+	&=
+	\begin{pmatrix}
+		g_{00} \left(\begin{smallmatrix}1& 0\\ 0& 1\end{smallmatrix}\right) & g_{01} \left(\begin{smallmatrix}1& 0\\ 0& 1\end{smallmatrix}\right)\\
+		g_{10} \left(\begin{smallmatrix}1& 0\\ 0& 1\end{smallmatrix}\right) & g_{11} \left(\begin{smallmatrix}1& 0\\ 0& 1\end{smallmatrix}\right)\\
+	\end{pmatrix}
+	\\
+	&=
+	\begin{pmatrix}
+		g_{00} & 0 & g_{01} & 0\\
+		0 & g_{00} & 0 & g_{01}\\
+		g_{10} & 0 & g_{11} & 0\\
+		0 & g_{10} & 0 & g_{11}\\
+	\end{pmatrix}
+\end{align}
+%
+%
+The general expression for $N$-qubit systems is analogous:
+%
+\begin{align}
+	G_\text{tot} 
+	&= G_{N-1} \otimes ... \otimes G_n \otimes ...\otimes G_0\\
+	&= \mathbb{I}_2 \otimes ... \otimes
+	\left(
+	\begin{smallmatrix}
+		g_{00} & g_{01}\\
+		g_{10} & g_{11}\\
+	\end{smallmatrix}
+	\right)
+	\otimes ...\otimes \mathbb{I}_2
+\end{align}
+%
+
+\subsubsection{Gate representations}
+The resulting matrix $G_\text{tot}$ is in general a $2^N \times 2^N$-matrix with two and only two non-zero entries in very row and column. That means that only $2\cdot 2^N$ of $2^{N^2}$ entries are non-zero. The ratio is $2^{1-N}$ which rapidly goes towards zero for big $N$. Thus, most entries of the gate matrices will be zero.
+
+This leads to the consideration of the following three possible representations:
+\begin{enumerate}
+	\item \textbf{Dense matrix representation}\\
+		A dense matrix representation is the standard representation, storing every single entry of a matrix. This leads to two major disadvantages in our special case:		
+		\begin{enumerate}
+			\item \textit{Memory}\\
+			A classical computer reserves a certain amount of memory for every entry of a conventional matrix, no matter if the value is zero or non-zero. Therefore using dense matrices for big quantum registers might cause a serious lack of working memory.
+			\item \textit{Calculation}\\
+			We get a lot of trivial (and unnecessary) calculations using the standard matrix multiplication rule.
+		\end{enumerate}
+		The quantum register, however, has mostly non-zero entries for most of the steps of the usual algorithms.
+	\item \textbf{Sparse matrix representation}\\
+	
+	\item \textbf{Functional representation}\\
+\end{enumerate}
+
+
+This leads to two major disadvantages:
+
+
+
+%This is a hint that a (dense) matrix representation for single qubit gates acting on a big quantum register is an incredibly inefficient way of storing gate data.
+
+
+\subsection{Quantum algorithms}\label{sec:Quantum algorithms}
+
 % - Explain why certain problems are rendered tractable by quantum computation with reference to the relevant concepts in quantum theory.
 
-\subsection{Quantum Computer}
+\subsubsection{Grover's Algorithm}
+
+\subsubsection{Shor's Algorithm}
+
+
+\subsection{Building a quantum computer}\label{sec:Building a quantum computer}
 
 % - State some of the practical challenges in building a quantum computer.
 
-\subsection{Grover's Algorithm}
-
-
 %-----------------------------------------------------------------------------------------
-% METHODS
+% Implementation
 %-----------------------------------------------------------------------------------------
 %
-\section{Methods}
+\section{Implementation}
 
-% - Describing our medium-scale application program and the work of our a co-operative team
+\subsection{Project organisation}
+%•	How tasks were distributed
+% - Describing our medium-scale application program and the work of our a co-operative team.
+
+\subsection{Development environment}
 % - Describing collaborative development tools (Java) (such as version control systems (Git)).
+%•	Java Git Eclipse
+
+\subsection{Programme structure}
+% •	OO Design (include our design diagrams)
 
 
 %-----------------------------------------------------------------------------------------
@@ -255,12 +512,18 @@
 \subsection{Grover's Algorithm}
 %Plot of Results
 
+\subsection{Shor's Algorithm}
+
 
 %-----------------------------------------------------------------------------------------
 % DISCUSSION
 %-----------------------------------------------------------------------------------------
 %
 \section{Discussion}
+
+\subsection{Matrix or functional representation}
+
+\subsection{Improvements and further steps}
 
 %-----------------------------------------------------------------------------------------
 % CONCLUSION
@@ -280,6 +543,9 @@
 
 \phantomsection
 \addcontentsline{toc}{section}{References}
+
+\nocite{Perry2012}
+\nocite{BasicConceptsQC}
 
 \phantomsection
 \bibliographystyle{plaindin}

@@ -1,0 +1,16 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: report_QCP2015.aux
+The style file: plaindin.bst
+Database file #1: lit.bib
+I was expecting a `,' or a `}'---line 95 of file lit.bib
+ : 
+ : @MastersThesis{Dold,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 102 of file lit.bib
+ : 
+ : @MastersThesis{Goltzsche,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty edition in BasicConceptsQC
+Warning--empty address in BasicConceptsQC
+(There were 2 error messages)
