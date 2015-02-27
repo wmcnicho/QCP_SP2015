@@ -3,7 +3,7 @@ package Matrix;
 
 import java.text.*;
 
-public class RealMatrix implements IRealMatrix{
+public class RealMatrix extends Matrix{
 
 	protected int row;
 	protected int column;
@@ -24,13 +24,13 @@ public class RealMatrix implements IRealMatrix{
 	}
 
 	//accessor methods
-	public void setElement(int i, int j, double value){
+	public void setElement(int i, int j, double value[]){
 		if (i >= 0 && j >= 0){
-			reMatrix[i*column+j] = value;
+			reMatrix[i*column+j] = value[0];
 		}
 	}
-	public double getElement(int i, int j){
-		return reMatrix[i*column+j];
+	public double[] getElement(int i, int j){
+		return new double[]{reMatrix[i*column+j],0};
 	}
 
 	//public int getRowDimension(){return matrix.length;}
@@ -79,5 +79,35 @@ public class RealMatrix implements IRealMatrix{
 
 	public static boolean canMultiply(RealMatrix a, RealMatrix b){
 		return a.column == b.row;
+	}
+
+
+	@Override
+	public void setReElement(int i, int j, double value) {
+		reMatrix[i*column+j]=value;		
+	}
+
+	@Override
+	public void setImElement(int i, int j, double value) {		
+	}
+
+	@Override
+	public double getReElement(int i, int j) {
+		return reMatrix[i*column+j];
+	}
+
+	@Override
+	public double getImElement(int i, int j) {
+		return 0;
+	}
+
+	@Override
+	public Matrix addBy(Matrix m) {
+		return Matrix.Add(this, m);
+	}
+
+	@Override
+	public Matrix multiplyBy(Matrix m) {
+		return Matrix.Add(this, m);
 	}
 }

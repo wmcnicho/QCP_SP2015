@@ -3,7 +3,7 @@ package Matrix;
 
 import java.text.*;
 
-public class ComplexMatrix implements IComplexMatrix{
+public class ComplexMatrix extends Matrix{
 
 	protected int row;
 	protected int column;
@@ -73,7 +73,7 @@ public class ComplexMatrix implements IComplexMatrix{
 			System.out.println();
 		}
 	}
-	
+
 	public void printMatrix(){
 		for (int i = 0; i < row; i++){
 			for (int j = 0; j < column; j++){
@@ -117,5 +117,63 @@ public class ComplexMatrix implements IComplexMatrix{
 
 	public static boolean canMultiply(RealMatrix a, RealMatrix b){
 		return a.column == b.row;
+	}
+
+	@Override
+	public Matrix addBy(Matrix m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Matrix multiplyBy(Matrix b) {
+
+		ComplexMatrix a = this;
+		ComplexMatrix out = new ComplexMatrix(a.row, b.column);
+		
+		if(b.isSparse){
+	
+			for(int j=0; j<b.column; j++){
+
+				double reSum = 0.0;
+				double imSum = 0.0;
+
+				for(int k=0; k<2; k++){
+
+					int i = b.rowIndex[2*j+k];
+
+					reSum += a.getReElement(0, i)*b.getReElement(i, j);
+					reSum -= a.getImElement(0, i)*b.getImElement(i, j);
+
+					imSum += a.getReElement(0, i)*b.getImElement(i, j);
+					imSum += a.getImElement(0, i)*b.getReElement(i, j);
+
+				}
+				out.reMatrix[j]=reSum;
+				out.imMatrix[j]=imSum;
+			}
+			return out;
+		}
+		else{
+			int row = a.row;
+			int column = b.column;
+			ComplexMatrix result = new ComplexMatrix(row, column);
+			for(int global = 0; global<row*column; global++){
+				int i = global /row;
+				int j = global % row;
+				double reValue = 0;
+				double imValue = 0;
+				for(int k = 0; k < row; k++)
+				{
+					int eleA = k + i * a.column;
+					int eleB = k * b.column + j;
+			//		reValue += a.reMatrix[eleA]*b.reMatrix[eleB]-a.imMatrix[eleA]*b.imMatrix[eleB];
+			//		imValue += a.reMatrix[eleA]*b.imMatrix[eleB]+a.imMatrix[eleA]*b.reMatrix[eleB];
+				}
+				result.reMatrix[i * a.column + j] = reValue;
+				result.imMatrix[i * a.column + j] = imValue;
+			}
+			return result;
+		}
 	}
 }

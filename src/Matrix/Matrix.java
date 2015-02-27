@@ -1,9 +1,33 @@
 package Matrix;
 
-public class Matrix {
 
+public abstract class Matrix {
 
-	//add and multiply
+	protected int row;
+	protected int column;
+	protected int[] rowIndex;
+	public boolean isSparse = false;
+	
+	public abstract void setElement(int i, int j, double[] value);
+	public abstract void setReElement(int i, int j, double value);
+	public abstract void setImElement(int i, int j, double value);
+	public abstract double[] getElement(int i, int j);
+	public abstract double getReElement(int i, int j);
+	public abstract double getImElement(int i, int j);
+	
+	public abstract Matrix addBy(Matrix m);
+	public abstract Matrix multiplyBy(Matrix m);
+	
+	
+	public Matrix(){	
+	}
+	
+	//some maths
+	
+	public static ComplexMatrix Add(Matrix a, Matrix b){
+		return null;
+	}
+	
 	public static RealMatrix Add(RealMatrix a, RealMatrix b){
 		int row = a.row;
 		int column = a.column;
@@ -21,7 +45,6 @@ public class Matrix {
 		for (int i = 0; i < row*column; i++){
 			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
 			result.reMatrix[i] = a.imMatrix[i];
-
 		}
 		return result;
 	}
@@ -36,6 +59,8 @@ public class Matrix {
 		}
 		return result;
 	}
+	
+	
 	
 	public static RealMatrix Multiply(RealMatrix a, RealMatrix b){
 		int row = a.row;
@@ -101,38 +126,44 @@ public class Matrix {
 	public static ComplexMatrix Multiply(ComplexMatrix a, SparseMatrix b){
 		ComplexMatrix out = new ComplexMatrix(a.row, b.column);
 		for(int j=0; j<b.column; j++){
+			
 			double reSum = 0.0;
 			double imSum = 0.0;
-
-			reSum+=a.reMatrix[b.rowIndex[2*j]]*b.reElements[j*2];
-			reSum+=a.reMatrix[b.rowIndex[2*j+1]]*b.reElements[j*2+1];
-			reSum-=a.imMatrix[b.rowIndex[2*j]]*b.imElements[j*2];
-			reSum-=a.imMatrix[b.rowIndex[2*j+1]]*b.imElements[j*2+1];
-			out.reMatrix[j]=reSum;
 			
-			imSum+=a.reMatrix[b.rowIndex[2*j]]*b.imElements[j*2];
-			imSum+=a.imMatrix[b.rowIndex[2*j+1]]*b.reElements[j*2+1];
-			imSum+=a.imMatrix[b.rowIndex[2*j]]*b.reElements[j*2];
-			imSum+=a.reMatrix[b.rowIndex[2*j+1]]*b.imElements[j*2+1];
+			for(int k=0; k<2; k++){
+
+				int i = b.rowIndex[2*j+k];
+
+				reSum += a.getReElement(0, i)*b.getReElement(i, j);
+				reSum -= a.getImElement(0, i)*b.getImElement(i, j);
+				
+				imSum += a.getReElement(0, i)*b.getImElement(i, j);
+				imSum += a.getImElement(0, i)*b.getReElement(i, j);
+			
+			}
+			out.reMatrix[j]=reSum;
 			out.imMatrix[j]=imSum;
 		}
 		return out;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public static ComplexMatrix Multiply(RealMatrix a, SparseMatrix b){
+		ComplexMatrix out = new ComplexMatrix(a.row, b.column);
+		for(int j=0; j<b.column; j++){
+			
+			double reSum = 0.0;
+			double imSum = 0.0;
+			
+			for(int k=0; k<2; k++){
+
+				int i = b.rowIndex[2*j+k];
+				
+				reSum += a.getReElement(0, i)*b.getReElement(i, j);
+			
+			}
+			out.reMatrix[j]=reSum;
+			out.imMatrix[j]=imSum;
+		}
+		return out;
+	}
 }

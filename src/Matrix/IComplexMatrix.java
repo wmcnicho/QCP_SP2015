@@ -1,6 +1,6 @@
 package Matrix;
 
-public interface IComplexMatrix {
+public interface IComplexMatrix extends IMatrix{
 	public void setElement(int i, int j, double[] value);
 	public void setReElement(int i, int j, double value);
 	public void setImElement(int i, int j, double value);

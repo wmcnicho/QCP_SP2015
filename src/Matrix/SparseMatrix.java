@@ -4,7 +4,7 @@ import java.util.Arrays;
 //import java.util.Enumeration;
 import java.util.Hashtable;
 
-public class SparseMatrix implements IComplexMatrix{
+public class SparseMatrix extends Matrix{
 	protected int row;
 	protected int column;
 	protected int size;
@@ -15,7 +15,7 @@ public class SparseMatrix implements IComplexMatrix{
 	private boolean converted = false;
 	
 	public SparseMatrix(int row, int column){
-
+		this.isSparse = true;
 		hashMatrix = new SparseHMatrix(row, column);
 		this.row = row;
 		this.column = column;
@@ -46,7 +46,7 @@ public class SparseMatrix implements IComplexMatrix{
 			if(rowIndex[index]==i){
 				return reElements[index];
 			}
-			else if(rowIndex[index+1]+1==i){
+			else if(rowIndex[index+1]==i){
 				return reElements[index+1];
 			}else{
 				return 0;
@@ -65,7 +65,7 @@ public class SparseMatrix implements IComplexMatrix{
 			if(rowIndex[index]==i){
 				return imElements[index];
 			}
-			else if(rowIndex[index+1]+1==i){
+			else if(rowIndex[index+1]==i){
 				return imElements[index+1];
 			}else{
 				return 0;
@@ -77,6 +77,7 @@ public class SparseMatrix implements IComplexMatrix{
 	}
 	
 	public void convert(){
+		hashMatrix.printMatrix();
 		reElements = new double[2*column];
 		imElements = new double[2*column];
 		rowIndex = new int[2*column];
@@ -100,7 +101,7 @@ public class SparseMatrix implements IComplexMatrix{
 		
 		converted = true;
 		
-		//clear hash tables and run GC
+		//clear hash maps and run GC
 		hashMatrix.EntryReal.clear();
 		hashMatrix.EntryImag.clear();
 		Runtime.getRuntime().gc();
@@ -114,5 +115,20 @@ public class SparseMatrix implements IComplexMatrix{
 	
 	public ComplexMatrix multiplyBy(ComplexMatrix b){
 		return Matrix.Multiply(b, this);
+	}
+	public ComplexMatrix multiplyBy(RealMatrix b){
+		return Matrix.Multiply(b, this);
+	}
+
+	@Override
+	public Matrix addBy(Matrix m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Matrix multiplyBy(Matrix m) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
