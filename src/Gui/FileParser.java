@@ -1,4 +1,4 @@
-package gui;
+package Gui;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

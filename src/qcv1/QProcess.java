@@ -1,6 +1,6 @@
 package qcv1;
 
-import gui.QViewModel;
+import Gui.QViewModel;
 
 public class QProcess {
 	public QProcess(){

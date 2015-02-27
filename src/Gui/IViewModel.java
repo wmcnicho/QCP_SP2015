@@ -1,4 +1,4 @@
-package gui;
+package Gui;
 
 public interface IViewModel {
 	public void printToConsole(String s);
