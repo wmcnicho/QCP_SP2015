@@ -11,7 +11,7 @@
 \contentsline {subsubsection}{\numberline {2.3.2}Hadamard gate}{4}{subsubsection.2.3.2}
 \contentsline {subsubsection}{\numberline {2.3.3}Phase gate}{4}{subsubsection.2.3.3}
 \contentsline {subsubsection}{\numberline {2.3.4}Extension to bigger registers}{5}{subsubsection.2.3.4}
-\contentsline {subsubsection}{\numberline {2.3.5}Gate representations}{6}{subsubsection.2.3.5}
+\contentsline {subsubsection}{\numberline {2.3.5}Gate representations}{5}{subsubsection.2.3.5}
 \contentsline {subsection}{\numberline {2.4}Quantum algorithms}{6}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Grover's Algorithm}{6}{subsubsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.2}Shor's Algorithm}{6}{subsubsection.2.4.2}

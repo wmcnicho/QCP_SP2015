@@ -442,9 +442,33 @@ The general expression for $N$-qubit systems is analogous:
 	\otimes ...\otimes \mathbb{I}_2
 \end{align}
 %
-The resulting matrix $G_\text{tot}$ is in general a $2^N \times 2^N$-matrix with two and only two non-zero entries in very row and column. That means that only $2\cdot 2^N$ of $2^{N^2}$ entries are non-zero. The ratio is $2^{1-N}$ which rapidly goes towards zero for big $N$. This is a hint that a (dense) matrix representation for single qubit gates acting on a big quantum register is an incredibly inefficient way of storing gate data.
 
 \subsubsection{Gate representations}
+The resulting matrix $G_\text{tot}$ is in general a $2^N \times 2^N$-matrix with two and only two non-zero entries in very row and column. That means that only $2\cdot 2^N$ of $2^{N^2}$ entries are non-zero. The ratio is $2^{1-N}$ which rapidly goes towards zero for big $N$. Thus, most entries of the gate matrices will be zero.
+
+This leads to the consideration of the following three possible representations:
+\begin{enumerate}
+	\item \textbf{Dense matrix representation}\\
+		A dense matrix representation is the standard representation, storing every single entry of a matrix. This leads to two major disadvantages in our special case:		
+		\begin{enumerate}
+			\item \textit{Memory}\\
+			A classical computer reserves a certain amount of memory for every entry of a conventional matrix, no matter if the value is zero or non-zero. Therefore using dense matrices for big quantum registers might cause a serious lack of working memory.
+			\item \textit{Calculation}\\
+			We get a lot of trivial (and unnecessary) calculations using the standard matrix multiplication rule.
+		\end{enumerate}
+		The quantum register, however, has mostly non-zero entries for most of the steps of the usual algorithms.
+	\item \textbf{Sparse matrix representation}\\
+	
+	\item \textbf{Functional representation}\\
+\end{enumerate}
+
+
+This leads to two major disadvantages:
+
+
+
+%This is a hint that a (dense) matrix representation for single qubit gates acting on a big quantum register is an incredibly inefficient way of storing gate data.
+
 
 \subsection{Quantum algorithms}\label{sec:Quantum algorithms}
 
