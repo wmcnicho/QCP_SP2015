@@ -1,7 +1,6 @@
-package gui;
+package Gui;
 
 import java.io.File;
-
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;

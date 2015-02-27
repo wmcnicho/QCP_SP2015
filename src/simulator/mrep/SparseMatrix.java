@@ -335,6 +335,10 @@ public class SparseMatrix extends Matrix{
 		}
 		entryReal = real;
 		entryImag = imag;
+		
+		//update size of matrix
+		this.row = m.row;
+		this.column = column;
 	}
 
 	@Override
@@ -428,6 +432,12 @@ public class SparseMatrix extends Matrix{
 	//---------------------------------------------------------------------
 	// MULTIPLY-Matrix
 	//---------------------------------------------------------------------
+	public static SparseMatrix multiply(SparseMatrix m1, SparseMatrix m2){
+		SparseMatrix m3 = new SparseMatrix(m2);
+		m3.preMultiplyBy(m1);
+		return m3;
+	}
+	
 	public static SparseMatrix Multiply(SparseMatrix mL, SparseMatrix mR)
 	//SLOW VERSION (but working correctly)
 	{

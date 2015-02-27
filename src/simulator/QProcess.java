@@ -11,7 +11,7 @@ public class QProcess {
 		 * speedUp options
 		 * data loaded from file
 		 * */
-		MRegister reg = new MRegister(MatrixType.SPARSE, 17);
+		MRegister reg = new MRegister(MatrixType.SPARSE, 13);
 		reg.setEqualAmplitude();
 		
 		long t1 = System.nanoTime();

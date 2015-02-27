@@ -81,34 +81,34 @@ public abstract class Matrix {
 		}
 		return m;
 	}
-	
-	public static Matrix multiply(MatrixType type, DenseMatrix a, SparseMatrix b){
-		Matrix m;
-		switch(type){
-		case SPARSE:
-			m = new SparseMatrix(b);
-			m.preMultiplyBy(a);
-			break;
-		default:
-			m = new DenseMatrix(a);
-			m.postMultiplyBy(b);
-			break;
-		}
-		return m;
-	}
-	
-	public static Matrix multiply(MatrixType type, SparseMatrix a, DenseMatrix b){
-		Matrix m;
-		switch(type){
-		case SPARSE:
-			m = new SparseMatrix(a);
-			m.postMultiplyBy(b);
-			break;
-		default:
-			m = new DenseMatrix(b);
-			m.preMultiplyBy(a);
-			break;
-		}
+		
+	public static Matrix multiply(MatrixType type, Matrix a, Matrix b){
+		Matrix m = null;
+		if (a instanceof SparseMatrix && b instanceof DenseMatrix){
+			switch(type){
+			case SPARSE:
+				m = new SparseMatrix((SparseMatrix) a);
+				m.postMultiplyBy(b);
+				break;
+			default:
+				m = new DenseMatrix((DenseMatrix) b);
+				m.preMultiplyBy(a);
+				break;
+			}
+		} else if (a instanceof DenseMatrix && b instanceof SparseMatrix){
+			switch(type){
+			case SPARSE:
+				m = new SparseMatrix((SparseMatrix) b);
+				m.preMultiplyBy(a);
+				break;
+			default:
+				m = new DenseMatrix((DenseMatrix) a);
+				m.postMultiplyBy(b);
+				break;
+			}
+		} else if (a instanceof SparseMatrix && b instanceof SparseMatrix){
+			m = SparseMatrix.multiply((SparseMatrix) a, (SparseMatrix) b);
+		} 
 		return m;
 	}
 }

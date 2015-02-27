@@ -271,4 +271,10 @@ public class DenseMatrix extends Matrix{
 		this.row = m.getRowDimension();
 		
 	}
+	
+	public static Matrix multiply(DenseMatrix m1, DenseMatrix m2){
+		DenseMatrix m3 = new DenseMatrix(m2);
+		m3.preMultiplyBy(m1);
+		return m3;
+	}
 }
