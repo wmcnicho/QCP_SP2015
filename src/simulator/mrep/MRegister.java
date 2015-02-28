@@ -2,6 +2,7 @@ package simulator.mrep;
 
 import simulator.Complex;
 import simulator.QRegister;
+import java.util.Random;
 
 public class MRegister extends QRegister{
 	private Matrix amplitudes = null;
@@ -60,7 +61,7 @@ public class MRegister extends QRegister{
 		}
 	}
 	
-	public void measure(){
+	public void getProbabilities(){
 	double sum=0;
 		for(int i=0; i<numOfStates; i++){
 			double probability = Complex.magSquare(amplitudes.get(i, 0));
@@ -68,5 +69,22 @@ public class MRegister extends QRegister{
 			System.out.println("the probability of state "+(i)+" is "+probability);
 		}
 		System.out.println(sum);
+	}
+	
+	public void measure(){
+		Random rand = new Random();
+		double key = rand.nextDouble();
+		double sum = 0.0;
+		for (int i = 0; i < numOfStates; i++){
+			sum += Complex.magSquare(amplitudes.get(i));
+			if (sum > key){
+				//set all the states to zero 
+				for (int j = 0; j < numOfStates; j++){
+					amplitudes.set(j, 0, 0);
+				}
+				amplitudes.set(i, 1.0, 0.0);
+				break;
+			}
+		}
 	}
 }

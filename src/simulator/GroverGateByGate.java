@@ -65,8 +65,8 @@ public class GroverGateByGate extends GateByGateCircuit {
 			super.applyCircuit(reg);
 			Matrix solComp = Matrix.multiply(MatrixType.SPARSE, solutionVector, reg.getAmplitude());
 			Matrix nonSolComp = Matrix.multiply(MatrixType.SPARSE, nonSolutionVector, reg.getAmplitude());
-			solComp.printMatrix();
-			nonSolComp.printMatrix();
+			//solComp.printMatrix();
+			//nonSolComp.printMatrix();
 			System.out.printf("(%.6f %.6f)\n",solComp.getReal(0),nonSolComp.getReal(0));
 		}
 	}
