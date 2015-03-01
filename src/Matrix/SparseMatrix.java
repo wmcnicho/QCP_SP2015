@@ -1,21 +1,17 @@
 package Matrix;
 
 import java.util.Arrays;
-//import java.util.Enumeration;
-import java.util.Hashtable;
 
 public class SparseMatrix extends Matrix{
-	protected int row;
-	protected int column;
+
 	protected int size;
-	protected double[] reElements;
-	protected double[] imElements;
-	protected int[] rowIndex;
+	protected int elementsInRow = 0;
 	protected SparseHMatrix hashMatrix;
 	private boolean converted = false;
 	
 	public SparseMatrix(int row, int column){
 		this.isSparse = true;
+		this.isComplex = true;
 		hashMatrix = new SparseHMatrix(row, column);
 		this.row = row;
 		this.column = column;
@@ -42,12 +38,12 @@ public class SparseMatrix extends Matrix{
 
 	public double getReElement(int i, int j) {
 		if(converted){
-			int index = j*2;
+			int index = j*elementsInRow;
 			if(rowIndex[index]==i){
-				return reElements[index];
+				return reMatrix[index];
 			}
 			else if(rowIndex[index+1]==i){
-				return reElements[index+1];
+				return reMatrix[index+1];
 			}else{
 				return 0;
 			}
@@ -61,12 +57,12 @@ public class SparseMatrix extends Matrix{
 	@Override
 	public double getImElement(int i, int j) {
 		if(converted){
-			int index = j*2;
+			int index = j*elementsInRow;
 			if(rowIndex[index]==i){
-				return imElements[index];
+				return imMatrix[index];
 			}
 			else if(rowIndex[index+1]==i){
-				return imElements[index+1];
+				return imMatrix[index+1];
 			}else{
 				return 0;
 			}
@@ -77,24 +73,22 @@ public class SparseMatrix extends Matrix{
 	}
 	
 	public void convert(){
-		hashMatrix.printMatrix();
-		reElements = new double[2*column];
-		imElements = new double[2*column];
-		rowIndex = new int[2*column];
+		int size = hashMatrix.EntryImag.size();
+		reMatrix = new double[size];
+		imMatrix = new double[size];
+		rowIndex = new int[size];
 		//loop over column
 		for(int j=1; j<=column; j++){
-			//2 elements in each row
 			int count = 0;
 			for(int i=1; i<=row; i++){
 				if(hashMatrix.getImagPart(i, j)!=0 ||hashMatrix.getRealPart(i,j)!=0){
-						reElements[2*(j-1)+count]=hashMatrix.getRealPart(i,j);
-						imElements[2*(j-1)+count]=hashMatrix.getImagPart(i,j);
-						rowIndex[2*(j-1)+count]=(i-1);
+						reMatrix[elementsInRow*(j-1)+count]=hashMatrix.getRealPart(i,j);
+						imMatrix[elementsInRow*(j-1)+count]=hashMatrix.getImagPart(i,j);
+						rowIndex[elementsInRow*(j-1)+count]=(i-1);
 						count++;
-						if(count>=2){
-							count=0;
-							break;
-					}
+				}
+				if(i==1){
+					elementsInRow=count;
 				}
 			}
 		}
@@ -108,27 +102,8 @@ public class SparseMatrix extends Matrix{
 	}
 	
 	public void print(){
-		System.out.println(Arrays.toString(reElements));
-		System.out.println(Arrays.toString(imElements));
+		System.out.println(Arrays.toString(reMatrix));
+		System.out.println(Arrays.toString(imMatrix));
 		System.out.println(Arrays.toString(rowIndex));
-	}
-	
-	public ComplexMatrix multiplyBy(ComplexMatrix b){
-		return Matrix.Multiply(b, this);
-	}
-	public ComplexMatrix multiplyBy(RealMatrix b){
-		return Matrix.Multiply(b, this);
-	}
-
-	@Override
-	public Matrix addBy(Matrix m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Matrix multiplyBy(Matrix m) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

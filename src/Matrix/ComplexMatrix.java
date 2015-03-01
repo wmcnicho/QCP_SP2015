@@ -5,10 +5,6 @@ import java.text.*;
 
 public class ComplexMatrix extends Matrix{
 
-	protected int row;
-	protected int column;
-	protected double[] reMatrix;
-	protected double[] imMatrix;
 	private NumberFormat nf = NumberFormat.getNumberInstance();
 
 	//constructors
@@ -23,6 +19,7 @@ public class ComplexMatrix extends Matrix{
 		//for formatting text output
 		nf.setMaximumFractionDigits(2);
 		nf.setMinimumFractionDigits(2);
+		isComplex = true;
 	}
 
 	//accessor methods
@@ -83,33 +80,6 @@ public class ComplexMatrix extends Matrix{
 		}
 	}
 
-	//matrix algebra methods
-
-	public void addBy(RealMatrix m){
-		for (int i = 0; i < row; i++){
-			reMatrix[i] += m.reMatrix[i];
-		}
-	}
-
-	public void addBy(ComplexMatrix m){
-		for (int i = 0; i < row; i++){
-			reMatrix[i] += m.reMatrix[i];
-			imMatrix[i] += m.imMatrix[i];
-		}
-	}
-
-	public void multiplyBy(SparseMatrix gate){
-		reMatrix = Matrix.Multiply(this, gate).getElements();
-	}
-
-	public void multiplyBy(RealMatrix m){
-		reMatrix = Matrix.Multiply(this, m).getElements();
-	}
-
-	private double[] getElements() {
-		return reMatrix;
-	}
-
 	//class methods
 	public static boolean canAdd(RealMatrix a, RealMatrix b){
 		return a.row == b.row && a.column == b.column;
@@ -118,62 +88,8 @@ public class ComplexMatrix extends Matrix{
 	public static boolean canMultiply(RealMatrix a, RealMatrix b){
 		return a.column == b.row;
 	}
-
-	@Override
-	public Matrix addBy(Matrix m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Matrix multiplyBy(Matrix b) {
-
-		ComplexMatrix a = this;
-		ComplexMatrix out = new ComplexMatrix(a.row, b.column);
-		
-		if(b.isSparse){
 	
-			for(int j=0; j<b.column; j++){
-
-				double reSum = 0.0;
-				double imSum = 0.0;
-
-				for(int k=0; k<2; k++){
-
-					int i = b.rowIndex[2*j+k];
-
-					reSum += a.getReElement(0, i)*b.getReElement(i, j);
-					reSum -= a.getImElement(0, i)*b.getImElement(i, j);
-
-					imSum += a.getReElement(0, i)*b.getImElement(i, j);
-					imSum += a.getImElement(0, i)*b.getReElement(i, j);
-
-				}
-				out.reMatrix[j]=reSum;
-				out.imMatrix[j]=imSum;
-			}
-			return out;
-		}
-		else{
-			int row = a.row;
-			int column = b.column;
-			ComplexMatrix result = new ComplexMatrix(row, column);
-			for(int global = 0; global<row*column; global++){
-				int i = global /row;
-				int j = global % row;
-				double reValue = 0;
-				double imValue = 0;
-				for(int k = 0; k < row; k++)
-				{
-					int eleA = k + i * a.column;
-					int eleB = k * b.column + j;
-			//		reValue += a.reMatrix[eleA]*b.reMatrix[eleB]-a.imMatrix[eleA]*b.imMatrix[eleB];
-			//		imValue += a.reMatrix[eleA]*b.imMatrix[eleB]+a.imMatrix[eleA]*b.reMatrix[eleB];
-				}
-				result.reMatrix[i * a.column + j] = reValue;
-				result.imMatrix[i * a.column + j] = imValue;
-			}
-			return result;
-		}
+	public Matrix transpose(){
+		return new TComplexMatrix(this);
 	}
 }

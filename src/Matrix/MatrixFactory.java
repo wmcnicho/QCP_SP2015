@@ -8,6 +8,8 @@ public class MatrixFactory {
 			return new ComplexMatrix(i, j);
 		case "sparse":
 			return new SparseMatrix(i, j);
+		case "gate":
+			return new SparseGateMatrix(i,j);
 		default:
 			return new RealMatrix(i,j);
 		}

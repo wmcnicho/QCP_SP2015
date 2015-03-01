@@ -5,9 +5,6 @@ import java.text.*;
 
 public class RealMatrix extends Matrix{
 
-	protected int row;
-	protected int column;
-	protected double [] reMatrix;
 	private NumberFormat nf = NumberFormat.getNumberInstance();
 
 	//constructors
@@ -64,14 +61,6 @@ public class RealMatrix extends Matrix{
 		}
 	}
 
-	public void multiplyBy(RealMatrix m){
-		reMatrix = Matrix.Multiply(this, m).getElements();
-	}
-
-	private double[] getElements() {
-		return reMatrix;
-	}
-
 	//class methods
 	public static boolean canAdd(RealMatrix a, RealMatrix b){
 		return a.row == b.row && a.column == b.column;
@@ -99,15 +88,5 @@ public class RealMatrix extends Matrix{
 	@Override
 	public double getImElement(int i, int j) {
 		return 0;
-	}
-
-	@Override
-	public Matrix addBy(Matrix m) {
-		return Matrix.Add(this, m);
-	}
-
-	@Override
-	public Matrix multiplyBy(Matrix m) {
-		return Matrix.Add(this, m);
 	}
 }
