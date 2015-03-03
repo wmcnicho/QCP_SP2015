@@ -24,13 +24,14 @@ import simulator.QProcess;
 
 
 public class QuantumGuiPanel extends JPanel implements ActionListener {
-	JTextArea console;
+	static JTextArea console;
 	JButton start_butt;
 	JButton confirmOptions;
 	JProgressBar loadingBar;
 	
 	JComboBox gateRep;
 	JComboBox moreOptions;
+	JComboBox simType;
 
 	JTextField qubitsNum;
 	
@@ -59,9 +60,19 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		console = new JTextArea();
 		console.setEditable(false);
 		
-		console.setPreferredSize(new Dimension(900, 200));
-		//center.setMaximumSize(new Dimension(800, 800));
-		//center.setMinimumSize(new Dimension(1000, 800))
+//		
+//		console.setPreferredSize(new Dimension(900, 200));
+//		console.setMaximumSize(new Dimension(900, 200));
+//		console.setMinimumSize(new Dimension(900, 200));
+		
+		
+		JScrollPane scroll = new JScrollPane (console, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scroll.setPreferredSize(new Dimension(900, 180));
+		scroll.setMaximumSize(new Dimension(900, 180));
+		scroll.setMinimumSize(new Dimension(900, 180));
+		
+		
 		
 		loadingBar = new JProgressBar(0, 100);
 		loadingBar.setValue(1);
@@ -80,7 +91,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		loadingBar.setStringPainted(true);
 		
 		south.add(loadingBar);
-		south.add(new JScrollPane(console));
+		south.add(scroll);
 		
 		add(south, BorderLayout.SOUTH);
 		
@@ -117,13 +128,21 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		
 		add(east, BorderLayout.EAST);
 		
-		//Center checklist and go button
-		JPanel center = new JPanel();
-		center.setBackground(Color.WHITE);
+		//Center Graphs and charts
+		JPanel center  = new JPanel();
+		center.setBackground(Color.black);
 		
-		//center.setPreferredSize(new Dimension(1000, 800));
-		//center.setMaximumSize(new Dimension(800, 800));
-		//center.setMinimumSize(new Dimension(1000, 800));
+		add(center, BorderLayout.CENTER);
+
+		
+		
+		//WEST Simulation selection and start button
+		JPanel west = new JPanel();
+		west.setBackground(Color.WHITE);
+		
+		//west.setPreferredSize(new Dimension(1000, 800));
+		//west.setMaximumSize(new Dimension(800, 800));
+		//west.setMinimumSize(new Dimension(1000, 800));
 		
 		
 		data_status = new JLabel("Not loaded");
@@ -135,25 +154,22 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		simulationsList.add("<none>");
 		simulationsList.add("Grover's algorithm");
 		//depending on selection this should expand to add more options
-		JComboBox simType = new JComboBox(simulationsList);
+		simType = new JComboBox(simulationsList);
 		start_butt = new JButton("GO!");
 		start_butt.addActionListener(this);
-		center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+		west.setLayout(new BoxLayout(west, BoxLayout.Y_AXIS));
 		
 		
-		center.add(data_status);
-		center.add(qubits);
-		center.add(new MyLabeledUnit(simType, "Simulaton"));
-		center.add(gateType);
-		center.add(speedUps);
-		center.add(start);
+		west.add(data_status);
+		west.add(qubits);
+		west.add(new MyLabeledUnit(simType, "Simulaton"));
+		west.add(gateType);
+		west.add(speedUps);
+		west.add(start);
 		
-		center.add(start_butt);
+		west.add(start_butt);
 	
-		add(center, BorderLayout.CENTER);
-		
-		
-		//WEST Currently empty
+		add(west, BorderLayout.WEST);
 		
 	}
 
@@ -173,21 +189,20 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			System.out.println("updated");
 		}
 		else if(e.getSource() == start_butt){
-			Thread runThread = new Thread(){
-        		public void run(){
-        			//call constructor
-		//given the following information, launch a simulation in a separate thread/threads
+
+			//given the following information, launch a simulation in a separate thread/threads
 			/*
 			 * number of Qubits
 			 * type of simulation
 			 * gate type
 			 * speedUp options
 			 * data loaded from file
-			 */
-        				QProcess sim = new QProcess();
-        		}
-			};
-			runThread.start();
+			 */	
+			String gateString = gateRep.getSelectedItem().toString();
+			int numQubits = Integer.parseInt(qubitsNum.getText());
+			String speedUpString = moreOptions.getSelectedItem().toString();
+			String simulationType = simType.getSelectedItem().toString();
+			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString);
 		}
 		else{
 			console.append("huh? action function unwritten");

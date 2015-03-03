@@ -1,107 +1,115 @@
 package Matrix;
 
+/*
+ *can call get and set methods
+ *multiplyBy
+ *for sparseMatrix call this.convert() before multiplying
+ *
+ *don't call add methods
+ *don't do stupid stuff
+ *don't multiply matrices that can't be multiplied
+ */
+
 public abstract class Matrix {
 
+	protected int row;
+	protected int column;
+	protected int[] rowIndex = null;
+	public boolean isSparse = false;
+	public boolean isComplex = false;
+	public boolean isGate = false;
+	protected double[] reMatrix;
+	protected double[] imMatrix;
 
-	//add and multiply
-	public static DenseMatrix Add(DenseMatrix a, DenseMatrix b){
+	public abstract void setElement(int i, int j, double[] value);
+	public abstract void setElement(int i, int j, double real, double imag);
+	public abstract void setReElement(int i, int j, double value);
+	public abstract void setImElement(int i, int j, double value);
+	public abstract double[] getElement(int i, int j);
+	public abstract double getReElement(int i, int j);
+	public abstract double getImElement(int i, int j);
+
+	public void addBy(Matrix m){};
+
+	public Matrix(){	
+	}
+
+	public void multiplyBy(Matrix b) {
+		Matrix out = null;
+		out = Matrix.Multiply(this, b, out);	
+		
+		this.row = out.row;
+		this.column = out.column;
+		this.rowIndex = out.rowIndex;
+		this.isSparse = out.isSparse;
+		this.isComplex = out.isComplex;
+		this.reMatrix = out.reMatrix;
+		this.imMatrix = out.imMatrix;
+	}
+
+	private static Matrix Multiply(Matrix a, Matrix b, Matrix out){
+		
+		if(!a.isComplex&&!b.isComplex){
+			out = MatrixFactory.create(a.row, b.column, "");
+		}
+		//both sparse
+		else if(a.isSparse && b.isSparse){
+			out = MatrixFactory.create(a.row, b.column, "sparse");
+		}
+		else{
+			out = MatrixFactory.create(a.row, b.column, "complex");
+		}
+		for(int i=0; i<a.row; i++){
+			for(int j=0; j<b.column; j++){
+				double reSum = 0.0;
+				double imSum = 0.0;
+				for(int k=0; k<b.row; k++){
+					reSum+=a.getReElement(i, k)*b.getReElement(k,j);
+					reSum-=a.getImElement(i, k)*b.getImElement(k, j);
+					imSum+=a.getImElement(i, k)*b.getReElement(k,j);
+					imSum+=a.getReElement(i, k)*b.getImElement(k, j);
+				}
+				out.setReElement(i, j, reSum);
+				out.setImElement(i, j, imSum);
+			}
+		}
+		return out;
+	}
+	
+	/*
+	public static ComplexMatrix Add(Matrix a, Matrix b){
+		return null;
+	}
+
+	public static RealMatrix Add(RealMatrix a, RealMatrix b){
 		int row = a.row;
 		int column = a.column;
-		DenseMatrix result = new DenseMatrix(row, column);
+		RealMatrix result = new RealMatrix(row, column);
 		for (int i = 0; i < row*column; i++){
 			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
 		}
 		return result;
 	}
-	
-	public static DenseComplexMatrix Add(DenseComplexMatrix a, DenseMatrix b){
+
+	public static ComplexMatrix Add(ComplexMatrix a, RealMatrix b){
 		int row = a.row;
 		int column = a.column;
-		DenseComplexMatrix result = new DenseComplexMatrix(row, column);
+		ComplexMatrix result = new ComplexMatrix(row, column);
 		for (int i = 0; i < row*column; i++){
 			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
 			result.reMatrix[i] = a.imMatrix[i];
-
 		}
 		return result;
 	}
-	
-	public static DenseComplexMatrix Add(DenseComplexMatrix a, DenseComplexMatrix b){
+
+	public static ComplexMatrix Add(ComplexMatrix a, ComplexMatrix b){
 		int row = a.row;
 		int column = a.column;
-		DenseComplexMatrix result = new DenseComplexMatrix(row, column);
+		ComplexMatrix result = new ComplexMatrix(row, column);
 		for (int i = 0; i < row*column; i++){
 			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
 			result.imMatrix[i] = a.imMatrix[i] + b.imMatrix[i];
 		}
 		return result;
-	}
-	
-	
-
-
-	public static DenseMatrix Multiply(DenseMatrix a, DenseMatrix b){
-		int row = a.row;
-		int column = b.column;
-		DenseMatrix result = new DenseMatrix(row, column);
-		for(int global = 0; global<row*column; global++){
-			int i = global /row;
-			int j = global % row;
-			double value = 0;
-			for(int k = 0; k < row; k++)
-			{
-				value += a.reMatrix[k + i * a.column] * b.reMatrix[k * b.column + j];
-			}
-			result.reMatrix[i * a.column + j] = value;
-		}
-		return result;
-	}
-	
-	public static DenseComplexMatrix Multiply(DenseComplexMatrix a, DenseComplexMatrix b){
-		int row = a.row;
-		int column = b.column;
-		DenseComplexMatrix result = new DenseComplexMatrix(row, column);
-		for(int global = 0; global<row*column; global++){
-			int i = global /row;
-			int j = global % row;
-			double reValue = 0;
-			double imValue = 0;
-			for(int k = 0; k < row; k++)
-			{
-				int eleA = k + i * a.column;
-				int eleB = k * b.column + j;
-				reValue += a.reMatrix[eleA]*b.reMatrix[eleB]-a.imMatrix[eleA]*b.imMatrix[eleB];
-				imValue += a.reMatrix[eleA]*b.imMatrix[eleB]+a.imMatrix[eleA]*b.reMatrix[eleB];
-			}
-			result.reMatrix[i * a.column + j] = reValue;
-			result.imMatrix[i * a.column + j] = imValue;
-		}
-		return result;
-	}
-	
-	public static DenseComplexMatrix Multiply(DenseComplexMatrix a, DenseMatrix b){
-		int row = a.row;
-		int column = b.column;
-		DenseComplexMatrix result = new DenseComplexMatrix(row, column);
-		for(int global = 0; global<row*column; global++){
-			int i = global /row;
-			int j = global % row;
-			double reValue = 0;
-			double imValue = 0;
-			for(int k = 0; k < row; k++)
-			{
-				int eleA = k + i * a.column;
-				int eleB = k * b.column + j;
-				reValue += a.reMatrix[eleA]*b.reMatrix[eleB];
-				imValue += a.imMatrix[eleA]*b.reMatrix[eleB];
-			}
-			result.reMatrix[i * a.column + j] = reValue;
-			result.imMatrix[i * a.column + j] = imValue;
-		}
-		return result;
-	}
-	
-	
-	public abstract void multiplyBy(DenseMatrix a);
-	
+	}*/
 }
