@@ -2,24 +2,36 @@ package qcv1;
 import Matrix.*;
 
 
-public abstract class MGate extends QGate{
-	
-	private DenseMatrix gate; //store the matrix that represents the gate
+public abstract class MGate implements QGate{
+	private int target;
+	private int [] controls = null;
+	private int numOfStates;
+	private String  matrixType;
+	private Matrix gate; //store the matrix that represents the gate
 	
 	//abstract methods
-	public abstract DenseMatrix resultForOn();
-	public abstract DenseMatrix resultForOff();
+	public abstract Matrix resultForOn();
+	public abstract Matrix resultForOff();
 	
 	//constructor
-	public MGate (int [] controlQbits, int targetQbit){
-		super(controlQbits, targetQbit);
-		
+	public MGate (String type, int [] controlQbits, int targetQbit, int numOfStates){
+		target = targetQbit;
+		controls = controlQbits;
+		this.numOfStates = numOfStates;
+		matrixType = type;
+	}
+	
+	/*
+	 * initialise the gate by creating the matrix that represents the
+	 * linear operation associated with the gate
+	 */
+	public void initGate(String type){
 		//find the matrix representation
-		final int maxNum = MRegister.getInstance().numOfStates() -1;
+		final int maxNum = numOfStates -1;
 		final int mask = 1 << target;
 		
 		//create the gate in matrix representation
-		gate = new DenseMatrix(maxNum+1, maxNum+1);
+		gate = MatrixFactory.create(numOfStates, numOfStates, type);
 		
 		//check if there are any control qubits
 		if (controls != null){
@@ -36,7 +48,7 @@ public abstract class MGate extends QGate{
 				if (allOn){
 					calcElement(gate,i,mask);
 				} else {//the state is not affected since qubit is zero
-					gate.setElement(i, i, 1.0);
+					gate.setElement(i, i, 1.0, 0.0);
 				}
 			}
 		} else {
@@ -47,7 +59,7 @@ public abstract class MGate extends QGate{
 	}
 	
 	//set the value for each element of the matrix
-	private void calcElement(DenseMatrix gate, int i, int mask){
+	private void calcElement(Matrix gate, int i, int mask){
 		//check if that qubit is 0 or 1
 		if ((i & mask) == mask){//qubit is 1
 			gate.setElement(i, i, resultForOn().getElement(1,0));
@@ -58,7 +70,7 @@ public abstract class MGate extends QGate{
 		}
 	}
 	
-	public void applyGate(){
-		MRegister.getInstance().getAmplitude().multiplyBy(gate);
+	public void applyGate(QRegister reg){
+		reg.getAmplitude().multiplyBy(gate);
 	}
 }
