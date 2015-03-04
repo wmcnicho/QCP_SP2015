@@ -108,7 +108,9 @@ public abstract class Matrix {
 			}
 		} else if (a instanceof SparseMatrix && b instanceof SparseMatrix){
 			m = SparseMatrix.multiply((SparseMatrix) a, (SparseMatrix) b);
-		} 
+		} else {
+			m = DenseMatrix.multiply((DenseMatrix) a, (DenseMatrix) b);
+		}
 		return m;
 	}
 }

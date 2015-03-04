@@ -31,8 +31,8 @@ public abstract class GateFactory {
 		switch (rep){
 		case SPARSE_MATRIX:
 			return new MHGate(MatrixType.SPARSE, controls, target, numOfStates);
-		//case FUNC_REP:
-		
+		case FUNC_REP:
+			return new FHGate(MatrixType.SPARSE, controls, target);
 		default:
 			return new MHGate(MatrixType.DENSE, controls, target, numOfStates);
 		}

@@ -4,27 +4,30 @@ import simulator.mrep.Matrix;
 import simulator.mrep.MatrixType;
 
 public class GroverGateByGate extends GateByGateCircuit {
-	private int targetIndex;
+	private int [] targets;
 	private int numOfEntries;
 	private GateRep gateRep;
 	private Matrix solutionVector;
 	private Matrix nonSolutionVector;
 	
-	public GroverGateByGate(GateRep rep, int num, int target, int numOfQubits, int numOfStates){
+	public GroverGateByGate(GateRep rep, int num, int [] targetIndices, int numOfQubits, int numOfStates){
 		gateRep = rep;
-		targetIndex = target;
+		targets = targetIndices;
 		numOfEntries = num;
 		
 		//testing rotation
 		solutionVector = Matrix.create(MatrixType.SPARSE, 1, numOfStates);
-		solutionVector.setReal(target, 1.0);
-		solutionVector.printMatrix();
 		nonSolutionVector = Matrix.create(MatrixType.SPARSE, 1, numOfStates);
-		nonSolutionVector.printMatrix();
-		double factor = 1.0/Math.sqrt(numOfStates - 1);
+		
+		double solutionFactor = 1.0/Math.sqrt(targets.length);
+		double nonSolutionFactor = 1.0/Math.sqrt(numOfStates - targets.length);
+		int j = 0;
 		for (int i = 0; i < numOfStates; i++){
-			if (i != target){
-				nonSolutionVector.setReal(i, factor);
+			if (j < targets.length && i == targets[j]){
+				solutionVector.set(i,solutionFactor, 0.0);
+				j++;
+			} else {
+				nonSolutionVector.set(i, nonSolutionFactor, 0.0);
 			}
 		}
 		
@@ -32,7 +35,10 @@ public class GroverGateByGate extends GateByGateCircuit {
 		//create the oracle
 		class Oracle implements QGate{
 			public void applyGate(QRegister reg){
-				reg.setAmplitude(targetIndex, Complex.multiply(-1, reg.getAmplitude(targetIndex)));
+				for (int i = 0; i < targets.length; i++){
+					reg.setAmplitude(targets[i], 
+							Complex.multiply(-1, reg.getAmplitude(targets[i])));
+				}
 			}
 		}
 		
@@ -60,10 +66,12 @@ public class GroverGateByGate extends GateByGateCircuit {
 	
 	public void applyCircuit(QRegister reg){
 		//need to apply approximately r = pi/4 sqrt(N) times
-		final int iterations = (int) (Math.PI / 4.0 * Math.sqrt(numOfEntries));
+		final int iterations = (int) (Math.PI / 4.0 * Math.sqrt((double) numOfEntries/targets.length));
+		reg.setEqualAmplitude();
 		for (int i = 0; i < iterations; i++){
 			super.applyCircuit(reg);
 			Matrix solComp = Matrix.multiply(MatrixType.SPARSE, solutionVector, reg.getAmplitude());
+			solComp.printMatrix();
 			Matrix nonSolComp = Matrix.multiply(MatrixType.SPARSE, nonSolutionVector, reg.getAmplitude());
 			//solComp.printMatrix();
 			//nonSolComp.printMatrix();

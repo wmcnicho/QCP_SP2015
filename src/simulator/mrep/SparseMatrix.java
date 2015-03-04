@@ -270,6 +270,9 @@ public class SparseMatrix extends Matrix{
 				}
 				entryReal = real;
 				entryImag = imag;
+				
+				//update size of matrix
+				this.row = mrow;
 			}
 		}
 	}
