@@ -36,7 +36,7 @@ public abstract class Matrix {
 
 	public void multiplyBy(Matrix b) {
 		Matrix out = null;
-		out = Matrix.Multiply(this, b, out);	
+		out = Matrix.Multiply(b, this, out);	
 		
 		this.row = out.row;
 		this.column = out.column;
