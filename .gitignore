@@ -14,3 +14,15 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /bin/
+
+
+#TeX stuff
+*.bbl
+*.blg
+*.aux
+lit.bib
+*.gz
+*.log
+*.out
+*.toc
+report_QCP2015.pdf
