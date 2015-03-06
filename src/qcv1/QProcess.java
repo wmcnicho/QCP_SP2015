@@ -23,7 +23,7 @@ public class QProcess {
 					q = new GroverGateByGate(gateRep, numOfStates, 2, numQubits, numOfStates);
 					break;
 				case "Shor's algorithm":
-					
+					q = new BackwardQFTCircuit(gateRep, numOfStates);
 					break;
 				default:
 					
