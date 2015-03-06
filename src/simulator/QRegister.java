@@ -11,6 +11,6 @@ public abstract class QRegister {
 	public abstract void setEqualAmplitude();
 	public abstract double [] getAmplitude(int qubitPos);
 	public abstract Matrix getAmplitude();
-	public abstract void measure();
+	public abstract int measure();
 }
 	

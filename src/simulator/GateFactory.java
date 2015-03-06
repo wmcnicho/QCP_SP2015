@@ -109,4 +109,15 @@ public abstract class GateFactory {
 			return new MTGate(MatrixType.DENSE, controls, target, numOfStates);
 		}
 	}
+	
+	public static QGate createPhaseGate(GateRep rep, int [] controls, int target, int numOfStates, double phaseFrac){
+		switch (rep){
+		case SPARSE_MATRIX:
+			return new MPhaseGate(MatrixType.SPARSE, controls, target, numOfStates, phaseFrac);
+		//case FUNC_REP:
+		
+		default:
+			return new MPhaseGate(MatrixType.DENSE, controls, target, numOfStates, phaseFrac);
+		}
+	}
 }

@@ -153,6 +153,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		Vector<String> simulationsList = new Vector<String>();
 		simulationsList.add("<none>");
 		simulationsList.add("Grover's algorithm");
+		simulationsList.add("Shor's algorithm");
 		//depending on selection this should expand to add more options
 		simType = new JComboBox(simulationsList);
 		start_butt = new JButton("GO!");

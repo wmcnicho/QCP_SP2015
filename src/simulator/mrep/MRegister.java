@@ -71,7 +71,7 @@ public class MRegister extends QRegister{
 		System.out.println(sum);
 	}
 	
-	public void measure(){
+	public int measure(){
 		Random rand = new Random();
 		double key = rand.nextDouble();
 		double sum = 0.0;
@@ -83,8 +83,9 @@ public class MRegister extends QRegister{
 					amplitudes.set(j, 0, 0);
 				}
 				amplitudes.set(i, 1.0, 0.0);
-				break;
+				return i;
 			}
 		}
+		return numOfStates-1;
 	}
 }

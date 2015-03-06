@@ -25,7 +25,11 @@ public class QProcess {
 							GateRep.FUNC_REP, reg.numOfStates(), new int [] {1}, reg.numOfQubit(), reg.numOfStates());
 					break;
 				case "Shor's algorithm":
-					
+					reg.setEqualAmplitude();
+					//reg.printAmplitude();
+					q = new ForwardQFTCircuit(GateRep.DENSE_MATRIX, reg.numOfQubit());
+					System.out.println();
+					//reg.printAmplitude();
 					break;
 				default:
 					
@@ -33,10 +37,9 @@ public class QProcess {
 				
 				long t1 = System.nanoTime();
 				q.applyCircuit(reg);
-				
 				printProbs(reg);
 				reg.measure();
-				printProbs(reg);
+				//printProbs(reg);
 								
 				double runtime = (System.nanoTime()-t1)/(Math.pow(10,9));
 				int runtimeMins = (int) Math.floor(runtime/60.0);

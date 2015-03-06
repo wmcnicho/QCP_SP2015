@@ -46,6 +46,7 @@ public abstract class MGate implements QGate{
 					}
 				}
 				if (allOn){
+					System.out.println("OK");
 					calcElement(gate,i,mask);
 				} else {//the state is not affected since qubit is zero
 					gate.set(i, i, 1.0, 0.0);
@@ -56,6 +57,8 @@ public abstract class MGate implements QGate{
 				calcElement(gate,i,mask);
 			}
 		}
+		gate.printMatrix();
+		System.out.println();
 	}
 	
 	//set the value for each element of the matrix

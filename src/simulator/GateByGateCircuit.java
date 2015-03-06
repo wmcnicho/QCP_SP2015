@@ -29,8 +29,8 @@ public class GateByGateCircuit implements QCircuit {
 		for (QGate g : gates){
 			g.applyGate(reg);
 			MRegister mreg = (MRegister) reg;
-			//mreg.printAmplitude();
-			//System.out.println();
+			mreg.printAmplitude();
+			System.out.println();
 		}
 	}
 }
