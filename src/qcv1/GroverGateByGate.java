@@ -10,15 +10,14 @@ public class GroverGateByGate extends GateByGateCircuit {
 	private Matrix nonSolutionVector;
 	
 	public GroverGateByGate(String rep, int num, int target, int numOfQubits, int numOfStates){
-		gateRep = rep;
+		gateRep = "gate";
 		targetIndex = target;
 		numOfEntries = num;
-		
 		//testing rotation
-		solutionVector = MatrixFactory.create(1, numOfStates, "sparse");
+		solutionVector = MatrixFactory.create(1, numOfStates, "gate");
 		solutionVector.setReElement(0, target, 1.0);
 		//solutionVector.printMatrix();
-		nonSolutionVector = MatrixFactory.create(1, numOfStates, "sparse");
+		nonSolutionVector = MatrixFactory.create(1, numOfStates, "gate");
 		//nonSolutionVector.printMatrix();
 		double factor = 1.0/Math.sqrt(numOfStates - 1);
 		for (int i = 0; i < numOfStates; i++){
@@ -61,6 +60,7 @@ public class GroverGateByGate extends GateByGateCircuit {
 		//need to apply approximately r = pi/4 sqrt(N) times
 		final int iterations = (int) (Math.PI / 4.0 * Math.sqrt(numOfEntries));
 		for (int i = 0; i < iterations; i++){
+			System.out.println(i);
 			super.applyCircuit(reg);
 			//Matrix solComp = Matrix.Multiply(solutionVector, reg.getAmplitude());
 			//Matrix nonSolComp = Matrix.Multiply(nonSolutionVector, reg.getAmplitude());

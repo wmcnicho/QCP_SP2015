@@ -30,11 +30,13 @@ public class QProcess {
 				}
 				
 				long t1 = System.nanoTime();
+				reg.setEqualAmplitude();
 				q.applyCircuit(reg);
+				reg.printAmplitude();
 				double totalProb = 0;
 				for (int i = 0; i < reg.numOfStates(); i++){
 					double prob = Complex.magSquare(reg.getAmplitude(i));
-					QViewModel.printToConsole("The probability of state " + (i+1) + " is: " + prob);
+					QViewModel.printToConsole("The probability of state " + i + " is: " + prob);
 					totalProb += prob;
 				}
 				QViewModel.printToConsole(totalProb);

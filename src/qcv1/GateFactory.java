@@ -28,7 +28,8 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MHGate(rep, controls, target, numOfStates);
 		//case FUNC_REP:
-		
+		case "gate":
+			return new MHGate(rep, controls, target, numOfStates);
 		default:
 			return new MHGate("complex", controls, target, numOfStates);
 		}
@@ -103,6 +104,19 @@ public abstract class GateFactory {
 		
 		default:
 			return new MTGate("complex", controls, target, numOfStates);
+		}
+	}
+	
+	//pi/8 gate factory
+	public static QGate createPhaseGate(String rep, int [] controls, int target, 
+			int numOfStates, double phaseInt){
+		switch (rep){
+		case "sparse":
+			return new MPhaseGate(rep, controls, target, numOfStates, phaseInt);
+		//case FUNC_REP:
+		
+		default:
+			return new MPhaseGate("complex", controls, target, numOfStates, phaseInt);
 		}
 	}
 }
