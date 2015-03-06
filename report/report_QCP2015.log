@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.3.16)  27 FEB 2015 14:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.3.16)  6 MAR 2015 12:48
 entering extended mode
 **report_QCP2015.tex
 ("D:\Dropbox\Uni\Edinburgh\Semester 2\QCP\QCP_SP2015\report\report_QCP2015.tex"
@@ -1802,11 +1802,6 @@ been already used, duplicate ignored
                    \relax 
 l.216 \newpage
                [1] [2] [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 460--461
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 462--463
 
  []
@@ -1816,21 +1811,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 462--463
 ) 
 AED: lastpage setting LastPage
 [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 555.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 555.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 552.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 552.
 
 ("D:\Dropbox\Uni\Edinburgh\Semester 2\QCP\QCP_SP2015\report\report_QCP2015.aux"
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 555.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 555.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 552.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 552.
 Package rerunfilecheck Info: File `report_QCP2015.out' has not changed.
 (rerunfilecheck)             Checksum: 370F260620F4B79DAB606A75BB62236E;2024.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 555.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 552.
  ) 
 Here is how much of TeX's memory you used:
  16605 strings out of 493921
  277038 string characters out of 3147270
- 371335 words of memory out of 3000000
+ 371414 words of memory out of 3000000
  19621 multiletter control sequences out of 15000+200000
  9652 words of font info for 37 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -1850,7 +1845,7 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/symbols/msbm7.pfb>
-Output written on report_QCP2015.pdf (8 pages, 228316 bytes).
+Output written on report_QCP2015.pdf (8 pages, 228323 bytes).
 PDF statistics:
  334 PDF objects out of 1000 (max. 8388607)
  81 named destinations out of 1000 (max. 500000)

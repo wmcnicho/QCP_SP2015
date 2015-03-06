@@ -1,0 +1,1656 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[nice]{nicefrac}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[german]{babel}
+\usepackage{ulem}
+\usepackage{tikz}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\newcommand{\citeS}[1]{\textsuperscript{\cite{#1}}}
+
+%\input{includes/Ergebnisimplementierung}
+
+\begin{document}
+\section{Titelseite}
+\title{\textbf {Quantum Computing Project\\[0,75cm]
+Presentation\\[1,5cm]}}
+\author{Hunter, Gennaro, Michael, Christoph}
+\date{24th March 2015}
+\maketitle
+
+\section{Contents}
+
+\begin{frame}<1>[label=Contents]
+	\begin{enumerate}
+		\item Contents
+		\begin{itemize}
+			\item<alert@11> Versuchsüberblick
+			\item<alert@11> Aufgabenstellung und Ziel
+		\end{itemize}
+		\item<alert@2> Physikalische Grundlagen und Aufbau
+		\begin{itemize}
+			\item<alert@21> Kurze Wiederholung aus der Teilchenphysik
+			\alt<21>{\begin{itemize}
+				\item Teilchen und fundamentale Wechselwirkungen
+				\item Wirkungsquerschnitt und Resonanzkurven
+				\item Das Z$^0$ Teilchen
+			\end{itemize}}{}
+			\item<alert@22> Wichtige Wechselwirkungen von Teilchen und Materie
+			\item<alert@23> e$^+$e$^-$-Wechselwirkungen bei hohen Energien
+			\alt <23>{\begin{itemize}
+				\item Annihilation in ein reelles Z$^0$
+				\item Annihilation in ein reelles Photon
+				\item Streuprozesse
+				\item Strahlungskorrektur
+			\end{itemize}}{}
+			\item<alert@24> Vorwärts-Rückwärts-Asymmetrie
+			\item<alert@25> Das OPAL-Experiment
+		\end{itemize}
+	\end{enumerate}
+\end{frame}
+
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%Einleitung
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+\section{Erster Teil}
+%
+%------------------------------------------------------------
+%Versuchsüberblick
+%------------------------------------------------------------
+\againframe<11>{Inhaltsverzeichnis}
+
+%------------------------------------------------------------
+%Aufgabenstellung und Ziel
+%------------------------------------------------------------
+\begin{frame}<1>[label=Aufgabenstellung]
+	\frametitle{Aufgabenstellung}
+	%
+	Aus den Daten sind folgende Größen zu bestimmen: 
+	\begin{enumerate}
+		\item Gesamte, leptonische und hadronische Breite und M$_\text{Z}$
+		\item<2-> Die Vorwärts-Rückwärts-Asymmetrie beim Resonanzmaximum und der Weinbergwinkel
+		\item<3> Die Anzahl der Neutrinogenerationen
+	\end{enumerate}
+\end{frame}
+\againframe<2>{Aufgabenstellung}
+\againframe<3>{Aufgabenstellung}
+
+
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%Physikalische Grundlagen
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+
+%\againframe<2>{Inhaltsverzeichnis}
+
+
+%------------------------------------------------------------
+% Kurzer Wiederholung aus der Teilchenphysik
+%------------------------------------------------------------
+\againframe<21>{Inhaltsverzeichnis}
+
+\begin{frame}
+	\frametitle{Wiederholung der Teilchenphysik}
+	\framesubtitle{Teilchen und fundamentale Wechselwirkugnen}
+	%
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.3\textwidth]{Bilder/GrundlagenFermionen.jpg}
+%		\caption{Familien der Fermionen \citeS{Fermionen}}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\frametitle{Wiederholung der Teilchenphysik}
+	\framesubtitle{Teilchen und fundamentale Wechselwirkugnen}
+	%
+	\begin{figure}
+	\centering
+		\begin{tabular}{|l||l|l|}
+		\hline
+			Elektromagnetisch & Photon & Elektrische Ladung \\\hline
+			Stark & Gluon & Farbe \\\hline
+			Schwach & W$^\pm$, Z$^0$ & Schwache Ladung \\\hline
+			Gravitation & hyp. Graviton & Masse \\\hline
+		\end{tabular}
+	\end{figure}
+\end{frame}
+
+\begin{frame}<1>[label=WQResonanz]
+	\frametitle{Wiederholung der Teilchenphysik}
+	\framesubtitle{Wirkungsquerschnitt und Resonanzkurven}
+	%
+	Wirkungsquerschnitt $\sigma$ und Luminosität $ L $
+	\begin{align*}
+		\dfrac{dn}{dt}=& \sigma L\\
+		n =& \sigma \int L dt
+	\end{align*}
+	\visible<2->{
+	Zerfallsbreite $ \Gamma $ und Lebensdauer $\tau$
+	\begin{align*}
+		\Gamma \cdot \tau = \hbar
+	\end{align*}}
+	\visible<3>{
+	partielle Breite $\Gamma_{i}$ und Verzweigungsverhältnis $ BR $
+	\begin{align*}
+		BR_{i}= \dfrac{\Gamma_{i}}{\sum_{j}^{} \Gamma_{j}}
+	\end{align*}}
+	%	\begin{textblock}{8}(10.5,1)
+	%			\includegraphics[width=4cm]{Bilder/Resonanzkurve.jpg}
+	%	\end{textblock}
+\end{frame}
+\againframe<2>{WQResonanz}
+\againframe<3>{WQResonanz}
+
+\begin{frame}<1>[label=Z01]
+	\frametitle{Wiederholung der Teilchenphysik}
+	\framesubtitle{Das Z$^0$ Teilchen}
+	%
+	\begin{itemize}
+		\item $M_{Z^0} \approx$ 92\,GeV
+		\item<2-> elektrisch neutral
+		\item<4> kann zerfallen in jedes l$\bar{\text{l}}$-Paar und in jedes q$\bar{\text{q}}$-Paar.
+	\end{itemize}
+	\begin{figure}
+		\visible<2->{
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\caption{Streuung von Neutrinos an Elektronen \citeS{Neutrinostreuung}}
+			\includegraphics[width=\textwidth,height=3.2cm]{Bilder/Neutrinostreuung.png}
+		\end{minipage}}
+		\visible<3->{
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\caption{Erzeugung eines reellen Z$^0$ \nocite{ErzeugungreellesZ0}}
+			\includegraphics[width=\textwidth,height=3.2cm]{Bilder/ErzeugungreellesZ0.png}
+		\end{minipage}}
+	\end{figure}
+\end{frame}
+\againframe<2>{Z01}
+\againframe<3>{Z01}
+\againframe<4>{Z01}
+
+\begin{frame}
+	\frametitle{Wiederholung der Teilchenphysik}
+	\framesubtitle{Das Z$^0$ Teilchen}
+	%
+	Die Resonanzkurve des Z$^{0}$-Boson folgt der relativistischen Breit-Wigner-Funktion:
+	\begin{align*}
+		\sigma_{bw}(\sqrt{s}) &= \frac{12\pi}{M_{Z^0}^2}
+		\frac{s\cdot \Gamma_e \Gamma_f}
+		{\left[s-M_{Z^0}^2\right]^2 - \left[\frac{s \Gamma_{Z^0}}{M_{Z^0}}\right]^2}
+		\cdot \epsilon
+	\end{align*}
+	$\sqrt{s}$ ist die Schwerpunktenergie, $\epsilon$ ein Einheitenfaktor
+\end{frame}
+\begin{frame}[label=eeWQDiagramm]
+	\frametitle{Wiederholung der Teilchenphysik}
+	\framesubtitle{Das Z$^0$ Teilchen}
+	%
+	\begin{figure}
+	\centering
+	\caption{Der Totale Wirkungsquerschnitt für e$ ^{+} $e$ ^{-}$ Wechselwirkungen, aufgetragen gegen die Energie in GeV\citeS{eeWQDiagramm}}
+	\includegraphics[width=0.7\textwidth]{Bilder/eeWQDiagramm.jpg}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\frametitle{Wiederholung der Teilchenphysik}
+	\framesubtitle{Das Z$^0$ Teilchen}
+	%
+	mit Leptonenuniversalität und Neutrinouniversalität gilt:
+	\begin{align*}
+		\Gamma_{Z^{0}} = 3\Gamma_{e} + \Gamma_{had} + n_{\nu}\Gamma_{\nu}
+	\end{align*}
+	dabei ist $ n_{\nu}$ die Anzahl der Neutrinogenerationen 
+\end{frame}
+
+%------------------------------------------------------------
+% Wichtige Wechselwirkungen von Teilchen und Materie
+%------------------------------------------------------------
+\againframe<22>{Inhaltsverzeichnis}
+
+\begin{frame}<1>[label=WechselwirkungTeilchenMaterie]
+	\frametitle{Wechselwirkungen von Teilchen und Materie}
+	\framesubtitle{}
+	%
+	\begin{itemize}
+		\item Energieabgabe folgt der Bethe-Bloch-Gleichung
+		\item<2-> Bremsstrahlung
+		\item[$\rightarrow$]<3-> Paarbildungseffekt 
+		\item[$\rightarrow$]<4-> elektromagnetsicher Schauer 
+		\item<5> hadronischer Schauer durch Fragmentation und Hadronisierung
+	\end{itemize}
+\end{frame}
+\againframe<2>{WechselwirkungTeilchenMaterie}
+\againframe<3>{WechselwirkungTeilchenMaterie}
+\againframe<4>{WechselwirkungTeilchenMaterie}
+\againframe<5>{WechselwirkungTeilchenMaterie}
+
+%------------------------------------------------------------
+% Wichtige Wechselwirkungen von Teilchen und Materie
+%------------------------------------------------------------
+\againframe<23>{Inhaltsverzeichnis}
+
+\begin{frame}<1>[label=AnnihilationinZ0]
+	\frametitle{e$^+$e$^-$-Wechselwirkungen bei hohen Energien}
+	\framesubtitle{Annihilation in ein reelles Z$^0$}
+	%
+	\begin{itemize}
+		\item gewünschte Prozess
+		\item Peak bei M$_{\text{Z}^0}$
+		\item wir versuchen alle Prozess von diesem zu separieren
+	\end{itemize}
+	%
+	\begin{figure}
+	\centering
+%	\caption{\citeS{zula}}
+%	\label{fig:GrundlagenFeynman1}
+	\includegraphics[width=0.4\textwidth]{Bilder/FeynmanAnnihilationZ0.jpg}
+	\end{figure}
+\end{frame}
+
+\begin{frame}<1>[label=AnnihilationinPhoton]
+	\frametitle{e$^+$e$^-$-Wechselwirkungen bei hohen Energien}
+	\framesubtitle{Annihilation in ein reelles Photon}
+	%
+	\begin{itemize}
+		\item hat die selben Pro- und Edukte, wie die Annihilation in ein Z$^0$
+		\item<2->[$ \rightarrow $] beide Prozesse überlagern sich
+		\item<2->[$ \rightarrow $] Die Annihilation in ein reelles Photon überhöht den Wirkungsquerschnitt und ist unerwünscht
+		\item[] 
+		\item<3> Lösung: Prozess über Z$^0$ dominiert in der Nähe der Resonanz
+	\end{itemize}
+	%
+	\begin{figure}
+	\centering
+%	\caption{\citeS{zula}}
+%	\label{fig:GrundlagenFeynman1}
+	\includegraphics[width=0.4\textwidth]{Bilder/FeynmanAnnihilationPhoton.jpg}
+	\end{figure}
+\end{frame}
+\againframe<2>{AnnihilationinPhoton}
+\begin{frame}
+	\frametitle{e$^+$e$^-$-Wechselwirkungen bei hohen Energien}
+	\framesubtitle{Annihilation in ein reelles Photon}
+	%
+	\begin{figure}
+	\centering
+	\caption{Der Totale Wirkungsquerschnitt für e$ ^{+} $e$ ^{-}$ Wechselwirkungen, aufgetragen gegen die Energie in GeV\citeS{eeWQDiagramm}}
+	\includegraphics[width=0.7\textwidth]{Bilder/eeWQDiagramm.jpg}
+	\end{figure}
+\end{frame}
+\againframe<3>{AnnihilationinPhoton}
+
+\begin{frame}<1>[label=Bhabhau2Photon]
+	\frametitle{e$^+$e$^-$-Wechselwirkungen bei hohen Energien}
+	\framesubtitle{Bhabha-Streuung \invisible{WWWWWWWWWWWWW} 2-Photon-Prozesse}
+	%
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item Elastische Streuung durch Photon oder Z$^0$
+				\item<2-> Separation: Winkelverteilung
+			\end{itemize}
+			\visible<2->{
+			\begin{align*}
+				S \propto \left(1+\text{cos}^{2}(\theta)\right) \ \ \ T \propto \left(1+\text{cos} (\theta)\right) ^{-2}
+			\end{align*}}
+%\citeS{zula}
+			\begin{figure}
+				\centering
+%				\caption{Feynman-Diagramme des t-Kanals \citeS{zula}}
+%				\label{fig:GrundlagenFeynman2}
+				\includegraphics[width=0.9\textwidth]{Bilder/GrundlagenFeynman2.jpg}
+			 \end{figure}
+		\end{column}
+		\visible<3->{
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item Inelastische Streuung durch zwei Photonen
+				\item<4-> Photonen wechselwirken über Paarbildung
+				\item[$\rightarrow$]<4-> ein e$^+$e$^-$-Paar wird erzeugt
+				\item<5-> Separation: Ncharged $>$2
+			\end{itemize}
+			\begin{figure}
+				\centering
+%				\caption{Feynman-Diagramme des t-Kanals \citeS{zula}}
+%				\label{fig:GrundlagenFeynman2}
+				\includegraphics[width=0.8\textwidth]{Bilder/Feynman2PhotonProzess.jpg}
+			 \end{figure}
+		\end{column}}
+	\end{columns}
+\end{frame}
+\againframe<2>{Bhabhau2Photon}
+\againframe<3>{Bhabhau2Photon}
+\againframe<4>{Bhabhau2Photon}
+\againframe<5>{Bhabhau2Photon}
+
+\begin{frame}<1>[label=GrundladenStrahlungkorrektur]
+	\frametitle{e$^+$e$^-$-Wechselwirkungen bei hohen Energien}
+	\framesubtitle{Strahlungskorrektur}
+	%
+	\begin{itemize}
+		\item Abstrahlung eines reellen Photons
+		\item<2-> Austausch eines virtuellen Photons
+		\item<3-> bei hadronischen Endzuständen: Gluonabstrahlung
+		\item[]
+		\item<4> Berechnung der Wahrscheinlichkeiten ist komplex
+		\item<4> Bereitgestellte Tabelle additiver Korrekturwerte
+	\end{itemize}
+	%
+	\begin{figure}
+	\centering
+%	\caption{\citeS{zula}}
+	\label{fig:GrundlagenFeynman3}
+		\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth, height=2.3cm]{Bilder/FeynmanStrahlungskorrekturreell.jpg}
+		\end{minipage}
+		\visible<2->{
+		\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth, height=2.3cm]{Bilder/FeynmanStrahlungskorrekturvirtuell.jpg}
+		\end{minipage}}
+		\visible<3->{
+		\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth, height=2.5cm]{Bilder/FeynmanStrahlungskorrekturgluon.jpg}
+		\end{minipage}}
+	\end{figure}
+\end{frame}
+\againframe<2>{GrundladenStrahlungkorrektur}
+\againframe<3>{GrundladenStrahlungkorrektur}
+\againframe<4>{GrundladenStrahlungkorrektur}
+
+
+%				\item Annihilation in ein reelles Z$^0$
+%				\item Annihilation in ein reelles Photon
+%				\item Streuprozesse
+%				\item Strahlungskorrektur
+%------------------------------------------------------------
+% Vorwärts-Rückwärts-Asymmetrie
+%------------------------------------------------------------
+\againframe<24>{Inhaltsverzeichnis}
+
+\begin{frame}<1>[label=GrundlagenWeinberg]
+	\frametitle{Vorwärts-Rückwärts-Asymmetrie und Weinbergwinkel}
+	\framesubtitle{Weinbergwinkel}
+	%
+	Experimentell beobachtet man:
+	\begin{itemize}
+		\item Paritätsverletzung der schwachen WW
+		\item<2-> nur linkshändige Neutrinos	
+		\item[$\rightarrow$]<3-> Einführung eines schwachen Isospins
+		\item[$\rightarrow$]<4-> Isospin-Tripplet (W$^0$, W$^1$, W$^2$) und Isospin-Singulett (B$^0$)
+	\end{itemize}
+	\visible<5>{
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{Bilder/GrundlagenWeinbergMatrix.png}
+	\end{figure}}
+\end{frame}
+\againframe<2>{GrundlagenWeinberg}
+\againframe<3>{GrundlagenWeinberg}
+\againframe<4>{GrundlagenWeinberg}
+\againframe<5>{GrundlagenWeinberg}
+
+\begin{frame}<1>[label=GrundlagenAsymmetrie]
+	\frametitle{Vorwärts-Rückwärts-Asymmetrie und Weinbergwinkel}
+	\framesubtitle{Asymmetrie}
+	%
+	Die Asymmetrie ist definiert als
+	\begin{align*}
+		A &= \dfrac{\int_{0}^{1}\frac{d\sigma}{d\text{cos}\theta}d\text{cos}\theta- \int_{-1}^{0}\frac{d\sigma}{d\text{cos}\theta}d\text{cos}\theta} {\int_{-1}^{1}\frac{d\sigma}{d\text{cos}\theta}d\text{cos}\theta}
+	\end{align*}\\
+	\visible<2>{
+	Messung von A am Resonanzmaximum entspricht Messung von $\theta_{w}$:
+	\begin{align*}
+		A_{\text{max}} = 3\cdot(1-4\cdot\text{sin}^2(\theta_{W}))^2
+	\end{align*}}
+\end{frame}
+\againframe<2>{GrundlagenAsymmetrie}
+
+%
+%------------------------------------------------------------
+% Das OPAL-Experiment
+%------------------------------------------------------------
+\againframe<25>{Inhaltsverzeichnis}
+
+\begin{frame}
+	\frametitle{Das OPAL-Experiment}
+	\framesubtitle{Omni Purpose Apparatus at LEP}
+	%
+	\begin{figure}
+		\centering
+%		\caption{Prinzipieller Aufbau des OPAL-Detektor \citeS{ErzeugungreellesZ0}}
+		\label{fig:GurndlagenOPAL}
+		\includegraphics[width=0.9\textwidth]{Bilder/GrundlagenOPAL.jpg}
+	\end{figure}
+\end{frame}
+\begin{frame}<1>[label=Opal]
+	\frametitle{Das OPAL-Experiment}
+	\framesubtitle{Detektoren}
+	%
+	\begin{itemize}
+		\item Trigger
+		\alt<1>{
+		\begin{itemize}
+			\item startet die Speicherung der Daten
+			\item versucht möglichst alle Ereignisse aufzunehmen
+			\item versucht möglichst wenig zu beeinflussen
+		\end{itemize}
+		}{}
+		\item<2-> Driftkammer bzw. Spurkammer
+		\alt<2>{
+		\begin{itemize}
+			\item besteht aus Gasvolumen mit Drähten
+			\item beim Durchflug ionisieren geladene Teilchen das Gas
+			\item einzelne Drähte messen Signale
+			\item Magnetfeld lenkt die Teilchen ab
+			\item[$\rightarrow$] \textit{Ncharged} und \textit{Pcharged} werden gemessen
+		\end{itemize}
+		}{}
+		\item<3-> Schauerzähler bzw. Kalorimeter
+		\alt<3>{
+		\begin{itemize}
+			\item besteht aus passive Masseplatten \& dazwischen Detektorschichten
+			\item Wechselwirkung, Schauerentwicklung bzw. Energieabgabe mit Masseplatten
+			\item em-Kalorimeter weiter innen, hadronische weiter außen
+			\item[$\rightarrow$] \textit{E\_ecal} und \textit{E\_hcal} werden gemessen
+		\end{itemize}
+		}{}
+		\item<4> Myondetektor
+		\alt<4>{
+		\begin{itemize}
+			\item funktioniert ähnlich wie eine Spurkammer
+			\item bestimmt die Anzahl der Myonen (\textit{muon})
+			\item durch Dicke des hadronischen Kalorimeters alles sonst abgeschirmt
+			\item in den vorliegenden Daten nicht enthalten
+		\end{itemize}
+		}{}		
+	\end{itemize}
+\end{frame}
+\againframe<2>{Opal}
+\againframe<3>{Opal}
+\againframe<4>{Opal}
+
+\section{Zweiter Teil}
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%DURCHFÜHRUNG
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+\begin{frame}<1>[label=Inhaltsverzeichnis2]
+	\begin{enumerate}
+		\item<alert@4> Durchführung
+		\begin{itemize}
+			\item<alert@41> GROPE-Ereignisdarstellung
+			\item<alert@41> Grobe Schnittkriterien
+		\end{itemize}
+		\item<alert@5> Auswertung
+		\begin{enumerate}
+			\item<alert@50> Aufbereitung der Daten
+			\begin{itemize}
+				\item<alert@51> Schnittkriterien Monte Carlo
+				\item<alert@52> Effizienzmatrix
+				\item<alert@53> Fehlerbehandlung
+				\item<alert@54> Wirkungsquerschnitt
+				\item<alert@55> s-t-Kanal-Trennung
+				\item<alert@56> Weitere Korrekturen	
+			\end{itemize}
+			\item<alert@57> Breit-Wigner
+			\begin{itemize}
+				\item Resultate
+			\end{itemize}
+			\item<alert@58> Asymmetrie und Weinbergwinkel
+		\end{enumerate}
+		\item<alert@6> Zusammenfassung
+	\end{enumerate}
+\end{frame}
+%------------------------------------------------------------
+%GROPE
+%------------------------------------------------------------
+\againframe<41>{Inhaltsverzeichnis2}
+\section{Durchführung}
+
+\subsection{GROPE}
+\subsubsection{Elektron}
+
+\begin{frame}
+	\frametitle{GROPE-Ereignisdarstellung}
+	\framesubtitle{Elektron}
+	
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+		%
+		\begin{figure}[H]
+			\centering
+			\label{fig:GROPEee}
+			\includegraphics[width=\textwidth]{Bilder/ee.png}
+			\caption{{\footnotesize $\mathrm{e}^+\mathrm{e}^- \ \longrightarrow\ \mathrm{Z}^0 \ \longrightarrow\ \mathrm{e}^+\mathrm{e}^-\ \longrightarrow\ ...$}}
+		\end{figure}
+		%
+		\end{column}
+		\begin{column}{0.4\textwidth}
+		
+		\begin{itemize}
+			\item {\color{blue}\textit{Ncharged}(e)}\newline
+					\only<2>{$\in [2,3]$}
+			\item {\color{blue}\textit{Pcharged}(e)}\newline
+			
+			\item {\color[rgb]{0.6,0.6,0}\textit{E\_ecal}(e)}\newline
+					\only<2>{groß}
+			\item {\color[rgb]{1,0,1}\textit{E\_hcal}(e)}\newline
+			
+			\item {\color{red}\textit{Nmuon}(e)}\newline
+			
+		\end{itemize}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\subsubsection{Myon}
+\begin{frame}
+	\frametitle{GROPE-Ereignisdarstellung}
+	\framesubtitle{Myon}
+	
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+		%
+		\begin{figure}[H]
+			\centering
+			\label{fig:GROPEmm}
+			\includegraphics[width=\textwidth]{Bilder/mm.png}
+			\caption{{\footnotesize $\mathrm{e}^+\mathrm{e}^- \ \longrightarrow\ \mathrm{Z}^0 \ \longrightarrow\ \mathrm{\mu}^+\mathrm{\mu}^-\ \longrightarrow\ ...$}}
+		\end{figure}
+		%
+		\end{column}
+		\begin{column}{0.4\textwidth}
+		
+		\begin{itemize}
+			\item {\color{blue}\textit{Ncharged}($\mu$)}\newline
+					\only<2>{$=2$}
+			\item {\color{blue}\textit{Pcharged}($\mu$)}\newline
+			
+			\item {\color[rgb]{0.6,0.6,0}\textit{E\_ecal}($\mu$)}\newline
+					\only<2>{$\ll$ \textit{E\_ecal}(e)}
+			\item {\color[rgb]{1,0,1}\textit{E\_hcal}($\mu$)}\newline
+			
+			\item {\color{red}\textit{Nmuon}($\mu$)}\newline
+					\only<2>{$=2$}
+		\end{itemize}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\subsubsection{Tauon}
+\begin{frame}
+	\frametitle{GROPE-Ereignisdarstellung}
+	\framesubtitle{Tauon}
+	
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+		%
+		\begin{figure}[H]
+			\centering
+			\label{fig:GROPEtt}
+			\includegraphics[width=\textwidth]{Bilder/tt.png}
+			\caption{{\footnotesize $\mathrm{e}^+\mathrm{e}^- \ \longrightarrow\ \mathrm{Z}^0 \ \longrightarrow\ \mathrm{\tau}^+\mathrm{\tau}^-\ \longrightarrow\ ...$}}
+		\end{figure}
+		%
+		\end{column}
+		\begin{column}{0.4\textwidth}
+		
+		\begin{itemize}
+			\item {\color{blue}\textit{Ncharged}($\tau$)}\newline
+					\only<2>{$\in [2,6]$}
+			\item {\color{blue}\textit{Pcharged}($\tau$)}\newline
+					\only<2>{$\ll$ \textit{Pcharged}(e)}
+			\item {\color[rgb]{0.6,0.6,0}\textit{E\_ecal}($\tau$)}\newline
+					\only<2>{}
+			\item {\color[rgb]{1,0,1}\textit{E\_hcal}($\tau$)}\newline
+			
+			\item {\color{red}\textit{Nmuon}($\tau$)}\newline
+			
+		\end{itemize}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\subsubsection{Quark}
+\begin{frame}
+	\frametitle{GROPE-Ereignisdarstellung}
+	\framesubtitle{Quark}
+	
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+		%
+		\begin{figure}[H]
+			\centering
+			\label{fig:GROPEqq}
+			\includegraphics[width=\textwidth]{Bilder/qq.png}
+			\caption{{\footnotesize $\mathrm{e}^+\mathrm{e}^- \ \longrightarrow\ \mathrm{Z}^0 \ \longrightarrow\ \mathrm{q}^+\mathrm{q}^-\ \longrightarrow\ ...$}}
+		\end{figure}
+		%
+		\end{column}
+		\begin{column}{0.4\textwidth}
+		
+		\begin{itemize}
+			\item {\color{blue}\textit{Ncharged}(q)}\newline
+					\only<2>{$\geq 10$}
+			\item {\color{blue}\textit{Pcharged}(q)}\newline
+			
+			\item {\color[rgb]{0.6,0.6,0}\textit{E\_ecal}(q)}\newline
+
+			\item {\color[rgb]{1,0,1}\textit{E\_hcal}(q)}\newline
+			
+			\item {\color{red}\textit{Nmuon}(q)}\newline
+			
+		\end{itemize}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%AUSWERTUNG
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+\againframe<51>{Inhaltsverzeichnis2}
+\section{Auswertung}
+
+\subsection{Schnittkriterien}
+\subsubsection{00}
+%Gesamtübersicht
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Gesamtübersicht}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/00_all/Ncharged_00_all.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/00_all/Pcharged_00_all.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/00_all/E_ecal_00_all.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/00_all/E_hcal_00_all.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\invisible{\uline{\textbf{Bla}}}\\
+			{\color{blue}\textit{Ncharged}}\newline
+					\\
+			{\color{blue}\textit{Pcharged}}\newline
+					\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}}\newline
+					\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}}\newline
+					\\
+			$\cos\_thet$\newline
+								\\
+			\invisible{\sout{FinalCutQQ}}\\
+			\invisible{\sout{FinalCut$\tau\tau$}}\\
+			\invisible{\sout{FinalCut$ee$}}\\
+			\invisible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+%Quark
+\subsubsection{01--QQ}
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Quark-Schnitt \textit{FinalCutQQ}}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/01_passedQQ/Ncharged_01_passedQQ.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/01_passedQQ/Pcharged_01_passedQQ.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/01_passedQQ/E_ecal_01_passedQQ.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/01_passedQQ/E_hcal_01_passedQQ.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\uline{\textbf{FinalCutQQ}}\\
+			{\color{blue}\textit{Ncharged}(q)}\newline
+					$\geq 12$\\
+			{\color{blue}\textit{Pcharged}(q)}\newline
+					\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}(q)}\newline
+					\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}(q)}\newline
+					\\
+			$\cos\_thet$(q)\newline
+								\\
+			\invisible{\sout{FinalCutQQ}}\\
+			\invisible{\sout{FinalCut$\tau\tau$}}\\
+			\invisible{\sout{FinalCut$ee$}}\\
+			\invisible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+\subsubsection{02}
+%Anti-Quark
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Komplement zum Quark-Schnitt}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/02_cutQQ/Ncharged_02_cutQQ.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/02_cutQQ/Pcharged_02_cutQQ.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/02_cutQQ/E_ecal_02_cutQQ.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/02_cutQQ/E_hcal_02_cutQQ.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\invisible{\uline{\textbf{FinalCutQQ}}}\\
+			{\color{blue}\textit{Ncharged}}\newline
+					\\
+			{\color{blue}\textit{Pcharged}}\newline
+					\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}}\newline
+					\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}}\newline
+					\\
+			$\cos\_thet$\newline
+								\\
+			\visible{\sout{FinalCutQQ}}\\
+			\invisible{\sout{FinalCut$\tau\tau$}}\\
+			\invisible{\sout{FinalCut$ee$}}\\
+			\invisible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+\subsubsection{03--TT}
+%Tauonen
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Tauonen-Schnitt \textit{FinalCut$\tau\tau$}}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/03_cutQQ_passedTT/Ncharged_03_cutQQ_passedTT.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/03_cutQQ_passedTT/Pcharged_03_cutQQ_passedTT.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/03_cutQQ_passedTT/E_ecal_03_cutQQ_passedTT.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/03_cutQQ_passedTT/E_hcal_03_cutQQ_passedTT.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\visible{\uline{\textbf{FinalCut$\tau\tau$}}}\\
+			{\color{blue}\textit{Ncharged}($\tau$)}\newline
+					$\leq 7$\\
+			{\color{blue}\textit{Pcharged}($\tau$)}\newline
+					$\in [8.0, 45.0]$\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}($\tau$)}\newline
+					$\leq 73.0$\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}($\tau$)}\newline
+					\\
+			$\cos\_thet$($\tau$)\newline
+								\\
+			\visible{\sout{FinalCutQQ}}\\
+			\invisible{\sout{FinalCut$\tau\tau$}}\\
+			\invisible{\sout{FinalCut$ee$}}\\
+			\invisible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\subsubsection{04}
+%Komplement zu TT und QQ
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Komplement zu Tauonen- und Quark-Schnitt}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/04_cutQQ_cutTT/Ncharged_04_cutQQ_cutTT.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/04_cutQQ_cutTT/Pcharged_04_cutQQ_cutTT.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/04_cutQQ_cutTT/E_ecal_04_cutQQ_cutTT.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/04_cutQQ_cutTT/E_hcal_04_cutQQ_cutTT.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\invisible{\uline{\textbf{K}}}\\
+			{\color{blue}\textit{Ncharged}}\newline
+					\\
+			{\color{blue}\textit{Pcharged}}\newline
+					\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}}\newline
+					\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}}\newline
+					\\
+			$\cos\_thet$\newline
+								\\
+			\visible{\sout{FinalCutQQ}}\\
+			\visible{\sout{FinalCut$\tau\tau$}}\\
+			\invisible{\sout{FinalCut$ee$}}\\
+			\invisible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\subsubsection{07--EE}
+%EE Schnitt
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Elektronen-Schnitt \textit{FinalCutEE}}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/07_cutQQ_cutTT_cut2Pho_passedEE/Ncharged_07_cutQQ_cutTT_cut2Pho_passedEE.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/07_cutQQ_cutTT_cut2Pho_passedEE/Pcharged_07_cutQQ_cutTT_cut2Pho_passedEE.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/07_cutQQ_cutTT_cut2Pho_passedEE/E_ecal_07_cutQQ_cutTT_cut2Pho_passedEE.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/07_cutQQ_cutTT_cut2Pho_passedEE/E_hcal_07_cutQQ_cutTT_cut2Pho_passedEE.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\visible{\uline{\textbf{FinalCutEE}}}\\
+			{\color{blue}\textit{Ncharged}(e)}\newline
+					$\leq$ 2\\
+			{\color{blue}\textit{Pcharged}(e)}\newline
+					\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}(e)}\newline
+					$\geq 80.0$\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}(e)}\newline
+					\\
+			$\cos\_thet$(e)\newline
+					$\in${\small [-0.95, 0.95]}\\
+			\visible{\sout{FinalCutQQ}}\\
+			\visible{\sout{FinalCut$\tau\tau$}}\\
+			\invisible{\sout{FinalCut$EE$}}\\
+			\invisible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\subsubsection{08}
+%EE Komplement
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Komplement zu Elektronen-, Tauonen- und Quark-Schnitt}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/08_cutQQ_cutTT_cutEE2Pho/Ncharged_08_cutQQ_cutTT_cutEE2Pho.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/08_cutQQ_cutTT_cutEE2Pho/Pcharged_08_cutQQ_cutTT_cutEE2Pho.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/08_cutQQ_cutTT_cutEE2Pho/E_ecal_08_cutQQ_cutTT_cutEE2Pho.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/08_cutQQ_cutTT_cutEE2Pho/E_hcal_08_cutQQ_cutTT_cutEE2Pho.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\invisible{\uline{\textbf{FinalCut$\mu\mu$}}}\\
+			{\color{blue}\textit{Ncharged}}\newline
+					\\
+			{\color{blue}\textit{Pcharged}}\newline
+					\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}}\newline
+					\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}}\newline
+					\\
+			$\cos\_thet$\newline
+					\\
+			\visible{\sout{FinalCutQQ}}\\
+			\visible{\sout{FinalCut$\tau\tau$}}\\
+			\visible{\sout{FinalCutEE}}\\
+			\invisible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\subsubsection{09--MM}
+%Myonen
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Myonen-Schnitt \textit{FinalCut$\mu\mu$}}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/09_cutQQ_cutTT_cutEE2Pho_passedMM/Ncharged_09_cutQQ_cutTT_cutEE2Pho_passedMM.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/09_cutQQ_cutTT_cutEE2Pho_passedMM/Pcharged_09_cutQQ_cutTT_cutEE2Pho_passedMM.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/09_cutQQ_cutTT_cutEE2Pho_passedMM/E_ecal_09_cutQQ_cutTT_cutEE2Pho_passedMM.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/09_cutQQ_cutTT_cutEE2Pho_passedMM/E_hcal_09_cutQQ_cutTT_cutEE2Pho_passedMM.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\visible{\uline{\textbf{FinalCut$\mu\mu$}}}\\
+			{\color{blue}\textit{Ncharged}($\mu$)}\newline
+					$\leq 3$\\
+			{\color{blue}\textit{Pcharged}($\mu$)}\newline
+					$\in [2.0, 77.0]$\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}($\mu$)}\newline
+					$\leq 25.0$\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}($\mu$)}\newline
+					\\
+			$\cos\_thet$($\mu$)\newline
+					\\
+			\visible{\sout{FinalCutQQ}}\\
+			\visible{\sout{FinalCut$\tau\tau$}}\\
+			\visible{\sout{FinalCutEE}}\\
+			\invisible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\subsubsection{10}
+%CutAll
+\begin{frame}
+	\frametitle{Schnittkriterien per Monte-Carlo festlegen}
+	\framesubtitle{Totales Komplement}
+	%
+	\begin{columns}
+		\begin{column}{0.95\textwidth}
+		%
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/10_cutAll/Ncharged_10_cutAll.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/10_cutAll/Pcharged_10_cutAll.png}
+			\newline
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/10_cutAll/E_ecal_10_cutAll.png}
+			\includegraphics[width=0.5\textwidth]{Programmierung/out/10_cutAll/E_hcal_10_cutAll.png}
+		%
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\invisible{\uline{\textbf{F}}}\\
+			{\color{blue}\textit{Ncharged}}\newline
+					\\
+			{\color{blue}\textit{Pcharged}}\newline
+					\\
+			{\color[rgb]{0.6,0.6,0}\textit{E\_ecal}}\newline
+					\\
+			{\color[rgb]{1,0,1}\textit{E\_hcal}}\newline
+					\\
+			$\cos\_thet$\newline
+					\\
+			\visible{\sout{FinalCutQQ}}\\
+			\visible{\sout{FinalCut$\tau\tau$}}\\
+			\visible{\sout{FinalCutEE}}\\
+			\visible{\sout{FinalCut$\mu\mu$}}\\
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%------------------------------------------------------------
+% EFFIZIENZMATRIX
+%------------------------------------------------------------
+\againframe<52>{Inhaltsverzeichnis2}
+\subsection{Effizienzmatrix}
+
+\begin{frame}
+	\frametitle{Effizienzmatrix $E$}
+	\framesubtitle{}
+	%
+	\begin{align*}
+		\uncover<3->{
+					\underbrace{
+					\begin{pmatrix}
+						\mathrm{e}_{M}\\
+						\mathrm{\mu}_{M}\\
+						\mathrm{\tau}_{M}\\
+						\mathrm{q}_{M}
+					\end{pmatrix}}_{\vec{M}_i}
+					&=
+		}
+	%	
+		\alt<1-3>{
+			\underbrace{
+			\begin{pmatrix}
+				\mathrm{e}(\mathrm{e}) & \mathrm{e}(\mathrm{\mu})& \mathrm{e}(\mathrm{\tau}) & \mathrm{e}(\mathrm{q})\\
+				\mathrm{\mu}(\mathrm{e}) & \mathrm{\mu}(\mathrm{\mu})& \mathrm{\mu}(\mathrm{\tau}) & \mathrm{\mu}(\mathrm{q})\\
+				\mathrm{\tau}(\mathrm{e}) & \mathrm{\tau}(\mathrm{\mu})& \mathrm{\tau}(\mathrm{\tau}) & \mathrm{\tau}(\mathrm{q})\\
+				\mathrm{q}(\mathrm{e}) & \mathrm{q}(\mathrm{\mu})& \mathrm{q}(\mathrm{\tau}) & \mathrm{q}(\mathrm{q})\\
+			\end{pmatrix}}_{E}
+		}
+		{
+			\underbrace{
+			\begin{pmatrix}
+				\EffMatrix{00}\% & \EffMatrix{01}\% & \EffMatrix{02}\% & \EffMatrix{03}\%\\
+				\EffMatrix{10}\% & \EffMatrix{11}\% & \EffMatrix{12}\% & \EffMatrix{13}\%\\					\EffMatrix{20}\% & \EffMatrix{21}\% & \EffMatrix{22}\% & \EffMatrix{23}\%\\
+				\EffMatrix{30}\% & \EffMatrix{31}\% & \EffMatrix{32}\% & \EffMatrix{33}\%\\
+			\end{pmatrix}}_{E}
+		}
+	%
+		\uncover<2->{
+					\cdot
+				%
+					\underbrace{
+					\begin{pmatrix}
+						\mathrm{e}_{W}\\
+						\mathrm{\mu}_{W}\\
+						\mathrm{\tau}_{W}\\
+						\mathrm{q}_{W}
+					\end{pmatrix}}_{\vec{W}_i}
+		}
+		\\
+		\uncover<5>
+		{
+			\vec{M}_i &= E \cdot \vec{W}_i\\
+			\vec{W}_i &= E^{-1} \cdot \vec{M}_i
+		}
+	\end{align*}
+	\begin{itemize}
+		\item<1-> q($\mu$) $\equiv$ Als Quarks identifizierte Myonen (aus MC-Daten)
+		\item<2-> $\vec{W}_i \equiv$ Enthält 'wahre' Anzahl (vorerst unbekannt)
+		\item<3-> $\vec{M}_i \equiv$ Enthält 'gemessene' Anzahl (aus OPAL-Daten)
+	\end{itemize}
+\end{frame}
+
+
+%------------------------------------------------------------
+% FEHLERRECHNUNG
+%------------------------------------------------------------
+\againframe<53>{Inhaltsverzeichnis2}
+\subsection{Fehlerrechnung}
+
+\subsubsection{Übersicht}
+\begin{frame}
+	\frametitle{Fehlerrechnung}
+	\framesubtitle{Übersicht}
+	%
+	Drei mögliche Fehlerquellen für die 'wahren' Vektoren $\vec{W}_i$:
+	\begin{enumerate}
+		\item<2-> Statistische Fehler der OPAL-Datenmenge
+		\item<3-> Statistische Fehler der Monte-Carlo-Datenmenge
+		\item<4-> Systematische Fehler der Monte-Carlo-Simulation
+	\end{enumerate}
+\end{frame}
+
+\subsubsection{1. StatData}
+\begin{frame}
+	\frametitle{Fehlerrechnung}
+	\framesubtitle{1.\,Statistische Fehler der OPAL-Datenmenge}
+	$
+	\alert<1,3>{\vec{W}_i}
+	= E^{-1}
+	\cdot
+	\alert<1,2>{\vec{M}_i}
+	$\\
+	\begin{itemize}
+		\item<1-> Untersuche Einfluss von $\vec{M}_i$ auf $\vec{W}_i$
+		\item<2-> Zählexperiment $\Rightarrow$ Fehler auf Einträge von $\vec{M}_i$ ist: \newline
+				$\sigma(\mathrm{f_{M}}) = \sqrt{\mathrm{f_{M}}}$
+		\uncover<3->{
+		\item Gaußsche Fehlerfortpflanzung bei Matrixmultiplikation:\\
+		\begin{align*}
+			\scriptsize
+			\mathrm{\sigma^2(e_W)} = \left[E^{-1}_{0,0} \cdot \mathrm{\sigma(e_M)}\right]^2 + \left[E^{-1}_{0,1} \cdot \mathrm{\sigma(\mu_M)}\right]^2\\
+			 + \left[E^{-1}_{0,2} \cdot \mathrm{\sigma(\tau_M)}\right]^2 + \left[E^{-1}_{0,3} \cdot \mathrm{\sigma(q_M)}\right]^2
+			%
+		\end{align*}
+		}
+	\end{itemize}
+\end{frame}
+
+\subsubsection{2. StatMC}
+\begin{frame}
+	\frametitle{Fehlerrechnung}
+	\framesubtitle{2.\,Statistische Fehler der Monte-Carlo-Datenmenge}
+	$
+	\alert<1>{\vec{W}_i}
+	=
+	\alert<1>{E^{-1}}
+	\cdot
+	\vec{M}_i
+	$\\
+	\begin{itemize}
+		\item<1-> Untersuche Einfluss von $E^{-1}$ auf $\vec{W}_i$
+		\item<2-> Fehler auf $E$ bekannt aus Binomialverteilung, wobei $p\approx\frac{n}{N}$:\\
+		\begin{align*}
+			\mathrm{\sigma^2(n)}
+				&= N\cdot p \cdot (1-p)
+				\approx n\cdot(1 - \frac{n}{N})\\	
+			\mathrm{\sigma(f_1(f_2))}
+				&= \frac{\mathrm{\sigma(n)}}{N}	
+				\approx \sqrt{\frac{n}{N^2} - \frac{n^2}{N^3}}
+		\end{align*}
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{Fehlerrechnung}
+	\framesubtitle{2.\,Statistische Fehler der Monte-Carlo-Datenmenge}
+	\begin{align*}
+	\scriptsize
+			\underbrace{
+			\begin{pmatrix}
+				\EffMatrix{00}\% & \EffMatrix{01}\% & \EffMatrix{02}\% & \EffMatrix{03}\%\\
+				\EffMatrix{10}\% & \EffMatrix{11}\% & \EffMatrix{12}\% & \EffMatrix{13}\%\\	
+				\EffMatrix{20}\% & \alert<3>{\EffMatrix{21}}\% & \EffMatrix{22}\% & \EffMatrix{23}\%\\
+				\EffMatrix{30}\% & \EffMatrix{31}\% & \EffMatrix{32}\% & \EffMatrix{33}\%\\
+			\end{pmatrix}}_{E}
+			\pm
+			\underbrace{
+			\begin{pmatrix}
+				\EffMatrixERR{00}\% & \EffMatrixERR{01}\% & \EffMatrixERR{02}\% & \EffMatrixERR{03}\%\\
+				\EffMatrixERR{10}\% & \EffMatrixERR{11}\% & \EffMatrixERR{12}\% & \EffMatrixERR{13}\%\\	
+				\EffMatrixERR{20}\% & \alert<3>{\EffMatrixERR{21}}\% & \EffMatrixERR{22}\% & \EffMatrixERR{23}\%\\
+				\EffMatrixERR{30}\% & \EffMatrixERR{31}\% & \EffMatrixERR{32}\% & \EffMatrixERR{33}\%\\
+			\end{pmatrix}}_{\sigma(E)}
+	\end{align*}
+	\uncover<2->{Fehlerfortpflanzung bei Matrixinversion aufwendig\\}
+	\begin{itemize}
+		\item<3->	Variiere jeden der Einträge einzeln um $\pm 1 \sigma$
+		\item<4->	Rechne $\vec{W}_i$ aus für $\tilde{E}_1$,..., $\tilde{E}_{32}$
+		\item<5->	Fülle die 'wahren' $\vec{W}_i$ in Histogramme
+		\item<6->	Ermittle die Streuung
+	\end{itemize}
+\end{frame}
+
+\subsubsection{3. SystMC}
+\begin{frame}
+	\frametitle{Fehlerrechnung}
+	\framesubtitle{3.\,Systematische Fehler der Monte-Carlo-Simulation}
+	\begin{itemize}
+		\item<1-> Annahme: Simulation in erster Näherung realitätsgetreu
+		\item<2-> Dennoch: Kleine systematische Verschiebungen möglich
+		\item<3-> Vorgehen: Schnittkriterien werden systematisch variiert:\\
+		Beispiel: Alle Schnitte auf \textit{Pcharged} werden 5\% höher gesetzt\\
+		\uncover<4->{$\Rightarrow$ $\vec{M}_i$ und $E^{-1}$ müssen jeweils neu berechnet werden\\}
+		\uncover<5->{Vergleich der neuen $\vec{W}_i$ mit den statistischen Fehlern}
+		\item<6-> Es ergibt sich: Systematischer Fehler vernachlässigbar
+	\end{itemize}
+	\uncover<6->{
+	\begin{tabular}{c|rcr|rr}
+		& $1.00\mathit{P_{charged}}$& & & $1.05\mathit{P_{charged}}$& $0.95\mathit{P_{charged}}$\\\hline
+		$\mathrm{\mu_W}$ & \W{10} & $\pm$& \WStatErrorDATA{10}& \WSystErrorMC{21}& \WSystErrorMC{31}\\
+	\end{tabular}
+	}
+\end{frame}
+
+\subsubsection{Relevanz}
+\begin{frame}
+	\frametitle{Fehlerrechnung}
+	\framesubtitle{Relevanz der Fehler}
+	\vspace{-3mm}
+	\begin{table}[H]
+	\scriptsize
+	\caption{'Wahre' Teilchenzahlen $\vec{W}_i$ für Schwerpunktenergie $\sqrt{s_i}$}\hspace{-7mm}
+	\begin{tabular}{p{0.07\textwidth}|p{0.09\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}}
+		& Gesamt & $s_{1}$ & $s_{2}$ & $s_{3}$ & $s_{4}$ & $s_{5}$ & $s_{6}$ & $s_{7}$\\\hline
+		$\mathrm{e_W}$ & \W{00} & \W{01} & \W{02} & \W{03} & \W{04} & \W{05} & \W{06} & \W{07}\\
+		$\mathrm{\mu_W}$ & \W{10} & \W{11} & \W{12} & \W{13} & \W{14} & \W{15} & \W{16} & \W{17}\\
+		$\mathrm{\tau_W}$ & \W{20} & \W{21} & \W{22} & \W{23} & \W{24} & \W{25} & \W{26} & \W{27}\\
+		$\mathrm{q_W}$ & \W{30} & \W{31} & \W{32} & \W{33} & \W{34} & \W{35} & \W{36} & \W{37}
+	\end{tabular}
+	\caption{1. Statistische Fehler aus OPAL-Daten}
+	\begin{tabular}{p{0.07\textwidth}|p{0.09\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}}
+		& Gesamt & $s_{1}$ & $s_{2}$ & $s_{3}$ & $s_{4}$ & $s_{5}$ & $s_{6}$ & $s_{7}$\\\hline
+		$\mathrm{\sigma_1(e_W)}$ & \WStatErrorDATA{00} & \WStatErrorDATA{01} & \WStatErrorDATA{02} & \WStatErrorDATA{03} & \WStatErrorDATA{04} & \WStatErrorDATA{05} & \WStatErrorDATA{06} & \WStatErrorDATA{07}\\
+		$\mathrm{\sigma_1(\mu_W)}$ & \WStatErrorDATA{10} & \WStatErrorDATA{11} & \WStatErrorDATA{12} & \WStatErrorDATA{13} & \WStatErrorDATA{14} & \WStatErrorDATA{15} & \WStatErrorDATA{16} & \WStatErrorDATA{17}\\
+		$\mathrm{\sigma_1(\tau_W)}$ & \WStatErrorDATA{20} & \WStatErrorDATA{21} & \WStatErrorDATA{22} & \WStatErrorDATA{23} & \WStatErrorDATA{24} & \WStatErrorDATA{25} & \WStatErrorDATA{26} & \WStatErrorDATA{27}\\
+		$\mathrm{\sigma_1(q_W)}$ & \WStatErrorDATA{30} & \WStatErrorDATA{31} & \WStatErrorDATA{32} & \WStatErrorDATA{33} & \WStatErrorDATA{34} & \WStatErrorDATA{35} & \WStatErrorDATA{36} & \WStatErrorDATA{37}
+	\end{tabular}
+	\caption{2. Statistische Fehler aus MC-Daten \uncover<2->$\Rightarrow$ vernachlässigbar}
+	\begin{tabular}{p{0.07\textwidth}|p{0.09\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}p{0.07\textwidth}}
+		& Gesamt & $s_{1}$ & $s_{2}$ & $s_{3}$ & $s_{4}$ & $s_{5}$ & $s_{6}$ & $s_{7}$\\\hline
+		$\mathrm{\sigma_2(e_W)}$ & \WStatErrorMC{00} & \WStatErrorMC{01} & \WStatErrorMC{02} & \WStatErrorMC{03} & \WStatErrorMC{04} & \WStatErrorMC{05} & \WStatErrorMC{06} & \WStatErrorMC{07}\\
+		$\mathrm{\sigma_2(\mu_W)}$ & \WStatErrorMC{10} & \WStatErrorMC{11} & \WStatErrorMC{12} & \WStatErrorMC{13} & \WStatErrorMC{14} & \WStatErrorMC{15} & \WStatErrorMC{16} & \WStatErrorMC{17}\\
+		$\mathrm{\sigma_2(\tau_W)}$ & \WStatErrorMC{20} & \WStatErrorMC{21} & \WStatErrorMC{22} & \WStatErrorMC{23} & \WStatErrorMC{24} & \WStatErrorMC{25} & \WStatErrorMC{26} & \WStatErrorMC{27}\\
+		$\mathrm{\sigma_2(q_W)}$ & \WStatErrorMC{30} & \WStatErrorMC{31} & \WStatErrorMC{32} & \WStatErrorMC{33} & \WStatErrorMC{34} & \WStatErrorMC{35} & \WStatErrorMC{36} & \WStatErrorMC{37}
+	\end{tabular}
+	\end{table}
+\end{frame}
+
+%------------------------------------------------------------
+% Wirkungsquerschnitt
+%------------------------------------------------------------
+\againframe<54>{Inhaltsverzeichnis2}
+\subsection{Wirkungsquerschnitt}
+
+\begin{frame}
+	\frametitle{Wirkungsquerschnitt}
+	\framesubtitle{}
+	\begin{itemize}
+		\item<1-> Berechnung erfolgt über:\\
+		\begin{align*}
+			\sigma_{WQ} = \frac{f_W(s)}{\mathfrak{L}(s)}
+		\end{align*}
+		\item<1-> Fehlerfortpflanzung über Gauß
+	\end{itemize}
+	\blfootnote{$\mathfrak{L}(s)\equiv$ integrierte Luminosität in 1/nb}
+	\blfootnote{$f_W(s) \equiv$ 'Wahre' Teilchenzahl des Fermionpaares f}
+	\blfootnote{$[\sigma_{WQ}]=$nb}
+\end{frame}
+
+%------------------------------------------------------------
+% ST-Kanal-Trennung
+%------------------------------------------------------------
+\againframe<55>{Inhaltsverzeichnis2}
+\subsection{s-t-Kanal}
+
+\begin{frame}
+	\frametitle{s-t-Kanal Trennung der Elektronereignisse}
+	\framesubtitle{}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\textbf{s-Kanal}\\
+			\includegraphics[width=0.5\textwidth]{Bilder/s-kanal.jpg}
+			\begin{itemize}
+			 \item erwünscht
+			 \item<2-> Winkelverteilung:\\
+			 $\mathrm{\sigma_s(e)} \propto 1 + \mathrm{cos(\theta)}^2$ 
+			\end{itemize}
+			\uncover<2->{
+			\includegraphics[width=0.8\textwidth]{Bilder/s-kanal-winkel.png}}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\textbf{t-Kanal}\\
+			\includegraphics[width=0.5\textwidth]{Bilder/t-kanal.jpg}
+			\begin{itemize}
+			 \item unerwünscht
+			 \item<2-> Winkelverteilung:\\
+			 $\mathrm{\sigma_t(e)} \propto [1 - \mathrm{cos(\theta)}]^{-2}$
+			\end{itemize}
+			\uncover<2->{
+			\includegraphics[width=0.8\textwidth]{Bilder/t-kanal-winkel.png}}
+		\end{column}
+	\end{columns}
+	\vspace{3mm}
+	\uncover<3->{\textbf{Fit-Fkt:}
+		$F_{stFit}(\mathrm{cos}(\theta); S, T) = S \cdot \left[1 + \mathrm{cos(\theta)}^2\right] + T \cdot \left[1 - \mathrm{cos(\theta)}\right]^{-2}$
+		}
+\end{frame}
+\begin{frame}
+	\frametitle{s-t-Kanal Trennung der Elektronereignisse}
+	\framesubtitle{}
+	\includegraphics[width=\textwidth]{Programmierung/out/stSelektion/Energyschnitt_E7.png}
+\end{frame}
+\begin{frame}
+	\frametitle{s-t-Kanal Trennung der Elektronereignisse}
+	\framesubtitle{}
+	\textbf{Korrekturfaktor $K_{st}$ aus $S$ und $T$}\\
+	\begin{itemize}
+		\item Flächen der Winkelverteilungen bei Cutgrenze $a$=0.95:
+	\end{itemize}
+		\begin{align*}
+			\alpha &:= \int_{-a}^{a} 1+\cos(\theta)^2\ d\cos(\theta) = 2a + \frac{2}{3}a^3\\
+			\beta  &:= \int_{-a}^{a}\frac{1}{[1-\cos(\theta)]^2}\ d\cos(\theta) = -\frac{2a}{a^2-1}
+		\end{align*}
+	\begin{itemize}
+		\item Gewichtung von $S$ und $T$ führt zu $K_{st}$:
+	\end{itemize}
+		\begin{align*}
+			K_{st} &= \frac{\alpha S}{\alpha S	+ \beta T}\\
+			\sigma(K_{st}) &= \frac{\beta}{\alpha S [1+\frac{\beta T}{\alpha S}]^2} \sqrt{T^2 \sigma^2(S) + \sigma^2(T)}
+		\end{align*}
+\end{frame}
+
+
+%------------------------------------------------------------
+% Weitere Korrekturen
+%------------------------------------------------------------
+\againframe<56>{Inhaltsverzeichnis2}
+\subsection{Weitere Korrekturen}
+
+\begin{frame}
+	\frametitle{Weitere Korrekturen}
+	\framesubtitle{}
+	\begin{itemize}
+		\item Strahlungskorrekturen
+		\begin{itemize}
+			\item hadronisch
+			\item leptonisch
+		\end{itemize}
+		\item in Tabelle als additive Werte gegeben
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------------------
+% Breit-Wigner
+%------------------------------------------------------------
+\againframe<57>{Inhaltsverzeichnis2}
+\subsection{Breit-Wigner}
+
+\subsubsection{Fit}
+\begin{frame}
+	\frametitle{Breit-Wigner Fit}
+	\framesubtitle{}
+	\begin{itemize}
+		\item Plots der Wirkungsquerschnitte werden gefittet mit:
+	\end{itemize}
+	\begin{align*}
+		\sigma_{bw}(\sqrt{s}) &= \frac{12\pi}{M_{Z^0}^2}
+		\frac{
+		s\cdot \Gamma_e \Gamma_f
+		}
+		{
+		\left[s-M_{Z^0}^2\right]^2 - \left[\frac{s\cdot \Gamma_{Z^0}}{M_{Z^0}}\right]^2
+		}
+		\cdot
+		\frac{1}{2.55818\cdot 10^{-6}}
+	\end{align*}
+	
+	\blfootnote{$M_{Z^0} \equiv$ Masse $Z^0$}
+	\blfootnote{$\Gamma_{Z^0} \equiv$ Totale Zerfallsbreite des  $Z^0$}
+	\blfootnote{$\Gamma_e \equiv$ elektronische Partialbreite}
+	\blfootnote{$\Gamma_f \equiv$ Partialbreite des jeweiligen Fermions $f$}
+	\blfootnote{$\sqrt{s} \equiv$ Schwerpunktenergie}
+\end{frame}
+
+\subsubsection{Plots}
+\begin{frame}
+	\frametitle{Breit-Wigner Fit}
+	\framesubtitle{}
+	\includegraphics[width=0.5\textwidth]{Programmierung/out/Breit-Wigner/BreitWigner_ee.png}
+	\includegraphics[width=0.5\textwidth]{Programmierung/out/Breit-Wigner/BreitWigner_mm.png}\\
+	\includegraphics[width=0.5\textwidth]{Programmierung/out/Breit-Wigner/BreitWigner_tt.png}
+	\includegraphics[width=0.5\textwidth]{Programmierung/out/Breit-Wigner/BreitWigner_qq.png}\\
+\end{frame}
+
+\subsubsection{Resultate}
+\begin{frame}
+	\frametitle{Breit-Wigner Fit -- Resultate}
+	\framesubtitle{Partielle Wirkungsquerschnitte am Resonanzmaximum}
+	\begin{itemize}
+		\item Resonanzmaximum:
+			\begin{itemize}
+				\item[]$\sigma_e = \Fitresults{WQMax0}$\,nb
+				\item[]$\sigma_\mu = \Fitresults{WQMax1}$\,nb
+				\item[]$\sigma_\tau = \Fitresults{WQMax2}$\,nb
+				\item[]$\sigma_q = \Fitresults{WQMax3}$\,nb
+			\end{itemize}
+		\item Verhältnis zwischen hadronischem und leptonischem Wirkungsquerschnitt:
+			\begin{align*}
+				\frac{\sigma_q}{\sigma_l} = \frac{\sigma_q}{\sigma_e + \sigma_{\mu} + \sigma_{\tau}} = \Fitresults{hadrolepto}
+			\end{align*}
+	\end{itemize}
+
+
+\end{frame}
+\begin{frame}
+	\frametitle{Breit-Wigner Fit -- Resultate}
+	\framesubtitle{Masse und Zerfallsbreiten von $Z^0$}
+	\begin{columns}
+	\begin{column}{0.53\textwidth}
+		\uline{Gewichtete Mittelwerte:}\\
+		\begin{itemize}
+			\item \textbf{Masse Z$^\mathbf{0}$:}\\
+			$M_{Z^0} = (\Fitresults{MZgew} \pm \Fitresults{MZgewErr})\,\mathrm{GeV}$
+			\item \textbf{Gesamte Zerfallsbreite Z$^\mathbf{0}$:}\\
+			$\Gamma_{Z^0} = (\Fitresults{GammaZgew} \pm \Fitresults{GammaZgewErr})\,\mathrm{GeV}$
+			\item \textbf{Partielle Zerfallsbreiten}
+		\end{itemize}
+		\begin{table}[H]
+			\begin{tabular}{c|rr}
+			 & $\Gamma_{f}$ in MeV & $\delta(\Gamma_{f})$ in MeV \\ \hline
+			e 		& \Fitresults{GammaF0} & \Fitresults{GammaFErr0} \\ 
+			$\mu$ 	& \Fitresults{GammaF1} & \Fitresults{GammaFErr1} \\ 
+			$\tau$ 	& \Fitresults{GammaF2} & \Fitresults{GammaFErr2} \\ 
+			q 		& \Fitresults{GammaF3} & \Fitresults{GammaFErr3} \\ 
+			\end{tabular} 
+		\end{table}
+	\end{column}
+	\begin{column}{0.53\textwidth}
+		\uline{Literaturwerte:}\\
+		\begin{itemize}
+			\item \textbf{Masse Z$^\mathbf{0}$:}\\
+			$M_{Z^0} = (\Literatur{MZgew} \pm \Literatur{MZgewErr})\,\mathrm{GeV}$
+			\item \textbf{Gesamte Zerfallsbreite Z$^\mathbf{0}$:}\\
+			$\Gamma_{Z^0} = (\Literatur{GammaZgew} \pm \Literatur{GammaZgewErr})\,\mathrm{GeV}$
+			\item \textbf{Partielle Zerfallsbreiten}
+		\end{itemize}
+		\begin{table}[H]
+			\begin{tabular}{c|rr}
+			 & $\Gamma_{f}$ in MeV & $\delta(\Gamma_{f})$ in MeV \\ \hline
+			e 		& \Literatur{GammaF0} & \Literatur{GammaFErr0} \\ 
+			$\mu$ 	& \Literatur{GammaF1} & \Literatur{GammaFErr1} \\ 
+			$\tau$ 	& \Literatur{GammaF2} & \Literatur{GammaFErr2} \\ 
+			q 		& \Literatur{GammaF3} & \Literatur{GammaFErr3} \\ 
+			\end{tabular} 
+		\end{table}
+	\end{column}
+	\end{columns}
+\end{frame}
+\begin{frame}
+	\frametitle{Breit-Wigner Fit -- Resultate}
+	\framesubtitle{Anzahl Neutrinogenerationen}
+	\begin{columns}
+	\begin{column}{0.53\textwidth}
+		\uline{Gewichtete Mittelwerte:}
+		\begin{itemize}
+			\item \textbf{Unsichtbare Breite:}
+				\begin{align*}
+					\Gamma_{\mathrm{inv}} 		&= \Gamma_{Z^0} - \Gamma_{l} - \Gamma_{q}\\
+										&= \Fitresults{GammaInv}\,\mathrm{MeV}\\
+					\delta(\Gamma_{\mathrm{inv}})	&= \sqrt{\Gamma_{Z^0}^2 + \Gamma_{l}^2 + \Gamma_{q}^2}\\
+										&= \Fitresults{GammaInvErr}\,\mathrm{MeV}
+				\end{align*}
+			\item Gegeben: $\Gamma_{\nu}=167.6\,$MeV
+			\item \textbf{Neutrinogenerationen:} 
+			\begin{align*}
+				n_{\nu} &= \frac{\Gamma_{\mathrm{inv}}}{\Gamma_{\nu}}
+				&= \Fitresults{nNeutrinoGen} \\
+				\delta(n_{\nu}) &= n_{\nu} \frac{\delta(\Gamma_{\mathrm{inv}})}{\Gamma_{\mathrm{inv}}}
+				&= \Fitresults{nNeutrinoGenErr} 
+			\end{align*}
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.53\textwidth}
+		\uline{Literaturwerte:}
+		\begin{itemize}
+			\item \textbf{Unsichtbare Breite:}
+				\begin{align*}
+					\Gamma_{\mathrm{inv}} 		&= \Gamma_{Z^0} - \Gamma_{l} - \Gamma_{q}\\
+										&= \Literatur{GammaInv}\,\mathrm{MeV}\\
+					\delta(\Gamma_{\mathrm{inv}})	&= \Literatur{GammaInvErr}\,\mathrm{MeV}\\
+					\invisible{&= \sqrt{\Gamma_{Z^0}^2 + \Gamma_{l}^2 + \Gamma_{q}^2}}
+				\end{align*}
+			\item Gegeben: $\Gamma_{\nu}=167.6\,$MeV
+			\item \textbf{Neutrinogenerationen:}
+			\begin{align*}
+				n_{\nu} &= \Literatur{nNeutrinoGen}
+				\invisible{&= \frac{\Gamma_{\mathrm{inv}}}{\Gamma_{\nu}}}\\
+				\delta(n_{\nu}) &= \Literatur{nNeutrinoGenErr} 
+				\invisible{&= n_{\nu}\frac{\delta(\Gamma_{\mathrm{inv}})}{\Gamma_{\mathrm{inv}}}}
+			\end{align*}
+		\end{itemize}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+%------------------------------------------------------------
+% Asymmetrie
+%------------------------------------------------------------
+\againframe<58>{Inhaltsverzeichnis2}
+\subsection{Asymmetrie}
+
+\subsubsection{Fit}
+\begin{frame}
+	\frametitle{Vorwärts-Rückwärts-Asymmetrie und Weinbergwinkel}
+	
+	\begin{itemize}
+		\item<1-> Betrachte \textit{cos\_thet}-Verteilung der Myonen
+		\item<2-> Erwartete Verteilung:\\
+		$A^{\mathrm{fit}}_{\mathrm{s_i}}(x; F_1, F_2) = F_1 (1+x^2) + 2 F_2 x$\\
+		\uncover<3->{
+			\includegraphics[width=0.8\textwidth]{Programmierung/out/Asymmetrie/Asymmetrie_Costhet_E4.png}
+		}
+	\end{itemize}
+	\blfootnote{$x \equiv \cos(\theta)$}
+\end{frame}
+
+\subsubsection{Berechnung}
+\begin{frame}
+	\frametitle{Vorwärts-Rückwärts-Asymmetrie und Weinbergwinkel}
+	
+	\begin{itemize}
+		\item<1-> Berechnung der Asymmetrie:
+		\begin{align*}
+			A_{\mathrm{s_i}}
+			&=
+			\frac
+			{
+				\int_{0}^{1}  A^{\mathrm{fit}}_{\mathrm{s_i}}(x) \mathrm{d}x
+				-
+				\int_{-1}^{0} A^{\mathrm{fit}}_{\mathrm{s_i}}(x) \mathrm{d}x
+			}
+			{
+				\int_{-1}^{1} A^{\mathrm{fit}}_{\mathrm{s_i}}(x) \mathrm{d}x
+			}\\
+				A_{\mathrm{s_i}}
+				&=
+				\frac{3}{4}
+				\frac{F_2}{F_1}
+		\end{align*}
+		\item<2-> Berechnung der Fehler:
+		\begin{itemize}
+			\item Skellam-Distribution\\
+			$\Rightarrow$ Varianz der Differenz zweier Poissonverteilungen ist $n_{\mathrm{links}}+n_{\mathrm{rechts}} = N_i$\\
+			$\Rightarrow \delta(A_{s_i}) = \sqrt{N_i}/N_i = 1/\sqrt{N_i}$
+		\end{itemize}
+	\end{itemize}
+	\blfootnote{$x \equiv \cos(\theta)$}
+\end{frame}
+
+\subsubsection{Asymmetrie-Plot}
+\begin{frame}
+	\frametitle{Vorwärts-Rückwärts-Asymmetrie und Weinbergwinkel}
+	\includegraphics[width=0.9\textwidth]{Programmierung/out/Asymmetrie/AsymmetrieGraph.png}
+\end{frame}
+
+\subsubsection{Weinbergwinkel}
+\begin{frame}
+	\frametitle{Vorwärts-Rückwärts-Asymmetrie und Weinbergwinkel}
+	\begin{columns}
+	\begin{column}{0.7\textwidth}
+		\begin{itemize}
+			\item Wähle $A_{s_i}$ nahe der Resonanz
+			\item Sinusquadrat des Weinbergwinkels:
+			\begin{align*}
+				\sin^2(\theta_W) &=
+					\frac{1}{4} - \sqrt{\frac{A_{\mathrm{s_i}}}{48}}\\
+					&= \Asymmetrie{SinWeinberg}\\
+				\delta(\sin^2(\theta_W)) &=
+					\frac{1}{48} \frac{1}{2}
+					\sqrt{\frac{48}{A_{\mathrm{s_i}}}}
+					\delta(A_{\mathrm{s_i}})\\
+					&= \Asymmetrie{SinWeinbergErr}
+			\end{align*}
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.3\textwidth}
+		\begin{itemize}
+			\invisible{\item Wähle $A_{s_i}$ nahe der Resonanz}
+			\item Literaturwert:
+			\begin{align*}
+				\sin^2(\theta_W) &= \Literatur{SinWeinberg}\\
+					\invisible{&=	\frac{1}{4} - \sqrt{\frac{A_{\mathrm{s_i}}}{48}}\\}
+				\delta(\sin^2(\theta_W)) &= \Literatur{SinWeinbergErr}
+					\invisible{&=
+					\frac{1}{48} \frac{1}{2}
+					\sqrt{\frac{48}{A_{\mathrm{s_i}}}}
+					\delta(A_{\mathrm{s_i}})\\}				
+			\end{align*}
+		\end{itemize}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%ZUSAMMENFASSUNG
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+\againframe<6>{Inhaltsverzeichnis2}
+\section{Zusammenfassung}
+
+\subsection{Zusammenfassung}
+\begin{frame}
+	\frametitle{Zusammenfassung}
+	\textbf{Z$^0$-Resonanz am OPAL-Detektor}
+	\begin{itemize}
+		\item<1-> Experiment festigte die theoretische Vorhersage des Z$^0$ im Rahmen der elektroschwachen Vereinigung
+		\item<2-> Lieferte sehr präzise Eigenschaften
+		\begin{itemize}
+			\item $M_{Z^0}$
+			\item $\Gamma_{Z^0}$
+			\item ...
+		\end{itemize}
+		\item<3-> Stärkte das Standardmodell
+		\begin{itemize}
+			\item Leptonenuniversalität
+			\item Anzahl leichter Neutrinogenerationen
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\subsection{Quellenangaben}
+\begin{frame}
+	\frametitle{Quellenangaben}
+	\centering
+	\nocite{vakurz}
+	\nocite{pdg}
+	\nocite{skellam}
+	\nocite{ErzeugungreellesZ}
+	\nocite{eeWQDiagramm}
+	\nocite{Neutrinostreuung}
+	\nocite{Resonanzkurve}
+	\scriptsize
+	\bibliography{lit}
+	\bibliographystyle{plain}
+\end{frame}
+
+\subsection{Dank}
+\begin{frame}
+	\centering
+	\huge\textbf{Vielen Dank für die Aufmerksamkeit}\\
+	\vspace{1cm}
+	\includegraphics[width=0.5\paperwidth]{Bilder/rootdoesntworksmall.png}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+%\begin{frame}
+%\color[rgb]{0,0,0}
+%\color<2-3>[rgb]{1,0,0}
+%
+%Dieser Text ist rot auf
+%Folien 98 und 99 und auf allen anderen schwarz.
+%
+%\color[rgb]{0,0,0}
+%\alt<2>{Diese Zeile ändert sich nur auf Folie 103.}
+%{Dies ist nicht die 103. Folie.}
+%
+%\end{frame}
