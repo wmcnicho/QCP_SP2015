@@ -16,8 +16,9 @@ public class QViewModel{
 		//QuantumGuiPanel.console.setCaretPosition(QuantumGuiPanel.console.getDocument().getLength());
 	}
 	public static void updateLoadingBar(int percent){
-		QuantumGuiPanel.console.append("Change bar to " + percent + "!");
-		//QuantumGuiPanel.console.setCaretPosition(QuantumGuiPanel.console.getDocument().getLength());
+		//QuantumGuiPanel.console.append("Change bar to " + percent + "!");
+		QuantumGuiPanel.loadingBar.setValue(percent);
+		QuantumGuiPanel.loadingBar.setString(percent + "%");	
 	}
 
 }
