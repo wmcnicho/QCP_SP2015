@@ -27,7 +27,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 	static JTextArea console;
 	JButton start_butt;
 	JButton confirmOptions;
-	JProgressBar loadingBar;
+	static JProgressBar loadingBar;
 	
 	JComboBox gateRep;
 	JComboBox moreOptions;
@@ -75,8 +75,8 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		
 		
 		loadingBar = new JProgressBar(0, 100);
-		loadingBar.setValue(1);
-		loadingBar.setString("1%");
+		loadingBar.setValue(0);
+		//loadingBar.setString();
 		loadingBar.setPreferredSize(new Dimension(1000, 15));
 		//bar.setMaximumSize(new Dimension(775, 15));
 		//bar.setMinimumSize(new Dimension(775, 15));
