@@ -3,6 +3,7 @@ package Gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.HashMap;
 
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
@@ -38,10 +39,11 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
-				System.out.println(file.getAbsolutePath());
-				System.out.println(file.getName());
-				
+				//System.out.println(file.getAbsolutePath());
+				//System.out.println(file.getName());
+				HashMap<Integer, Integer> oracleMap = FileParser.parseFile(file.getAbsolutePath());
 				//Given the selected file name print that out to the screen
+				System.out.println(oracleMap.toString());
 			}
 			else {
 				System.out.println("Open command cancelled by user.");

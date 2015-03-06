@@ -1,82 +1,91 @@
 package qcv1;
+
 import Matrix.*;
+import java.util.Random;
+
 public class MRegister implements QRegister{
-	private DenseMatrix amplitudes = null;
-	private static MRegister instance = null;
+	private Matrix amplitudes = null;
 	private int numOfQubits = 0;
 	private int numOfStates = 0;
+	private String matrixType = "";
 
-	/*
-	 * private constructor - exists to avoid automatic instantiation
-	 */
-	private MRegister(){}
-
-
-	//set the nth (count from 0) state with amplitude 1 but others to 0
-	public void setRegister(int num, int n){
+	//constructors
+	public MRegister(int num, String type){
+		matrixType = type;
+		if (num < 1) num = 1;
 		numOfQubits = num;
 		numOfStates = (int) Math.pow(2, numOfQubits);
-		amplitudes = new DenseMatrix(1,numOfStates);
-		amplitudes.setElement(0, n, 1.0);
+		amplitudes = MatrixFactory.create(numOfStates, 1, matrixType);
+	
 	}
-	//set all the states with equal probs
-	public void setRegister(int num){
-		numOfQubits = num;
-		numOfStates = (int) Math.pow(2, numOfQubits);
-		amplitudes = new DenseMatrix(1,numOfStates);
+	
+	public MRegister(int num, int n, String type){
+		this(num, type);
+		
+		if (n < 0 || n > numOfStates) n = 0;
+		amplitudes.setElement(n, 0, 1.0, 0.0);
+	}
+		
+	public void setEqualAmplitude(){
 		double amp = Math.sqrt(1.0 / numOfStates);
 		for (int i = 0; i < numOfStates; i++){
-			amplitudes.setElement(0, i, amp);
+			amplitudes.setElement(i, 0, amp, 0.0);
 		}
 	}
 	
-	public void setAmplitude(DenseMatrix amps){
+	public void setAmplitude(Matrix amps){
 		amplitudes = amps;
 	}
-	public void setAmplitude(int qubitPos, double amps){
+	public void setAmplitude(int qubitPos, double [] amps){
 		amplitudes.setElement(0, qubitPos, amps);
+	}
+	public void setAmplitude(int qubitPos, double real, double imag){
+		amplitudes.setElement(0, qubitPos, real, imag);
 	}
 
 	public int numOfQubit(){return numOfQubits;}
 	public int numOfStates(){return numOfStates;}
-
-	public double getAmplitude(int i){
-		return amplitudes.getElement(0, i);
+	
+	public Matrix getAmplitude(){
+		return amplitudes;
+	}
+	
+	public double [] getAmplitude(int i){
+		return amplitudes.getElement(i, 0);
 	}
 
 
 	public void printAmplitude(){
 		for (int i = 0; i < numOfStates; i++){
-			System.out.println(amplitudes.getElement(0,i));
+			System.out.println(amplitudes.getElement(i,0)[0] + " " + amplitudes.getElement(i,0)[1]);
 		}
 	}
-	public void apply(DenseMatrix gateMatrix) {
-		amplitudes=Matrix.Multiply(amplitudes, gateMatrix);
-
-	}
-	public void measure(){
+	
+	public void getProbabilities(){
 	double sum=0;
 		for(int i=0; i<numOfStates; i++){
-			double probability = amplitudes.getElement(0, i)*amplitudes.getElement(0, i);
+			double probability = Complex.magSquare(amplitudes.getElement(i, 0));
 			sum+=probability;
 			System.out.println("the probability of state "+(i)+" is "+probability);
 		}
 		System.out.println(sum);
 	}
-
-	//get an instance of the register
-	public static MRegister getInstance(){
-		if (instance == null){
-			instance = new MRegister();
+	
+	public void measure(){
+		Random rand = new Random();
+		double key = rand.nextDouble();
+		double sum = 0.0;
+		for (int i = 0; i < numOfStates; i++){
+			sum += Complex.magSquare(amplitudes.getElement(i, 0));
+			if (sum > key){
+				//set all the states to zero 
+				for (int j = 0; j < numOfStates; j++){
+					amplitudes.setElement(j, 0, 0.0, 0.0);
+				}
+				amplitudes.setElement(i, 0, 1.0, 0.0);
+				break;
+			}
 		}
-		return instance;
-	}
-
-
-	@Override
-	public Matrix getAmplitude() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

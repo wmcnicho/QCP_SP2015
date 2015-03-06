@@ -377,7 +377,7 @@ Note that a combination of Hadamard gates acting on every single qubit in a $N$-
 	\left(  \prod_{n=0}^{N-1} G^\text{H}_n  \right) \ket{\Psi}
 	&= G^\text{H}_{N-1} \underbrace{\ket{b_{N-1}}}_{=\ket{0}} \otimes ... \otimes G^\text{H}_{0} \underbrace{\ket{b_{0}}}_{=\ket{0}}\\
 	&= \tfrac{\ket{0} + \ket{1}}{\sqrt{2}} \otimes ... \otimes \tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\\
-	&= 2^{-\frac{N}{2}} \sum_{n=0}^{N-1} \ket{n}
+	&= 2^{-\frac{N}{2}} \sum_{n=0}^{2^N-1} \ket{n}
 \end{align}
 %
 
@@ -472,6 +472,34 @@ This leads to the consideration of the following three possible representations:
 % - Explain why certain problems are rendered tractable by quantum computation with reference to the relevant concepts in quantum theory.
 
 \subsubsection{Grover's Algorithm}
+Grover's algorithm is a quantum search algorithm. To search through a non-ordered list with $N$ entries on a classical computer, one would have to go through individual entries of the list, requiring $O(N)$ operations. This can be sped up to $O(\sqrt{N})$ using a quantum circuit implementing Grover's algorithm.
+
+Suppose we are searching through a list of $N$ elements, and an index has been assigned to each of the elements ranging . Assume there are $M$ solutions
+The key object in Grover's algorithm is the quantum \emph{oracle}, which, in the abstract sense, has the ability to $recognise$ the so
+
+\begin{align}
+	\ket{x} \xrightarrow{O} (-1)^{f(x)}\ket{x}
+\end{align}
+
+The procedure of Grover's algorithm is as follows:
+\begin{enumerate}
+	\item Apply the oracle $O$
+	\item Apply the Hadamard operation on all qubits $H^{\otimes n}$ \label{step2}
+	\item Perform a phase shift of -1 on every state of the computational basis except $\ket{0}$:
+		\begin{align}
+			\ket{x} \quad 
+			\xrightarrow 
+			\quad -(-1)^{\delta_{x0}}\ket{x}
+		\end{align}
+	\item Apply the Hadamard operation on all qubits again $H^{\otimes n}$ \label{step4}
+\end{enumerate}
+Step \ref{step2} to step \ref{step4} is also known as the \emph{inversion about mean} operation. Mathematically, this iteration can be written compactly as:
+\begin{align}
+	G = \left(2\ket{\psi}\bra{\psi} - \mathbb{I}\right)O.
+\end{align}
+
+The Grover iteration is to maximise the probability of observing the solution states.
+Geometrically, the iteration performs a rotation of the state vector $\ket{\Psi}$ towards the vector representing a uniform superposition of the solution states on the plane spanned by the 
 
 \subsubsection{Shor's Algorithm}
 
