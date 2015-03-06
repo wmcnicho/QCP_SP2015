@@ -1,6 +1,6 @@
 package qcv1;
 
-public class QFTCircuit extends GateByGateCircuit{
+public class QFTCircuit {
 	private int numOfQubits;
 	private int numOfStates;
 	
@@ -9,7 +9,5 @@ public class QFTCircuit extends GateByGateCircuit{
 		this.numOfStates = numOfStates;
 	}
 	
-	/*public void applyCircuit(QRegister reg){
-		for (int i = 0; i < )
-	}*/
+	
 }

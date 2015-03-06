@@ -1,6 +1,7 @@
 package qcv1;
 
 import Matrix.*;
+import Gui.QViewModel;
 
 public class GroverGateByGate extends GateByGateCircuit {
 	private int targetIndex;
@@ -67,6 +68,10 @@ public class GroverGateByGate extends GateByGateCircuit {
 			//solComp.printMatrix();
 			//nonSolComp.printMatrix();
 			//System.out.printf("(%.6f %.6f)\n",solComp.getReal(0),nonSolComp.getReal(0));
+			int percent = (int) ((double) i / iterations * 100);
+			System.out.println(percent);
+			QViewModel.updateLoadingBar(percent);
 		}
+		QViewModel.updateLoadingBar(100);
 	}
 }
