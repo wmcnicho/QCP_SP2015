@@ -4,16 +4,18 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
 public class QuantumGuiFrame extends JFrame {
+	JMenuBar bar;
+	QuantumGuiPanel mainPanel;
 	
 	QuantumGuiFrame(){
 		super("Quantum Simulator");
 		setSize(1000,850);
 
-		JMenuBar bar = new QuantumMenuBar();
+		bar = new QuantumMenuBar();
 		setJMenuBar(bar);
 		
 		
-		QuantumGuiPanel mainPanel = new QuantumGuiPanel();
+		mainPanel = new QuantumGuiPanel();
 		add(mainPanel);
 		
 		
