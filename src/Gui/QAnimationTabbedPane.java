@@ -1,0 +1,119 @@
+package Gui;
+
+import java.awt.Color;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.VectorRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultValueDataset;
+import org.jfree.data.statistics.HistogramBin;
+import org.jfree.data.statistics.HistogramDataset;
+import org.jfree.data.statistics.SimpleHistogramBin;
+import org.jfree.data.xy.IntervalXYDataset;
+import org.jfree.data.xy.VectorSeries;
+import org.jfree.data.xy.VectorSeriesCollection;
+import org.jfree.data.xy.XYBarDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+public class QAnimationTabbedPane extends JTabbedPane {
+	
+	private XYBarDataset probData;
+	private VectorSeriesCollection vecDataset;
+	
+	private JFreeChart pChart;
+	private JFreeChart vecChart;
+	
+	private ChartPanel probPanel;
+	
+	public QAnimationTabbedPane(){
+		super();
+		addHist();
+		addCoords();
+		
+	}
+	
+	protected void addHist(){
+		
+		//probData = new XYDataset(probData, 0.9);
+		XYSeries series = new XYSeries("No Data");
+        XYSeriesCollection defaultData = new XYSeriesCollection(series);
+        probData = new XYBarDataset(defaultData, .95);
+		pChart = ChartFactory.createXYBarChart("State histogram", "Probability before measurement", false, "State # (of 2^n states)", probData, PlotOrientation.VERTICAL
+				,true, true, true);
+		
+		ChartPanel probPanel = new ChartPanel(pChart);
+		this.addTab("Probability Hist", probPanel);
+		
+	}
+	
+	protected void addCoords(){
+		// We create a vector series collection   
+		VectorSeriesCollection vecDataset = new VectorSeriesCollection();
+		VectorSeries vectorSeries=new VectorSeries("Vector State");
+
+		vectorSeries.add(0, 0, 5, 5);
+		vecDataset = new VectorSeriesCollection();
+		vecDataset.addSeries(vectorSeries);   
+
+
+
+		VectorRenderer r = new VectorRenderer();
+		//r.setBasePaint(Color.white);
+		r.setSeriesPaint(0, Color.black);
+		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
+		vecChart = new JFreeChart(xyPlot);
+		ChartPanel vecPanel = new ChartPanel(vecChart);
+		
+		this.addTab("Vector graph", vecPanel);
+		
+	}
+	
+	public void updateHistogram(double[] regValues){
+		int num_bins = regValues.length;
+		XYSeries series = new XYSeries("States Data");
+		for (int i = 0; i < regValues.length; i++) {
+			series.add(i, regValues[i]);
+		}
+		XYSeriesCollection newDataCollection = new XYSeriesCollection(series);
+		probData = new XYBarDataset(newDataCollection, .95);
+		
+		//Probably not the best way to do this, look into other ways
+		pChart = ChartFactory.createXYBarChart("State Probabilites", "Probability before measurement", false
+				, "State # (of 2^n states)", probData, PlotOrientation.VERTICAL, true, true, true);
+		probPanel = new ChartPanel(pChart);
+		this.setComponentAt(0, probPanel);
+	}
+	
+	public void updateVector(int xval, int yval){
+		VectorSeriesCollection vecDataset = new VectorSeriesCollection();
+		VectorSeries vectorSeries=new VectorSeries("Vector State");
+
+		vectorSeries.add(0, 0, xval, yval);
+		vecDataset = new VectorSeriesCollection();
+		vecDataset.addSeries(vectorSeries);   
+
+
+
+		VectorRenderer r = new VectorRenderer();
+		//r.setBasePaint(Color.white);
+		r.setSeriesPaint(0, Color.black);
+		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
+		vecChart = new JFreeChart(xyPlot);
+		ChartPanel vecPanel = new ChartPanel(vecChart);
+		
+		this.setComponentAt(1, vecPanel);
+		
+	}
+
+}

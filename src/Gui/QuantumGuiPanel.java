@@ -32,6 +32,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 	static JButton start_butt;
 	JButton confirmOptions;
 	static JProgressBar loadingBar;
+	static QAnimationTabbedPane animations;
 	
 	JComboBox gateRep;
 	JComboBox moreOptions;
@@ -54,6 +55,8 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 	
 	//This is bad that there's data here at all but it's seemingly unavoidable
 	static HashMap<Integer, Integer> oracleMap;
+	
+	private JButton test_butt;
 	
 	QuantumGuiPanel(){
 		setLayout(new BorderLayout());
@@ -113,7 +116,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		//east.setBackground(Color.DARK_GRAY);
 		
 		Vector<String> repList = new Vector<String>();
-		repList.add("Matrix");
+		repList.add("Dense Matrix");
+		repList.add("Sparse Matrix");
+		repList.add("Functional");
 		gateRep = new JComboBox(repList);
 		
 		
@@ -141,10 +146,10 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		//add(east, BorderLayout.EAST);
 		
 		//Center Graphs and charts
-		JPanel center  = new JPanel();
-		center.setBackground(Color.black);
-		
-		add(center, BorderLayout.CENTER);
+		//JPanel center  = new JPanel();
+		//center.setBackground(Color.black);
+		animations = new QAnimationTabbedPane();
+		add(animations, BorderLayout.CENTER);
 
 		
 		
@@ -186,6 +191,8 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		searchSpinner = new JSpinner(model);
 		searchSpinner.setMaximumSize(new Dimension(50, 50));
 		
+		test_butt = new JButton("test it");
+		test_butt.addActionListener(this);
 		
 		west.add(data_status);
 		west.add(qubits);
@@ -197,7 +204,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		//west.add(start);
 		
 		west.add(start_butt);
-	
+		//west.add(test_butt);
 		add(west, BorderLayout.WEST);
 		
 		
@@ -205,18 +212,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == confirmOptions){
-		//edit the center stuff
-			gateRep.getSelectedItem().toString();
-			qubitsNum.getText();
-			moreOptions.getSelectedItem().toString();
-			
-			qubits.setText("Qubits: " + qubitsNum.getText());
-			//TODO set qubit number in local model
-			gateType.setText("Gate type: " + gateRep.getSelectedItem().toString());
-			speedUps.setText("Speedups: " + moreOptions.getSelectedItem().toString());
-			//TODO update start label and button
-			System.out.println("updated");
+		if(e.getSource() == test_butt){
+			QViewModel.updateHistogramValues(new double[] {2, 4, 8, 6, 2});
+			QViewModel.setVector(2, (int) Math.ceil(Math.random() * 5));
 		}
 		else if(e.getSource() == start_butt){
 			//given the following information, launch a simulation in a separate thread/threads
@@ -229,6 +227,17 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			 * number/index being searched for
 			 */	
 			String gateString = gateRep.getSelectedItem().toString();
+			if(gateString.equals("Dense Matrix")){
+				gateString = "complex";
+			}
+			else if (gateString.equals("Sparse Matrix")){
+				gateString = "sparse";
+			}
+			else{
+				gateString = "gate";
+			}
+			
+					
 			int numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
 			String speedUpString = moreOptions.getSelectedItem().toString();
 			String simulationType = simType.getSelectedItem().toString();
