@@ -25,7 +25,7 @@ public class FileParser {
 				while((line=br.readLine())!=null){
 				    String str[] = line.split(",");
 				    for(int i=0;i<str.length;i++){
-				        map.put(Integer.parseInt(str[i]), numElements);
+				        map.put(numElements, Integer.parseInt(str[i]));
 				        numElements++;
 				    }
 				}

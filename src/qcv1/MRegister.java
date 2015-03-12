@@ -61,14 +61,16 @@ public class MRegister implements QRegister{
 		}
 	}
 	
-	public void getProbabilities(){
-	double sum=0;
+	public double [] getProbabilities(){
+		double [] probs = new double [numOfStates];
+		double sum=0;
 		for(int i=0; i<numOfStates; i++){
-			double probability = Complex.magSquare(amplitudes.getElement(i, 0));
-			sum+=probability;
-			System.out.println("the probability of state "+(i)+" is "+probability);
+			probs[i] = Complex.magSquare(amplitudes.getElement(i, 0));
+			sum += probs[i];
+			//System.out.println("the probability of state "+(i)+" is "+ probs[i]);
 		}
-		System.out.println(sum);
+		//System.out.println(sum);
+		return probs;
 	}
 	
 	public void measure(){

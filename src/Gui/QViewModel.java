@@ -33,7 +33,7 @@ public class QViewModel{
 		QuantumGuiPanel.animations.updateHistogram(regValues);
 	}
 	
-	public static void setVector(int xval, int yval){
+	public static void setVector(double xval, double yval){
 		QuantumGuiPanel.animations.updateVector(xval, yval);
 	}
 

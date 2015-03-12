@@ -6,6 +6,7 @@ public class MZGate extends MGate{
 	
 	private Matrix onResult;
 	private Matrix offResult;
+	
 	public MZGate(String matrixType, int [] controlQbits, int targetQbit, int numOfStates){
 		super(matrixType, controlQbits, targetQbit, numOfStates);
 		initResults(matrixType);

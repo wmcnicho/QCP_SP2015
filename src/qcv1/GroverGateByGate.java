@@ -3,27 +3,47 @@ package qcv1;
 import Matrix.*;
 import Gui.QViewModel;
 
+/**
+ * 
+ * @author Michael
+ *
+ */
 public class GroverGateByGate extends GateByGateCircuit {
-	private int targetIndex;
+	private int [] targets;
 	private int numOfEntries;
 	private String gateRep;
 	private Matrix solutionVector;
 	private Matrix nonSolutionVector;
 	
-	public GroverGateByGate(String rep, int num, int target, int numOfQubits, int numOfStates){
-		gateRep = "gate";
-		targetIndex = target;
+	/**
+	 * 
+	 * GroverGateByGate implements the quantum search algorithm (Grover's algorithm).
+	 * 
+	 * @param rep Representation of the gate
+	 * @param num 
+	 * @param targetIndices The target/solution states of the search problem
+	 * @param numOfQubits
+	 * @param numOfStates
+	 */
+	public GroverGateByGate(String rep, int num, int [] targetIndices, int numOfQubits, int numOfStates){
+		gateRep = rep;
+		targets = targetIndices;
 		numOfEntries = num;
-		//testing rotation
-		solutionVector = MatrixFactory.create(1, numOfStates, "gate");
-		solutionVector.setReElement(0, target, 1.0);
+		System.out.println(gateRep);
+		//create the vectors that span the plane where the state vector is rotating on
+		solutionVector = MatrixFactory.create(1, numOfStates, rep);
+		nonSolutionVector = MatrixFactory.create(1, numOfStates, rep);
 		//solutionVector.printMatrix();
-		nonSolutionVector = MatrixFactory.create(1, numOfStates, "gate");
 		//nonSolutionVector.printMatrix();
-		double factor = 1.0/Math.sqrt(numOfStates - 1);
+		double solutionFactor = 1.0/Math.sqrt(numOfStates - 1);
+		double nonSolutionFactor = 1.0/Math.sqrt(numOfStates - targets.length);
+		
+		int j = 0;
 		for (int i = 0; i < numOfStates; i++){
-			if (i != target){
-				nonSolutionVector.setReElement(0, i, factor);
+			if (j < targets.length && i == targets[j]){
+				solutionVector.setElement(0, i, solutionFactor, 0.0);
+			} else {
+				nonSolutionVector.setElement(0, i, nonSolutionFactor, 0.0);
 			}
 		}
 		
@@ -31,7 +51,9 @@ public class GroverGateByGate extends GateByGateCircuit {
 		//create the oracle
 		class Oracle implements QGate{
 			public void applyGate(QRegister reg){
-				reg.setAmplitude(targetIndex, Complex.multiply(-1, reg.getAmplitude(targetIndex)));
+				for (int i = 0; i < targets.length; i++){
+					reg.setAmplitude(targets[i], Complex.multiply(-1, reg.getAmplitude(targets[i])));
+				}
 			}
 		}
 		
@@ -58,19 +80,23 @@ public class GroverGateByGate extends GateByGateCircuit {
 	}
 	
 	public void applyCircuit(QRegister reg){
+		reg.setEqualAmplitude();
+		
 		//need to apply approximately r = pi/4 sqrt(N) times
-		final int iterations = (int) (Math.PI / 4.0 * Math.sqrt(numOfEntries));
+		final int iterations = (int) (Math.PI / 4.0 * Math.sqrt((double) numOfEntries/ targets.length));
 		for (int i = 0; i < iterations; i++){
-			System.out.println(i);
 			super.applyCircuit(reg);
+			System.out.println(i);
 			//Matrix solComp = Matrix.Multiply(solutionVector, reg.getAmplitude());
 			//Matrix nonSolComp = Matrix.Multiply(nonSolutionVector, reg.getAmplitude());
 			//solComp.printMatrix();
 			//nonSolComp.printMatrix();
 			//System.out.printf("(%.6f %.6f)\n",solComp.getReal(0),nonSolComp.getReal(0));
 			int percent = (int) ((double) i / iterations * 100);
-			System.out.println(percent);
+			//System.out.println(percent);
 			QViewModel.updateLoadingBar(percent);
+			QViewModel.updateHistogramValues(reg.getProbabilities());
+			QViewModel.setVector(1, 1);
 		}
 		QViewModel.updateLoadingBar(100);
 	}

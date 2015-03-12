@@ -7,7 +7,7 @@ public class QProcess {
 	
 	//final needed because a separate thread is generated
 	public QProcess(final String simulationType, final int numQubits,
-			final String gateRep, final String speedUpString, final int indexOfVal){
+			final String gateRep, final String speedUpString, final int [] indexOfVal){
 	Thread runThread = new Thread(){
 			public void run(){
 			//call constructor	
@@ -30,9 +30,8 @@ public class QProcess {
 				}
 				
 				long t1 = System.nanoTime();
-				reg.setEqualAmplitude();
+				
 				q.applyCircuit(reg);
-				reg.printAmplitude();
 				double totalProb = 0;
 				for (int i = 0; i < reg.numOfStates(); i++){
 					double prob = Complex.magSquare(reg.getAmplitude(i));

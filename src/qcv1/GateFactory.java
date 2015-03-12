@@ -27,7 +27,8 @@ public abstract class GateFactory {
 		switch (rep){
 		case "sparse":
 			return new MHGate(rep, controls, target, numOfStates);
-		//case FUNC_REP:
+		case "functional":
+			return new FHGate(rep, controls, target);
 		case "gate":
 			return new MHGate(rep, controls, target, numOfStates);
 		default:
@@ -40,8 +41,10 @@ public abstract class GateFactory {
 		switch (rep){
 		case "sparse":
 			return new MNOTGate(rep, controls, target, numOfStates);
-		//case FUNC_REP:
-		
+		case "functional":
+			return new FHGate(rep, controls, target);
+		case "gate":
+			return new MNOTGate(rep, controls, target, numOfStates);
 		default:
 			return new MNOTGate("complex", controls, target, numOfStates);
 		}
@@ -52,8 +55,10 @@ public abstract class GateFactory {
 		switch (rep){
 		case "sparse":
 			return new MXGate(rep, controls, target, numOfStates);
-		//case FUNC_REP:
-		
+		case "functional":
+			return new FXGate(rep, controls, target);
+		case "gate":
+			return new MXGate(rep, controls, target, numOfStates);
 		default:
 			return new MXGate("complex", controls, target, numOfStates);
 		}
@@ -64,8 +69,10 @@ public abstract class GateFactory {
 		switch (rep){
 		case "sparse":
 			return new MYGate(rep, controls, target, numOfStates);
-		//case FUNC_REP:
-		
+		case "functional":
+			return new FYGate(rep, controls, target);
+		case "gate":
+			return new MYGate(rep, controls, target, numOfStates);
 		default:
 			return new MYGate("complex", controls, target, numOfStates);
 		}
@@ -76,8 +83,10 @@ public abstract class GateFactory {
 		switch (rep){
 		case "sparse":
 			return new MZGate(rep, controls, target, numOfStates);
-		//case FUNC_REP:
-		
+		case "functional":
+			return new FZGate(rep, controls, target);
+		case "gate":
+			return new MZGate(rep, controls, target, numOfStates);		
 		default:
 			return new MZGate("complex", controls, target, numOfStates);
 		}
@@ -88,8 +97,10 @@ public abstract class GateFactory {
 		switch (rep){
 		case "sparse":
 			return new MSGate(rep, controls, target, numOfStates);
-		//case FUNC_REP:
-		
+		case "functional":
+			return new FSGate(rep, controls, target);
+		case "gate":
+			return new MSGate(rep, controls, target, numOfStates);
 		default:
 			return new MSGate("complex", controls, target, numOfStates);
 		}
@@ -100,23 +111,27 @@ public abstract class GateFactory {
 		switch (rep){
 		case "sparse":
 			return new MTGate(rep, controls, target, numOfStates);
-		//case FUNC_REP:
-		
+		case "functional":
+			return new FTGate(rep, controls, target);
+		case "gate":
+			return new MTGate(rep, controls, target, numOfStates);
 		default:
 			return new MTGate("complex", controls, target, numOfStates);
 		}
 	}
 	
-	//pi/8 gate factory
+	//arbitrary phase gate
 	public static QGate createPhaseGate(String rep, int [] controls, int target, 
-			int numOfStates, double phaseInt){
+			int numOfStates, double phase){
 		switch (rep){
 		case "sparse":
-			return new MPhaseGate(rep, controls, target, numOfStates, phaseInt);
-		//case FUNC_REP:
-		
+			return new MPhaseGate(rep, controls, target, numOfStates, phase);
+		case "functional":
+			return new FPhaseGate(rep, controls, target, phase);
+		case "gate":
+			return new MPhaseGate(rep, controls, target, numOfStates, phase);
 		default:
-			return new MPhaseGate("complex", controls, target, numOfStates, phaseInt);
+			return new MPhaseGate("complex", controls, target, numOfStates, phase);
 		}
 	}
 }

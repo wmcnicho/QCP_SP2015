@@ -6,7 +6,9 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -234,6 +236,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			else if (gateString.equals("Sparse Matrix")){
 				gateString = "sparse";
 			}
+			else if (gateString.equals("Functional")){
+				gateString = "functional";
+			}
 			else{
 				gateString = "gate";
 			}
@@ -243,9 +248,23 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			String speedUpString = moreOptions.getSelectedItem().toString();
 			String simulationType = simType.getSelectedItem().toString();
 			int searchValue = (int) searchSpinner.getValue();
-			int index = oracleMap.get(searchValue);
 			
-			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, index);
+			//get the indices of the solutions
+			ArrayList<Integer> indices = new ArrayList<Integer>();
+			for (Entry<Integer, Integer> entry : oracleMap.entrySet()){
+				if (entry.getValue() == searchValue){
+					indices.add(entry.getKey());
+				}
+			}
+			//convert back to a regular array
+			int [] targets = new int [indices.size()];
+			for (int i = 0; i < targets.length; i++){
+				targets[i] = indices.get(i);
+			}
+			//int index = oracleMap.get(searchValue);
+						
+			
+			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, targets);
 		}
 		else{
 		console.append("huh? action function unwritten");

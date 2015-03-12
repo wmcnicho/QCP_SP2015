@@ -95,7 +95,7 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		this.setComponentAt(0, probPanel);
 	}
 	
-	public void updateVector(int xval, int yval){
+	public void updateVector(double xval, double yval){
 		VectorSeriesCollection vecDataset = new VectorSeriesCollection();
 		VectorSeries vectorSeries=new VectorSeries("Vector State");
 
