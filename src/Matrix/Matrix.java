@@ -1,13 +1,9 @@
 package Matrix;
 
-/*
- *can call get and set methods
- *multiplyBy
- *for sparseMatrix call this.convert() before multiplying
+/**
+ * Use MatrixFactory to create matrices. To create sparse gate matrices use "gate" as type
+ * @author Gennaro
  *
- *don't call add methods
- *don't do stupid stuff
- *don't multiply matrices that can't be multiplied
  */
 
 public abstract class Matrix {
@@ -15,29 +11,84 @@ public abstract class Matrix {
 	protected int row;
 	protected int column;
 	protected int[] rowIndex = null;
-	public boolean isSparse = false;
-	public boolean isComplex = false;
-	public boolean isGate = false;
+	protected boolean isSparse = false;
+	protected boolean isComplex = false;
+	protected boolean isGate = false;
 	protected double[] reMatrix;
 	protected double[] imMatrix;
 
+	/**
+	 * Sets the real and imaginary parts of the Matrix element (i,j)
+	 * @param i Row index of the element
+	 * @param j	Column index of the element
+	 * @param value Array containing the real and imaginary parts of the Matrix in the form [real, imaginary]
+	 */
 	public abstract void setElement(int i, int j, double[] value);
+	
+	/**
+	 * Sets the real and imaginary parts of the Matrix element (i,j)
+	 * @param i    Row index of the element
+	 * @param j    Column index of the element
+	 * @param real The value of the real component
+	 * @param imag The value of the imaginary component
+	 */
 	public abstract void setElement(int i, int j, double real, double imag);
+	
+	/**
+	 * Sets the real part of the Matrix element (i,j)
+	 * @param i    Row index of the element
+	 * @param j    Column index of the element
+	 * @param value Value of the real part of the Matrix
+	 */
 	public abstract void setReElement(int i, int j, double value);
+	
+	/**
+	 * Sets the imaginary part of the Matrix element (i,j)
+	 * @param i    Row index of the element
+	 * @param j    Column index of the element
+	 * @param value Value of the imaginary part of the Matrix
+	 */
 	public abstract void setImElement(int i, int j, double value);
+	
+	/**
+	 * Returns the element (i,j) as an array in the form [real, imaginary]
+	 * @param i Row index of the element
+	 * @param j	Column index of the element
+	 * @return The array containing the element
+	 */
 	public abstract double[] getElement(int i, int j);
+	
+	/**
+	 * Returns the real part of element (i,j)
+	 * @param i Row index of the element
+	 * @param j	Column index of the element
+	 * @return The value of the real part element
+	 */
 	public abstract double getReElement(int i, int j);
+	
+	/**
+	 * Returns the imaginary part of element (i,j)
+	 * @param i Row index of the element
+	 * @param j	Column index of the element
+	 * @return The value of the imaginary part element
+	 */
 	public abstract double getImElement(int i, int j);
 
-	public void addBy(Matrix m){};
-
-	public Matrix(){	
+	protected Matrix(){	
 	}
 
-	public void multiplyBy(Matrix b) {
+	/**
+	 * multiplies this instance of Matrix by the passed matrix
+	 * <p>
+	 * The method decides the specific implementation of Matrix to return. Generally a dense complex matrix is returned unless both matrices are real or both are sparse.
+	 * 
+	 * @param multiplyByThis 
+	 * 
+	 */
+	public void multiplyBy(Matrix multiplyByThis) {
 		Matrix out = null;
-		out = Matrix.Multiply(b, this, out);	
-		
+		out = Matrix.Multiply(multiplyByThis, this);	
+
 		this.row = out.row;
 		this.column = out.column;
 		this.rowIndex = out.rowIndex;
@@ -47,35 +98,48 @@ public abstract class Matrix {
 		this.imMatrix = out.imMatrix;
 	}
 
-	private static Matrix Multiply(Matrix a, Matrix b, Matrix out){
-		
-		if(!a.isComplex&&!b.isComplex){
-			out = MatrixFactory.create(a.row, b.column, "");
-		}
+	/**
+	 * Multiplies Matrix A and B and returns a matrix C, C=AB
+	 * <p>
+	 * The method decides the specific implementation of Matrix to return. Generally a dense complex matrix is returned unless both matrices are real or both are sparse.
+	 * @param  a Matrix A
+	 * @param  b Matrix B
+	 * @return   the product of the 2 Matrices 
+	 */
+	public static Matrix Multiply(Matrix a, Matrix b){
+		Matrix out = null;
+
 		//both sparse
-		else if(a.isSparse && b.isSparse){
-			out = MatrixFactory.create(a.row, b.column, "sparse");
-		}
-		else{
-			out = MatrixFactory.create(a.row, b.column, "complex");
-		}
-		for(int i=0; i<a.row; i++){
-			for(int j=0; j<b.column; j++){
-				double reSum = 0.0;
-				double imSum = 0.0;
-				for(int k=0; k<b.row; k++){
-					reSum+=a.getReElement(i, k)*b.getReElement(k,j);
-					reSum-=a.getImElement(i, k)*b.getImElement(k, j);
-					imSum+=a.getImElement(i, k)*b.getReElement(k,j);
-					imSum+=a.getReElement(i, k)*b.getImElement(k, j);
-				}
-				out.setReElement(i, j, reSum);
-				out.setImElement(i, j, imSum);
+		if(a.isSparse){
+			if(b.isSparse){
+				return MatrixMultiply.SSMultiply(a, b);
+			}
+			else if(b.isComplex){
+				return MatrixMultiply.SCMultiply(a,b);
+			}
+			else{
+				return MatrixMultiply.Multiply(a,b);
 			}
 		}
-		return out;
+		else if(a.isComplex && !a.isSparse){
+			if(b.isSparse){
+				return MatrixMultiply.CSMultiply(a, b);
+			}
+			else if(b.isComplex){
+				return MatrixMultiply.CCMultiply(a,b);
+			}
+			else if(!b.isComplex){
+				return MatrixMultiply.CRMultiply(a, b);
+			}
+			else{
+				return MatrixMultiply.Multiply(a,b);
+			}
+		}
+		else{
+			return MatrixMultiply.Multiply(a, b);
+		}
 	}
-	
+
 	/*
 	public static ComplexMatrix Add(Matrix a, Matrix b){
 		return null;
