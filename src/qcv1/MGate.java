@@ -1,6 +1,12 @@
 package qcv1;
-import Matrix.*;
 
+import Matrix.MatrixFactory;
+import Matrix.Matrix;
+
+/**
+ * The MGate class represents a gate with a matrix representation. 
+ *
+ */
 
 public abstract class MGate implements QGate{
 	private int target;
@@ -13,7 +19,15 @@ public abstract class MGate implements QGate{
 	public abstract Matrix resultForOn();
 	public abstract Matrix resultForOff();
 	
-	//constructor
+	/**
+	 * Construct a matrix representation of a quantum gate
+	 *  
+	 * @param Type of matrix representation of the gate (complex, sparse, gate)
+	 * @param controlQbits Array of qubits that control the gate
+	 * @param targetQbit Qubit that the gate is applied to
+	 * @param numOfStates Number of basis states of the register
+	 * 
+	 */
 	public MGate (String type, int [] controlQbits, int targetQbit, int numOfStates){
 		target = targetQbit;
 		controls = controlQbits;
@@ -21,16 +35,18 @@ public abstract class MGate implements QGate{
 		matrixType = type;
 	}
 	
-	/*
-	 * initialise the gate by creating the matrix that represents the
+	/**
+	 * Initialize the gate by creating the matrix that represents the
 	 * linear operation associated with the gate
+	 * 
+	 * @param type Type of matrix representation of the gate
 	 */
 	public void initGate(String type){
 		//find the matrix representation
 		final int maxNum = numOfStates -1;
 		final int mask = 1 << target;
 		
-		//create the gate in matrix representation
+		//create the matrix repres
 		gate = MatrixFactory.create(numOfStates, numOfStates, type);
 		
 		//check if there are any control qubits
@@ -70,6 +86,11 @@ public abstract class MGate implements QGate{
 		}
 	}
 	
+	/**
+	 * Perform the matrix operation of applying the gate onto the register
+	 * 
+	 * @param reg Register of the qubits
+	 */
 	public void applyGate(QRegister reg){
 		reg.getAmplitude().multiplyBy(gate);
 	}
