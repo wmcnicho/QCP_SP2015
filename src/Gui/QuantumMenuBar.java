@@ -17,18 +17,11 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 	JFileChooser fc;
 	public QuantumMenuBar(){
 		menu = new JMenu("File");
-		fc = new JFileChooser();
-		
+		fc = new JFileChooser();	
 		//fc.setCurrentDirectory(new File("C:/Users/Hunter/github"));
-
-
 		file_open = new JMenuItem("Open File");
 		file_open.addActionListener(this);
-		clear = new JMenuItem("Option 2");
-		//clear.addActionListener(this);
-
 		menu.add(file_open);
-		menu.add(clear);
 		
 		add(menu);
 	}
@@ -41,9 +34,10 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 				File file = fc.getSelectedFile();
 				//System.out.println(file.getAbsolutePath());
 				//System.out.println(file.getName());
-				HashMap<Integer, Integer> oracleMap = FileParser.parseFile(file.getAbsolutePath());
+				HashMap<Integer, Integer> parsedMap = FileParser.parseFile(file.getAbsolutePath());
 				//Given the selected file name print that out to the screen
-				System.out.println(oracleMap.toString());
+				System.out.println(parsedMap.toString());
+				QViewModel.updateHashMap(parsedMap);
 			}
 			else {
 				System.out.println("Open command cancelled by user.");

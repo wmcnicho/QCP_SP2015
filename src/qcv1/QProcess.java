@@ -7,7 +7,7 @@ public class QProcess {
 	
 	//final needed because a separate thread is generated
 	public QProcess(final String simulationType, final int numQubits,
-			final String gateRep, final String speedUpString){
+			final String gateRep, final String speedUpString, final int indexOfVal){
 	Thread runThread = new Thread(){
 			public void run(){
 			//call constructor	
@@ -20,7 +20,7 @@ public class QProcess {
 				QCircuit q = null;
 				switch (simulationType){
 				case "Grover's algorithm":
-					q = new GroverGateByGate(gateRep, numOfStates, 2, numQubits, numOfStates);
+					q = new GroverGateByGate(gateRep, numOfStates, indexOfVal, numQubits, numOfStates);
 					break;
 				case "Shor's algorithm":
 					q = new BackwardQFTCircuit(gateRep, numOfStates);
