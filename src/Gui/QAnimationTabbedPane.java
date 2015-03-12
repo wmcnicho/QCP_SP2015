@@ -9,6 +9,8 @@ import javax.swing.JTabbedPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.AxisSpace;
+import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -66,12 +68,11 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		vecDataset = new VectorSeriesCollection();
 		vecDataset.addSeries(vectorSeries);   
 
-
-
 		VectorRenderer r = new VectorRenderer();
 		//r.setBasePaint(Color.white);
 		r.setSeriesPaint(0, Color.black);
 		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
+		
 		vecChart = new JFreeChart(xyPlot);
 		ChartPanel vecPanel = new ChartPanel(vecChart);
 		
@@ -109,6 +110,10 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		//r.setBasePaint(Color.white);
 		r.setSeriesPaint(0, Color.black);
 		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
+		NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
+        domain.setRange(-1.5, 1.5);
+		NumberAxis range = (NumberAxis) xyPlot.getRangeAxis();
+        range.setRange(-1.5, 1.5);
 		vecChart = new JFreeChart(xyPlot);
 		ChartPanel vecPanel = new ChartPanel(vecChart);
 		
