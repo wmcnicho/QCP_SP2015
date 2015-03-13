@@ -1,6 +1,7 @@
 package qcv1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -11,12 +12,18 @@ public class ShorsAlgorithm {
 	private int numOfQubits;
 	private int numOfStates;
 	private int x;
+	public static void main(String[] args) {
+		for(int i=0; i<10; i++){
+		ShorsAlgorithm test = new ShorsAlgorithm("gate", 15);
+		System.out.println(Arrays.toString(test.run()));
+		}
+	}
 	//constructor
 	public ShorsAlgorithm(String rep, int num){
 		gateRep = rep;
 		number = num;
 		
-		numOfQubits = (int) Math.ceil(Math.log(num) / Math.log(2));
+		numOfQubits = 10;//(int) Math.ceil(Math.log(13) / Math.log(2))*2+1;
 		numOfStates = (int) Math.pow(2, numOfQubits);
 		
 		//check if the number is even
@@ -28,7 +35,7 @@ public class ShorsAlgorithm {
 	
 	public double [] run(){
 		//choose random int x, 1 <= x <= N-1
-		x = rand.nextInt(number-1) + 1;
+		x = rand.nextInt(number-2) + 1;
 		
 		//find highest common factor
 		if (gcd(x,number) != 1){
@@ -57,7 +64,7 @@ public class ShorsAlgorithm {
 	}
 	
 	public int orderFinding(){
-		MRegister reg = new MRegister(numOfStates, "complex");
+		MRegister reg = new MRegister(numOfQubits, "complex");
 		int [] indices = reg2(numOfStates, x, number);
 		
 		//set the corresponding indices in first register with uniform amplitude
@@ -70,17 +77,34 @@ public class ShorsAlgorithm {
 		int result = reg.measure();
 		ContinuedFraction conFrac = new ContinuedFraction(result, reg.numOfStates());
 		ArrayList<int[]> convergents = conFrac.getConvergents();
+		Iterator<int[]> iterator = convergents.iterator();
 		int r = 0;
-		int max = 0;
-		int order;
+		for (int i = 0; i < convergents.size(); i++)
+		{
+
+			int temp = iterator.next()[1];
+			if(temp>number){
+				break;
+			}
+			if(temp>r){
+				r = temp;
+			}
+			
+		}
+		int max = (int) Math.log(number);
 		
 		
 		//get convergents of c/q to be d/r. pick largest r such that r<n
 		for(int i=0; i<max; i++){
-			if((int)Math.pow(x, r*i)%n==1){
+			if((int)Math.pow(x, r*i)%number==1){
 				return r*i;
 			}
+			else{
+				System.out.println("It's broken and i don't know why");
+				System.exit(1);
+			}
 		}
+		return -1;
 		
 	}
 	

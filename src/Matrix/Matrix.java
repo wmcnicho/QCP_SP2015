@@ -26,7 +26,7 @@ public abstract class Matrix {
 	 * @param value Array containing the real and imaginary parts of the Matrix in the form [real, imaginary]
 	 */
 	public abstract void setElement(int i, int j, double[] value);
-	
+
 	/**
 	 * Sets the real and imaginary parts of the Matrix element (i,j)
 	 * @param i    Row index of the element
@@ -35,7 +35,7 @@ public abstract class Matrix {
 	 * @param imag The value of the imaginary component
 	 */
 	public abstract void setElement(int i, int j, double real, double imag);
-	
+
 	/**
 	 * Sets the real part of the Matrix element (i,j)
 	 * @param i    Row index of the element
@@ -43,7 +43,7 @@ public abstract class Matrix {
 	 * @param value Value of the real part of the Matrix
 	 */
 	public abstract void setReElement(int i, int j, double value);
-	
+
 	/**
 	 * Sets the imaginary part of the Matrix element (i,j)
 	 * @param i    Row index of the element
@@ -51,7 +51,7 @@ public abstract class Matrix {
 	 * @param value Value of the imaginary part of the Matrix
 	 */
 	public abstract void setImElement(int i, int j, double value);
-	
+
 	/**
 	 * Returns the element (i,j) as an array in the form [real, imaginary]
 	 * @param i Row index of the element
@@ -59,7 +59,7 @@ public abstract class Matrix {
 	 * @return The array containing the element
 	 */
 	public abstract double[] getElement(int i, int j);
-	
+
 	/**
 	 * Returns the real part of element (i,j)
 	 * @param i Row index of the element
@@ -67,7 +67,7 @@ public abstract class Matrix {
 	 * @return The value of the real part element
 	 */
 	public abstract double getReElement(int i, int j);
-	
+
 	/**
 	 * Returns the imaginary part of element (i,j)
 	 * @param i Row index of the element
@@ -141,7 +141,11 @@ public abstract class Matrix {
 			return MatrixMultiply.Multiply(a, b);
 		}
 	}
-	
+
+	/**
+	 * Returns an independent copy of the matrix
+	 * @return returns a copy of the matrix
+	 */
 	public Matrix getClone(){
 		Matrix result;
 		if(this.isGate){
