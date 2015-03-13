@@ -26,6 +26,7 @@ public ContinuedFraction(int x, int y){
 			this.calcConvergents();
 		}
 		else{
+			coeff = new int[1];
 			coeff[0] = 0;
 			convergents.add(new int[]{0,0});
 		}
