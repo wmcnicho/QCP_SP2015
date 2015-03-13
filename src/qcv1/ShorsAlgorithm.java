@@ -14,7 +14,7 @@ public class ShorsAlgorithm {
 	private int x;
 	public static void main(String[] args) {
 		for(int i=0; i<10; i++){
-		ShorsAlgorithm test = new ShorsAlgorithm("gate", 15);
+		ShorsAlgorithm test = new ShorsAlgorithm("complex", 15);
 		System.out.println(Arrays.toString(test.run()));
 		}
 	}
@@ -23,7 +23,7 @@ public class ShorsAlgorithm {
 		gateRep = rep;
 		number = num;
 		
-		numOfQubits = 10;//(int) Math.ceil(Math.log(13) / Math.log(2))*2+1;
+		numOfQubits = 9;//(int) Math.ceil(Math.log(13) / Math.log(2))*2+1;
 		numOfStates = (int) Math.pow(2, numOfQubits);
 		
 		//check if the number is even

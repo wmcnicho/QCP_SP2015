@@ -27,7 +27,11 @@ public class ForwardQFTCircuit extends GateByGateCircuit {
 		int num = numOfQubits / 2;
 		for (int i = 0; i < num; i++){
 			System.out.println(i + " " + ((numOfQubits-1)-i));
-			addGate(GateFactory.createSwapGate(rep, i, (numOfQubits-1)-i, numOfStates));
+			//recall three c-not gate performs a swap operation
+			addGate(GateFactory.createNOTGate(rep, new int [] {i}, (numOfQubits-1)-i, numOfStates));
+			addGate(GateFactory.createNOTGate(rep, new int [] {(numOfQubits-1)-i}, i, numOfStates));
+			addGate(GateFactory.createNOTGate(rep, new int [] {i}, (numOfQubits-1)-i, numOfStates));
+			//addGate(GateFactory.createSwapGate(rep, i, (numOfQubits-1)-i, numOfStates));
 		}		
 	}
 	
