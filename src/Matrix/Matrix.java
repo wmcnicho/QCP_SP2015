@@ -26,7 +26,7 @@ public abstract class Matrix {
 	 * @param value Array containing the real and imaginary parts of the Matrix in the form [real, imaginary]
 	 */
 	public abstract void setElement(int i, int j, double[] value);
-	
+
 	/**
 	 * Sets the real and imaginary parts of the Matrix element (i,j)
 	 * @param i    Row index of the element
@@ -35,7 +35,7 @@ public abstract class Matrix {
 	 * @param imag The value of the imaginary component
 	 */
 	public abstract void setElement(int i, int j, double real, double imag);
-	
+
 	/**
 	 * Sets the real part of the Matrix element (i,j)
 	 * @param i    Row index of the element
@@ -43,7 +43,7 @@ public abstract class Matrix {
 	 * @param value Value of the real part of the Matrix
 	 */
 	public abstract void setReElement(int i, int j, double value);
-	
+
 	/**
 	 * Sets the imaginary part of the Matrix element (i,j)
 	 * @param i    Row index of the element
@@ -51,7 +51,7 @@ public abstract class Matrix {
 	 * @param value Value of the imaginary part of the Matrix
 	 */
 	public abstract void setImElement(int i, int j, double value);
-	
+
 	/**
 	 * Returns the element (i,j) as an array in the form [real, imaginary]
 	 * @param i Row index of the element
@@ -59,7 +59,7 @@ public abstract class Matrix {
 	 * @return The array containing the element
 	 */
 	public abstract double[] getElement(int i, int j);
-	
+
 	/**
 	 * Returns the real part of element (i,j)
 	 * @param i Row index of the element
@@ -67,7 +67,7 @@ public abstract class Matrix {
 	 * @return The value of the real part element
 	 */
 	public abstract double getReElement(int i, int j);
-	
+
 	/**
 	 * Returns the imaginary part of element (i,j)
 	 * @param i Row index of the element
@@ -141,18 +141,39 @@ public abstract class Matrix {
 			return MatrixMultiply.Multiply(a, b);
 		}
 	}
-	
+
+	/**
+	 * Returns an independent copy of the matrix
+	 * @return returns a copy of the matrix
+	 */
 	public Matrix getClone(){
-		Matrix result = MatrixFactory.create(this.row, this.column, "complex");
-		
+		Matrix result;
+		if(this.isGate){
+			result = MatrixFactory.create(this.row, this.column, "gate");
+		}
+		else if(this.isSparse){
+			result = MatrixFactory.create(this.row, this.column, "sparse");
+		}
+		else if(this.isComplex){
+			result = MatrixFactory.create(this.row, this.column, "complex");
+		}else{
+			result = MatrixFactory.create(this.row, this.column, "");
+		}
 		result.row = this.row;
 		result.column = this.column;
 		result.rowIndex = null;
 		result.isSparse = this.isSparse;
 		result.isComplex = this.isComplex;
 		result.isGate = this.isGate;
+		if(this.reMatrix!=null){
 		result.reMatrix = Arrays.copyOf(reMatrix, this.reMatrix.length);
-		result.imMatrix = Arrays.copyOf(imMatrix, this.imMatrix.length);
+		}
+		if(this.imMatrix!=null){
+			result.imMatrix = Arrays.copyOf(imMatrix, this.imMatrix.length);
+		}
+		if(this.rowIndex!=null){
+			result.rowIndex = Arrays.copyOf(rowIndex, this.rowIndex.length);
+		}
 		return result;
 	}
 
