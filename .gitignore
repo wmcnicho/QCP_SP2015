@@ -20,7 +20,6 @@ hs_err_pid*
 *.bbl
 *.blg
 *.aux
-lit.bib
 *.gz
 *.log
 *.out
