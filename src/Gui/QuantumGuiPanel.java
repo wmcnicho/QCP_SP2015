@@ -244,10 +244,10 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			}
 			
 				
-			//int numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
+			int numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
 			String speedUpString = moreOptions.getSelectedItem().toString();
 			String simulationType = simType.getSelectedItem().toString();
-			/*int searchValue = (int) searchSpinner.getValue();
+			int searchValue = (int) searchSpinner.getValue();
 			
 			//get the indices of the solutions
 			ArrayList<Integer> indices = new ArrayList<Integer>();
@@ -262,9 +262,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 				targets[i] = indices.get(i);
 			}
 			//int index = oracleMap.get(searchValue);
-						*/
-			int numQubits = 3;
-			int [] targets = null;
+			
+			/*int numQubits = 3;
+			int [] targets = null;*/
 			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, targets);
 		}
 		else{
