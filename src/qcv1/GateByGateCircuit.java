@@ -57,8 +57,8 @@ public class GateByGateCircuit implements QCircuit {
 	 */
 	public void applyCircuit(QRegister reg){
 		for (QGate g : gates){
-			((ComplexMatrix) ((MGate) g).gate).printMatrix();
-			System.out.println();
+			//((ComplexMatrix) ((MGate) g).gate).printMatrix();
+			//System.out.println();
 			g.applyGate(reg);
 		}
 	}

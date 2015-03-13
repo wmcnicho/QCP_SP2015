@@ -14,15 +14,12 @@ public class ForwardQFTCircuit extends GateByGateCircuit {
 		this.gateRep = rep;
 		
 		for (int i = numOfQubits-1; i >= 0; i--){
-			System.out.println("num of states: " + numOfStates);
 			System.out.println("hadamard on " + i);
 			addGate(GateFactory.createHGate(rep, null, i, numOfStates));
 			for (int j = 2; j <= i+1; j++){
-				//System.out.println("i: " + i + " \tj: " + j + "\tcontrol: " + (numOfQubits-j));
 				double phase = 2 * Math.PI / Math.pow(2, j);
-				//System.out.println(phase / Math.PI);
-				System.out.println("phase on " + i + " with control " + (numOfQubits-j) + " and phase " + (phase / Math.PI));
-				addGate(GateFactory.createPhaseGate(rep, new int [] {numOfQubits-j}, i, numOfStates, phase));
+				System.out.println("phase on " + i + " with control " + ((i+1)-j) + " and phase " + (phase / Math.PI));
+				addGate(GateFactory.createPhaseGate(rep, new int [] {(i+1)-j}, i, numOfStates, phase));
 			}
 		}
 		
@@ -35,14 +32,7 @@ public class ForwardQFTCircuit extends GateByGateCircuit {
 	}
 	
 	public void applyCircuit(QRegister reg){
-		reg.setAmplitude(0,0,0);
-		reg.setAmplitude(1,0,0);
-		reg.setAmplitude(2,0,0);
-		reg.setAmplitude(3,1/Math.sqrt(2),0);
-		reg.setAmplitude(4,1/Math.sqrt(2),0);
-		reg.setAmplitude(5,0,0);
-		reg.setAmplitude(6,0,0);
-		reg.setAmplitude(7,0,0);
+		
 		super.applyCircuit(reg);
 		//System.out.println("OK!");
 		//QViewModel.updateHistogramValues(reg.getProbabilities());
