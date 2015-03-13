@@ -11,18 +11,25 @@ public class ContinuedFraction {
 	private int[] coeff;
 	private ArrayList<int[]> convergents = new ArrayList<int[]>();
 	
-	public ContinuedFraction(int x, int y){
-		this.x=x;
-		this.y=y;
-		tempCoeff.add(0);
-		this.generateCoeffs(x, y);
-		coeff = new int[tempCoeff.size()];
-		Iterator<Integer> iterator = tempCoeff.iterator();
-		for (int i = 0; i < tempCoeff.size(); i++)
-		{
-			coeff[i] = iterator.next().intValue();
+public ContinuedFraction(int x, int y){
+		if(x!=0){
+			this.x=x;
+			this.y=y;
+			tempCoeff.add(0);
+			this.generateCoeffs(x, y);
+			coeff = new int[tempCoeff.size()];
+			Iterator<Integer> iterator = tempCoeff.iterator();
+			for (int i = 0; i < tempCoeff.size(); i++)
+			{
+				coeff[i] = iterator.next().intValue();
+			}
+			this.calcConvergents();
 		}
-		this.calcConvergents();
+		else{
+			coeff = new int[1];
+			coeff[0] = 0;
+			convergents.add(new int[]{0,0});
+		}
 	}
 	
 	private void generateCoeffs(int x, int y){
