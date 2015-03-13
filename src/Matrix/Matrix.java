@@ -1,5 +1,7 @@
 package Matrix;
 
+import java.util.Arrays;
+
 /**
  * Use MatrixFactory to create matrices. To create sparse gate matrices use "gate" as type
  * @author Gennaro
@@ -138,6 +140,20 @@ public abstract class Matrix {
 		else{
 			return MatrixMultiply.Multiply(a, b);
 		}
+	}
+	
+	public Matrix getClone(){
+		Matrix result = MatrixFactory.create(this.row, this.column, "complex");
+		
+		result.row = this.row;
+		result.column = this.column;
+		result.rowIndex = null;
+		result.isSparse = this.isSparse;
+		result.isComplex = this.isComplex;
+		result.isGate = this.isGate;
+		result.reMatrix = Arrays.copyOf(reMatrix, this.reMatrix.length);
+		result.imMatrix = Arrays.copyOf(imMatrix, this.imMatrix.length);
+		return result;
 	}
 
 	/*

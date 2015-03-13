@@ -182,7 +182,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		simType = new JComboBox(simulationsList);
 		start_butt = new JButton("GO!");
 		start_butt.addActionListener(this);
-		start_butt.setEnabled(false);
+		start_butt.setEnabled(true);
 		west.setLayout(new BoxLayout(west, BoxLayout.Y_AXIS));
 		
 		//index or factorized number option
@@ -234,7 +234,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 				gateString = "complex";
 			}
 			else if (gateString.equals("Sparse Matrix")){
-				gateString = "sparse";
+				gateString = "gate";
 			}
 			else if (gateString.equals("Functional")){
 				gateString = "functional";
@@ -243,11 +243,11 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 				gateString = "gate";
 			}
 			
-					
-			int numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
+				
+			//int numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
 			String speedUpString = moreOptions.getSelectedItem().toString();
 			String simulationType = simType.getSelectedItem().toString();
-			int searchValue = (int) searchSpinner.getValue();
+			/*int searchValue = (int) searchSpinner.getValue();
 			
 			//get the indices of the solutions
 			ArrayList<Integer> indices = new ArrayList<Integer>();
@@ -262,8 +262,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 				targets[i] = indices.get(i);
 			}
 			//int index = oracleMap.get(searchValue);
-						
-			
+						*/
+			int numQubits = 3;
+			int [] targets = null;
 			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, targets);
 		}
 		else{

@@ -12,7 +12,7 @@ public class QProcess {
 			public void run(){
 			//call constructor	
 				int numOfStates = (int) Math.pow(2,numQubits);
-				MRegister reg = new MRegister(numQubits, gateRep);//change to refresh register		
+				MRegister reg = new MRegister(numQubits, "complex");//change to refresh register		
 				
 
 				QViewModel.printToConsole("Starting Calculation...");
@@ -23,14 +23,13 @@ public class QProcess {
 					q = new GroverGateByGate(gateRep, numOfStates, indexOfVal, numQubits, numOfStates);
 					break;
 				case "Shor's algorithm":
-					q = new BackwardQFTCircuit(gateRep, numOfStates);
+					q = new ForwardQFTCircuit(gateRep, numOfStates);
 					break;
 				default:
 					
 				}
 				
 				long t1 = System.nanoTime();
-				
 				q.applyCircuit(reg);
 				double totalProb = 0;
 				for (int i = 0; i < reg.numOfStates(); i++){

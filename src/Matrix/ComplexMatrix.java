@@ -7,6 +7,13 @@ public class ComplexMatrix extends Matrix{
 
 	private NumberFormat nf = NumberFormat.getNumberInstance();
 
+	public void scaleBy(double x){
+		for(int i=0; i<reMatrix.length; i++){
+			reMatrix[i]*=x;
+			imMatrix[i]*=x;
+		}
+	}
+	
 	//constructors
 	public ComplexMatrix(int m, int n){
 		if (m < 0) m = 0;

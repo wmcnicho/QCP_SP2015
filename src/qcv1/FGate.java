@@ -72,5 +72,7 @@ public abstract class FGate implements QGate {
 		for (int i = 0; i < reg.numOfStates(); i++){
 			reg.setAmplitude(i, amps.getElement(0, i));
 		}
-	}	
+	}
+	
+	
 }
