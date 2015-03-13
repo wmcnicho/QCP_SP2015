@@ -5,7 +5,6 @@ import Gui.QViewModel;
 public class QProcess {
 	//final needed because a separate thread is generated
 	
-	
 	public QProcess(final String simulationType, final int numQubits,
 			final String gateRep, final String speedUpString, final int [] indexOfVal){
 			Thread runThread = new Thread(){
@@ -13,24 +12,25 @@ public class QProcess {
 			//call constructor	
 				int numOfStates = (int) Math.pow(2,numQubits);
 				MRegister reg = new MRegister(numQubits, "complex");//change to refresh register		
-				
 
 				QViewModel.printToConsole("Starting Calculation...");
+				long t1 = System.nanoTime();
 				
 				QCircuit q = null;
 				switch (simulationType){
 				case "Grover's algorithm":
 					q = new GroverGateByGate(gateRep, numOfStates, indexOfVal, numQubits, numOfStates);
+					q.applyCircuit(reg);
 					break;
 				case "Shor's algorithm":
-					ShorsAlgorithm shors = new ShorsAlgorithm(gateRep, indexOfVal[0]);
+					int num = indexOfVal[0];
+					ShorsAlgorithm shors = new ShorsAlgorithm(gateRep, num);
+					double [] factors = shors.run();
+					QViewModel.printToConsole("The factors of " + num + " are " + factors[0] + " and " + factors[1]);
 					break;
 				default:
 					
 				}
-				
-				long t1 = System.nanoTime();
-				q.applyCircuit(reg);
 				double totalProb = 0;
 				for (int i = 0; i < reg.numOfStates(); i++){
 					double prob = Complex.magSquare(reg.getAmplitude(i));

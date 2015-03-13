@@ -143,16 +143,33 @@ public abstract class Matrix {
 	}
 	
 	public Matrix getClone(){
-		Matrix result = MatrixFactory.create(this.row, this.column, "complex");
-		
+		Matrix result;
+		if(this.isGate){
+			result = MatrixFactory.create(this.row, this.column, "gate");
+		}
+		else if(this.isSparse){
+			result = MatrixFactory.create(this.row, this.column, "sparse");
+		}
+		else if(this.isComplex){
+			result = MatrixFactory.create(this.row, this.column, "complex");
+		}else{
+			result = MatrixFactory.create(this.row, this.column, "");
+		}
 		result.row = this.row;
 		result.column = this.column;
 		result.rowIndex = null;
 		result.isSparse = this.isSparse;
 		result.isComplex = this.isComplex;
 		result.isGate = this.isGate;
+		if(this.reMatrix!=null){
 		result.reMatrix = Arrays.copyOf(reMatrix, this.reMatrix.length);
-		result.imMatrix = Arrays.copyOf(imMatrix, this.imMatrix.length);
+		}
+		if(this.imMatrix!=null){
+			result.imMatrix = Arrays.copyOf(imMatrix, this.imMatrix.length);
+		}
+		if(this.rowIndex!=null){
+			result.rowIndex = Arrays.copyOf(rowIndex, this.rowIndex.length);
+		}
 		return result;
 	}
 
