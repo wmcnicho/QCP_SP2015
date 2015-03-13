@@ -229,6 +229,8 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			 * data loaded from file
 			 * number/index being searched for
 			 */	
+			
+			//determine the gate representation
 			String gateString = gateRep.getSelectedItem().toString();
 			if(gateString.equals("Dense Matrix")){
 				gateString = "complex";
@@ -243,10 +245,14 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 				gateString = "gate";
 			}
 			
-				
+			//determine the simulation type
+			String simulationType = simType.getSelectedItem().toString();
+			
+			
+			
 			int numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
 			String speedUpString = moreOptions.getSelectedItem().toString();
-			String simulationType = simType.getSelectedItem().toString();
+			
 			int searchValue = (int) searchSpinner.getValue();
 			
 			//get the indices of the solutions

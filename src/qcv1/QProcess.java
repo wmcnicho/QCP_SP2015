@@ -3,12 +3,12 @@ package qcv1;
 import Gui.QViewModel;
 
 public class QProcess {
-	public QProcess(){}
-	
 	//final needed because a separate thread is generated
+	
+	
 	public QProcess(final String simulationType, final int numQubits,
 			final String gateRep, final String speedUpString, final int [] indexOfVal){
-	Thread runThread = new Thread(){
+			Thread runThread = new Thread(){
 			public void run(){
 			//call constructor	
 				int numOfStates = (int) Math.pow(2,numQubits);
@@ -23,7 +23,7 @@ public class QProcess {
 					q = new GroverGateByGate(gateRep, numOfStates, indexOfVal, numQubits, numOfStates);
 					break;
 				case "Shor's algorithm":
-					q = new ForwardQFTCircuit(gateRep, numOfStates);
+					ShorsAlgorithm shors = new ShorsAlgorithm(gateRep, indexOfVal[0]);
 					break;
 				default:
 					
@@ -44,10 +44,8 @@ public class QProcess {
 				int runtimeMSecs = (int) (Math.floor(runtime*1000) % 1000);
 				QViewModel.printToConsole("Calculation ended.");
 				QViewModel.printToConsole("Total Runtime: "+runtimeMins+" min "+runtimeSecs+" sec "+runtimeMSecs+" msecs");
-		}
-	};
-	runThread.start();	
-
-	
+			}
+		};
+		runThread.start();	
 	}
 }
