@@ -7,17 +7,17 @@ public class FZGate extends FGate{
 	private Matrix onResult;
 	private Matrix offResult;
 	
-	public FZGate(String matrixType, int [] controlQbits, int targetQbit){
-		super(matrixType, controlQbits, targetQbit);
-		initResults(matrixType);
+	public FZGate(int [] controlQbits, int targetQbit){
+		super(controlQbits, targetQbit);
+		initResults();
 	}
 	
-	public void initResults(String matrixType){
-		offResult = MatrixFactory.create(2, 1, matrixType);
+	public void initResults(){
+		offResult = MatrixFactory.create(2, 1, "complex");
 		offResult.setElement(0, 0, 1.0, 0.0);
 		offResult.setElement(1, 0, 0.0, 0.0);
 		
-		onResult = MatrixFactory.create(2, 1, matrixType);
+		onResult = MatrixFactory.create(2, 1, "complex");
 		onResult.setElement(0, 0, 0.0, 0.0);
 		onResult.setElement(1, 0, -1.0, 0.0);
 	}
@@ -27,5 +27,9 @@ public class FZGate extends FGate{
 	}
 	public Matrix resultForOn(){
 		return onResult;
+	}
+	
+	public String gateType() {
+		return "Z Gate";
 	}
 }

@@ -7,11 +7,9 @@ import Matrix.*;
 public abstract class FGate implements QGate {
 	private int target;
 	private int [] controls = null;
-	private String matrixType;
 	
-	public FGate(String type, int [] controlQbits, int targetQbit){
+	public FGate(int [] controlQbits, int targetQbit){
 		target = targetQbit;
-		matrixType = type;
 		controls = controlQbits;
 	}
 	
@@ -19,7 +17,7 @@ public abstract class FGate implements QGate {
 	public abstract Matrix resultForOff();
 	
 	public void applyGate(QRegister reg){
-		Matrix amps = MatrixFactory.create(reg.numOfStates(), 1, matrixType);
+		Matrix amps = MatrixFactory.create(reg.numOfStates(), 1, "complex");
 		final int mask = 1 << target;
 		
 		//check if there are any control qubits
@@ -47,6 +45,8 @@ public abstract class FGate implements QGate {
 						amps.setElement(pos, 0, Complex.add(amps.getElement(pos,0), Complex.multiply(
 								resultForOff().getElement(1,0), reg.getAmplitude(i))));
 					}
+				} else {
+					amps.setElement(i, 0, Complex.add(amps.getElement(i,0),reg.getAmplitude(i)));
 				}
 			}
 		
@@ -70,7 +70,7 @@ public abstract class FGate implements QGate {
 		
 		//set each state to the new amplitude
 		for (int i = 0; i < reg.numOfStates(); i++){
-			reg.setAmplitude(i, amps.getElement(0, i));
+			reg.setAmplitude(i, amps.getElement(i, 0));
 		}
 	}
 	

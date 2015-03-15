@@ -15,4 +15,8 @@ public class MYGate extends MGate{
 		
 		initSingleTargetGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
 	}
+	
+	public String gateType() {
+		return "Y Gate";
+	}
 }

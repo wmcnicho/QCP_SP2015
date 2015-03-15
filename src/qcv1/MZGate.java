@@ -15,4 +15,8 @@ public class MZGate extends MGate{
 		
 		initSingleTargetGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
 	}
+	
+	public String gateType() {
+		return "Z Gate";
+	}
 }

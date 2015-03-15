@@ -13,9 +13,11 @@ public class ShorsAlgorithm {
 	private int numOfStates;
 	private int x;
 	public static void main(String[] args) {
-		for(int i=0; i<10; i++){
-		ShorsAlgorithm test = new ShorsAlgorithm("complex", 15);
+		for(int i=0; i<100; i++){
+		ShorsAlgorithm test = new ShorsAlgorithm("functional", 15);
+		System.out.println("test "+ (i+1));
 		System.out.println(Arrays.toString(test.run()));
+		System.out.println();
 		}
 	}
 	//constructor
@@ -23,7 +25,7 @@ public class ShorsAlgorithm {
 		gateRep = rep;
 		number = num;
 		
-		numOfQubits = 9;//(int) Math.ceil(Math.log(13) / Math.log(2))*2+1;
+		numOfQubits = 4;//(int) Math.ceil(Math.log(13) / Math.log(2))*2+1;
 		numOfStates = (int) Math.pow(2, numOfQubits);
 		
 		//check if the number is even
@@ -36,11 +38,13 @@ public class ShorsAlgorithm {
 	public double [] run(){
 		//choose random int x, 1 <= x <= N-1
 		x = rand.nextInt(number-2) + 1;
-		
 		//find highest common factor
-		if (gcd(x,number) != 1){
-			return new double [] {x, number / x};
-		}
+		/*int factor = gcd(x,number);
+		if (factor != 1){
+			return new double [] {factor, gcd(number/factor, number)};
+		}*/
+		//x = 8;
+		System.out.println(x);
 		//do order finding 
 		int r = orderFinding();
 		int y = (int)Math.pow(x, r/2);
@@ -55,12 +59,10 @@ public class ShorsAlgorithm {
 	}
 	
 	public static int gcd(int a, int b){
-		while (b != 0){
-			int t = b;
-			b = a % b;
-			a = t;
+		if (b == 0){
+			return a;
 		}
-		return a;
+		return gcd(b, a % b);
 	}
 	
 	public int orderFinding(){
@@ -70,11 +72,12 @@ public class ShorsAlgorithm {
 		//set the corresponding indices in first register with uniform amplitude
 		double amps = 1/Math.sqrt(indices.length);
 		for (int i = 0; i < indices.length; i++){
-			reg.setAmplitude(i, amps, 0);
+			reg.setAmplitude(indices[i], amps, 0);
 		}
 		BackwardQFTCircuit bqft = new BackwardQFTCircuit(gateRep, reg.numOfQubit());
 		bqft.applyCircuit(reg);
 		int result = reg.measure();
+		System.out.println(result);
 		ContinuedFraction conFrac = new ContinuedFraction(result, reg.numOfStates());
 		ArrayList<int[]> convergents = conFrac.getConvergents();
 		Iterator<int[]> iterator = convergents.iterator();

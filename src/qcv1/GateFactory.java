@@ -28,7 +28,7 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MHGate(rep, controls, target, numOfStates);
 		case "functional":
-			return new FHGate(rep, controls, target);
+			return new FHGate(controls, target);
 		case "gate":
 			return new MHGate(rep, controls, target, numOfStates);
 		default:
@@ -42,7 +42,7 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MNOTGate(rep, controls, target, numOfStates);
 		case "functional":
-			return new FHGate(rep, controls, target);
+			return new FNOTGate(controls, target);
 		case "gate":
 			return new MNOTGate(rep, controls, target, numOfStates);
 		default:
@@ -56,7 +56,7 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MXGate(rep, controls, target, numOfStates);
 		case "functional":
-			return new FXGate(rep, controls, target);
+			return new FXGate(controls, target);
 		case "gate":
 			return new MXGate(rep, controls, target, numOfStates);
 		default:
@@ -70,7 +70,7 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MYGate(rep, controls, target, numOfStates);
 		case "functional":
-			return new FYGate(rep, controls, target);
+			return new FYGate(controls, target);
 		case "gate":
 			return new MYGate(rep, controls, target, numOfStates);
 		default:
@@ -84,7 +84,7 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MZGate(rep, controls, target, numOfStates);
 		case "functional":
-			return new FZGate(rep, controls, target);
+			return new FZGate(controls, target);
 		case "gate":
 			return new MZGate(rep, controls, target, numOfStates);		
 		default:
@@ -98,7 +98,7 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MSGate(rep, controls, target, numOfStates);
 		case "functional":
-			return new FSGate(rep, controls, target);
+			return new FSGate(controls, target);
 		case "gate":
 			return new MSGate(rep, controls, target, numOfStates);
 		default:
@@ -112,7 +112,7 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MTGate(rep, controls, target, numOfStates);
 		case "functional":
-			return new FTGate(rep, controls, target);
+			return new FTGate(controls, target);
 		case "gate":
 			return new MTGate(rep, controls, target, numOfStates);
 		default:
@@ -127,7 +127,7 @@ public abstract class GateFactory {
 		case "sparse":
 			return new MPhaseGate(rep, controls, target, numOfStates, phase);
 		case "functional":
-			return new FPhaseGate(rep, controls, target, phase);
+			return new FPhaseGate(controls, target, phase);
 		case "gate":
 			return new MPhaseGate(rep, controls, target, numOfStates, phase);
 		default:

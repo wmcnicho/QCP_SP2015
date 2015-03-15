@@ -8,7 +8,7 @@ import Matrix.Matrix;
  *
  */
 
-public class MGate implements QGate{
+public abstract class MGate implements QGate{
 	private String  matrixType = null;
 	protected Matrix gate = null; //store the matrix that represents the gate
 	
@@ -20,13 +20,13 @@ public class MGate implements QGate{
 	 * 
 	 * @param m Matrix that represents the linear operation associated with the gate
 	 */
-	public MGate(Matrix m){
+	/*public MGate(Matrix m){
 		gate = m.getClone();
 	}
 	
 	public MGate(MGate m){
 		this(m.gate);
-	}
+	}*/
 	
 	/**
 	 * Initialize the gate by creating the matrix that represents the
@@ -95,11 +95,11 @@ public class MGate implements QGate{
 	 * @param m2
 	 * @return
 	 */
-	public static MGate combineGate(MGate m1, MGate m2){
+/*	public static MGate combineGate(MGate m1, MGate m2){
 		MGate combined = new MGate(m2);
 		combined.gate.multiplyBy(m1.gate);
 		return combined;
-	}
+	}*/
 	
 	/**
 	 * Combine a list of matrix representation gates (MGates) into a single gate
@@ -107,11 +107,11 @@ public class MGate implements QGate{
 	 * stored for the operation CBA|state>
 	 * @return A MGate that performs the same operation as the array of the MGates
 	 */
-	public static MGate combineGate(MGate [] m){
+	/*public static MGate combineGate(MGate [] m){
 		MGate combined = new MGate(m[0]);
 		for (int i = 1; i < m.length; i++){
 			combined.gate.multiplyBy(m[i].gate);
 		}
 		return combined;
-	}
+	}*/
 }

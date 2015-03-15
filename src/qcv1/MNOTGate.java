@@ -15,4 +15,8 @@ public class MNOTGate extends MGate{
 		
 		initSingleTargetGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
 	}
+	
+	public String gateType() {
+		return "NOT Gate";
+	}
 }

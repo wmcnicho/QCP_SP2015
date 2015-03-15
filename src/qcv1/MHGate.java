@@ -17,4 +17,8 @@ public class MHGate extends MGate{
 		
 		initSingleTargetGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
 	}
+
+	public String gateType() {
+		return "H Gate";
+	}
 }

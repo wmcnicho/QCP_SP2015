@@ -53,6 +53,7 @@ public class GateByGateCircuit implements QCircuit {
 	/**
 	 * Apply the circuit to a quantum register.
 	 * 
+	 * 
 	 * @param reg Quantum register to be applied to the circuit
 	 */
 	public void applyCircuit(QRegister reg){
@@ -60,6 +61,9 @@ public class GateByGateCircuit implements QCircuit {
 			//((ComplexMatrix) ((MGate) g).gate).printMatrix();
 			//System.out.println();
 			g.applyGate(reg);
+			//System.out.println(g.gateType());
+			//((MRegister) reg).printAmplitude();
+			//System.out.println();
 		}
 	}
 }

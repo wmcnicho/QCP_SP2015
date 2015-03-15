@@ -57,6 +57,9 @@ public class GroverGateByGate extends GateByGateCircuit {
 							Complex.multiply(-1, reg.getAmplitude(targets[i])));
 				}
 			}
+			public String gateType() {
+				return "Oracle Gate";
+			}
 		}
 		
 		addGate(new Oracle());
@@ -72,6 +75,9 @@ public class GroverGateByGate extends GateByGateCircuit {
 				for (int j = 1; j < reg.numOfStates(); j++){
 					reg.setAmplitude(j, Complex.multiply(-1,reg.getAmplitude(j)));
 				}
+			}
+			public String gateType() {
+				return "Phase Shift Gate";
 			}
 		}
 		addGate(new PhaseShiftGate());
