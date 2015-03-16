@@ -134,15 +134,4 @@ public abstract class GateFactory {
 			return new MPhaseGate("complex", controls, target, numOfStates, phase);
 		}
 	}
-	
-	public static QGate createSwapGate(String rep, int qubit1, int qubit2, int numOfStates){
-		switch (rep){
-		case "sparse":
-			return new MSwapGate("complex", qubit1, qubit2, numOfStates);
-		case "gate":
-			return new MSwapGate(rep, qubit1, qubit2, numOfStates);
-		default:
-			return new MSwapGate("complex", qubit1, qubit2, numOfStates);
-		}
-	}
 }
