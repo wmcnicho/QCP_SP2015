@@ -1,7 +1,6 @@
 package Matrix;
 
 import java.util.Arrays;
-//import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class SparseGateMatrix extends Matrix{
@@ -15,7 +14,7 @@ public class SparseGateMatrix extends Matrix{
 		this.reMatrix = new double[column*2];
 		this.imMatrix = new double[column*2];
 		this.rowIndex = new int[column*2];
-		//Arrays.fill(rowIndex, -1);
+		Arrays.fill(rowIndex, -1);
 	}
 	
 	public void setElement(int i, int j, double real, double imag){
