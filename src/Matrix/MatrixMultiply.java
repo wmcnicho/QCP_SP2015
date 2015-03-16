@@ -100,28 +100,29 @@ public class MatrixMultiply {
 	}
 
 	public static Matrix SCMultiply(Matrix a, Matrix b) {
-		
+
 		Matrix out = MatrixFactory.create(a.row, b.column, "complex");
 		int rowIndex;
 		for(int j=0; j<a.column; j++){
 			double reSum = 0.0;
 			double imSum = 0.0;
 			int currentColIndex = 2*j;
-			
-			rowIndex = a.rowIndex[currentColIndex];
-			reSum += b.reMatrix[rowIndex]*a.reMatrix[currentColIndex];
-			reSum -= b.imMatrix[rowIndex]*a.imMatrix[currentColIndex];
-			imSum -= b.reMatrix[rowIndex]*a.imMatrix[currentColIndex];
-			imSum -= b.imMatrix[rowIndex]*a.reMatrix[currentColIndex];
 
+			rowIndex = a.rowIndex[currentColIndex];
+			if(rowIndex!=-1){
+				reSum += b.reMatrix[rowIndex]*a.reMatrix[currentColIndex];
+				reSum -= b.imMatrix[rowIndex]*a.imMatrix[currentColIndex];
+				imSum -= b.reMatrix[rowIndex]*a.imMatrix[currentColIndex];
+				imSum -= b.imMatrix[rowIndex]*a.reMatrix[currentColIndex];
+			}
 			currentColIndex++;
 			rowIndex = a.rowIndex[currentColIndex];
-
-			reSum += b.reMatrix[rowIndex]*a.reMatrix[currentColIndex];
-			reSum -= b.imMatrix[rowIndex]*a.imMatrix[currentColIndex];
-			imSum -= b.reMatrix[rowIndex]*a.imMatrix[currentColIndex];
-			imSum -= b.imMatrix[rowIndex]*a.reMatrix[currentColIndex];
-
+			if(rowIndex!=-1){
+				reSum += b.reMatrix[rowIndex]*a.reMatrix[currentColIndex];
+				reSum -= b.imMatrix[rowIndex]*a.imMatrix[currentColIndex];
+				imSum -= b.reMatrix[rowIndex]*a.imMatrix[currentColIndex];
+				imSum -= b.imMatrix[rowIndex]*a.reMatrix[currentColIndex];
+			}
 			out.reMatrix[j]=reSum;
 			out.imMatrix[j]=imSum*-1;
 		}
