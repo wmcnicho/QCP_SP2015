@@ -62,7 +62,7 @@ public ContinuedFraction(int x, int y){
 		for(int i=2; i<coeff.length-1; i++){
 			convergents.add(convergent(i));
 		}
-		convergents.add(new int[]{x,y});
+		convergents.add(ContinuedFraction.Simplify(x, y));
 	}
 	
 	public ArrayList<int[]> getConvergents(){
