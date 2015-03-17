@@ -40,4 +40,8 @@ public class QViewModel{
 		QuantumGuiPanel.animations.updateVector(xval, yval);
 	}
 
+	public static void clearConsole(){
+		QuantumGuiPanel.console.setText("");
+		QuantumGuiPanel.console.setCaretPosition(QuantumGuiPanel.console.getDocument().getLength());
+	}
 }

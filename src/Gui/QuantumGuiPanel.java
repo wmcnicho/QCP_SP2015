@@ -222,6 +222,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			QViewModel.setVector(2, (int) Math.ceil(Math.random() * 5));
 		}
 		else if(e.getSource() == start_butt){
+			QViewModel.clearConsole();
 			//given the following information, launch a simulation in a separate thread/threads
 			/*
 			 * number of Qubits
