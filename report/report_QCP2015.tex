@@ -206,7 +206,7 @@
 	Christoph Meßmer}
 	}
 	\vfill
-	{\large Edinburgh, 6th of March 2015}
+	{\large Edinburgh, 17th of March 2015}
 \end{titlepage}
 
 \newpage
@@ -502,6 +502,8 @@ This leads to the consideration of the following three possible representations:
 
 \subsection{Quantum algorithms}\label{sec:Quantum algorithms}
 
+After defining quantum gates it is now simple to predict the next step: A so-called quantum algorithm defines in what manner a quantum register is applied to a sequence of quantum gates in order to achieve a certain computation result. Two very important algorithms are Grover's algorithm and Shor's algorithm which we are going to introduce next.
+
 % - Explain why certain problems are rendered tractable by quantum computation with reference to the relevant concepts in quantum theory.
 
 %Explain how Grover’s algorithm works, and discusse its limitations
@@ -555,6 +557,11 @@ Geometrically, the iteration performs a rotation of the state vector $\ket{\Psi}
 
 \subsubsection{Shor's Algorithm}
 
+Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers. It is able to find non-trivial divisors in polynomial time (that means, that there exists polynomial function which is the upper time limit for the calculation), whereas classical algorithms are significantly above polynomial time (though sub-exponential).
+
+This has vast impact on today's cryptography: Many encryption systems (like RSA)\citeS{RSAcrypto} rely on the fact, that it is impossible to factorise integers in a reasonable time. Shor's algorithm showed that it is (theoretically) possible for quantum computers, however the practical difficulties of building a real quantum computer are still preventing Shor's algorithm to undermine modern cryptography.
+
+
 Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorithm.
 
 \begin{figure}[H]
@@ -581,7 +588,7 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 % Implementation
 %-----------------------------------------------------------------------------------------
 %
-\section{Implementation}\label{ref:Implementation}
+\section{Implementation}\label{sec:Implementation}
 %Describe how your program is structured
 %Why have you made the design choices you did
 %perhaps you could also say what you would do differently in the light of your experience
