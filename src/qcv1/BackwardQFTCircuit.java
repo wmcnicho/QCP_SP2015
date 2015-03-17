@@ -1,22 +1,37 @@
 package qcv1;
 
-public class BackwardQFTCircuit implements QCircuit{
+public class BackwardQFTCircuit extends GateByGateCircuit{
+	private int numOfQubits;
 	private int numOfStates;
 	private String gateRep;
 	
-	public BackwardQFTCircuit(String rep, int numOfStates){
-		this.numOfStates = numOfStates;
+	public BackwardQFTCircuit(String rep, int numOfQbits){
+		this.numOfQubits = numOfQbits;
+		this.numOfStates = (int) Math.pow(2, numOfQubits);
 		this.gateRep = rep;
+		
+		//reverse the swap of the qubits
+		int num = numOfQubits / 2;
+		for (int i = 0; i < num; i++){
+			//System.out.println(i + " " + ((numOfQubits-1)-i));
+			addGate(GateFactory.createNOTGate(gateRep, new int [] {(numOfQubits-1)-i}, i, numOfStates));
+			addGate(GateFactory.createNOTGate(gateRep, new int [] {i}, (numOfQubits-1)-i, numOfStates));
+			addGate(GateFactory.createNOTGate(gateRep, new int [] {(numOfQubits-1)-i}, i, numOfStates));
+			//addGate(GateFactory.createSwapGate(rep, i, (numOfQubits-1)-i, numOfStates));
+		}	
+		
+		for (int i = 0; i < numOfQubits; i++){
+			for (int j = i+1; j >= 2; j--){
+				double phase = 2 * Math.PI / Math.pow(2, j);
+				//System.out.println("phase on " + i + " with control " + (i+1-j) + " and phase " + (phase / Math.PI));
+				addGate(GateFactory.createPhaseGate(gateRep, new int [] {i+1-j}, i, numOfStates, -phase));
+			}
+			//System.out.println("hadamard on " + i);
+			addGate(GateFactory.createHGate(gateRep, null, i, numOfStates));
+		}	
 	}
 	
 	public void applyCircuit(QRegister reg){
-		for (int i = numOfStates-1; i >= 0; i--){
-			System.out.println(i);
-			GateFactory.createHGate(gateRep, null, i, numOfStates).applyGate(reg);
-			for (int j = i-1; j >= 0; j++){
-				GateFactory.createPhaseGate(gateRep, new int [] {i}, j, numOfStates, 
-						Math.pow(2, numOfStates - (j+1))).applyGate(reg);
-			}
-		}
+		super.applyCircuit(reg);
 	}
 }

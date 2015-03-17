@@ -8,7 +8,8 @@ public class Test {
 		int max = 100000;
 		int num = 131072;
 		
-		PrintWriter outPrint = new PrintWriter(new FileWriter("/Users/MichaelChiang/Documents/QCPTesting.txt"));
+		PrintWriter outPrint = new PrintWriter(new FileWriter("C:\\Users\\Michael\\Documents\\QCPTesting.txt"));
+		//PrintWriter outPrint = new PrintWriter(new FileWriter("/Users/MichaelChiang/Documents/QCPTesting.txt"));
 		for (int i = 0; i < num; i++){
 			int gen = rand.nextInt(max - min + 1) + min;
 			outPrint.print(gen + ",");	

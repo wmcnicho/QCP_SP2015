@@ -9,31 +9,8 @@ import Matrix.Matrix;
  */
 
 public abstract class MGate implements QGate{
-	private int target;
-	private int [] controls = null;
-	private int numOfStates;
-	private String  matrixType;
-	private Matrix gate; //store the matrix that represents the gate
-	
-	//abstract methods
-	public abstract Matrix resultForOn();
-	public abstract Matrix resultForOff();
-	
-	/**
-	 * Construct a matrix representation of a quantum gate
-	 *  
-	 * @param Type of matrix representation of the gate (complex, sparse, gate)
-	 * @param controlQbits Array of qubits that control the gate
-	 * @param targetQbit Qubit that the gate is applied to
-	 * @param numOfStates Number of basis states of the register
-	 * 
-	 */
-	public MGate (String type, int [] controlQbits, int targetQbit, int numOfStates){
-		target = targetQbit;
-		controls = controlQbits;
-		this.numOfStates = numOfStates;
-		matrixType = type;
-	}
+	private String  matrixType = null;
+	protected Matrix gate = null; //store the matrix that represents the gate
 	
 	/**
 	 * Initialize the gate by creating the matrix that represents the
@@ -41,7 +18,8 @@ public abstract class MGate implements QGate{
 	 * 
 	 * @param type Type of matrix representation of the gate
 	 */
-	public void initGate(String type){
+	public void initSingleTargetGate(String type, int [] controls, int target, int numOfStates,
+			Matrix offResult, Matrix onResult){
 		//find the matrix representation
 		final int maxNum = numOfStates -1;
 		final int mask = 1 << target;
@@ -62,27 +40,27 @@ public abstract class MGate implements QGate{
 					}
 				}
 				if (allOn){
-					calcElement(gate,i,mask);
+					if ((i & mask) == mask){//qubit is 1
+						gate.setElement(i, i, onResult.getElement(1,0));
+						gate.setElement(i ^ mask, i, onResult.getElement(0,0));
+					} else {//qubit is 0
+						gate.setElement(i, i, offResult.getElement(0,0));
+						gate.setElement(i ^ mask, i, offResult.getElement(1,0));
+					}
 				} else {//the state is not affected since qubit is zero
 					gate.setElement(i, i, 1.0, 0.0);
 				}
 			}
 		} else {
 			for (int i = 0; i <= maxNum; i++){
-				calcElement(gate,i,mask);
+				if ((i & mask) == mask){//qubit is 1
+					gate.setElement(i, i, onResult.getElement(1,0));
+					gate.setElement(i ^ mask, i, onResult.getElement(0,0));
+				} else {//qubit is 0
+					gate.setElement(i, i, offResult.getElement(0,0));
+					gate.setElement(i ^ mask, i, offResult.getElement(1,0));
+				}
 			}
-		}
-	}
-	
-	//set the value for each element of the matrix
-	private void calcElement(Matrix gate, int i, int mask){
-		//check if that qubit is 0 or 1
-		if ((i & mask) == mask){//qubit is 1
-			gate.setElement(i, i, resultForOn().getElement(1,0));
-			gate.setElement(i ^ mask, i, resultForOn().getElement(0,0));
-		} else {//qubit is 0
-			gate.setElement(i, i, resultForOff().getElement(0,0));
-			gate.setElement(i ^ mask, i, resultForOff().getElement(1,0));
 		}
 	}
 	

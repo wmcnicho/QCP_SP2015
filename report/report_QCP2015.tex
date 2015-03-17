@@ -4,7 +4,7 @@
 %\bibliographystyle{plain}
 
 \usepackage{geometry}
-\geometry{a4paper, left=40mm, right=40mm, top=45mm, bottom=35mm}
+\geometry{a4paper, left=30mm, right=30mm, top=45mm, bottom=35mm}
 
 \usepackage[utf8]{inputenc}
 %\usepackage[german]{babel}
@@ -476,7 +476,7 @@ The general expression for $n$-qubit systems is analogous:
 %
 
 \subsubsection{Gate representations}
-The resulting matrix $G_\text{tot}$ is in general a $N \times N$-matrix with two and only two non-zero entries in very row and column. That means that only $2\cdot 2^n$ of $2^{n^2}$ entries are non-zero. The ratio is $2^{1-n}$ which rapidly goes towards zero for big $n$. Thus, most entries of the gate matrices will be zero.
+The resulting matrix $G_\text{tot}$ is in general a $N \times N$-matrix with two and only two non-zero entries in every row and column. That means that only $2\cdot 2^n$ of $2^{n^2}$ entries are non-zero. The ratio is $2^{1-n}$ which rapidly goes towards zero for big $n$. Thus, most entries of the gate matrices will be zero.
 
 This leads to the consideration of the following three possible representations:
 \begin{enumerate}
@@ -511,14 +511,31 @@ After defining quantum gates it is now simple to predict the next step: A so-cal
 \subsubsection{Grover's Algorithm}
 Grover's algorithm is a quantum search algorithm. To search through a non-ordered list with $N$ entries on a classical computer, one would have to go through individual entries of the list, requiring $O(N)$ operations. This can be sped up to $O(\sqrt{N})$ using a quantum circuit implementing Grover's algorithm.
 
-Suppose we are searching through a list of $N$ elements, and an index has been assigned to each of the elements ranging. Assume there are $M$ solutions. 
-The key object in Grover's algorithm is the quantum \emph{oracle}, which, in the abstract sense, has the ability to $recognise$ the so
-
+Suppose we are searching through a list of $N$ elements and assume there are $M$ solutions to the search. To make the problem simpler, we consider searching index corresponding to the elements rather than the elements themselves. An index running from $0$ to $N-1$ has been assigned to each element.
+The key object in Grover's algorithm is the quantum \emph{oracle}, which, in the abstract sense, has the ability to $recognise$ the solution states without $knowing$ them. The oracle marks the solution states by flipping the sign of the state. Let $\ket{x}$ be one of the basis states and let $f(x) = 1$ if $\ket{x}$ is a solution state and $f(x) = 0$ if it is not a solution. The oracle performs the following linear operation (denoted as $O$):
 \begin{align}
 	\ket{x} \xrightarrow{O} (-1)^{f(x)}\ket{x}
 \end{align}
 
-Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for Grover's algorithm.
+What needs to be done now is to maximise the probability of observing one of the solution states. This cannot be achieved by re-applying the oracle right away, as this would undo the marking. Grover designed an algorithm to achieve this effect, and it is known as the Grover's diffusion operation. The procedure of the algorithm is as follows:
+
+\begin{enumerate}
+
+	\item Apply the oracle $O$
+	\item Apply the Hadamard operation on all qubits $H^{\otimes n}$ \label{step2}
+	\item Perform a phase shift of -1 on every state of the computational basis except $\ket{0}$:
+		\begin{align}
+			\ket{x} \quad 
+			\xrightarrow 
+			\quad -(-1)^{\delta_{x0}}\ket{x}
+		\end{align}
+	\item Apply the Hadamard operation on all qubits again $H^{\otimes n}$ \label{step4}
+	\item Repeat step 1 to 4 for a certain number of times to maximise the probability of the solution states
+\end{enumerate}
+Step \ref{step2} to step \ref{step4} is also known as the \emph{inversion about mean} operation. Mathematically, this iteration can be written compactly as:
+\begin{align}
+	G = \left(2\ket{\psi}\bra{\psi} - \mathbb{I}\right)O.
+\end{align}
 
 \begin{figure}[H]
 \begin{align*}
@@ -534,26 +551,19 @@ Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for Grover's alg
 \caption{Circuit of Grover's Algorithm\citeS{GroversAlgo}}
 \label{fig:CircuitGrover}
 \end{figure}
+Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for Grover's algorithm.
 
-The procedure of Grover's algorithm is as follows:
-\begin{enumerate}
-	\item Apply the oracle $O$
-	\item Apply the Hadamard operation on all qubits $H^{\otimes n}$ \label{step2}
-	\item Perform a phase shift of -1 on every state of the computational basis except $\ket{0}$:
-		\begin{align}
-			\ket{x} \quad 
-			\xrightarrow 
-			\quad -(-1)^{\delta_{x0}}\ket{x}
-		\end{align}
-	\item Apply the Hadamard operation on all qubits again $H^{\otimes n}$ \label{step4}
-\end{enumerate}
-Step \ref{step2} to step \ref{step4} is also known as the \emph{inversion about mean} operation. Mathematically, this iteration can be written compactly as:
-\begin{align}
-	G = \left(2\ket{\psi}\bra{\psi} - \mathbb{I}\right)O.
-\end{align}
-
-The Grover iteration is to maximise the probability of observing the solution states.
+To determine the number of times the diffusion operation should be applied, we need to first
 Geometrically, the iteration performs a rotation of the state vector $\ket{\Psi}$ towards the vector representing a uniform superposition of the solution states on the plane spanned by the 
+
+\begin{align}
+	\ket{\alpha} &\equiv \frac{1}{\sqrt{N-M}} \sum_\textrm{solutions} \ket{x}\\
+	\ket{\beta} &\equiv \frac{1}{\sqrt{M}} \sum_\textrm{non solutions} \ket{x}
+\end{align}
+Substituting these to the state vector gives:
+\begin{align}
+	\ket{\Psi} &= \sqrt{\frac{N-M}{N}}\ket{\alpha} +\sqrt{\frac{M}{N}}\ket{\beta}
+\end{align}
 
 \subsubsection{Shor's Algorithm}
 
@@ -612,6 +622,11 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 \subsubsection{Matrix}
 
 \subsubsection{Gates}
+Designing the gates is a challenging issue as there are multiple problems that addressed:
+\begin{enumerate}
+	\item A design that allows different representations of a quantum gate, such as matrix representation and functional representation
+	\item A design which allows gates of d
+\end{enumerate}
 
 \subsubsection{Graphics User Interface}
 

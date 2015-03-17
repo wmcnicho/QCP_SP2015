@@ -178,11 +178,12 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		//simulationsList.add("<none>");
 		simulationsList.add("Grover's algorithm");
 		simulationsList.add("Shor's algorithm");
+		simulationsList.add("Quantum fourier transform");
 		//depending on selection this should expand to add more options
 		simType = new JComboBox(simulationsList);
 		start_butt = new JButton("GO!");
 		start_butt.addActionListener(this);
-		start_butt.setEnabled(false);
+		start_butt.setEnabled(true);
 		west.setLayout(new BoxLayout(west, BoxLayout.Y_AXIS));
 		
 		//index or factorized number option
@@ -229,12 +230,14 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			 * data loaded from file
 			 * number/index being searched for
 			 */	
+			
+			//determine the gate representation
 			String gateString = gateRep.getSelectedItem().toString();
 			if(gateString.equals("Dense Matrix")){
 				gateString = "complex";
 			}
 			else if (gateString.equals("Sparse Matrix")){
-				gateString = "sparse";
+				gateString = "gate";
 			}
 			else if (gateString.equals("Functional")){
 				gateString = "functional";
@@ -243,28 +246,35 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 				gateString = "gate";
 			}
 			
-					
-			int numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
-			String speedUpString = moreOptions.getSelectedItem().toString();
+			//determine the simulation type
 			String simulationType = simType.getSelectedItem().toString();
-			int searchValue = (int) searchSpinner.getValue();
+			String speedUpString = moreOptions.getSelectedItem().toString();
+			int [] data = null;
+			int numQubits = 0;
 			
-			//get the indices of the solutions
-			ArrayList<Integer> indices = new ArrayList<Integer>();
-			for (Entry<Integer, Integer> entry : oracleMap.entrySet()){
-				if (entry.getValue() == searchValue){
-					indices.add(entry.getKey());
+			switch (simulationType){
+			case "Grover's algorithm":
+				numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
+				int searchValue = (int) searchSpinner.getValue();
+				
+				//get the indices of the solutions
+				ArrayList<Integer> indices = new ArrayList<Integer>();
+				for (Entry<Integer, Integer> entry : oracleMap.entrySet()){
+					if (entry.getValue() == searchValue){
+						indices.add(entry.getKey());
+					}
 				}
+				//convert back to a regular array
+				data = new int [indices.size()];
+				for (int i = 0; i < data.length; i++){
+					data[i] = indices.get(i);
+				}
+				break;
+				
+			case "Shor's algorithm":
+				data = new int [] {(int) searchSpinner.getValue()};
 			}
-			//convert back to a regular array
-			int [] targets = new int [indices.size()];
-			for (int i = 0; i < targets.length; i++){
-				targets[i] = indices.get(i);
-			}
-			//int index = oracleMap.get(searchValue);
-						
-			
-			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, targets);
+			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, data);
 		}
 		else{
 		console.append("huh? action function unwritten");

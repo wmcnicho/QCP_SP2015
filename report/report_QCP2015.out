@@ -19,13 +19,18 @@
 \BOOKMARK [1][-]{section.3}{Implementation}{}% 19
 \BOOKMARK [2][-]{subsection.3.1}{Project organisation}{section.3}% 20
 \BOOKMARK [2][-]{subsection.3.2}{Development environment}{section.3}% 21
-\BOOKMARK [2][-]{subsection.3.3}{Programme structure}{section.3}% 22
-\BOOKMARK [1][-]{section.4}{Results}{}% 23
-\BOOKMARK [2][-]{subsection.4.1}{Grover's Algorithm}{section.4}% 24
-\BOOKMARK [2][-]{subsection.4.2}{Shor's Algorithm}{section.4}% 25
-\BOOKMARK [1][-]{section.5}{Discussion}{}% 26
-\BOOKMARK [2][-]{subsection.5.1}{Matrix or functional representation}{section.5}% 27
-\BOOKMARK [2][-]{subsection.5.2}{Improvements and further steps}{section.5}% 28
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 29
-\BOOKMARK [1][-]{section.7}{Appendix}{}% 30
-\BOOKMARK [1][-]{section*.2}{References}{}% 31
+\BOOKMARK [2][-]{subsection.3.3}{Program structure}{section.3}% 22
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Overview}{subsection.3.3}% 23
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Matrix}{subsection.3.3}% 24
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Gates}{subsection.3.3}% 25
+\BOOKMARK [3][-]{subsubsection.3.3.4}{Graphics User Interface}{subsection.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.4}{Program execution}{section.3}% 27
+\BOOKMARK [1][-]{section.4}{Results}{}% 28
+\BOOKMARK [2][-]{subsection.4.1}{Grover's Algorithm}{section.4}% 29
+\BOOKMARK [2][-]{subsection.4.2}{Shor's Algorithm}{section.4}% 30
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 31
+\BOOKMARK [2][-]{subsection.5.1}{Matrix or functional representation}{section.5}% 32
+\BOOKMARK [2][-]{subsection.5.2}{Improvements and further steps}{section.5}% 33
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 34
+\BOOKMARK [1][-]{section.7}{Appendix}{}% 35
+\BOOKMARK [1][-]{section*.4}{References}{}% 36

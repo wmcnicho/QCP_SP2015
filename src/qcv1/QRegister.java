@@ -10,6 +10,6 @@ public interface QRegister {
 	public double [] getAmplitude(int qubitPos);
 	public Matrix getAmplitude();
 	public double [] getProbabilities();
-	public void measure();
+	public int measure();
 }
 	
