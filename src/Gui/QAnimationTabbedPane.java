@@ -38,11 +38,13 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	
 	private ChartPanel probPanel;
 	
+	private boolean enabled;
+	
 	public QAnimationTabbedPane(){
 		super();
 		addHist();
 		addCoords();
-		
+		enabled = true;
 	}
 	
 	protected void addHist(){
@@ -141,6 +143,15 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		
 		this.setComponentAt(1, vecPanel);
 		
+	}
+
+	public void showVector(boolean b) {
+		if(b){
+			addCoords();
+		}
+		else if(this.getComponentCount() > 1){
+			this.remove(1);
+		}
 	}
 
 }

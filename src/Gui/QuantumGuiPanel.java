@@ -40,7 +40,8 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 	JComboBox moreOptions;
 	JComboBox simType;
 	
-	JSpinner searchSpinner;
+	JSpinner inputSpinner;
+	XLabeledUnit inputUnit;
 
 	JTextField qubitsNum;
 	
@@ -178,30 +179,30 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		//simulationsList.add("<none>");
 		simulationsList.add("Grover's algorithm");
 		simulationsList.add("Shor's algorithm");
-		simulationsList.add("Quantum fourier transform");
 		//depending on selection this should expand to add more options
 		simType = new JComboBox(simulationsList);
-		start_butt = new JButton("GO!");
+		start_butt = new JButton("Please load data");
 		start_butt.addActionListener(this);
-		start_butt.setEnabled(true);
+		start_butt.setEnabled(false);
 		west.setLayout(new BoxLayout(west, BoxLayout.Y_AXIS));
-		
+		simType.addActionListener(this);
 		//index or factorized number option
 		SpinnerModel model =
 		        new SpinnerNumberModel(0, //initial value
 		                               0, //min
 		                               Integer.MAX_VALUE, //max
 		                               1);   
-		searchSpinner = new JSpinner(model);
-		searchSpinner.setMaximumSize(new Dimension(50, 50));
+		inputSpinner = new JSpinner(model);
+		inputSpinner.setMaximumSize(new Dimension(50, 50));
+		inputUnit = new XLabeledUnit(inputSpinner, "Value:");
 		
 		test_butt = new JButton("test it");
 		test_butt.addActionListener(this);
 		
-		west.add(data_status);
+		//west.add(data_status);
 		west.add(qubits);
 		west.add(new XLabeledUnit(simType, "Simulaton"));
-		west.add(new XLabeledUnit(searchSpinner, "Value:"));
+		west.add(inputUnit);
 		//west.add(gateType);
 		west.add(new XLabeledUnit(gateRep, "Gate Representation"));
 		west.add(speedUps);
@@ -255,7 +256,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			switch (simulationType){
 			case "Grover's algorithm":
 				numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
-				int searchValue = (int) searchSpinner.getValue();
+				int searchValue = (int) inputSpinner.getValue();
 				
 				//get the indices of the solutions
 				ArrayList<Integer> indices = new ArrayList<Integer>();
@@ -272,9 +273,28 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 				break;
 				
 			case "Shor's algorithm":
-				data = new int [] {(int) searchSpinner.getValue()};
+				data = new int [] {(int) inputSpinner.getValue()};
 			}
 			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, data);
+		}
+		else if(e.getSource() == simType){
+			if(simType.getSelectedItem().toString().equalsIgnoreCase("Grover's Algorithm")){
+				start_butt.setEnabled(isLoaded);
+				if(isLoaded){
+					start_butt.setText("Start Grover's");
+				}
+				else{
+					start_butt.setText("Please load data");
+				}
+				inputUnit.label.setText("Value:");
+				animations.showVector(true);
+			}
+			else if(simType.getSelectedItem().toString().equalsIgnoreCase("Shor's Algorithm")){
+				start_butt.setEnabled(true);
+				start_butt.setText("Start Shor's");
+				inputUnit.label.setText("Number:");
+				animations.showVector(false);
+			}
 		}
 		else{
 		console.append("huh? action function unwritten");
@@ -287,10 +307,12 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		if(b){
 			data_status.setText("Loaded");
 			data_status.setForeground(Color.GREEN.darker());
+			start_butt.setText("Start Grover's");
 		}
 		else{
 			data_status.setText("Not Loaded");
 			data_status.setForeground(Color.RED.darker());
+			start_butt.setText("Please load data");
 			
 		}
 	}
