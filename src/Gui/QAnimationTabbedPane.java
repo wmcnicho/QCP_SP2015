@@ -60,18 +60,27 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	}
 	
 	protected void addCoords(){
-		// We create a vector series collection   
-		VectorSeriesCollection vecDataset = new VectorSeriesCollection();
-		VectorSeries vectorSeries=new VectorSeries("Vector State");
-
-		vectorSeries.add(0, 0, 1.5, 0);
-		vectorSeries.add(0, 0, 0, 1.5);
-		vecDataset = new VectorSeriesCollection();
-		vecDataset.addSeries(vectorSeries);   
+ 
+		VectorSeries greenSeries =new VectorSeries("Non-solution Vector");
+		greenSeries.add(0, 0, 1, 0);
+		
+		VectorSeries blueSeries =new VectorSeries("Solution Vector");
+		blueSeries.add(0, 0, 0, 1);
+		
+		VectorSeries redSeries = new VectorSeries("State Vector");
+		//redSeries.add(0, 0, 1, 1);
+	
+		vecDataset = new VectorSeriesCollection();	
+		vecDataset.addSeries(greenSeries);
+		vecDataset.addSeries(blueSeries);
+		vecDataset.addSeries(redSeries);
+		
 
 		VectorRenderer r = new VectorRenderer();
 		//r.setBasePaint(Color.white);
-		r.setSeriesPaint(0, Color.black);
+		r.setSeriesPaint(0, Color.green.darker());
+		r.setSeriesPaint(1, Color.blue.darker());
+		r.setSeriesPaint(2, Color.red);
 		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
 		NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
         domain.setRange(-1.5, 1.5);
@@ -102,20 +111,26 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	}
 	
 	public void updateVector(double xval, double yval){
-		VectorSeriesCollection vecDataset = new VectorSeriesCollection();
-		VectorSeries vectorSeries=new VectorSeries("Vector State");
-
-		vectorSeries.add(0, 0, 1.5, 0);
-		vectorSeries.add(0, 0, 0, 1.5);
-		vectorSeries.add(0, 0, xval, yval);
-		vecDataset = new VectorSeriesCollection();
-		vecDataset.addSeries(vectorSeries);   
-
-
+		VectorSeries greenSeries =new VectorSeries("Non-solution Vector");
+		greenSeries.add(0, 0, 1, 0);
+		
+		VectorSeries blueSeries =new VectorSeries("Solution Vector");
+		blueSeries.add(0, 0, 0, 1);
+		
+		VectorSeries redSeries = new VectorSeries("State Vector");
+		redSeries.add(0, 0, xval, yval);
+	
+		vecDataset = new VectorSeriesCollection();	
+		vecDataset.addSeries(greenSeries);
+		vecDataset.addSeries(blueSeries);
+		vecDataset.addSeries(redSeries);
+		
 
 		VectorRenderer r = new VectorRenderer();
 		//r.setBasePaint(Color.white);
-		r.setSeriesPaint(0, Color.black);
+		r.setSeriesPaint(0, Color.green.darker());
+		r.setSeriesPaint(1, Color.blue.darker());
+		r.setSeriesPaint(2, Color.red);
 		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
 		NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
         domain.setRange(-1.5, 1.5);

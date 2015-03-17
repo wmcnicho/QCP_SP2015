@@ -16,20 +16,6 @@ import qcv1.QProcess;
 public class GroverTest {
 	QuantumGuiPanel p = new QuantumGuiPanel();
 	@Test
-		public void testSparse() {
-		for(int j=0; j<3;j++){
-			for(int i=3; i<17; i++){
-				int numQubits =i;
-				int searchValue = 1 ;
-				int numOfStates = (int) Math.pow(2,numQubits);
-				long t1 = System.nanoTime();
-				MRegister reg = new MRegister(numQubits, "gate");//change to refresh register		
-				QCircuit q = new GroverGateByGate("gate", numOfStates, new int[]{1}, numQubits, numOfStates);
-				q.applyCircuit(reg);
-				System.out.println(j + "," + i+"th trial: "+(System.nanoTime()-t1));
-			}
-		}
-	}
 	public void testFunctional() {
 		for(int j=0; j<3;j++){
 			for(int i=2; i<20; i++){
@@ -44,6 +30,22 @@ public class GroverTest {
 			}
 		}
 	}
+	@Test
+	public void testSparse() {
+		for(int j=0; j<3;j++){
+			for(int i=3; i<17; i++){
+				int numQubits =i;
+				int searchValue = 1 ;
+				int numOfStates = (int) Math.pow(2,numQubits);
+				long t1 = System.nanoTime();
+				MRegister reg = new MRegister(numQubits, "gate");//change to refresh register		
+				QCircuit q = new GroverGateByGate("gate", numOfStates, new int[]{1}, numQubits, numOfStates);
+				q.applyCircuit(reg);
+				System.out.println(j + "," + i+"th trial: "+(System.nanoTime()-t1));
+			}
+		}
+	}
+	@Test
 	public void testDense() {
 		for(int j=0; j<3;j++){
 			for(int i=2; i<11; i++){

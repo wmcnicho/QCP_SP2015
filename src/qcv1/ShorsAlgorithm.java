@@ -13,8 +13,8 @@ public class ShorsAlgorithm {
 	private int numOfStates;
 	private int x;
 	public static void main(String[] args) {
-		int num = 1017;
-		for(int i=0; i<100; i++){
+		int num = 21;
+		for(int i=0; i<10; i++){
 			ShorsAlgorithm test = new ShorsAlgorithm("functional", num);
 			int[] vals = test.run();
 			System.out.println(Arrays.toString(vals));
