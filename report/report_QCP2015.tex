@@ -225,10 +225,30 @@
 %
 \section{Introduction}
 %Provide an introduction of quantum computing at the level of the knowledge you had at the start of the course
+This report is part of the result within the context of the course 'Quantum Computing Project' at the University of Edinburgh and is meant to be comprehensible to 3rd year undergraduate students of physical science (especially informatics and physics).
 
-\subsection{Aims}
+We start off describing the \hyperref[sec:Aims]{aims} of the project and are going to provide a \hyperref[sec:Background]{background} for the topic of Quantum Computing. That is followed by a chapter about the \hyperref[sec:Theory]{theory} needed for the course which is, however, purposely not intended to be exhaustive (see \hyperref[sec:References]{references} for further information).
 
-\subsection{Background}
+After that we will describe the \hyperref[sec:Implementation]{implementation} of the project including how we organised the programming, which development environment we used, how we structured the program, etc.
+
+We finish with a chapter about the \hyperref[sec:Results]{results} followed by a \hyperref[sec:Discussion]{discussion}.
+
+
+\subsection{Aims}\label{sec:Aims}
+
+The aims of the project:
+\begin{itemize}
+	\item \textbf{Comprehend quantum computing}\\
+	One goal is to get familiar with quantum computing as a generalisation of conventional computing.
+	\item \textbf{Programming}\\
+	The main goal is to simulate a quantum computer on a conventional classical computer. This includes programming basic concepts like \hyperref[sec:Qubits]{qubits}, \hyperref[sec:Quantum register]{quantum registers} and \hyperref[sec:Quantum gates]{quantum gates}. Finally it should be possible to run \hyperref[sec:Quantum algorithms]{quantum algorithms} like \hyperref[sec:Grover]{Grover's algorithm} (optional: \hyperref[sec:Shor]{Shor's algorithm}).
+	\item \textbf{Presenting results}\\
+	This includes not only this report and a verbal presentation but also proper documentation of the programming code to make it comprehensive to other programmers.
+	\item \textbf{Teamwork and organisation}\\
+	A project like this needs organisation and division of task but also successful communication between all group members. It is a further goal to encourage teamwork and organisation skills.
+\end{itemize} 
+
+\subsection{Background}\label{sec:Background}
 
 The history of computers reaches back to the middle of the 19th century when a design for an Analytical Engine
 was proposed by Charles Babbage who is considered to be one of the early pioneers of computation. However, for almost 100 years this branch stayed an interesting but rather conceptional one until the invention of the transistor in 1925. The first working computers were built in the 1940s and up to today computers work principally the same way.
@@ -246,7 +266,7 @@ The practical challenges for building a quantum computer are high and therefore 
 % THEORY
 %-----------------------------------------------------------------------------------------
 %
-\section{Theory}
+\section{Theory}\label{sec:Theory}
 
 In this chapter we introduce the basic concepts of quantum computation, starting off with definitions of \hyperref[sec:Qubits]{\textbf{qubits}}, \hyperref[sec:Quantum register]{\textbf{quantum registers}} and the presentation of several \hyperref[sec:Quantum gates]{\textbf{quantum gates}}. Afterwards we will talk about two \hyperref[sec:Quantum algorithms]{\textbf{quantum algorithms}} that we implemented in our virtual quantum computer. The last chapter will briefly talk about the challenges of \hyperref[sec:Building a quantum computer]{\textbf{building a real quantum computer}}.
 
@@ -561,7 +581,7 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 % Implementation
 %-----------------------------------------------------------------------------------------
 %
-\section{Implementation}
+\section{Implementation}\label{ref:Implementation}
 %Describe how your program is structured
 %Why have you made the design choices you did
 %perhaps you could also say what you would do differently in the light of your experience
@@ -595,20 +615,20 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 % RESULTS
 %-----------------------------------------------------------------------------------------
 %
-\section{Results}
+\section{Results}\label{sec:Results}
 % - Documentation that is comprehensible to a group of different programmers.
 
-\subsection{Grover's Algorithm}
+\subsection{Grover's Algorithm}\label{sec:Grover}
 %Plot of Results
 
-\subsection{Shor's Algorithm}
+\subsection{Shor's Algorithm}\label{sec:Shor}
 
 
 %-----------------------------------------------------------------------------------------
 % DISCUSSION
 %-----------------------------------------------------------------------------------------
 %
-\section{Discussion}
+\section{Discussion}\label{sec:Discussion}
 
 \subsection{Matrix or functional representation}
 
@@ -636,7 +656,7 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 \nocite{Perry2012}
 \nocite{BasicConceptsQC}
 
-\phantomsection
+\phantomsection\label{sec:References}
 \bibliographystyle{plaindin}
 \bibliography{lit}
 
