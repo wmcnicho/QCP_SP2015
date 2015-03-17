@@ -43,6 +43,7 @@
 \usepackage{verbatim}
 %\usepackage{sverb}
 \usepackage{listings}
+\usepackage{courier} %computer font
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -170,7 +171,6 @@
 	
 	\vspace{3pt}
 }
-
 
 \begin{document}
 
@@ -489,7 +489,7 @@ This leads to the consideration of the following three possible representations:
 \subsubsection{Grover's Algorithm}
 Grover's algorithm is a quantum search algorithm. To search through a non-ordered list with $N$ entries on a classical computer, one would have to go through individual entries of the list, requiring $O(N)$ operations. This can be sped up to $O(\sqrt{N})$ using a quantum circuit implementing Grover's algorithm.
 
-Suppose we are searching through a list of $N$ elements and assume there are $M$ solutions to the search. To make the problem simpler, we consider searching index corresponding to the elements rather than the elements themselves. An index running from $0$ to $N-1$ has been assigned to each element.
+Suppose we are searching through a list of $N$ elements and assume there are $M$ solutions to the search. To make the problem simpler, we consider searching the index corresponding to the elements rather than the elements themselves. An index running from $0$ to $N-1$ has been assigned to each element.
 The key object in Grover's algorithm is the quantum \emph{oracle}, which, in the abstract sense, has the ability to $recognise$ the solution states without $knowing$ them. The oracle marks the solution states by flipping the sign of the state. Let $\ket{x}$ be one of the basis states and let $f(x) = 1$ if $\ket{x}$ is a solution state and $f(x) = 0$ if it is not a solution. The oracle performs the following linear operation (denoted as $O$):
 \begin{align}
 	\ket{x} \xrightarrow{O} (-1)^{f(x)}\ket{x}
@@ -594,12 +594,21 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 
 \subsubsection{Matrix}
 
-\subsubsection{Gates}
-Designing the gates is a challenging issue as there are multiple problems that addressed:
+\subsubsection{The Computer}
+Creating a good design model for the quantum computer is essential as it is the backbone for simulating various quantum algorithms. An effective design allows one to implement any algorithm at ease and compare the performance of the programme under different representations. Our group has identified some key specifications for the design of the computer:
 \begin{enumerate}
-	\item A design that allows different representations of a quantum gate, such as matrix representation and functional representation
-	\item A design which allows gates of d
+	\item It should be consistent with a circuit-model quantum computer.
+	\item It should allow different representations for each type of object within the computer  (i.e. the circuit, 			gate and the register).
+	\item It should be extendible and compatible. One should be able to implement another representation for the objects within the computer that would work with the current code.
+	\item It should maximise code reusability
 \end{enumerate}
+The first point is fundamental as the project brief specifically asks us to create a simulator of a circuit-model quantum computer. We therefore design the programme based on the physical objects that exist in such computer. This includes the register, which is an array storing n qubits, the quantum gates, and the circuits, which consist of a series of gates that perform more complex operations on the register, such as the quantum search algorithm. These form the three main groups of classes for the computer part of the programme.
+
+To achieve the second to the fourth point of our specifications, we created an interface for each type of object, which are \texttt{QGate}, \texttt{QCircuit}, and \texttt{QRegister}. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other’s representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The specific design for each of these objects and how they co-operate with each other is discussed in detail below: \\
+
+\setlength{\parindent}{0pt}
+\textbf{Gates}\\
+The QGate interface contains a single method called \texttt{applyGate(QRegister reg)}, as each gate must perform an operation on the register. As discussed in section 2.2, there are two general ways for representing a quantum gate: matrix representation and functional representation. It is therefore natural to create a class for each of these two representations, which we called MGate and FGate respectively. 
 
 \subsubsection{Graphics User Interface}
 

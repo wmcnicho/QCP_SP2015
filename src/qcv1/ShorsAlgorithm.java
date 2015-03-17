@@ -13,7 +13,7 @@ public class ShorsAlgorithm {
 	private int numOfStates;
 	private int x;
 	public static void main(String[] args) {
-		int num = 1017;
+		int num = 945;
 		for(int i=0; i<100; i++){
 			ShorsAlgorithm test = new ShorsAlgorithm("functional", num);
 			int[] vals = test.run();
@@ -32,7 +32,7 @@ public class ShorsAlgorithm {
 		gateRep = rep;
 		number = num;
 		//if number has n bits, need 2n+1 qubits
-		numOfQubits = (int) Math.ceil(Math.log(13) / Math.log(2))*2+1;
+		numOfQubits = (int) Math.ceil(Math.log(number) / Math.log(2))*2+1;
 		numOfStates = (int) Math.pow(2, numOfQubits);
 
 	}

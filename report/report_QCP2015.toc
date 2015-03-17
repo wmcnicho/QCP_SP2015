@@ -22,15 +22,15 @@
 \contentsline {subsection}{\numberline {3.3}Program structure}{8}{subsection.3.3}
 \contentsline {subsubsection}{\numberline {3.3.1}Overview}{8}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Matrix}{8}{subsubsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.3}Gates}{8}{subsubsection.3.3.3}
-\contentsline {subsubsection}{\numberline {3.3.4}Graphics User Interface}{8}{subsubsection.3.3.4}
-\contentsline {subsection}{\numberline {3.4}Program execution}{8}{subsection.3.4}
-\contentsline {section}{\numberline {4}Results}{8}{section.4}
-\contentsline {subsection}{\numberline {4.1}Grover's Algorithm}{8}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Shor's Algorithm}{8}{subsection.4.2}
-\contentsline {section}{\numberline {5}Discussion}{8}{section.5}
-\contentsline {subsection}{\numberline {5.1}Matrix or functional representation}{8}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Improvements and further steps}{8}{subsection.5.2}
-\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}
-\contentsline {section}{\numberline {7}Appendix}{8}{section.7}
-\contentsline {section}{References}{9}{section*.4}
+\contentsline {subsubsection}{\numberline {3.3.3}The Computer}{8}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}Graphics User Interface}{9}{subsubsection.3.3.4}
+\contentsline {subsection}{\numberline {3.4}Program execution}{9}{subsection.3.4}
+\contentsline {section}{\numberline {4}Results}{9}{section.4}
+\contentsline {subsection}{\numberline {4.1}Grover's Algorithm}{9}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Shor's Algorithm}{9}{subsection.4.2}
+\contentsline {section}{\numberline {5}Discussion}{9}{section.5}
+\contentsline {subsection}{\numberline {5.1}Matrix or functional representation}{9}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Improvements and further steps}{9}{subsection.5.2}
+\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}
+\contentsline {section}{\numberline {7}Appendix}{9}{section.7}
+\contentsline {section}{References}{10}{section*.4}

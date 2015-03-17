@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.18)  16 MAR 2015 16:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.18)  17 MAR 2015 09:03
 entering extended mode
 **C:/Users/Michael/Dropbox/Edinburgh/Courses/Year*2/Quantum*Computing*Project/Q
 CP_SP2015/report/report_QCP2015.tex
@@ -1626,6 +1626,9 @@ File: listings.cfg 2014/09/06 1.5e listings configuration
 ))
 Package: listings 2014/09/06 1.5e (Carsten Heinz)
 
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\courier.sty"
+Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
@@ -1769,14 +1772,14 @@ Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 )
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 147.
+(hyperref)                setting the option has no effect on input line 148.
 
-Package hyperref Info: Option `unicode' set `false' on input line 147.
-Package hyperref Info: Option `pdftoolbar' set `false' on input line 147.
-Package hyperref Info: Option `pdfmenubar' set `true' on input line 147.
-Package hyperref Info: Option `pdffitwindow' set `false' on input line 147.
-Package hyperref Info: Option `pdfnewwindow' set `true' on input line 147.
-Package hyperref Info: Option `colorlinks' set `true' on input line 147.
+Package hyperref Info: Option `unicode' set `false' on input line 148.
+Package hyperref Info: Option `pdftoolbar' set `false' on input line 148.
+Package hyperref Info: Option `pdfmenubar' set `true' on input line 148.
+Package hyperref Info: Option `pdffitwindow' set `false' on input line 148.
+Package hyperref Info: Option `pdfnewwindow' set `true' on input line 148.
+Package hyperref Info: Option `colorlinks' set `true' on input line 148.
 \c@definition=\count170
 
 LaTeX Warning: Unused global option(s):
@@ -1909,54 +1912,66 @@ been already used, duplicate ignored
                    \relax 
 l.219 \newpage
                [1] [2] [3] [4] [5] [6] <xymatrix 12x4 1164> <xymatrix 12x4
-1164> <xymatrix 13x5 2239> <xymatrix 13x5 2239> [7] [8]
+1164> <xymatrix 13x5 2239> <xymatrix 13x5 2239> [7]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 607.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 607--608
+
+ []
+
+[8] [9]
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
 CP_SP2015\report\report_QCP2015.bbl") 
 AED: lastpage setting LastPage
-[9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 659.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 659.
+[10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 668.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 668.
 
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
 CP_SP2015\report\report_QCP2015.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 659.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 659.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 668.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 668.
 Package rerunfilecheck Info: File `report_QCP2015.out' has not changed.
-(rerunfilecheck)             Checksum: 1C69AC44FB4368EE87906E2C15BA05EF;2376.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 659.
+(rerunfilecheck)             Checksum: 1CDC8EF62C1C371A39FF70F271AC1503;2383.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 668.
  ) 
 Here is how much of TeX's memory you used:
- 19541 strings out of 493921
- 314720 string characters out of 3144870
- 499522 words of memory out of 3000000
- 22477 multiletter control sequences out of 15000+200000
- 14233 words of font info for 57 fonts, out of 3000000 for 9000
+ 19586 strings out of 493921
+ 315476 string characters out of 3144870
+ 499573 words of memory out of 3000000
+ 22510 multiletter control sequences out of 15000+200000
+ 15095 words of font info for 60 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  45i,28n,46p,10484b,1286s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/P
-rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Prog
-ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program F
-iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmtt8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/symbols/msbm7.pfb>
-Output written on report_QCP2015.pdf (10 pages, 303323 bytes).
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/symbols/msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
+fonts/symbols/msbm7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/cour
+ier/ucrr8a.pfb>
+Output written on report_QCP2015.pdf (11 pages, 312456 bytes).
 PDF statistics:
- 425 PDF objects out of 1000 (max. 8388607)
- 107 named destinations out of 1000 (max. 500000)
+ 435 PDF objects out of 1000 (max. 8388607)
+ 110 named destinations out of 1000 (max. 500000)
  289 words of extra memory for PDF output out of 10000 (max. 10000000)
 

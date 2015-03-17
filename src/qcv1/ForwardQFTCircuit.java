@@ -34,12 +34,4 @@ public class ForwardQFTCircuit extends GateByGateCircuit {
 			//addGate(GateFactory.createSwapGate(rep, i, (numOfQubits-1)-i, numOfStates));
 		}		
 	}
-	
-	public void applyCircuit(QRegister reg){
-		
-		super.applyCircuit(reg);
-		//System.out.println("OK!");
-		//QViewModel.updateHistogramValues(reg.getProbabilities());
-	}
-	
 }
