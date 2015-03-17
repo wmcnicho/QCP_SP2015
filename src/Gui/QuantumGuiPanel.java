@@ -60,7 +60,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 	
 	private JButton test_butt;
 	
-	QuantumGuiPanel(){
+	public QuantumGuiPanel(){
 		setLayout(new BorderLayout());
 		
 		//NORTH (file menu)
