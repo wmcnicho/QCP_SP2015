@@ -25,7 +25,7 @@ public class QProcess {
 				case "Shor's algorithm":
 					int num = indexOfVal[0];
 					ShorsAlgorithm shors = new ShorsAlgorithm(gateRep, num);
-					int[] factors = shors.run();
+					int [] factors = shors.run();
 					QViewModel.printToConsole("The factors of " + num + " are " + factors[0] + " and " + factors[1]);
 					break;
 				default:
