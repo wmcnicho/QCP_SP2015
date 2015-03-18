@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
 import qcv1.*;
@@ -32,12 +35,10 @@ import qcv1.*;
 public class QuantumGuiPanel extends JPanel implements ActionListener {
 	static JTextArea console;
 	static JButton start_butt;
-	JButton confirmOptions;
 	static JProgressBar loadingBar;
 	static QAnimationTabbedPane animations;
 	
 	JComboBox gateRep;
-	JComboBox moreOptions;
 	JComboBox simType;
 	
 	JSpinner inputSpinner;
@@ -46,17 +47,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 	JTextField qubitsNum;
 	
 	static boolean isLoaded;
-	Boolean qubitSet;
 	Boolean isReady;
 	
-	//center labels
-	static JLabel data_status;
-	JLabel qubits;
-	JLabel gateType;
-	JLabel speedUps;
-	JLabel start;
-	
-	//This is bad that there's data here at all but it's seemingly unavoidable
+	//This is bad that there's model data here at all but it's seemingly unavoidable
 	static HashMap<Integer, Integer> oracleMap;
 	
 	private JButton test_butt;
@@ -64,22 +57,14 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 	public QuantumGuiPanel(){
 		setLayout(new BorderLayout());
 		
-		//NORTH (file menu)
-		
-		
-		
-		//SOUTH Console
+		//SOUTH Console and loading bar
 		JPanel south = new JPanel();
-		
+		south.setBackground(Color.white);
+		south.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));		
 		south.setLayout(new BoxLayout(south, BoxLayout.Y_AXIS));
+		
 		console = new JTextArea();
 		console.setEditable(false);
-		
-//		
-//		console.setPreferredSize(new Dimension(900, 200));
-//		console.setMaximumSize(new Dimension(900, 200));
-//		console.setMinimumSize(new Dimension(900, 200));
-		
 		
 		JScrollPane scroll = new JScrollPane (console, 
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -87,105 +72,53 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		scroll.setMaximumSize(new Dimension(900, 180));
 		scroll.setMinimumSize(new Dimension(900, 180));
 		
-		
-		
 		loadingBar = new JProgressBar(0, 100);
 		loadingBar.setValue(0);
 		//loadingBar.setString();
-		loadingBar.setPreferredSize(new Dimension(1000, 15));
-		//bar.setMaximumSize(new Dimension(775, 15));
-		//bar.setMinimumSize(new Dimension(775, 15));
-
-		loadingBar.setUI(new BasicProgressBarUI() {
-			protected Color getSelectionBackground() { return Color.black; }
-			protected Color getSelectionForeground() { return Color.white; }
-		});
-
-		loadingBar.setBackground(Color.WHITE);
-		loadingBar.setForeground(Color.BLUE);
+		loadingBar.setPreferredSize(new Dimension(900, 15));
+		loadingBar.setMaximumSize(new Dimension(900, 15));
+		UIManager.put("ProgressBar.selectionBackground", Color.blue);
+	    UIManager.put("ProgressBar.selectionForeground", Color.white);
+	    UIManager.put("ProgressBar.foreground", Color.black);
+	    UIManager.put("ProgressBar.background", Color.gray);
 		loadingBar.setStringPainted(true);
+		loadingBar.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+	
 		south.add(loadingBar);
+		south.add(Box.createRigidArea(new Dimension(0,5)));
 		south.add(scroll);
 		
 		add(south, BorderLayout.SOUTH);
 		
+		//Center Graphs and charts, see @class QAnimationTabbedPane
+		animations = new QAnimationTabbedPane();
+		add(animations, BorderLayout.CENTER);		
 		
-		//EAST options currently disabled
+		//WEST Simulation selection and start button
+		JPanel west = new JPanel();
+		west.setBackground(Color.WHITE);
+		west.setLayout(new BoxLayout(west, BoxLayout.Y_AXIS));
+		west.setPreferredSize(new Dimension(300, 800));
+		//west.setMaximumSize(new Dimension(800, 800));
+		west.setMinimumSize(new Dimension(300, 800));
+		west.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-		JPanel east = new JPanel();
-		east.setPreferredSize(new Dimension(200, 850));
-		east.setLayout(new BoxLayout(east, BoxLayout.Y_AXIS));
-		//east.setBackground(Color.DARK_GRAY);
-		
 		Vector<String> repList = new Vector<String>();
 		repList.add("Dense Matrix");
 		repList.add("Sparse Matrix");
 		repList.add("Functional");
 		gateRep = new JComboBox(repList);
+		XLabeledUnit gateUnit = new XLabeledUnit(gateRep, "Gate Representation");
+		//gateUnit.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
-		
-		JLabel qubitsCount = new JLabel("Qubits");
-		//TODO change this to a ticker
-		qubitsNum = new JTextField();
-		
-		Vector<String> optionList = new Vector<String>();
-		optionList.add("none");
-		optionList.add("String 2");
-		moreOptions = new JComboBox(optionList);
-		
-		confirmOptions = new JButton("Confirm");
-		confirmOptions.addActionListener(this);
-		
-		east.add(new XLabeledUnit(gateRep, "Gate Representation"));
-		
-		XLabeledUnit qubitsUnit = new XLabeledUnit(qubitsNum, "Qubits");
-		qubitsUnit.setVisible(false);
-		east.add(qubitsUnit);
-		//TODO Write speedUp options, hiding until this is implemented
-		//east.add(new MyLabeledUnit(moreOptions, "Speedup Options"));
-		east.add(confirmOptions);
-		
-		//add(east, BorderLayout.EAST);
-		
-		//Center Graphs and charts
-		//JPanel center  = new JPanel();
-		//center.setBackground(Color.black);
-		animations = new QAnimationTabbedPane();
-		add(animations, BorderLayout.CENTER);
-
-		
-		
-		//WEST Simulation selection and start button
-		JPanel west = new JPanel();
-		west.setBackground(Color.WHITE);
-		
-		west.setPreferredSize(new Dimension(300, 800));
-		//west.setMaximumSize(new Dimension(800, 800));
-		//west.setMinimumSize(new Dimension(1000, 800));
-		
-		
-		data_status = new JLabel("Not Loaded");
-		data_status.setForeground(Color.RED.darker());
-		qubits = new JLabel("Qubits: ");
-		//TODO temporarily changed because Grover's doesn't use qubits
-		qubits.setVisible(false);
-		gateType = new JLabel("Gate type: ");
-		//TODO temporaily changed until speedups are added
-		speedUps = new JLabel("Speedups: ");
-		speedUps.setVisible(false);
-		start = new JLabel("Not Ready");
 		Vector<String> simulationsList = new Vector<String>();
-		//simulationsList.add("<none>");
 		simulationsList.add("Grover's algorithm");
 		simulationsList.add("Shor's algorithm");
 		//depending on selection this should expand to add more options
 		simType = new JComboBox(simulationsList);
-		start_butt = new JButton("Please load data");
-		start_butt.addActionListener(this);
-		start_butt.setEnabled(false);
-		west.setLayout(new BoxLayout(west, BoxLayout.Y_AXIS));
 		simType.addActionListener(this);
+		
 		//index or factorized number option
 		SpinnerModel model =
 		        new SpinnerNumberModel(0, //initial value
@@ -195,21 +128,19 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		inputSpinner = new JSpinner(model);
 		inputSpinner.setMaximumSize(new Dimension(50, 50));
 		inputUnit = new XLabeledUnit(inputSpinner, "Value:");
+		//inputUnit.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
-		test_butt = new JButton("test it");
-		test_butt.addActionListener(this);
 		
-		//west.add(data_status);
-		west.add(qubits);
+		start_butt = new JButton("Please load data");
+		start_butt.addActionListener(this);
+		start_butt.setEnabled(false);
+		start_butt.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
 		west.add(new XLabeledUnit(simType, "Simulaton"));
 		west.add(inputUnit);
-		//west.add(gateType);
-		west.add(new XLabeledUnit(gateRep, "Gate Representation"));
-		west.add(speedUps);
-		//west.add(start);
-		
+		west.add(gateUnit);	
 		west.add(start_butt);
-		//west.add(test_butt);
+		
 		add(west, BorderLayout.WEST);
 		
 		
@@ -223,16 +154,6 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		}
 		else if(e.getSource() == start_butt){
 			QViewModel.clearConsole();
-			//given the following information, launch a simulation in a separate thread/threads
-			/*
-			 * number of Qubits
-			 * type of simulation
-			 * gate type
-			 * speedUp options
-			 * data loaded from file
-			 * number/index being searched for
-			 */	
-			
 			//determine the gate representation
 			String gateString = gateRep.getSelectedItem().toString();
 			if(gateString.equals("Dense Matrix")){
@@ -250,7 +171,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			
 			//determine the simulation type
 			String simulationType = simType.getSelectedItem().toString();
-			String speedUpString = moreOptions.getSelectedItem().toString();
+			String speedUpString ="";//deprecated
 			int [] data = null;
 			int numQubits = 0;
 			
@@ -306,13 +227,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		isLoaded = b;
 		start_butt.setEnabled(b);
 		if(b){
-			data_status.setText("Loaded");
-			data_status.setForeground(Color.GREEN.darker());
 			start_butt.setText("Start Grover's");
 		}
 		else{
-			data_status.setText("Not Loaded");
-			data_status.setForeground(Color.RED.darker());
 			start_butt.setText("Please load data");
 			
 		}
@@ -323,10 +240,13 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		String s;
 		JLabel label;
 		public YLabeledUnit(Component o, String s){
+			this.setBackground(Color.white);
 			component = o;
-			o.setMaximumSize(new Dimension(150, 25));
+			//component.setBackground(Color.white);
+			o.setMaximumSize(new Dimension(500, 25));
 			this.s = s;
 			label = new JLabel(s);
+			//label.setBackground(Color.white);
 			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			add(label);
 			add(o);
@@ -342,10 +262,13 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		String s;
 		JLabel label;
 		public XLabeledUnit(Component o, String s){
+			this.setBackground(Color.white);
 			component = o;
-			o.setMaximumSize(new Dimension(200, 25));
+			//component.setBackground(Color.white);
+			o.setMaximumSize(new Dimension(500, 25));
 			this.s = s;
 			label = new JLabel(s);
+			//label.setBackground(Color.white);	
 			setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 			add(label);
 			add(o);

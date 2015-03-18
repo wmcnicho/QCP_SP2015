@@ -16,14 +16,15 @@ import javax.swing.JMenuItem;
 
 
 public class QuantumMenuBar extends JMenuBar implements ActionListener{
-	JMenu menu1, menu2;
+	JMenu menu1;
 	JMenuItem file_open, help;
 	JFileChooser fc;
 	public QuantumMenuBar(){
 		menu1 = new JMenu("File");
-		//menu2 = new JMenu("Help");
 		fc = new JFileChooser();	
-		//fc.setCurrentDirectory(new File("C:/Users/Hunter/github"));
+		String workingDir = System.getProperty("user.dir");
+		fc.setCurrentDirectory(new File(workingDir));
+		
 		file_open = new JMenuItem("Open File");
 		file_open.addActionListener(this);
 		menu1.add(file_open);
@@ -31,7 +32,6 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 		help.addActionListener(this);
 		add(menu1);
 		add(help);
-		//add(menu2);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -54,17 +54,15 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 		}
 		else if(e.getSource() == help){
 			JFrame helpFrame = new JFrame("Help");
-			helpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			helpFrame.setSize(new Dimension(500, 300));
 			helpFrame.setLayout(new BorderLayout());
 			helpFrame.add(new JLabel("<html><body> <h1> Basic Usage </h1> <p> Use the drop down"
-					+ "menu to the left to choose between running Shor's or Grover's algorithm."
+					+ "menu to the left to choose between running Shor's or Grover's algorithm. "
 					+ "In order to start a Grover's simulation, import a txt file with comma separated numbers"
-					+ "(i.e. 3,14,157,9,...) and a value to search for. To use Shor's chose a number between ?"
-					+ " and ?? </p> </body></html>"), BorderLayout.CENTER);
+					+ "(i.e. 3,14,157,9,...) and a enter value to search for. To use Shor's choose a number between ?"
+					+ "from ? to ? and it will be factorized</p> </body></html>"), BorderLayout.CENTER);
 			helpFrame.setVisible(true);
 			helpFrame.setLocationRelativeTo(null);
-			
 		}
 	}
 
