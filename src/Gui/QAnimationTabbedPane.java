@@ -38,13 +38,13 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	
 	private ChartPanel probPanel;
 	
-	private boolean enabled;
+	private boolean is_grover;
 	
 	public QAnimationTabbedPane(){
 		super();
 		addHist();
 		addCoords();
-		enabled = true;
+		is_grover = true;
 	}
 	
 	protected void addHist(){
@@ -63,10 +63,10 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	
 	protected void addCoords(){
  
-		VectorSeries greenSeries =new VectorSeries("Non-solution Vector");
+		VectorSeries greenSeries =new VectorSeries("Solution Vector");
 		greenSeries.add(0, 0, 1, 0);
 		
-		VectorSeries blueSeries =new VectorSeries("Solution Vector");
+		VectorSeries blueSeries =new VectorSeries("Non-solution Vector");
 		blueSeries.add(0, 0, 0, 1);
 		
 		VectorSeries redSeries = new VectorSeries("State Vector");
@@ -113,10 +113,10 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	}
 	
 	public void updateVector(double xval, double yval){
-		VectorSeries greenSeries =new VectorSeries("Non-solution Vector");
+		VectorSeries greenSeries =new VectorSeries("Solution Vector");
 		greenSeries.add(0, 0, 1, 0);
 		
-		VectorSeries blueSeries =new VectorSeries("Solution Vector");
+		VectorSeries blueSeries =new VectorSeries("Non-solution Vector");
 		blueSeries.add(0, 0, 0, 1);
 		
 		VectorSeries redSeries = new VectorSeries("State Vector");
@@ -146,11 +146,13 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	}
 
 	public void showVector(boolean b) {
-		if(b){
+		if(b && !is_grover){
 			addCoords();
+			is_grover = true;
 		}
-		else if(this.getComponentCount() > 1){
+		else if(!b && is_grover){
 			this.remove(1);
+			is_grover = false;
 		}
 	}
 
