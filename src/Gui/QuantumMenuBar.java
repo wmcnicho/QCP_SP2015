@@ -14,11 +14,17 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-
+/**The class the handles all of the menu bar operations for the program which includes opening a file for test data and
+ * opening the help screen to explain program usage.
+ * 
+ * @author William Hunter McNichols
+ */
 public class QuantumMenuBar extends JMenuBar implements ActionListener{
 	JMenu menu1;
 	JMenuItem file_open, help;
 	JFileChooser fc;
+	
+	/**Sets up the menu bar adding the appropriate buttons*/
 	public QuantumMenuBar(){
 		menu1 = new JMenu("File");
 		fc = new JFileChooser();	
@@ -33,25 +39,26 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 		add(menu1);
 		add(help);
 	}
-	
+	/**The event handling function of the panel. Determines which event to handle based off the input e. 
+	 * Called upon clicking a menu option which is either "File"->"Open" or "Help"
+	 * @param e		the ActionEvent that triggered the call to this function 
+	 */
 	public void actionPerformed(ActionEvent e) {
+		//Uses the FileParser to parse the selected file and returns it to the QuantumGuiPanel
 		if (e.getSource() == file_open) {
 			int returnVal = fc.showOpenDialog(this);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
-				//System.out.println(file.getAbsolutePath());
-				//System.out.println(file.getName());
 				HashMap<Integer, Integer> parsedMap = FileParser.parseFile(file.getAbsolutePath());
-				//Given the selected file name print that out to the screen
-				System.out.println(parsedMap.toString());
 				QViewModel.updateHashMap(parsedMap);
 			}
 			else {
-				System.out.println("Open command cancelled by user.");
+				QViewModel.printToConsole("Open command cancelled by user.");
 			}
 			
 		}
+		//Creates a new window that gives the user help on running the simulations
 		else if(e.getSource() == help){
 			JFrame helpFrame = new JFrame("Help");
 			helpFrame.setSize(new Dimension(500, 300));

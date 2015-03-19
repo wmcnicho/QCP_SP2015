@@ -23,39 +23,40 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
-import javax.swing.plaf.basic.BasicProgressBarUI;
 import javax.swing.text.NumberFormatter;
 
 import qcv1.*;
 
 
-
+/** The main panel placed into the frame on launching the program. Conatins the console, animations, 
+ * and input controls for the program
+ * 
+ * @author William Hunter McNichols
+ */
 public class QuantumGuiPanel extends JPanel implements ActionListener {
+	//UI elements that can be adjusted from QViewModel
 	static JTextArea console;
 	static JButton start_butt;
 	static JProgressBar loadingBar;
 	static QAnimationTabbedPane animations;
+	static boolean isLoaded;
+
 	
 	JComboBox gateRep;
 	JComboBox simType;
-	
 	JSpinner inputSpinner;
 	XLabeledUnit inputUnit;
 
-	JTextField qubitsNum;
-	
-	static boolean isLoaded;
-	Boolean isReady;
 	
 	//This is bad that there's model data here at all but it's seemingly unavoidable
 	static HashMap<Integer, Integer> oracleMap;
 	
 	private JButton test_butt;
 	
+	/**Constructor that orders all of the elements of the panel and sets all their default values. Primarily uses a BorderLayout filled with BoxLayouts */
 	public QuantumGuiPanel(){
 		setLayout(new BorderLayout());
 		
@@ -93,7 +94,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		
 		add(south, BorderLayout.SOUTH);
 		
-		//Center Graphs and charts, see @class QAnimationTabbedPane
+		//CENTER Graphs and charts, see @class QAnimationTabbedPane
 		animations = new QAnimationTabbedPane();
 		add(animations, BorderLayout.CENTER);		
 		
@@ -151,6 +152,10 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		
 	}
 
+	/**The event handling function of the panel. Determines which event to handle based off the input e. 
+	 * Called upon any action which includes: Changing the simulation type or starting a simulation
+	 * @param e		the ActionEvent that triggered the call to this function 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == test_butt){
@@ -225,7 +230,8 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		console.append("huh? action function unwritten");
 		}
 	}
-	
+	/**Called when the data is loaded from file or when the program wants the user to input new data. Updates the button to allow the simulation to start.
+	 * @param b 	A boolean indicating if the data is loaded or unloaded.*/
 	public static void setLoaded(boolean b){
 		isLoaded = b;
 		start_butt.setEnabled(b);
@@ -238,7 +244,8 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		}
 	}
 	
-	public class YLabeledUnit extends JPanel{
+	/**An internal class used to simplify code in the rest of the program. Links a component and a label in a vertical fashion */
+	private class YLabeledUnit extends JPanel{
 		Component component;
 		String s;
 		JLabel label;
@@ -260,7 +267,8 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			label.setVisible(b);
 		}
 	}
-	public class XLabeledUnit extends JPanel{
+	/**An internal class used to simplify code in the rest of the program. Links a component and a label in a horizontal fashion */
+	private class XLabeledUnit extends JPanel{
 		Component component;
 		String s;
 		JLabel label;
