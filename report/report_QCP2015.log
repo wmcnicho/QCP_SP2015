@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.3.16)  19 MAR 2015 13:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.3.16)  19 MAR 2015 15:10
 entering extended mode
 **report_QCP2015.tex
 ("D:\Dropbox\Uni\Edinburgh\Semester 2\QCP\QCP_SP2015\report\report_QCP2015.tex"
@@ -1812,18 +1812,6 @@ LaTeX Warning: Unused global option(s):
 
 ("D:\Dropbox\Uni\Edinburgh\Semester 2\QCP\QCP_SP2015\report\report_QCP2015.aux"
 )
-Runaway argument?
-{{2.5 
-! File ended while scanning use of \@newl@bel.
-<inserted text> 
-                \par 
-l.177 \begin{document}
-                      
-I suspect you have forgotten a `}', causing me
-to read past where you wanted me to stop.
-I'll try to recover; but if the error is serious,
-you'd better type `E' or `X' now and fix your file.
-
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 177.
 LaTeX Font Info:    ... okay on input line 177.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 177.
@@ -1838,6 +1826,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 177.
 LaTeX Font Info:    ... okay on input line 177.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 177.
 LaTeX Font Info:    ... okay on input line 177.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1940,223 +1929,116 @@ t")
 ("D:\Dropbox\Uni\Edinburgh\Semester 2\QCP\QCP_SP2015\report\report_QCP2015.toc"
 )
 \tf@toc=\write5
-
-
-LaTeX Warning: Reference `LastPage' on page 1 undefined on input line 221.
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.221 \newpage
                [1]
-
-LaTeX Warning: Hyper reference `sec:References' on page 2 undefined on input li
-ne 232.
-
-
-LaTeX Warning: Hyper reference `sec:Implementation' on page 2 undefined on inpu
-t line 234.
-
-
-LaTeX Warning: Hyper reference `sec:Results' on page 2 undefined on input line 
-236.
-
-
-LaTeX Warning: Hyper reference `sec:Discussion' on page 2 undefined on input li
-ne 236.
-
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 243.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 243.
 
-
-LaTeX Warning: Hyper reference `sec:Grover' on page 2 undefined on input line 2
-46.
-
-
-LaTeX Warning: Hyper reference `sec:Shor' on page 2 undefined on input line 246
-.
-
-
-LaTeX Warning: Citation `Nielsen2010' on page 2 undefined on input line 258.
-
-
-LaTeX Warning: Citation `ShorsAlgoReal' on page 2 undefined on input line 264.
-
-
-LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 265.
-
-[2]
-
-LaTeX Warning: Hyper reference `sec:Building a quantum computer' on page 3 unde
-fined on input line 273.
-
-
-LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 321.
-
-[3]
-
-LaTeX Warning: Reference `LastPage' on page 4 undefined on input line 386.
-
-[4]
-
-LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 435.
-
-[5]
-
-LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 508.
-
-[6] <xymatrix 12x4 1164> <xymatrix 12x4 1164>
-
-LaTeX Warning: Citation `GroversAlgo' on page 7 undefined on input line 553.
-
-
-LaTeX Warning: Citation `GroversAlgo' on page 7 undefined on input line 553.
-
-
-LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 558.
-
-[7]
-
-LaTeX Warning: Citation `RSAcrypto' on page 8 undefined on input line 574.
-
-<xymatrix 13x5 2239> <xymatrix 13x5 2239>
-
-LaTeX Warning: Citation `ShorsAlgo' on page 8 undefined on input line 592.
-
-
-LaTeX Warning: Citation `ShorsAlgo' on page 8 undefined on input line 592.
-
-
-LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 631.
-
-[8]
+[2] [3] [4] [5] [6] <xymatrix 12x4 1164> <xymatrix 12x4 1164> [7] <xymatrix
+13x5 2239> <xymatrix 13x5 2239> [8]
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 639.
 
- ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-
-LaTeX Warning: Reference `LastPage' on page 9 undefined on input line 647.
-
-[9]
-
-LaTeX Warning: Reference `twostates' on page 10 undefined on input line 663.
-
+) [9] [10]
 Package epstopdf Info: Source file: <img/Grover_Time_Performance.eps>
 (epstopdf)                    date: 2015-03-19 13:57:33
 (epstopdf)                    size: 11712 bytes
 (epstopdf)             Output file: <img/Grover_Time_Performance-eps-converted-
 to.pdf>
-(epstopdf)                    date: 2015-03-19 13:20:01
-(epstopdf)                    size: 5704 bytes
+(epstopdf)                    date: 2015-03-19 14:00:01
+(epstopdf)                    size: 5668 bytes
 (epstopdf)             Command: <epstopdf --outfile=img/Grover_Time_Performance
 -eps-converted-to.pdf img/Grover_Time_Performance.eps>
-(epstopdf)             \includegraphics on input line 692.
-runsystem(epstopdf --outfile=img/Grover_Time_Performance-eps-converted-to.pdf i
-mg/Grover_Time_Performance.eps)...executed (allowed).
+(epstopdf)             \includegraphics on input line 709.
+Package epstopdf Info: Output file is already uptodate.
 
-Package epstopdf Info: Result file: <img/Grover_Time_Performance-eps-converted-
-to.pdf>
-(epstopdf)                    date: 2015-03-19 14:00:01
-(epstopdf)                    size: 5668 bytes.
-
-<img/Grover_Time_Performance-eps-converted-to.pdf, id=166, 457.71pt x 378.41376
+<img/Grover_Time_Performance-eps-converted-to.pdf, id=373, 457.71pt x 378.41376
 pt>
 File: img/Grover_Time_Performance-eps-converted-to.pdf Graphic file (type pdf)
  <use img/Grover_Time_Performance-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Time_Performance-eps-converted-to.pdf used 
-on input line 692.
+on input line 709.
 (pdftex.def)             Requested size: 384.1096pt x 317.57668pt.
+Package epstopdf Info: Source file: <img/Grover_Time_Performance_log.eps>
+(epstopdf)                    date: 2015-03-19 13:58:06
+(epstopdf)                    size: 15925 bytes
+(epstopdf)             Output file: <img/Grover_Time_Performance_log-eps-conver
+ted-to.pdf>
+(epstopdf)                    date: 2015-03-19 14:53:55
+(epstopdf)                    size: 7158 bytes
+(epstopdf)             Command: <epstopdf --outfile=img/Grover_Time_Performance
+_log-eps-converted-to.pdf img/Grover_Time_Performance_log.eps>
+(epstopdf)             \includegraphics on input line 745.
+Package epstopdf Info: Output file is already uptodate.
 
-
-LaTeX Warning: Reference `LastPage' on page 10 undefined on input line 696.
-
-[10]
-
-LaTeX Warning: Reference `LastPage' on page 11 undefined on input line 724.
-
-[11 <D:/Dropbox/Uni/Edinburgh/Semester 2/QCP/QCP_SP2015/report/img/Grover_Time_
-Performance-eps-converted-to.pdf>]
-
-LaTeX Warning: Citation `Perry2012' undefined on input line 729.
-
-
-LaTeX Warning: Citation `BasicConceptsQC' undefined on input line 730.
-
+<img/Grover_Time_Performance_log-eps-converted-to.pdf, id=374, 457.71pt x 378.4
+1376pt>
+File: img/Grover_Time_Performance_log-eps-converted-to.pdf Graphic file (type p
+df)
+ <use img/Grover_Time_Performance_log-eps-converted-to.pdf>
+Package pdftex.def Info: img/Grover_Time_Performance_log-eps-converted-to.pdf u
+sed on input line 745.
+(pdftex.def)             Requested size: 384.1096pt x 317.57668pt.
+ [11 <D:/Dropbox/Uni/Edinburgh/Semester 2/QCP/QCP_SP2015/report/img/Grover_Time
+_Performance-eps-converted-to.pdf>] [12 <D:/Dropbox/Uni/Edinburgh/Semester 2/QC
+P/QCP_SP2015/report/img/Grover_Time_Performance_log-eps-converted-to.pdf>]
 ("D:\Dropbox\Uni\Edinburgh\Semester 2\QCP\QCP_SP2015\report\report_QCP2015.bbl"
-)
-
-Package lastpage Warning: Rerun to get the references right on input line 737.
-
-
+) 
 AED: lastpage setting LastPage
-
-LaTeX Warning: Reference `LastPage' on page 12 undefined on input line 737.
-
-[12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 737.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 737.
+[13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 764.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 764.
 
 ("D:\Dropbox\Uni\Edinburgh\Semester 2\QCP\QCP_SP2015\report\report_QCP2015.aux"
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 737.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 737.
-
-
-Package rerunfilecheck Warning: File `report_QCP2015.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report_QCP2015.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  0567961785854DE30579609B2189CF15;2383.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 737.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 764.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 764.
+Package rerunfilecheck Info: File `report_QCP2015.out' has not changed.
+(rerunfilecheck)             Checksum: 6F09065307BBC88726443E66AD3F7E7D;2462.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 764.
  ) 
 Here is how much of TeX's memory you used:
- 19411 strings out of 493921
- 311061 string characters out of 3147270
- 490247 words of memory out of 3000000
- 22289 multiletter control sequences out of 15000+200000
- 15717 words of font info for 62 fonts, out of 3000000 for 9000
+ 19454 strings out of 493921
+ 311977 string characters out of 3147270
+ 491461 words of memory out of 3000000
+ 22330 multiletter control sequences out of 15000+200000
+ 15095 words of font info for 60 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,28n,46p,10390b,1286s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmbx6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/symbols/msbm7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-urw/courier/ucrr8a.pfb>
-Output written on report_QCP2015.pdf (13 pages, 325267 bytes).
+ts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+msy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on report_QCP2015.pdf (14 pages, 343161 bytes).
 PDF statistics:
- 316 PDF objects out of 1000 (max. 8388607)
- 124 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 500 PDF objects out of 1000 (max. 8388607)
+ 127 named destinations out of 1000 (max. 500000)
+ 307 words of extra memory for PDF output out of 10000 (max. 10000000)
 

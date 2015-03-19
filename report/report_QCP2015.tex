@@ -687,12 +687,32 @@ We notice
 \subsection{Grover's Algorithm}\label{sec:Grover}
 %Plot of Results
 
+
+
+
+\subsubsection{Computational time}
+
+Fig.\,\ref{grover_time_performance} shows the computational time of Grover's algorithm. All the measurements were executed on the same computer by varying the number of qubits $n$ for the three different representations.
+
+We note the following observations:
+\begin{itemize}
+	\item\textbf{Dense representation at a disadvantage}\\
+	One can see that the dense representation is the slowest one since for already $n\geq 10$ first noticeable computation times occur whereas the algorithm using functional and spare representation is still immediately executed. However, when they start to show noticeable computational times, the dense representation already takes a unbearable amount of time.
+	\item\textbf{Spare vs. functional representation}\\
+	Considering computational time the sparse representation is superior to the functional representation. It appears to be roughly a factor 2, but since we don't have data for bigger registers, this quantitative observation is quite vague.
+	\item\textbf{Exponential behaviour}\\
+	All three representations show an exponential behaviour. To illustrate the point we plotted the same data in a log-plot (Fig.\,\ref{grover_time_performance_log}) and got a linear relation.
+\end{itemize}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance.eps}
-	\caption{Computational time of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). }
+	\caption{Computational time of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional).}
 	\label{grover_time_performance}
 \end{figure}
+
+
+
 
 \subsection{Shor's Algorithm}\label{sec:Shor}
 
@@ -719,6 +739,13 @@ We notice
 %-----------------------------------------------------------------------------------------
 %
 \section{Appendix}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance_log.eps}
+	\caption{Computational time (log-scale) of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
+	\label{grover_time_performance_log}
+\end{figure}
 %
 
 \newpage
