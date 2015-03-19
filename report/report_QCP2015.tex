@@ -616,6 +616,22 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 \label{fig:CircuitShor}
 \end{figure}
 
+\begin{figure}[H]
+\begin{align*}
+ \Qcircuit @C=1em @R=.7em {
+  \lstick{\ket{x_n}}     & \qw                             & \ctrl{6}               & \ctrl{5}               & \qw & \cdots & & \ctrl{3}               & \qw & \cdots & & \ctrl{1}         & \gate{H} & \rstick{\ket{y_1}} \qw \\
+  \lstick{\ket{x_{n-1}}} & \multigate{5}{\text{QFT}_{n-1}} & \qw                    & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \gate{R_{\pi/2}} & \qw      & \rstick{\ket{y_2}} \qw \\
+  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+  \lstick{\ket{x_i}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \gate{R_{\pi/2^{n-i}}} & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-i+1}}} \qw \\
+  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+  \lstick{\ket{x_2}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \gate{R_{\pi/2^{n-2}}} & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-1}}} \qw \\
+  \lstick{\ket{x_1}}     & \ghost{\text{QFT}_{n-1}}        & \gate{R_{\pi/2^{n-1}}} & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_n}} \qw
+ }
+\end{align*}
+\caption{Circuit of Quantum Fourier Transforms\citeS{QFT}}
+\label{fig:QFT}
+\end{figure}
+
 \subsection{Building a quantum computer}\label{sec:Building a quantum computer}
 
 % - State some of the practical challenges in building a quantum computer.
@@ -711,10 +727,11 @@ We notice
 %Plot of Results
 \subsubsection{Rotation of the state vector}
 
+
 \begin{figure}[H]
 	\begin{minipage}{0.33\textwidth}
 		\includegraphics[width=\textwidth]{img/pic_0.png}
-		\subcaption{Iteration 1}
+		\subcaption{Iteration 1 (start)}
 	\end{minipage}
 	\begin{minipage}{0.33\textwidth}
 		\includegraphics[width=\textwidth]{img/pic_3.png}
@@ -737,6 +754,7 @@ We notice
 		\subcaption{Iteration 14 (end)}
 	\end{minipage}
 	\caption{Depiction of Grover's Algorithm: The green vector depicts the non-solution vector, the blue vector depicts the vector of the solution. The red vector is the projection of the current state. With every consecutive iteration the state vector rotates towards the solution state.}
+	\label{grover_rotation}
 \end{figure}
 
 \subsubsection{Computational time}
@@ -789,12 +807,25 @@ We note the following observations:
 %
 \section{Appendix}
 
+\subsection{Grover's Algorithm}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance_log.eps}
 	\caption{Computational time (log-scale) of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
 	\label{grover_time_performance_log}
 \end{figure}
+
+\subsection{Details}
+The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig.\,\ref{grover_time_performance_log}) was collected on a:
+
+\begin{quotation}
+	Intel i5 3570@3.4\,GHz\quad\quad 2x4\,GB 1600\,Mhz Ram \quad\quad Windows 7
+\end{quotation}
+
+	
+
+
 %
 
 \newpage

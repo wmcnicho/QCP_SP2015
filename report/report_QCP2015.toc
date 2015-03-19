@@ -23,17 +23,19 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Overview}{9}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Matrix}{9}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}The Computer}{9}{subsubsection.3.3.3}
-\contentsline {paragraph}{Gates}{10}{section*.4}
-\contentsline {subsubsection}{\numberline {3.3.4}Graphics User Interface}{11}{subsubsection.3.3.4}
-\contentsline {subsection}{\numberline {3.4}Program execution}{11}{subsection.3.4}
-\contentsline {section}{\numberline {4}Results}{11}{section.4}
-\contentsline {subsection}{\numberline {4.1}Grover's Algorithm}{11}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Rotation of the state vector}{11}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Computational time}{11}{subsubsection.4.1.2}
-\contentsline {subsection}{\numberline {4.2}Shor's Algorithm}{13}{subsection.4.2}
-\contentsline {section}{\numberline {5}Discussion}{13}{section.5}
-\contentsline {subsection}{\numberline {5.1}Matrix or functional representation}{13}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Improvements and further steps}{13}{subsection.5.2}
-\contentsline {section}{\numberline {6}Conclusion}{13}{section.6}
-\contentsline {section}{\numberline {7}Appendix}{13}{section.7}
-\contentsline {section}{References}{14}{section*.8}
+\contentsline {paragraph}{Gates}{10}{section*.5}
+\contentsline {subsubsection}{\numberline {3.3.4}Graphics User Interface}{12}{subsubsection.3.3.4}
+\contentsline {subsection}{\numberline {3.4}Program execution}{12}{subsection.3.4}
+\contentsline {section}{\numberline {4}Results}{12}{section.4}
+\contentsline {subsection}{\numberline {4.1}Grover's Algorithm}{12}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Rotation of the state vector}{12}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Computational time}{12}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}Shor's Algorithm}{14}{subsection.4.2}
+\contentsline {section}{\numberline {5}Discussion}{14}{section.5}
+\contentsline {subsection}{\numberline {5.1}Matrix or functional representation}{14}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Improvements and further steps}{14}{subsection.5.2}
+\contentsline {section}{\numberline {6}Conclusion}{14}{section.6}
+\contentsline {section}{\numberline {7}Appendix}{14}{section.7}
+\contentsline {subsection}{\numberline {7.1}Grover's Algorithm}{14}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Details}{14}{subsection.7.2}
+\contentsline {section}{References}{15}{section*.9}
