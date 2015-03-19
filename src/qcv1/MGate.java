@@ -24,7 +24,7 @@ public abstract class MGate implements QGate{
 		final int maxNum = numOfStates -1;
 		final int mask = 1 << target;
 		
-		//create the matrix repres
+		//create the matrix
 		gate = MatrixFactory.create(numOfStates, numOfStates, type);
 		
 		//check if there are any control qubits
@@ -39,6 +39,7 @@ public abstract class MGate implements QGate{
 						break;
 					}
 				}
+				//store the result
 				if (allOn){
 					if ((i & mask) == mask){//qubit is 1
 						gate.setElement(i, i, onResult.getElement(1,0));
@@ -67,7 +68,7 @@ public abstract class MGate implements QGate{
 	/**
 	 * Perform the matrix operation of applying the gate onto the register
 	 * 
-	 * @param reg Register of the qubits
+	 * @param reg Register storing the qubits
 	 */
 	public void applyGate(QRegister reg){
 		reg.getAmplitude().multiplyBy(gate);
