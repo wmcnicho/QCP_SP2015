@@ -16,6 +16,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -27,6 +28,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicProgressBarUI;
+import javax.swing.text.NumberFormatter;
 
 import qcv1.*;
 
@@ -127,6 +129,9 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 		                               1);   
 		inputSpinner = new JSpinner(model);
 		inputSpinner.setMaximumSize(new Dimension(50, 50));
+		//the following should prevent non-number input
+		JFormattedTextField txt = ((JSpinner.NumberEditor) inputSpinner.getEditor()).getTextField();
+		((NumberFormatter) txt.getFormatter()).setAllowsInvalid(false);
 		inputUnit = new XLabeledUnit(inputSpinner, "Value:");
 		//inputUnit.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
@@ -168,34 +173,32 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 			else{
 				gateString = "gate";
 			}
-			
-			//determine the simulation type
 			String simulationType = simType.getSelectedItem().toString();
 			String speedUpString ="";//deprecated
 			int [] data = null;
 			int numQubits = 0;
 			
 			switch (simulationType){
-			case "Grover's algorithm":
-				numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
-				int searchValue = (int) inputSpinner.getValue();
-				
-				//get the indices of the solutions
-				ArrayList<Integer> indices = new ArrayList<Integer>();
-				for (Entry<Integer, Integer> entry : oracleMap.entrySet()){
-					if (entry.getValue() == searchValue){
-						indices.add(entry.getKey());
+				case "Grover's algorithm":
+					numQubits = (int) Math.ceil(Math.log10(oracleMap.size())/Math.log10(2));
+					int searchValue = (int) inputSpinner.getValue();
+					
+					//get the indices of the solutions
+					ArrayList<Integer> indices = new ArrayList<Integer>();
+					for (Entry<Integer, Integer> entry : oracleMap.entrySet()){
+						if (entry.getValue() == searchValue){
+							indices.add(entry.getKey());
+						}
 					}
-				}
-				//convert back to a regular array
-				data = new int [indices.size()];
-				for (int i = 0; i < data.length; i++){
-					data[i] = indices.get(i);
-				}
+					//convert back to a regular array
+					data = new int [indices.size()];
+					for (int i = 0; i < data.length; i++){
+						data[i] = indices.get(i);
+					}
 				break;
 				
-			case "Shor's algorithm":
-				data = new int [] {(int) inputSpinner.getValue()};
+				case "Shor's algorithm":
+					data = new int [] {(int) inputSpinner.getValue()};
 			}
 			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, data);
 		}
