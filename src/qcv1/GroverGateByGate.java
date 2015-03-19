@@ -84,6 +84,9 @@ public class GroverGateByGate extends GateByGateCircuit {
 		for (int i = 0; i < numOfQubits; i++){
 			addGate(getGate(1+i));
 		}
+		
+		long usedMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+		System.out.println(usedMemory);
 	}
 	
 	/**
