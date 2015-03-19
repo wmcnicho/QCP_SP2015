@@ -2,54 +2,45 @@ package Gui;
 
 import java.awt.Color;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.AxisSpace;
-import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.VectorRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultValueDataset;
-import org.jfree.data.statistics.HistogramBin;
-import org.jfree.data.statistics.HistogramDataset;
-import org.jfree.data.statistics.SimpleHistogramBin;
-import org.jfree.data.xy.IntervalXYDataset;
 import org.jfree.data.xy.VectorSeries;
 import org.jfree.data.xy.VectorSeriesCollection;
 import org.jfree.data.xy.XYBarDataset;
-import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+/**An tabbed animation area used to display the probability histogram of the simulators states
+ * and the vector rotation of Grover's Algorithm.
+ *
+ * @author William Hunter McNichols
+ */
 public class QAnimationTabbedPane extends JTabbedPane {
 	
 	private XYBarDataset probData;
-	private VectorSeriesCollection vecDataset;
-	
+	private VectorSeriesCollection vecDataset;	
 	private JFreeChart pChart;
 	private JFreeChart vecChart;
-	
 	private ChartPanel probPanel;
+	private boolean is_grover;
 	
-	private boolean enabled;
-	
+	/**Basic setup of the tabbed area. Calls functions to set up the desired animation tabs */
 	public QAnimationTabbedPane(){
 		super();
 		addHist();
 		addCoords();
-		enabled = true;
+		is_grover = true;
 	}
 	
+	/**Sets up the default histogram chart */
 	protected void addHist(){
-		
-		//probData = new XYDataset(probData, 0.9);
 		XYSeries series = new XYSeries("No Data");
         XYSeriesCollection defaultData = new XYSeriesCollection(series);
         probData = new XYBarDataset(defaultData, .95);
@@ -60,18 +51,17 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		this.addTab("Probability Hist", probPanel);
 		
 	}
-	
+	/**Sets up the default vector rotation graph.*/
 	protected void addCoords(){
  
-		VectorSeries greenSeries =new VectorSeries("Non-solution Vector");
+		VectorSeries greenSeries =new VectorSeries("Solution Vector");
 		greenSeries.add(0, 0, 1, 0);
 		
-		VectorSeries blueSeries =new VectorSeries("Solution Vector");
+		VectorSeries blueSeries =new VectorSeries("Non-solution Vector");
 		blueSeries.add(0, 0, 0, 1);
 		
 		VectorSeries redSeries = new VectorSeries("State Vector");
-		//redSeries.add(0, 0, 1, 1);
-	
+
 		vecDataset = new VectorSeriesCollection();	
 		vecDataset.addSeries(greenSeries);
 		vecDataset.addSeries(blueSeries);
@@ -79,7 +69,6 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		
 
 		VectorRenderer r = new VectorRenderer();
-		//r.setBasePaint(Color.white);
 		r.setSeriesPaint(0, Color.green.darker());
 		r.setSeriesPaint(1, Color.blue.darker());
 		r.setSeriesPaint(2, Color.red);
@@ -92,10 +81,14 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		vecChart = new JFreeChart(xyPlot);
 		ChartPanel vecPanel = new ChartPanel(vecChart);
 		
-		this.addTab("Vector graph", vecPanel);
-		
+		this.addTab("Vector graph", vecPanel);		
 	}
-	
+	/**Changes the values of the histogram to reflect the input in regValues. Should be called by the QViewModel
+	 * and not directly.
+	 * N.B. This operation is slow because it re-renders the entire graph and should be called sparingly
+	 * 
+	 *  @param regValues 	The values of the registers indicating the probability of each state
+	 */
 	public void updateHistogram(double[] regValues){
 		int num_bins = regValues.length;
 		XYSeries series = new XYSeries("States Data");
@@ -105,18 +98,23 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		XYSeriesCollection newDataCollection = new XYSeriesCollection(series);
 		probData = new XYBarDataset(newDataCollection, .95);
 		
-		//Probably not the best way to do this, look into other ways
 		pChart = ChartFactory.createXYBarChart("State Probabilites", "Probability before measurement", false
 				, "State # (of 2^n states)", probData, PlotOrientation.VERTICAL, true, true, true);
 		probPanel = new ChartPanel(pChart);
 		this.setComponentAt(0, probPanel);
 	}
-	
+	/**Changes the value of the red vector in the vector rotation animation. Should be called by the QViewModel and
+	 * not directly.
+	 * N.B. This operation is slow because it re-renders the entire graph and should be called sparingly
+	 * 
+	 *@param xval	The new x value of the red vector
+	 *@param yval	The new y value of the red vector
+	 */
 	public void updateVector(double xval, double yval){
-		VectorSeries greenSeries =new VectorSeries("Non-solution Vector");
+		VectorSeries greenSeries =new VectorSeries("Solution Vector");
 		greenSeries.add(0, 0, 1, 0);
 		
-		VectorSeries blueSeries =new VectorSeries("Solution Vector");
+		VectorSeries blueSeries =new VectorSeries("Non-solution Vector");
 		blueSeries.add(0, 0, 0, 1);
 		
 		VectorSeries redSeries = new VectorSeries("State Vector");
@@ -129,7 +127,6 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		
 
 		VectorRenderer r = new VectorRenderer();
-		//r.setBasePaint(Color.white);
 		r.setSeriesPaint(0, Color.green.darker());
 		r.setSeriesPaint(1, Color.blue.darker());
 		r.setSeriesPaint(2, Color.red);
@@ -144,13 +141,18 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		this.setComponentAt(1, vecPanel);
 		
 	}
-
+	/**Called by the QuantumGuiPanel to display/remove the vector rotation tab
+	 * 
+	 *@param b	A boolean indicating whether or not the vector rotation tab should be displayed
+	 */
 	public void showVector(boolean b) {
-		if(b){
+		if(b && !is_grover){
 			addCoords();
+			is_grover = true;
 		}
-		else if(this.getComponentCount() > 1){
+		else if(!b && is_grover){
 			this.remove(1);
+			is_grover = false;
 		}
 	}
 
