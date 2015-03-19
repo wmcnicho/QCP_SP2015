@@ -1,14 +1,58 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: report_QCP2015.aux
 The style file: plaindin.bst
 Database file #1: lit.bib
-I was expecting a `,' or a `}'---line 128 of file lit.bib
+I was expecting a `,' or a `}'---line 138 of file lit.bib
  : 
  : @MastersThesis{Dold,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 135 of file lit.bib
+I was expecting a `,' or a `}'---line 145 of file lit.bib
  : 
  : @MastersThesis{Goltzsche,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 223 of file lit.bib
+ : 
+ : =======
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 224 of file lit.bib
+ : @book{Perry2012
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 234 of file lit.bib
+ : @manual{BasicConceptsQC
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 240 of file lit.bib
+ : @book{Nielsen2010
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 250 of file lit.bib
+ : @manual{ShorsAlgoReal
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 257 of file lit.bib
+ : @misc{GroversAlgo
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 264 of file lit.bib
+ : @misc{ShorsAlgo
+ :                ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 351 of file lit.bib
+ : 
+ : @MastersThesis{Dold,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 358 of file lit.bib
+ : 
+ : @MastersThesis{Goltzsche,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 436 of file lit.bib
+ : 
+ : >>>>>>> 2733d10bedfe49b73f0eaa5dded10e26ee1a9dcd
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in GroversAlgo
@@ -20,4 +64,5 @@ Warning--empty address in BasicConceptsQC
 Warning--empty edition in ShorsAlgoReal
 Warning--empty address in ShorsAlgoReal
 Warning--empty year in ShorsAlgoReal
-(There were 2 error messages)
+Warning--empty year in RSAcrypto
+(There were 12 error messages)

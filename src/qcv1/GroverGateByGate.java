@@ -4,7 +4,8 @@ import Matrix.*;
 import Gui.QViewModel;
 
 /**
- * 
+ * GroverGateByGate
+ * An implementation of quantum search algorithm (Grover's algorithm) 
  * @author Michael
  *
  */
@@ -16,8 +17,7 @@ public class GroverGateByGate extends GateByGateCircuit {
 	private Matrix nonSolutionVector;
 	
 	/**
-	 * GroverGateByGate
-	 * An implementation of quantum search algorithm (Grover's algorithm).
+	 * Create the Grover circuit
 	 * 
 	 * @param rep Representation of the gate (complex matrix, sparse matrix, functional)
 	 * @param num 
