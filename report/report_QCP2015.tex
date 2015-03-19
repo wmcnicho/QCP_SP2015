@@ -382,8 +382,14 @@ The first example for a simple 1-qubit gate is the Not-gate. It simply maps the 
 		1 & 0
 	\end{pmatrix}\\
 	& G^\text{not} \ket{0} = \ket{1}\\
-	& G^\text{not} \ket{1} = \ket{0}
+	& G^\text{not} \ket{1} = \ket{0}\\
+%
 \end{align}
+\begin{align*}
+	\Qcircuit @C=.7em @R=.7em {
+		  \lstick{\ket{b}}    & \gate{G^\text{not}} & \qw & \rstick{\ket{1-b}}
+	}
+\end{align*}
 %
 However, this gate exists in exactly the same form for classical computation.
 
@@ -400,6 +406,11 @@ A common gate in quantum computation is the Hadamard gate. It performs the Hadam
 	G^\text{H} \ket{0} & = \tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\\
 	G^\text{H} \ket{1} & = \tfrac{\ket{0} - \ket{1}}{\sqrt{2}}
 \end{align}
+\begin{align*}
+	\Qcircuit @C=.7em @R=.7em {
+		  \lstick{\ket{b}}    & \gate{G^\text{H}} & \qw & \rstick{\tfrac{1}{\sqrt{2}}\left[(-1)^b \ket{b} + \ket{1-b}\right]}
+	}
+\end{align*}
 %
 The Hadamard gate is a 'real' quantum gate since it is able to set the state to a superposition of basic states.
 
@@ -413,6 +424,7 @@ Note that a combination of Hadamard gates acting on every single qubit in a $n$-
 	&= \tfrac{\ket{0} + \ket{1}}{\sqrt{2}} \otimes ... \otimes \tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\\
 	&= 2^{-\frac{n}{2}} \sum_{k=0}^{N-1} \ket{k}
 \end{align}
+
 %
 
 \subsubsection{Phase gate}
@@ -427,6 +439,11 @@ The Hadamard gate already uses special properties of quantum computation, but al
 	G^\phi \ket{0} & = \ket{0}\\
 	G^\phi \ket{1} & = e^{i\phi} \ket{1}
 \end{align}
+\begin{align*}
+	\Qcircuit @C=.7em @R=.7em {
+		  \lstick{\ket{b}}    & \gate{G^\phi} & \qw & \rstick{e^{i b \phi}\ket{b}}
+	}
+\end{align*}
 %
 
 \subsubsection{Extension to bigger registers}
@@ -460,6 +477,12 @@ As roughly mentioned before, any single qubit gate can by applied to the $k$-th 
 	\end{pmatrix}
 \end{align}
 %
+%\begin{align*}
+%	\Qcircuit @C=.7em @R=.7em {
+%		  \lstick{\ket{b_0}}    & \gate{G_0} & \qw & \rstick{\ket{b_0}}\\
+%		  \lstick{\ket{b_1}}    & \gate{G_1} & \qw & \rstick{\ket{b_1}}
+%	}
+%\end{align*}
 %
 The general expression for $n$-qubit systems is analogous:
 %
@@ -686,9 +709,35 @@ We notice
 
 \subsection{Grover's Algorithm}\label{sec:Grover}
 %Plot of Results
+\subsubsection{Rotation of the state vector}
 
-
-
+\begin{figure}[H]
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_0.png}
+		\subcaption{Iteration 1}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_3.png}
+		\subcaption{Iteration 4}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_6.png}
+		\subcaption{Iteration 7}
+	\end{minipage}\\
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_9.png}
+		\subcaption{Iteration 10}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_12.png}
+		\subcaption{Iteration 13}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_13.png}
+		\subcaption{Iteration 14 (end)}
+	\end{minipage}
+	\caption{Depiction of Grover's Algorithm: The green vector depicts the non-solution vector, the blue vector depicts the vector of the solution. The red vector is the projection of the current state. With every consecutive iteration the state vector rotates towards the solution state.}
+\end{figure}
 
 \subsubsection{Computational time}
 
