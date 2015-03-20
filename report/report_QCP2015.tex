@@ -382,8 +382,14 @@ The first example for a simple 1-qubit gate is the Not-gate. It simply maps the 
 		1 & 0
 	\end{pmatrix}\\
 	& G^\text{not} \ket{0} = \ket{1}\\
-	& G^\text{not} \ket{1} = \ket{0}
+	& G^\text{not} \ket{1} = \ket{0}\\
+%
 \end{align}
+\begin{align*}
+	\Qcircuit @C=.7em @R=.7em {
+		  \lstick{\ket{b}}    & \gate{G^\text{not}} & \qw & \rstick{\ket{1-b}}
+	}
+\end{align*}
 %
 However, this gate exists in exactly the same form for classical computation.
 
@@ -400,6 +406,11 @@ A common gate in quantum computation is the Hadamard gate. It performs the Hadam
 	G^\text{H} \ket{0} & = \tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\\
 	G^\text{H} \ket{1} & = \tfrac{\ket{0} - \ket{1}}{\sqrt{2}}
 \end{align}
+\begin{align*}
+	\Qcircuit @C=.7em @R=.7em {
+		  \lstick{\ket{b}}    & \gate{G^\text{H}} & \qw & \rstick{\tfrac{1}{\sqrt{2}}\left[(-1)^b \ket{b} + \ket{1-b}\right]}
+	}
+\end{align*}
 %
 The Hadamard gate is a 'real' quantum gate since it is able to set the state to a superposition of basic states.
 
@@ -413,6 +424,7 @@ Note that a combination of Hadamard gates acting on every single qubit in a $n$-
 	&= \tfrac{\ket{0} + \ket{1}}{\sqrt{2}} \otimes ... \otimes \tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\\
 	&= 2^{-\frac{n}{2}} \sum_{k=0}^{N-1} \ket{k}
 \end{align}
+
 %
 
 \subsubsection{Phase gate}
@@ -427,6 +439,11 @@ The Hadamard gate already uses special properties of quantum computation, but al
 	G^\phi \ket{0} & = \ket{0}\\
 	G^\phi \ket{1} & = e^{i\phi} \ket{1}
 \end{align}
+\begin{align*}
+	\Qcircuit @C=.7em @R=.7em {
+		  \lstick{\ket{b}}    & \gate{G^\phi} & \qw & \rstick{e^{i b \phi}\ket{b}}
+	}
+\end{align*}
 %
 
 \subsubsection{Extension to bigger registers}
@@ -460,6 +477,12 @@ As roughly mentioned before, any single qubit gate can by applied to the $k$-th 
 	\end{pmatrix}
 \end{align}
 %
+%\begin{align*}
+%	\Qcircuit @C=.7em @R=.7em {
+%		  \lstick{\ket{b_0}}    & \gate{G_0} & \qw & \rstick{\ket{b_0}}\\
+%		  \lstick{\ket{b_1}}    & \gate{G_1} & \qw & \rstick{\ket{b_1}}
+%	}
+%\end{align*}
 %
 The general expression for $n$-qubit systems is analogous:
 %
@@ -593,6 +616,22 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 \label{fig:CircuitShor}
 \end{figure}
 
+\begin{figure}[H]
+\begin{align*}
+ \Qcircuit @C=1em @R=.7em {
+  \lstick{\ket{x_n}}     & \qw                             & \ctrl{6}               & \ctrl{5}               & \qw & \cdots & & \ctrl{3}               & \qw & \cdots & & \ctrl{1}         & \gate{H} & \rstick{\ket{y_1}} \qw \\
+  \lstick{\ket{x_{n-1}}} & \multigate{5}{\text{QFT}_{n-1}} & \qw                    & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \gate{R_{\pi/2}} & \qw      & \rstick{\ket{y_2}} \qw \\
+  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+  \lstick{\ket{x_i}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \gate{R_{\pi/2^{n-i}}} & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-i+1}}} \qw \\
+  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+  \lstick{\ket{x_2}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \gate{R_{\pi/2^{n-2}}} & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-1}}} \qw \\
+  \lstick{\ket{x_1}}     & \ghost{\text{QFT}_{n-1}}        & \gate{R_{\pi/2^{n-1}}} & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_n}} \qw
+ }
+\end{align*}
+\caption{Circuit of Quantum Fourier Transforms\citeS{QFT}}
+\label{fig:QFT}
+\end{figure}
+
 \subsection{Building a quantum computer}\label{sec:Building a quantum computer}
 
 % - State some of the practical challenges in building a quantum computer.
@@ -686,13 +725,61 @@ We notice
 
 \subsection{Grover's Algorithm}\label{sec:Grover}
 %Plot of Results
+\subsubsection{Rotation of the state vector}
+
+
+\begin{figure}[H]
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_0.png}
+		\subcaption{Iteration 1 (start)}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_3.png}
+		\subcaption{Iteration 4}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_6.png}
+		\subcaption{Iteration 7}
+	\end{minipage}\\
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_9.png}
+		\subcaption{Iteration 10}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_12.png}
+		\subcaption{Iteration 13}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_13.png}
+		\subcaption{Iteration 14 (end)}
+	\end{minipage}
+	\caption{Depiction of Grover's Algorithm: The green vector depicts the non-solution vector, the blue vector depicts the vector of the solution. The red vector is the projection of the current state. With every consecutive iteration the state vector rotates towards the solution state.}
+	\label{grover_rotation}
+\end{figure}
+
+\subsubsection{Computational time}
+
+Fig.\,\ref{grover_time_performance} shows the computational time of Grover's algorithm. All the measurements were executed on the same computer by varying the number of qubits $n$ for the three different representations.
+
+We note the following observations:
+\begin{itemize}
+	\item\textbf{Dense representation at a disadvantage}\\
+	One can see that the dense representation is the slowest one since for already $n\geq 10$ first noticeable computation times occur whereas the algorithm using functional and spare representation is still immediately executed. However, when they start to show noticeable computational times, the dense representation already takes a unbearable amount of time.
+	\item\textbf{Spare vs. functional representation}\\
+	Considering computational time the sparse representation is superior to the functional representation. It appears to be roughly a factor 2, but since we don't have data for bigger registers, this quantitative observation is quite vague.
+	\item\textbf{Exponential behaviour}\\
+	All three representations show an exponential behaviour. To illustrate the point we plotted the same data in a log-plot (Fig.\,\ref{grover_time_performance_log}) and got a linear relation.
+\end{itemize}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance.eps}
-	\caption{Computational time of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). }
+	\caption{Computational time of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional).}
 	\label{grover_time_performance}
 \end{figure}
+
+
+
 
 \subsection{Shor's Algorithm}\label{sec:Shor}
 
@@ -719,6 +806,26 @@ We notice
 %-----------------------------------------------------------------------------------------
 %
 \section{Appendix}
+
+\subsection{Grover's Algorithm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance_log.eps}
+	\caption{Computational time (log-scale) of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
+	\label{grover_time_performance_log}
+\end{figure}
+
+\subsection{Details}
+The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig.\,\ref{grover_time_performance_log}) was collected on a:
+
+\begin{quotation}
+	Intel i5 3570@3.4\,GHz\quad\quad 2x4\,GB 1600\,Mhz Ram \quad\quad Windows 7
+\end{quotation}
+
+	
+
+
 %
 
 \newpage
