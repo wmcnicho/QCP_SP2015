@@ -1,5 +1,5 @@
 package qcv1;
-import Matrix.*;
+import Matrix.Matrix;
 
 public interface QRegister {
 	public int numOfQubit();
