@@ -44,7 +44,7 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		XYSeries series = new XYSeries("No Data");
         XYSeriesCollection defaultData = new XYSeriesCollection(series);
         probData = new XYBarDataset(defaultData, .95);
-		pChart = ChartFactory.createXYBarChart("State histogram", "Probability before measurement", false, "State # (of 2^n states)", probData, PlotOrientation.VERTICAL
+		pChart = ChartFactory.createXYBarChart("State histogram", "State # (of 2^n states)", false, "Probability before measurement", probData, PlotOrientation.VERTICAL
 				,true, true, true);
 		
 		ChartPanel probPanel = new ChartPanel(pChart);
@@ -54,24 +54,24 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	/**Sets up the default vector rotation graph.*/
 	protected void addCoords(){
  
-		VectorSeries greenSeries =new VectorSeries("Solution Vector");
+		VectorSeries greenSeries =new VectorSeries("Non-solution Vector");
 		greenSeries.add(0, 0, 1, 0);
 		
-		VectorSeries blueSeries =new VectorSeries("Non-solution Vector");
+		VectorSeries blueSeries =new VectorSeries("Solution Vector");
 		blueSeries.add(0, 0, 0, 1);
 		
 		VectorSeries redSeries = new VectorSeries("State Vector");
 
-		vecDataset = new VectorSeriesCollection();	
+		vecDataset = new VectorSeriesCollection();
+		vecDataset.addSeries(redSeries);
 		vecDataset.addSeries(greenSeries);
 		vecDataset.addSeries(blueSeries);
-		vecDataset.addSeries(redSeries);
 		
 
 		VectorRenderer r = new VectorRenderer();
-		r.setSeriesPaint(0, Color.green.darker());
-		r.setSeriesPaint(1, Color.blue.darker());
-		r.setSeriesPaint(2, Color.red);
+		r.setSeriesPaint(0, Color.red);
+		r.setSeriesPaint(1, Color.green.darker());
+		r.setSeriesPaint(2, Color.blue.darker());
 		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
 		NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
         domain.setRange(-1.5, 1.5);
@@ -97,9 +97,9 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		}
 		XYSeriesCollection newDataCollection = new XYSeriesCollection(series);
 		probData = new XYBarDataset(newDataCollection, .95);
-		
-		pChart = ChartFactory.createXYBarChart("State Probabilites", "Probability before measurement", false
-				, "State # (of 2^n states)", probData, PlotOrientation.VERTICAL, true, true, true);
+	
+		pChart = ChartFactory.createXYBarChart("State Probabilites", "State # (of 2^n states)", false
+				, "Probability before measurement", probData, PlotOrientation.VERTICAL, true, true, true);
 		probPanel = new ChartPanel(pChart);
 		this.setComponentAt(0, probPanel);
 	}
@@ -111,25 +111,25 @@ public class QAnimationTabbedPane extends JTabbedPane {
 	 *@param yval	The new y value of the red vector
 	 */
 	public void updateVector(double xval, double yval){
-		VectorSeries greenSeries =new VectorSeries("Solution Vector");
+		VectorSeries greenSeries =new VectorSeries("Non-solution Vector");
 		greenSeries.add(0, 0, 1, 0);
 		
-		VectorSeries blueSeries =new VectorSeries("Non-solution Vector");
+		VectorSeries blueSeries =new VectorSeries("Solution Vector");
 		blueSeries.add(0, 0, 0, 1);
 		
 		VectorSeries redSeries = new VectorSeries("State Vector");
 		redSeries.add(0, 0, xval, yval);
 	
-		vecDataset = new VectorSeriesCollection();	
+		vecDataset = new VectorSeriesCollection();
+		vecDataset.addSeries(redSeries);
 		vecDataset.addSeries(greenSeries);
 		vecDataset.addSeries(blueSeries);
-		vecDataset.addSeries(redSeries);
 		
 
 		VectorRenderer r = new VectorRenderer();
-		r.setSeriesPaint(0, Color.green.darker());
-		r.setSeriesPaint(1, Color.blue.darker());
-		r.setSeriesPaint(2, Color.red);
+		r.setSeriesPaint(0, Color.red);
+		r.setSeriesPaint(1, Color.green.darker());
+		r.setSeriesPaint(2, Color.blue.darker());
 		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
 		NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
         domain.setRange(-1.5, 1.5);
