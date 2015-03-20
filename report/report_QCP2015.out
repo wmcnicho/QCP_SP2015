@@ -5,36 +5,37 @@
 \BOOKMARK [2][-]{subsection.2.1}{Qubits}{section.2}% 5
 \BOOKMARK [3][-]{subsubsection.2.1.1}{Generalised bits}{subsection.2.1}% 6
 \BOOKMARK [3][-]{subsubsection.2.1.2}{Measurement}{subsection.2.1}% 7
-\BOOKMARK [2][-]{subsection.2.2}{Quantum register}{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.3}{Quantum gates}{section.2}% 9
-\BOOKMARK [3][-]{subsubsection.2.3.1}{Not gate}{subsection.2.3}% 10
-\BOOKMARK [3][-]{subsubsection.2.3.2}{Hadamard gate}{subsection.2.3}% 11
-\BOOKMARK [3][-]{subsubsection.2.3.3}{Phase gate}{subsection.2.3}% 12
-\BOOKMARK [3][-]{subsubsection.2.3.4}{Extension to bigger registers}{subsection.2.3}% 13
-\BOOKMARK [3][-]{subsubsection.2.3.5}{Gate representations}{subsection.2.3}% 14
-\BOOKMARK [2][-]{subsection.2.4}{Quantum algorithms}{section.2}% 15
-\BOOKMARK [3][-]{subsubsection.2.4.1}{Grover's Algorithm}{subsection.2.4}% 16
-\BOOKMARK [3][-]{subsubsection.2.4.2}{Shor's Algorithm}{subsection.2.4}% 17
-\BOOKMARK [2][-]{subsection.2.5}{Building a quantum computer}{section.2}% 18
-\BOOKMARK [1][-]{section.3}{Implementation}{}% 19
-\BOOKMARK [2][-]{subsection.3.1}{Project organisation}{section.3}% 20
-\BOOKMARK [2][-]{subsection.3.2}{Development environment}{section.3}% 21
-\BOOKMARK [2][-]{subsection.3.3}{Program structure}{section.3}% 22
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Overview}{subsection.3.3}% 23
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Matrix}{subsection.3.3}% 24
-\BOOKMARK [3][-]{subsubsection.3.3.3}{The Computer}{subsection.3.3}% 25
-\BOOKMARK [3][-]{subsubsection.3.3.4}{Graphics User Interface}{subsection.3.3}% 26
-\BOOKMARK [2][-]{subsection.3.4}{Program execution}{section.3}% 27
-\BOOKMARK [1][-]{section.4}{Results}{}% 28
-\BOOKMARK [2][-]{subsection.4.1}{Grover's Algorithm}{section.4}% 29
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Rotation of the state vector}{subsection.4.1}% 30
-\BOOKMARK [3][-]{subsubsection.4.1.2}{Computational time}{subsection.4.1}% 31
-\BOOKMARK [2][-]{subsection.4.2}{Shor's Algorithm}{section.4}% 32
-\BOOKMARK [1][-]{section.5}{Discussion}{}% 33
-\BOOKMARK [2][-]{subsection.5.1}{Matrix or functional representation}{section.5}% 34
-\BOOKMARK [2][-]{subsection.5.2}{Improvements and further steps}{section.5}% 35
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 36
-\BOOKMARK [1][-]{section.7}{Appendix}{}% 37
-\BOOKMARK [2][-]{subsection.7.1}{Grover's Algorithm}{section.7}% 38
-\BOOKMARK [2][-]{subsection.7.2}{Details}{section.7}% 39
-\BOOKMARK [1][-]{section*.9}{References}{}% 40
+\BOOKMARK [2][-]{subsection.2.2}{Quantum Register}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Quantum Gates}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.3.1}{NOT Gate}{subsection.2.3}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Hadamard Gate}{subsection.2.3}% 11
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Phase Gate}{subsection.2.3}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.4}{Control Gates}{subsection.2.3}% 13
+\BOOKMARK [3][-]{subsubsection.2.3.5}{Extension to bigger registers}{subsection.2.3}% 14
+\BOOKMARK [3][-]{subsubsection.2.3.6}{Gate representations}{subsection.2.3}% 15
+\BOOKMARK [2][-]{subsection.2.4}{Quantum algorithms}{section.2}% 16
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Grover's Algorithm}{subsection.2.4}% 17
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Shor's Algorithm}{subsection.2.4}% 18
+\BOOKMARK [2][-]{subsection.2.5}{Building a quantum computer}{section.2}% 19
+\BOOKMARK [1][-]{section.3}{Implementation}{}% 20
+\BOOKMARK [2][-]{subsection.3.1}{Project organisation}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.2}{Development environment}{section.3}% 22
+\BOOKMARK [2][-]{subsection.3.3}{Programme structure}{section.3}% 23
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Overview}{subsection.3.3}% 24
+\BOOKMARK [3][-]{subsubsection.3.3.2}{The Computer}{subsection.3.3}% 25
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Matrix}{subsection.3.3}% 26
+\BOOKMARK [3][-]{subsubsection.3.3.4}{Graphics User Interface}{subsection.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.4}{Program execution}{section.3}% 28
+\BOOKMARK [1][-]{section.4}{Results}{}% 29
+\BOOKMARK [2][-]{subsection.4.1}{Grover's Algorithm}{section.4}% 30
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Rotation of the state vector}{subsection.4.1}% 31
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Computational time}{subsection.4.1}% 32
+\BOOKMARK [2][-]{subsection.4.2}{Shor's Algorithm}{section.4}% 33
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 34
+\BOOKMARK [2][-]{subsection.5.1}{Matrix or functional representation}{section.5}% 35
+\BOOKMARK [2][-]{subsection.5.2}{Improvements and further steps}{section.5}% 36
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 37
+\BOOKMARK [1][-]{section.7}{Appendix}{}% 38
+\BOOKMARK [2][-]{subsection.7.1}{Grover's Algorithm}{section.7}% 39
+\BOOKMARK [2][-]{subsection.7.2}{Details}{section.7}% 40
+\BOOKMARK [1][-]{section*.9}{References}{}% 41
