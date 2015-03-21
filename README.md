@@ -11,8 +11,7 @@ From jar.: Simply open the provided jar file
 
 ##  Grover's Algorithm
 
-In order to start a Grover's simulation, import a txt file with comma separated numbers (i.e. 3,14,157,9,...) and a enter value to search for.
-Test data is provided in the 'tests/' directory.
+In order to start a Grover's simulation, import a txt file (via File->Open File) with comma separated numbers (i.e. 3,14,157,9,...) and a enter value to search for. Test data is provided in the 'tests/' directory.
 
 ##  Shor's Algorithm
 

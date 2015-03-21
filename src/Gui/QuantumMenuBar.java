@@ -76,7 +76,7 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 	+ "<li> Press the start button</li>"
 	+ "</ul>"
 	+" 	<h2> Grover's Algorithm</h2>"
-	+"<p>In order to start a Grover's simulation, import a txt file with comma separated numbers (i.e. 3,14,157,9,...)"
+	+"<p>In order to start a Grover's simulation, import a txt file (via File->Open File) with comma separated numbers (i.e. 3,14,157,9,...)"
 	+ " and a enter value to search for. Test data is provided in the 'tests/' directory.</p>"
 	+"<h2> Shor's Algorithm</h2>"
 	+"<p>To use Shor's input an integer between 2 to 1023 and it will be factorized.</p>"
