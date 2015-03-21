@@ -66,8 +66,8 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 			helpFrame.add(new JLabel("<html><body> <h1> Basic Usage </h1> <p> Use the drop down"
 					+ "menu to the left to choose between running Shor's or Grover's algorithm. "
 					+ "In order to start a Grover's simulation, import a txt file with comma separated numbers"
-					+ "(i.e. 3,14,157,9,...) and a enter value to search for. To use Shor's choose a number between ?"
-					+ "from ? to ? and it will be factorized</p> </body></html>"), BorderLayout.CENTER);
+					+ "(i.e. 3,14,157,9,...) and a enter value to search for. To use Shor's choose an integer "
+					+ "between 2 to 1023 and it will be factorized.</p> </body></html>"), BorderLayout.CENTER);
 			helpFrame.setVisible(true);
 			helpFrame.setLocationRelativeTo(null);
 		}

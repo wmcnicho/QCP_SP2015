@@ -200,10 +200,19 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 					for (int i = 0; i < data.length; i++){
 						data[i] = indices.get(i);
 					}
+					if(data.length == 0){
+						console.append("Value not in list. Canceling Grover's simulation");
+						return;
+					}
 				break;
 				
 				case "Shor's algorithm":
+					if((int) inputSpinner.getValue() > 1023 ||(int) inputSpinner.getValue() < 2){
+						console.append("Invlaid Shor's input. See 'Help' for more info on running simulations.");
+						return;
+					}
 					data = new int [] {(int) inputSpinner.getValue()};
+				break;
 			}
 			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, data);
 		}
