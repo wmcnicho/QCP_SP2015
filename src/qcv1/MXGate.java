@@ -4,13 +4,13 @@ import Matrix.Matrix;
 import Matrix.MatrixFactory;
 
 /**
- * Matrix representation of the Pauli-X gate
- * @author Michael
+ * Matrix representation of the Pauli-X gate (NOT gate)
+ * @author Michael Chiang
  *
  */
 public class MXGate extends MGate{
 	/**
-	 * Construct a Pauli-X gate in matrix representation
+	 * Construct a Pauli-X gate (NOT gate) in matrix representation
 	 * @param matrixType Type of matrix (e.g. complex (dense), sparse, sparse gate)
 	 * @param controlQbits Array of the positions of the controlled qubits
 	 * @param targetQbit The position of the qubit that the gate is applied on
@@ -31,7 +31,7 @@ public class MXGate extends MGate{
 		onResult.setElement(1, 0, 0.0, 0.0);
 		
 		//call MGate to create the matrix representing this gate
-		initSingleTargetGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
+		initGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
 	}
 	
 	/**

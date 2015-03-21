@@ -76,7 +76,7 @@ public class ShorsAlgorithm {
 		for (int i = 0; i < indices.length; i++){
 			reg.setAmplitude(indices[i], amps, 0);
 		}
-		BackwardQFTCircuit bqft = new BackwardQFTCircuit(gateRep, reg.numOfQubit());
+		BackwardQFTCircuit bqft = new BackwardQFTCircuit(gateRep, reg.numOfQubit(), true);
 		bqft.applyCircuit(reg);
 		int result = reg.measure();
 		ContinuedFraction conFrac = new ContinuedFraction(result, reg.numOfStates());

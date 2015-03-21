@@ -1,28 +1,47 @@
 package qcv1;
 
+/**
+ * A factory for generating single qubit gates with the implemented representations
+ * @author Michael Chiang
+ *
+ */
 public abstract class GateFactory {
-	public static QGate create(GateType type, String rep, int [] controls, int target, int numOfStates){
+	/**
+	 * Create a single qubit gate
+	 * @param type Type of gate (X, Y, Z, H, S, T)
+	 * @param rep Gate representation (normal, gate, functional)
+	 * @param controls Array of the positions of the control qubits
+	 * @param target The position of the qubit that the gate is applied on
+	 * @param numOfStates Number of basis states in the register
+	 * @return A single qubit gate
+	 */
+	public static QGate create(String type, String rep, int [] controls, int target, int numOfStates){
 		switch (type){
-		case X:
+		case "X":
 			return createXGate(rep,controls,target,numOfStates);
-		case Y:
+		case "Y":
 			return createYGate(rep,controls,target,numOfStates);
-		case Z:
+		case "Z":
 			return createZGate(rep,controls,target,numOfStates);
-		case H:
+		case "H":
 			return createHGate(rep,controls,target,numOfStates);
-		case S:
+		case "S":
 			return createSGate(rep,controls,target,numOfStates);
-		case T:
+		case "T":
 			return createTGate(rep,controls,target,numOfStates);
-		case NOT:
-			return createNOTGate(rep,controls,target,numOfStates);
 		default:
 			return null;
 		}
 	}
 	
-	//Hadamard gate factory
+	/**
+	 * Create the Hadamard gate
+	 * @param rep Gate representation (normal, gate, functional)
+	 * @param controls Array of the positions of the control qubits
+	 * @param target The position of the qubit that the gate is applied on
+	 * @param numOfStates Number of basis states in the register
+	 * @return A Hadamard gate
+	 */
 	public static QGate createHGate(String rep, int [] controls, int target, int numOfStates){
 		switch (rep){
 		case "sparse":
@@ -35,22 +54,15 @@ public abstract class GateFactory {
 			return new MHGate("complex", controls, target, numOfStates);
 		}
 	}
-	
-	//NOT gate factory
-	public static QGate createNOTGate(String rep, int [] controls, int target, int numOfStates){
-		switch (rep){
-		case "sparse":
-			return new MNOTGate(rep, controls, target, numOfStates);
-		case "functional":
-			return new FNOTGate(controls, target);
-		case "gate":
-			return new MNOTGate(rep, controls, target, numOfStates);
-		default:
-			return new MNOTGate("complex", controls, target, numOfStates);
-		}
-	}
-	
-	//Pauli-X gate factory
+
+	/**
+	 * Create the Pauli-X gate (NOT gate)
+	 * @param rep Gate representation (normal, gate, functional)
+	 * @param controls Array of the positions of the control qubits
+	 * @param target The position of the qubit that the gate is applied on
+	 * @param numOfStates Number of basis states in the register
+	 * @return A Pauli-X gate (NOT gate)
+	 */
 	public static QGate createXGate(String rep, int [] controls, int target, int numOfStates){
 		switch (rep){
 		case "sparse":
@@ -64,7 +76,14 @@ public abstract class GateFactory {
 		}
 	}
 	
-	//Pauli-Y gate factory
+	/**
+	 * Create the Pauli-Y gate
+	 * @param rep Gate representation (normal, gate, functional)
+	 * @param controls Array of the positions of the control qubits
+	 * @param target The position of the qubit that the gate is applied on
+	 * @param numOfStates Number of basis states in the register
+	 * @return A Pauli-Y gate
+	 */
 	public static QGate createYGate(String rep, int [] controls, int target, int numOfStates){
 		switch (rep){
 		case "sparse":
@@ -78,7 +97,14 @@ public abstract class GateFactory {
 		}
 	}
 	
-	//Pauli-Z gate factory
+	/**
+	 * Create the Pauli-Z gate
+	 * @param rep Gate representation (normal, gate, functional)
+	 * @param controls Array of the positions of the control qubits
+	 * @param target The position of the qubit that the gate is applied on
+	 * @param numOfStates Number of basis states in the register
+	 * @return A Pauli-Z gate
+	 */
 	public static QGate createZGate(String rep, int [] controls, int target, int numOfStates){
 		switch (rep){
 		case "sparse":
@@ -92,7 +118,14 @@ public abstract class GateFactory {
 		}
 	}
 	
-	//Phase gate factory
+	/**
+	 * Create the phase gate (S gate)
+	 * @param rep Gate representation (normal, gate, functional)
+	 * @param controls Array of the positions of the control qubits
+	 * @param target The position of the qubit that the gate is applied on
+	 * @param numOfStates Number of basis states in the register
+	 * @return The phase gate (S gate)
+	 */
 	public static QGate createSGate(String rep, int [] controls, int target, int numOfStates){
 		switch (rep){
 		case "sparse":
@@ -106,7 +139,14 @@ public abstract class GateFactory {
 		}
 	}
 	
-	//pi/8 gate factory
+	/**
+	 * Create the pi/8 gate (T gate)
+	 * @param rep Gate representation (normal, gate, functional)
+	 * @param controls Array of the positions of the control qubits
+	 * @param target The position of the qubit that the gate is applied on
+	 * @param numOfStates Number of basis states in the register
+	 * @return The pi/8 gate (T gate)
+	 */
 	public static QGate createTGate(String rep, int [] controls, int target, int numOfStates){
 		switch (rep){
 		case "sparse":
@@ -120,7 +160,15 @@ public abstract class GateFactory {
 		}
 	}
 	
-	//arbitrary phase gate
+	/**
+	 * Create an arbitrary phase shift gate
+	 * @param rep Gate representation (normal, gate, functional)
+	 * @param controls Array of the positions of the control qubits
+	 * @param target The position of the qubit that the gate is applied on
+	 * @param numOfStates Number of basis states in the register
+	 * @param phase Phase shift of the gate
+	 * @return A phase shift gate with the desired phase
+	 */
 	public static QGate createPhaseGate(String rep, int [] controls, int target, 
 			int numOfStates, double phase){
 		switch (rep){

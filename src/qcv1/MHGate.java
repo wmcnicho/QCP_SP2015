@@ -5,7 +5,7 @@ import Matrix.MatrixFactory;
 
 /**
  * Matrix representation of the Hadamard gate
- * @author Michael
+ * @author Michael Chiang
  *
  */
 public class MHGate extends MGate{
@@ -32,7 +32,7 @@ public class MHGate extends MGate{
 		onResult.setElement(1, 0, -factor, 0.0);
 		
 		//call MGate to create the matrix representing this gate
-		initSingleTargetGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
+		initGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
 	}
 	
 	/**

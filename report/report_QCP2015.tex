@@ -452,7 +452,7 @@ The Hadamard gate already uses special properties of quantum computation, but al
 
 
 \subsubsection{Extension to bigger registers}
-As roughly mentioned before, any single qubit gate can by applied to the $k$-th qubit of a $n$-qubit register. Consider for example an arbitrary gate $G_1$ in a 2-qubit system. The resulting matrix $G_\text{tot}$ is:
+As roughly mentioned before, any single qubit gate can by applied to the $k$th qubit of a $n$-qubit register. A major challenge in creating the gates is how to construct a matrix representation of a single qubit gate is when it is applied to a register with multiple qubits. Mathematically, this involves taking the tensor product of the linear operation of the gate on the desired target qubit with the identity operation on others. Consider for example an arbitrary gate $G_1$ in a 2-qubit system. The resulting matrix $G_\text{tot}$ is:
 %
 \begin{align}
 	G_\text{tot} 
@@ -505,11 +505,9 @@ The general expression for $n$-qubit systems is analogous:
 \end{align}
 %
 
-A major challenge in creating the gates is how to construct the matrix or functional representation of a single qubit gate is when it is applied to a register with multiple qubits. Mathematically, this involves taking the tensor product of the linear operation of the gate on the desired target qubit with the identity operation on others, which is mentioned briefly in section 2. 
+Instead of carry out this tensor product explicitly, which is likely to be computationally expensive and inefficient, we notice the linear operation serves as an active transformation of the state vector. From linear algebra, we know the columns within the matrix that describes such transformation are the basis vectors of the transformed basis (or new basis) expressed in terms of the old basis. Therefore, we can construct the matrix for this transformation easily if we know how each basis state in the new basis is described by the old basis. 
 
-Instead of carry out this tensor product explicitly, which is likely to be computationally expensive and inefficient, we notice the linear operation serves as an active transformation of the state vector. From linear algebra, we know the columns within the matrix that describes such transformation are the transformed basis vectors (the new basis) expressed in terms of the old basis. Therefore, we can construct the matrix for this transformation easily if we know how each basis state in the new basis is described by the old basis. 
-
-This turns out to be a simple task to do on the computer using bit-wise operations, provided that we know how the gate behaves when it is acted upon a single qubit. Consider a $n$ qubit system and we wish to apply an arbitrary gate $G$ on the $k$th qubit. Suppose $G$ has the following effect on the states $\ket{0}$ and $\ket{1}$ of a single qubit:
+This turns out to be a simple task to do on the computer using bit-wise operations, provided that we know how the gate operates on a single qubit. Consider a $n$ qubit system and we wish to apply an arbitrary gate $G$ on the $k$th qubit. Suppose $G$ has the following effect on the states $\ket{0}$ and $\ket{1}$ of a single qubit:
 \begin{align}
 	G\ket{0} &= \alpha_0 \ket{0} + \beta_0 \ket{1}\\
 	G\ket{1} &= \alpha_1 \ket{0} + \beta_1 \ket{1}
@@ -529,12 +527,15 @@ where we used the fact that $G$ only operates on the $k$th qubit. Using equation
 	\ket{x}' &= \ket{x_{x-1}} \otimes \ket{x_{n-2}} \otimes \dotsm \otimes \left(\alpha(x_k)\ket{0} + \beta(x_k)\ket{1} \right)  \otimes \dotsm \otimes \ket{x_0}\\
 	&= \alpha(x_k)\ket{x_{n-1}x_{n-2}\dotsm 0 \dotsm x_0} + \beta(x_k)\ket{x_{n-1}x_{n-2}\dotsm 1 \dotsm x_0}
 \end{align}
-Let $G(i,j) \equiv G_{ij}$ and recall that $G_{ij} = \bra{i} G \ket{j}$, we therefore know that the elements of the matrix representing $G$ are:
+This means that there would only be two elements in each column within the matrix $G$. Let $G(i,j) \equiv G_{ij}$ and since $G_{ij} = \bra{i} G \ket{j}$, we therefore know that the two elements in each column of $G$ are:
 \begin{align}
 	G(x_{n-1}x_{n-2}\dotsm0\dotsm x_0,\;x_{n-1}x_{n-2}\dotsm x_k\dotsm x_0) &= \alpha(x_k)\\
 	G(x_{n-1}x_{n-2}\dotsm1\dotsm x_0,\;x_{n-1}x_{n-2}\dotsm x_k\dotsm x_0) &= \beta(x_k)
 \end{align}
-We notice
+Hence, we can find all the elements of the matrix by iterating over all columns
+We notice the element depends on the $x_k$, or whether the $k$th qubit is $0$ or $1$. This can be checked using the binary AND operation between the state $x$ and $2^{k-1}$. 
+
+In addition, this derivation can be generalised when there are control qubits associated with the gate. Since the control
 
 \subsubsection{Gate representations}
 The resulting matrix $G_\text{tot}$ is in general a $N \times N$-matrix with two and only two non-zero entries in every row and column. That means that only $2\cdot 2^n$ of $2^{n^2}$ entries are non-zero. The ratio is $2^{1-n}$ which rapidly goes towards zero for big $n$. Thus, most entries of the gate matrices will be zero.
@@ -698,18 +699,16 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 \subsubsection{Overview}
 %QProcess
 % •	OO Design (include our design diagrams)
-The design of the actual quantum computer simulator requires a careful consideration, as it is the backbone for running various quantum algorithms. An effective, well-structured design allows one to implement any algorithm at ease and compare the performance of the programme under different representations. Our group has identified some key specifications for the design of the computer:
+The design of the quantum computer simulator requires a careful consideration as it is the backbone for running various quantum algorithms. An effective, well-structured design allows one to implement any algorithm at ease and compare the performance of the programme under different representations. Our group has identified some key specifications for the programme:
 \begin{enumerate}
 	\item It should be consistent with a circuit-model quantum computer.
-	\item It should allow different representations for each type of object within the computer  (i.e. the circuit, 			gate and the register).
-	\item It should be extendible and compatible. One should be able to implement another representation for the objects within the computer that would work with the current code.
-	\item It should maximise code reusability
+	\item It should allow different representations for each component of the computer. An example would be representing the operation of the gate as a matrix.
+	\item It should be extendible and compatible. One should be able to implement another representation of the components in the future that would work with the current code.
+	\item It should maximise code reusability.
 \end{enumerate}
-The first point is fundamental as the project brief specifically asks us to create a simulator of a circuit-model quantum computer. We therefore design the programme based on the physical objects that exist in such computer. This includes the register, which is an array storing n qubits, the quantum gates, and the circuits, which consist of a series of gates that perform more complex operations on the register, such as the quantum search algorithm. These form the three main groups of classes for the computer part of the programme.
+The first point is fundamental as the project brief specifically asks us to create a simulator of a circuit-model quantum computer. We therefore designed the programme based on the physical components of such computer. This includes the register, the quantum gates, and the circuits, which consist of a series of gates to perform more complex operations on the register (such as the quantum search algorithm). These form the three main groups of classes for the computer part of the programme.
 
-To achieve the second to the fourth point of our specifications, we created an interface for each type of object, which are \texttt{QGate}, \texttt{QCircuit}, and \texttt{QRegister}. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other’s representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The specific design for each of these objects and how they co-operate with each other is discussed in section \ref{sec:The Computer}: 
-
-
+To achieve the second to the fourth point of our specifications, we created an interface for each component of the computer, which are \texttt{QRegister}, \texttt{QGate}, and \texttt{QCircuit}. Each interface describes the fundamental behaviours of the corresponding component that are independent of the representation. This allows objects of each component to interact without having to be concerned about each other’s representation. It thus separates the task of representing the component and using it to build the computer, which is key for maximising code reusability and making the programme extendible. The specific design for the components of the computer and they co-operate with each other is discussed in section \ref{sec:The Computer}: 
 
 \subsubsection{The Computer}\label{sec:The Computer}
 %allow indentation in enumerate environment
@@ -758,23 +757,32 @@ Although the first option keeps the gate class generic and more flexible, it wou
 
 	\item \textbf{Circuits}\\
 	A quantum circuit comprises of a series of gates that perform more complicated operations on the register. All circuits classes in the programme implements the QCircuit interface. They are required to implement the applyCircuit(QRegister reg) method, as they would perform some operations on the register. To allow one to build a general circuit with gates of different representations, we created the GateByGateCircuit class. 
+	
+	\item \textbf{Implementation of the Quantum Algorithms}\\
+	
 \end{myenumerate}
 
 \subsubsection{Matrix}
-After deciding that we wanted to implement a variety of gate implementations. We decided that for our code to be as user friendly as possible we should be able to switch between our 2 different matrix representations by only changing a single argument that is passed to the Matrix package. The package should hide the representation from the user and deal with all of the messiness internally.
-To achieve this we created an abstract class Matrix which is then implemented by all of our concrete matrix representations. The user only ever has to deal with this abstract class. This presented some challenges in implementing this design. The first challenge we encountered was how to call the constructors for the different implementations from a single method call, where one of the arguments decided the type of the Matrix. To solve this problem we employed a simple factory design pattern. Our MatrixFactory contains a static method, MatrixFactory.create(int i, int j, String type) which returns a matrix of the type specified in the by the string passed in the method.
-The Matrix class contains methods for all of the matrix manipulations we require in our project. This is mainly involves getting and setting elements and multiplication of matrices. Each of the concrete implementations of Matrix override the get and set methods in Matrix as they need to be written specifically for the data structure which each implementation used.
-The 2 main types of matrices we implemented were dense and sparse matrices. The dense matrix itself comes in 2 different types, real and complex. These 2 share some common features such as the fact that each element is explicitly stored even if it is a zero. This contrasts the sparse matrix as only non-zero elements and their indices are stored.
-We made several choices in our data structures which are related to the performance of the dense matrices. Firstly we decided that the overhead created by 2 dimensional arrays is too much as it results in more memory lookups and more cache misses. This can be reduced by using a single array to store all the matrix entries. It then requires some trivial arithmetic to retrieve the array indices (element read and writes are still O(1) as with multi-dimensional arrays). The cost of calculating these indices is lower than the time wasted on cache misses. 
+After deciding that we wanted to implement a variety of gate implementations. We decided that for our code to be as user friendly as possible we should be able to switch between our two different matrix representations by only changing a single argument that is passed to the Matrix package. The package should hide the representation from the user and deal with all of the messiness internally.
+
+To achieve this we created an abstract class \texttt{Matrix} which is then implemented by all of our concrete matrix representations. The user only ever has to deal with this abstract class. This presented some challenges in implementing this design. The first challenge we encountered was how to call the constructors for the different implementations from a single method call, where one of the arguments decided the type of the Matrix. To solve this problem we employed a simple factory design pattern. Our \texttt{MatrixFactory} contains a static method, \texttt{MatrixFactory.create(int i, int j, String type)} which returns a matrix of the type specified in the by the string passed in the method.
+
+The \texttt{Matrix} class contains methods for all of the matrix manipulations we require in our project. This is mainly involves getting and setting elements and multiplication of matrices. Each of the concrete implementations of Matrix override the get and set methods in Matrix as they need to be written specifically for the data structure which each implementation used.
+
+The two main types of matrices we implemented were dense and sparse matrices. The dense matrix itself comes in two different types: real and complex. These two share some common features such as the fact that each element is explicitly stored even if it is a zero. This contrasts with the sparse matrix as only non-zero elements and their indices are stored.
+
+We made several choices in our data structures which are related to the performance of the dense matrices. Firstly we decided that the overhead created by 2 dimensional arrays is too much as it results in more memory lookups and more cache misses. This can be reduced by using a single array to store all the matrix entries. It then requires some trivial arithmetic to retrieve the array indices (element read and writes are still $O(1)$ as with multi-dimensional arrays). The cost of calculating these indices is lower than the time wasted on cache misses. 
 The next optimisation we implemented was not storing complex numbers in a complex object as it would again introduce a non-negligible amount of overhead, both in terms of object allocation and a general memory overhead associated with every Java object.
-Our sparse matrix implementation contains both a general sparse matrix class as well as a specially optimised class designed for gates. In section 666.666 we saw that each gate can be represented by a matrix containing 2 elements in each column. This allowed us to design a data structure specifically tailored towards this problem.
-The SparseGateMatrix class only stores the non-zero entries in the matrix. As we know each column only contains 2 entries, it is enough to store the value and the row index of the element. As long as the entries for each column are stored in order, the true index can be easily recovered with trivial arithmetic in O(1) operations.
 
+Our sparse matrix implementation contains both a general sparse matrix class as well as a specially optimised class designed for gates. In section 666.666 we saw that each gate can be represented by a matrix containing two elements in each column. This allowed us to design a data structure specifically tailored towards this problem.
 
+The \texttt{SparseGateMatrix} class only stores the non-zero entries in the matrix. As we know each column only contains 2 entries, it is enough to store the value and the row index of the element. As long as the entries for each column are stored in order, the true index can be easily recovered with trivial arithmetic in $O(1)$ operations.
+
+The matrix multiplication is dealt with in a separate helper class called \texttt{MatrixMultiply}. It contains a very general and naïve implementation of a matrix multiplication algorithm. It then contains further methods which are optimised towards each of our implementations, the most important of these being the multiplication of a complex matrix by a sparse matrix representing a gate. This method is where almost of the computational resources are spent when applying our circuits to the register. It turns out that it is possible to write a more efficient sparse-dense multiplication algorithm if we consider $\ket{\psi}$* operator rather than operator * $\bra{\psi}$. This is because in this case we know that there are only 2 elements in reach row of the sparse matrix which are very quick to access as they will be located next to each other in the system memory. It is then only required to find the 2 corresponding elements in the register to be able to calculate the corresponding element in the answer. While this approach incurs a small overhead due to having to convert from $\bra{\psi}$ to $\ket{\psi}$ and back again at the end, this can be minimised very easily and the final code runs faster than if this approach was not used.
 
 \subsubsection{Graphics User Interface}
 
-\subsection{Program execution}
+\subsection{Programme execution}
 
 
 %-----------------------------------------------------------------------------------------

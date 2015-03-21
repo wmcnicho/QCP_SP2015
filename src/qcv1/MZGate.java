@@ -5,7 +5,7 @@ import Matrix.MatrixFactory;
 
 /**
  * Matrix representation of the Pauli-Z gate
- * @author Michael
+ * @author Michael Chiang
  *
  */
 public class MZGate extends MGate{
@@ -31,7 +31,7 @@ public class MZGate extends MGate{
 		onResult.setElement(1, 0, -1.0, 0.0);
 		
 		//call MGate to create the matrix representing this gate
-		initSingleTargetGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
+		initGate(matrixType, controlQbits, targetQbit, numOfStates, offResult, onResult);
 	}
 	
 	/**

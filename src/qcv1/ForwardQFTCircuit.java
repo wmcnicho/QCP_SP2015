@@ -1,37 +1,44 @@
 package qcv1;
 
-import Gui.QViewModel;
-import Matrix.ComplexMatrix;
-
 public class ForwardQFTCircuit extends GateByGateCircuit {
 	private int numOfQubits;
 	private int numOfStates;
 	private String gateRep;
 	
-	public ForwardQFTCircuit(String rep, int numOfQbits){
+	/**
+	 * Create the circuit for forward QFT
+	 * @param rep Gate representation
+	 * @param numOfQbits Number of qubits in the register
+	 * @param guiUpdate Whether or not to update the gui about the progress
+	 * in operating the gates on the register
+	 */
+	public ForwardQFTCircuit(String rep, int numOfQbits, boolean guiUpdate){
 		this.numOfQubits = numOfQbits;
 		this.numOfStates = (int) Math.pow(2, numOfQubits);
 		this.gateRep = rep;
 		
+		//whether or not to update the gui
+		updateGui(guiUpdate);
+		
+		/*
+		 * add the appropriate Hadamard and controlled phase shift gates to
+		 * perform the forward QFT (see report for the circuit diagram) 
+		 */
 		for (int i = numOfQubits-1; i >= 0; i--){
-			//System.out.println("hadamard on " + i);
-			addGate(GateFactory.createHGate(rep, null, i, numOfStates));
+			addGate(GateFactory.createHGate(gateRep, null, i, numOfStates));
 			for (int j = 2; j <= i+1; j++){
 				double phase = 2 * Math.PI / Math.pow(2, j);
-				//System.out.println("phase on " + i + " with control " + ((i+1)-j) + " and phase " + (phase / Math.PI));
-				addGate(GateFactory.createPhaseGate(rep, new int [] {(i+1)-j}, i, numOfStates, phase));
+				addGate(GateFactory.createPhaseGate(gateRep, new int [] {(i+1)-j}, i, numOfStates, phase));
 			}
 		}
 		
-		//swap the qubits
+		//swap the amplitudes of the basis states (i.e. |0> <-> |N-1>)
 		int num = numOfQubits / 2;
 		for (int i = 0; i < num; i++){
-			//System.out.println(i + " " + ((numOfQubits-1)-i));
-			//recall three c-not gate performs a swap operation
-			addGate(GateFactory.createNOTGate(rep, new int [] {i}, (numOfQubits-1)-i, numOfStates));
-			addGate(GateFactory.createNOTGate(rep, new int [] {(numOfQubits-1)-i}, i, numOfStates));
-			addGate(GateFactory.createNOTGate(rep, new int [] {i}, (numOfQubits-1)-i, numOfStates));
-			//addGate(GateFactory.createSwapGate(rep, i, (numOfQubits-1)-i, numOfStates));
+			//three control-not gates (with alernating control qubit) perform a swap operation
+			addGate(GateFactory.createXGate(gateRep, new int [] {i}, (numOfQubits-1)-i, numOfStates));
+			addGate(GateFactory.createXGate(gateRep, new int [] {(numOfQubits-1)-i}, i, numOfStates));
+			addGate(GateFactory.createXGate(gateRep, new int [] {i}, (numOfQubits-1)-i, numOfStates));
 		}		
 	}
 }
