@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.HashMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -61,13 +62,30 @@ public class QuantumMenuBar extends JMenuBar implements ActionListener{
 		//Creates a new window that gives the user help on running the simulations
 		else if(e.getSource() == help){
 			JFrame helpFrame = new JFrame("Help");
-			helpFrame.setSize(new Dimension(500, 300));
+			helpFrame.setSize(new Dimension(600, 450));
 			helpFrame.setLayout(new BorderLayout());
-			helpFrame.add(new JLabel("<html><body> <h1> Basic Usage </h1> <p> Use the drop down"
-					+ "menu to the left to choose between running Shor's or Grover's algorithm. "
-					+ "In order to start a Grover's simulation, import a txt file with comma separated numbers"
-					+ "(i.e. 3,14,157,9,...) and a enter value to search for. To use Shor's choose an integer "
-					+ "between 2 to 1023 and it will be factorized.</p> </body></html>"), BorderLayout.CENTER);
+			helpFrame.getRootPane().setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+			helpFrame.add(new JLabel(
+	"<html>"
+	+"<body>" 
+	+"<h1> Basic Usage </h1>"
+	+"<ul> "
+	+ "<li>Use the drop down menu to the left to choose between running Shor's or Grover's algorithm.</li>"
+	+ " <li>Select the proper input value(s) for the simulation.</li>"
+	+ "<li>Select the desired gate representation</li>"
+	+ "<li> Press the start button</li>"
+	+ "</ul>"
+	+" 	<h2> Grover's Algorithm</h2>"
+	+"<p>In order to start a Grover's simulation, import a txt file with comma separated numbers (i.e. 3,14,157,9,...)"
+	+ " and a enter value to search for. Test data is provided in the 'tests/' directory.</p>"
+	+"<h2> Shor's Algorithm</h2>"
+	+"<p>To use Shor's input an integer between 2 to 1023 and it will be factorized.</p>"
+	+ "<p>Note: Shor's Algorithm will occasionally return obvious factors (i.e. the input number and  1) due to the inherent randomness of the algorithm. Run the simulation again if such results occur.</p>"
+	+ "<h2>Gate Representation</h2>"
+	+ "<p>For best results use the 'Functional' gate representation. Sparse Matrix works slightly faster than Functional (and Dense Matrix) but can not run on as many qubits.<p>" 
+	+"</body>"
+	+"</html>"),
+	BorderLayout.CENTER);
 			helpFrame.setVisible(true);
 			helpFrame.setLocationRelativeTo(null);
 		}
