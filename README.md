@@ -1,5 +1,6 @@
 #Running the program
 From eclipse: Run the main program located in QuantumGuiFrame as a Java Application
+
 From jar.: Simply open the provided jar file
 
 #  Basic Usage 
