@@ -716,7 +716,7 @@ Prior to implementing the program an overall architecture was formed in order to
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{img/QCPOverallArch.pdf}
-\caption{}
+\caption{An high level overview of how the three main components of the program interact}
 \end{figure}
 
 \subsubsection{Java}
@@ -739,12 +739,12 @@ Once an architecture and programming language were decided, the next task was to
 Two primary software solutions were used in order to implement our project.  The first was Github, which was used to host the Git repository and also functioned as a communication tool. The second was Eclipse and Integrated Development Environment (IDE), which was the primary text editor and compiler used to create and test the program. Eclipse also contained a built in unit-testing environment called JUnit. This was we used in data collection because it allowed testing that bypassed the GUI to speed up how quickly the results were obtained.
 
 \subsubsection{Github}
-As mentioned earlier Github was not only a means of hosting the git repository of our project but also one of the primary means of communication between the group members. The primary feature of the software that was leveraged for this was the issue tracker, which was used as a forum, to-do list, and bug reporting platform. 
+As mentioned earlier Github was not only a means of hosting the git repository of our project but also one of the primary means of communication between the group members. The primary feature of the software that was leveraged for this was the issue tracker, which was used as a forum, to-do list, and bug reporting platform. The primary advantage of having this platform is that it allowed the group members to work remotely from one another and still have consistent communication about changes and problems that arose during development.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/issue_example.pdf}
-\caption{}
+\caption{A sample issue tracked on Github with communication between members}
 \end{figure}
 
 \subsection{Programme structure}
@@ -771,7 +771,7 @@ The overall design of the quantum computer simulator requires careful considerat
 \end{enumerate}
 The first point is fundamental as the project brief specifically asks us to create a simulator of a circuit-model quantum computer. We therefore design the programme based on the physical objects that exist in such computer. This includes the register, which is an array storing n qubits, the quantum gates, and the circuits, which consist of a series of gates that perform more complex operations on the register, such as the quantum search algorithm. These form the three main groups of classes for the computer part of the programme. 
 
-To achieve the remaining specifications, we created an interface for each type of object in the program and adhered to common object oriented design patterns. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other?s representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The use of commonly used design architectures (such as the Factory Pattern and MVVM) allow for other programs to quickly understand the design and usage of the parts of the program. 
+To achieve the remaining specifications, we created an interface for each type of object in the program and adhered to common object oriented design patterns. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other's representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The use of commonly used design architectures (such as the Factory Pattern and MVVM) allow for other developers to quickly understand the design and usage of the parts of the program. 
 
 \subsubsection{The Computer}\label{sec:The Computer}
 %allow indentation in enumerate environment
@@ -784,7 +784,7 @@ To achieve the remaining specifications, we created an interface for each type o
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/QuantumSimDesign.pdf}
-\caption{}
+\caption{A diagram of the class relationships for the quantum computer model}
 \end{figure}
 
 \begin{myenumerate}
@@ -852,7 +852,7 @@ The matrix multiplication is dealt with in a separate helper class called \textt
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/MatrixDesign.pdf}
-\caption{}
+\caption{A diagram of the class relationships of the Matrix library}
 \end{figure}
 
 \subsubsection{Graphics User Interface}
@@ -860,33 +860,34 @@ The Graphics User Interface (GUI) for this program is constructed through the us
 \begin{enumerate}
 	\item Make it easy to use
 	\item Have it display as much of the potential of the simulator as possible
-	\item Ensure it?s usage does not significantly slow down the simulation process
+	\item Ensure its usage does not significantly slow down the simulation process
 \end{enumerate}
-To accomplish the first goal the entire interface is limited to a small selection of buttons and drop down menus that requires the user to do very little to start a simulation. The GUI also dynamically changes itself in an attempt to instruct the end-user on how to use the program. The program also has a built in help window with instructions on how to perform the various simulations.
+To accomplish the first goal the entire interface is limited to a small selection of buttons and drop down menus that requires the user to do very little to start a simulation. The GUI also dynamically changes itself in an attempt to instruct the end-user on how to use the programme. The programme also has a built in help window with instructions on how to perform the various simulations.
 
-To accomplish the second and third goals, a variation of the Model-View-ViewModel interface was implemented.  In this architecture, the Model (i.e. the quantum simulator) would communicate relevant data changes to the ViewModel (QViewModel.java) through static methods. The ViewModel would then perform any necessary conversion or reinterpretation of the data and then would instruct the view (i.e. the animations and console window) to update what it is displaying. This accomplished the goal of not slowing down the program because the simulation code does not need to wait for the GUI to render to continue it?s simulation. It achieves the second goal because it provides a simple interface for the people working on the model code to use in order to make changes to the GUI and facilitates communication between the View and Model programmers.
+To accomplish the second and third goals, a variation of the Model-View-ViewModel interface was implemented.  In this architecture, the Model (i.e. the quantum simulator) would communicate relevant data changes to the ViewModel (\texttt{QViewModel}) through static methods. The ViewModel would then perform any necessary conversion or reinterpretation of the data and then would instruct the view (i.e. the animations and console window) to update what it is displaying. This accomplished the goal of not slowing down the program because the simulation code does not need to wait for the GUI to render to continue its simulation. It achieves the second goal because it provides a simple interface for the people working on the model code to use in order to make changes to the GUI and facilitates communication between the View and Model programmers.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{img/GuiDiagram.pdf}
-\caption{}
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/GuiOverall.pdf}
+	\caption{A diagram of the classes used in the GUI code and how they communicate with other components}
 \end{figure}
 
-The class QuantumGuiFrame contains all of the other created classes that ultimately form the overall GUI. These include QuantumMenuBar and QuantumGuiPanel (which contains a QAnimationTabbedPane). This structure is diagrammed below.
+The GUI window is composed entirely out of four Java swing components. The class \texttt{QuantumGuiFrame} contains all of the other created classes that ultimately form the overall GUI. These include \texttt{QuantumMenuBar} and \texttt{QuantumGuiPanel} (which contains a \texttt{QAnimationTabbedPane}). Note that \texttt{QAnimationTabbedPane} uses the JFreeChart open source library to create the graphs and animations in the program and it's code was not written by us.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{img/GuiOverall.pdf}
-\caption{}
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/GuiDiagram.pdf}
+	\caption{A graphical representation of the GUI classes corresponding to where they lie in the running program.}
 \end{figure}
 
 \subsection{Programme execution}
-The execution flow of the program is a two threaded system but could be expanded to many more threads in the event this program is extended to have multi-core or GPU support. When the program is started the main function in QuantumGuiFrame creates the GUI and waits for user input.  Once the user has selected the type of simulation and the associated data they will then press the start button which will create a QProcess object.  This QProcess class will launch a new thread in it?s constructor that will create a quantum circuit based off of the specifications that the user provided and run that circuit on the target data. The GUI thread and the simulation thread will then run in parallel until the simulation is complete. As the simulation runs it updates the GUI informing the user of the progress through various animation elements and a console window.
+The execution flow of the program is a two threaded system but could be expanded to many more threads in the event this program is extended to have multi-core or GPU support. When the program is started the main function in \texttt{QuantumGuiFrame} creates the GUI and waits for user input.  Once the user has selected the type of simulation and the associated data they will then press the start button which will create a \texttt{QProcess} object.  This object will launch a new thread in its constructor that will create a quantum circuit based off of the specifications that the user provided and run that circuit on the inputted data. The GUI thread and the simulation thread will then run in parallel until the simulation is complete. As the simulation runs it updates the GUI informing the user of the progress through various animation elements and a console window. Upon completion of the simulation, the simulation thread ends and the GUI thread waits for the user to input new data
+and start a new simulation. Theoretically the programme's architecture could be extended to support multiple threads in a simulation or even multiple parallel simulations with minor changes to the ViewModel code to handle multiple sources of view update requests.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/program_example.pdf}
-\caption{}
+\caption{A screen shot of the program after running a sample simulation of Grover's algorithm}
 \end{figure}
 
 %-----------------------------------------------------------------------------------------
