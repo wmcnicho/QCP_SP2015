@@ -3,9 +3,15 @@ package Matrix;
 import java.util.Arrays;
 import java.util.Hashtable;
 
+/**
+ * The concrete implementation of a sparse matrix.
+ * Can hold up to 2 non-zero elements in each row, ideal for quantum gates
+ * @author Gennaro
+ *
+ */
 public class SparseGateMatrix extends Matrix{
 
-	public SparseGateMatrix(int row, int column){
+	protected SparseGateMatrix(int row, int column){
 		this.isSparse = true;
 		this.isComplex = true;
 		this.isGate = true;
@@ -14,11 +20,14 @@ public class SparseGateMatrix extends Matrix{
 		this.reMatrix = new double[column*2];
 		this.imMatrix = new double[column*2];
 		this.rowIndex = new int[column*2];
+		//used to check which elements have been set
 		Arrays.fill(rowIndex, -1);
 	}
 	
 	public void setElement(int i, int j, double real, double imag){
 		int tempIndex = 2*j;
+		//checks if current index has not been written to already
+		//and it is not just changing the value of an already set element
 		if(rowIndex[tempIndex]!=-1&&rowIndex[tempIndex]!=i){
 			tempIndex++;
 		}
@@ -90,9 +99,4 @@ public class SparseGateMatrix extends Matrix{
 		}
 	}
 
-	public void print(){
-		System.out.println(Arrays.toString(reMatrix));
-		System.out.println(Arrays.toString(imMatrix));
-		System.out.println(Arrays.toString(rowIndex));
-	}
 }
