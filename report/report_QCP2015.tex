@@ -19,8 +19,7 @@
 \usepackage{icomma}
 \usepackage{rotating}
 \usepackage{multirow}
-\usepackage{wasysym}
-\usepackage{amsthm}
+\usepackage{wasysym}\usepackage{amsthm}
 \usepackage{array}
 \usepackage{enumerate} % for producing lists indexed with letters
 \usepackage{epstopdf}
@@ -38,7 +37,12 @@
 
 %\usepackage{floatflt}
 
-
+%allow indentation in enumerate environment
+\newenvironment{myenumerate}{%
+  \edef\backupindent{\the\parindent}%
+  \enumerate%
+  \setlength{\parindent}{\backupindent}%
+}{\endenumerate}
 
 \usepackage[margin=5pt, font=small,labelfont=bf]{caption} %Sehr geiles Package
 \usepackage[margin=10pt, list=true, font=small, labelfont=bf, labelformat=brace, position=top]{subcaption} %Sehr geiles Package
@@ -364,7 +368,7 @@ However, in contrast to a classical system, a quantum register is able to be in 
 Eq.\,\ref{eq:stateProduct2} is always reducible to a (tensor) product of three single states, as Eq.\,\ref{eq:stateProduct} suggests. This is not always the case. Consider the 2-qubit system where
 %
 \begin{align}
-	\ket{\Psi^\text{ent}} = \tfrac{1}{\sqrt{2}}  \left[ \ket{00} + \ket{11} \right].
+	\ket{\Psi^\text{ent}} = \tfrac{1}{\sqrt{2}}  \left[ \ket{00} + \ket{11} \right]. \label{eq:entangled}
 \end{align}
 %
 There is no way to separate this wave function into a (tensor) product of two states
@@ -452,7 +456,7 @@ The Hadamard gate already uses special properties of quantum computation, but al
 \subsubsection{Control Gates}
 Apart from single qubit gates, there are also control gates. The gate 
 
-\subsubsection{Extension to bigger registers}
+\subsubsection{Extension to bigger registers}\label{sec:Extension to bigger registers}
 As roughly mentioned before, any single qubit gate can by applied to the $k$th qubit of a $n$-qubit register. The challenge now is how to construct a matrix representation of a single qubit gate is when it is applied to a register with multiple qubits. Mathematically, this involves taking the tensor product of the matrix representing the gate on the desired target qubit with the identity on others. Consider the example of applying a single qubit gate $G$ on the left qubit in a 2-qubit system. The resulting matrix $G_\text{tot}$ is:
 %
 \begin{align}
@@ -549,7 +553,7 @@ The matrix representation of a control gate can also be found using the same pro
 
 Hence, we can still iterate over the column index $x$ to find the elements, except we need to check whether each of the control bits $\{c_i\}$ in $x$ is 1 using the AND operation as described above. If the bits are all 1, we would obtain the two elements as stated in equation \ref{offResult} and \ref{onResult}; otherwise, the new basis state would be the same as the old basis state, so the only non-zero element in column $x$ would be $G(x,\,x) = 1$.
 
-\subsubsection{Gate representations}
+\subsubsection{Gate representations}\label{sec:Gate representations}
 The resulting matrix $G_\text{tot}$ is in general a $N \times N$-matrix with two and only two non-zero entries in every row and column. That means that only $2\cdot 2^n$ of $2^{n^2}$ entries are non-zero. The ratio is $2^{1-n}$ which rapidly goes towards zero for big $n$. Thus, most entries of the gate matrices will be zero.
 
 This leads to the consideration of the following three possible representations:
@@ -648,14 +652,9 @@ Substituting these to the state vector gives:
 \paragraph{Limitations of Grover's Algorithm}
 
 \subsubsection{Shor's Algorithm}
-
-Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers. It is able to find non-trivial divisors in polynomial time (that means, that there exists polynomial function which is the upper time limit for the calculation), whereas classical algorithms are significantly above polynomial time (though sub-exponential).
-
-This has vast impact on today's cryptography: Many encryption systems (like RSA)\citeS{RSAcrypto} rely on the fact, that it is impossible to factorise integers in a reasonable time. Shor's algorithm showed that it is (theoretically) possible for quantum computers, however the practical difficulties of building a real quantum computer are still preventing Shor's algorithm to undermine modern cryptography.
-
-Shor's algorithm belongs to the Monte-Carlo algorithms which means that it is based on probabilistic calculations. Therefore in some cases it might lead to undesired results.
-
-
+Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers who's factors are coprime. It is able to find non-trivial divisors in polynomial time and space (the number of gates required), whereas na\"ive classical algorithms run in exponential time. The best classical factoring algorithm, the general number field sieve, is able to factorise integers in sub-exponential time but it has so far been impossible to devise a classical algorithm which runs in polynomial time. This could have vast impacts on modern cryptography: Many encryption systems (like RSA) rely on the fact, that it is impossible to factorise integers in a reasonable amount time. Shor's algorithm showed that it is (theoretically) possible for quantum computers to achieve this goal, however the practical difficulties of building a real quantum computer are still preventing Shor's algorithm from undermining modern cryptography.
+Shor's algorithm is able to reduce the factoring problem to an on order finding one. (p. 233 in the big book of knowledge) The order finding problem itself is simply the phase estimation algorithm applied to the unitary operator (\S5.36 in the book). The proof of this is provided in ``Quantum computation and quantum information''The most interesting part of all of these algorithms must be the Quantum Fourier Transform. Mathematically it performs the same function as the Classical Fourier Transform, except that it acts on a quantum register instead of a vector.
+As seen in figure xx, Shor's algorithm requires the use of two registers. The first is the one the QFT acts on but it is first prepared by the second. The second register has the unitary operator mentioned above applied to it. The states of the two registers are then entangles and when the second register is measured it causes a partial collapse in the first. This leaves only the states which satisfy the equation $x^j \textrm{mod} N = 1$. By then applying the QFT, the period of the function can be very easily determined.
 
 Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorithm.
 
@@ -758,11 +757,11 @@ As mentioned previously, the architecture for this simulator contains three majo
 \end{enumerate}
 This section will presented some overall design considerations and then will go in-depth in describing the design and implementations of each of the components.
 
-The overall design of the quantum computer simulator requires careful consideration, as it is the backbone for running various quantum algorithms. An effective, well-structured design allows one to implement any algorithm at ease and compare the performance of the programme under different representations. Our group has identified some key specifications for the design of the computer: 
+The design of the quantum computer simulator requires a careful consideration as it is the backbone for running various quantum algorithms. An effective, well-structured design allows one to implement any algorithm easily and compare the performance of the programme under different representations. Our group has identified the following key specifications for the programme:
 \begin{enumerate}
 	\item It should be consistent with a circuit-model quantum computer. 
-	\item It should allow different representations for each type of object within the computer to be changed easily (i.e. the circuit, gate and the register).
-	\item It should be extendible and compatible. One should be able to implement another representation for the objects within the computer that would work with the current code.
+	\item It should be capable to work with different representations of the computer components (e.g. matrix and functional representation of the quantum gates).
+	\item It should be extendible and compatible. One should be able to implement another representation of the components that would work with the current code.
 	\item It should maximise code reusability.
 	\item It should be stable and user friendly.
 \end{enumerate}
@@ -771,60 +770,71 @@ The first point is fundamental as the project brief specifically asks us to crea
 To achieve the remaining specifications, we created an interface for each type of object in the program and adhered to common object oriented design patterns. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other's representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The use of commonly used design architectures (such as the Factory Pattern and MVVM) allow for other developers to quickly understand the design and usage of the parts of the program. 
 
 \subsubsection{The Computer}\label{sec:The Computer}
-The computer is at the heart of our programme for simulating the quantum algorithms. Figure XX shows the overall structure of this part of the programme. Here we discuss the design choices we made for each of the three components of the computer
-%allow indentation in enumerate environment
-\newenvironment{myenumerate}{%
-  \edef\backupindent{\the\parindent}%
-  \enumerate%
-  \setlength{\parindent}{\backupindent}%
-}{\endenumerate}
+The computer is at the heart of our programme for simulating the quantum algorithms. Figure \ref{fig:QuantumSimDesign} shows the overall structure of this part of the programme. As discussed above, we designed the programme based on the components of the computer, which are the register, the gates, and the circuits. We developed an interface for each of these components, and they are \texttt{QRegister}, \texttt{QGate}, and \texttt{QCircuit} respectively. Below we describe in detail the programme structure and design choices we made for each component.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{img/QuantumSimDesign.pdf}
+\includegraphics[width=0.9\textwidth]{img/QuantumSimDesign.pdf}
 \caption{A diagram of the class relationships for the quantum computer model}
+\label{fig:QuantumSimDesign}
 \end{figure}
 
 \begin{myenumerate}
 	\item \textbf{Register}\\
-The register consists of an array of n qubits that would be manipulated by the gates. From an object-oriented perspective, one might be tempted to create a qubit object with the register storing an array of these objects. This, however, is unphysical as qubits can be entangled and may not be separable as shown in equation XX. Hence, we decided to treat the n qubits as a single system, and the register should store an array of the complex amplitudes of the basis states formed by the qubits (i.e. from $\ket{0}$to $\ket{N-1}$).
+The register consists of an array of $n$ qubits that would be manipulated by the gates. From an object-oriented perspective, one might be tempted to create a qubit object with the register storing an array of these objects. This, however, is unphysical as qubits can be entangled and may not be separable as shown in equation \ref{eq:entangled}. Hence, we decided to treat the $n$ qubits as a single system, and the register should store an array of the complex amplitudes of the basis states formed by the qubits (i.e. from $\ket{0}$ to $\ket{2^n-1}$).
 
 We developed the \texttt{QRegister} interface with the above concept in mind. It requires the classes representing the register to have accessor methods for setting and getting the amplitudes of the basis states. It also requires these classes to provide a method for measuring the register, as such operation is required to obtain physical results after applying a circuit to the register. We created a concrete class called \texttt{MRegister} that complies with the interface. It stores the amplitudes of the basis state as a column vector. Since the amplitudes of most of the states would generally not be non-zero, we decided to use a regular dense matrix representation for the vector.
 
 	\item \textbf{Gates}\\
-	All quantum gates within the circuit implements the \texttt{QGate} interface. This interface requires any gate classes to implement the method called \texttt{applyGate(QReigster reg)}, as each gate must perform an operation on the register. It also requires the class to provide info about the type of gate it is representing, which would be useful for debugging the programme.
+As discussed in section \ref{sec:Quantum gates}, there are many single qubit gates and their associated operations on the register can be represented as a matrix or a function. To maximise code reusability, we developed an inheritance structure for modelling the gates. We first constructed an interface called \texttt{QGate} to describe a general quantum gate. The interface requires any gate classes to implement the method called \texttt{applyGate(QReigster reg)}, as each gate must perform an operation on the register. We then created an abstract class for each representation of the gate: \texttt{MGate} for matrix representation and \texttt{FGate} for functional representation. These classes handle the generic behaviours associated with the corresponding gate representation. Finally, we constructed a set of concrete classes that inherit from these abstract classes to model the specific single qubit gates (e.g. Hadamard, Pauli-X gate, etc.).	
 
-As discussed in section 2, there are many types of single qubit gates, and their associated linear operations on the register can be represented as a matrix or a function. Furthermore, we derived a strategy for creating the representation of a single qubit gate applied to a multiple qubit register that is general for any types of gate, requiring only the knowledge of how the gate operates on a single qubit; therefore, it seems natural to create an abstract class for the two representations of the gate, which are \texttt{MGate} for matrix representation and \texttt{FGate} for functional representation.
+In matrix representation, the \texttt{MGate} class has a method called \texttt{initGate(...)} which can create the matrix for any single qubit gate using the procedure described in section \ref{sec:Extension to bigger registers}. The class also implements the \texttt{applyGate(...)} method from \texttt{QGate} to perform the matrix multiplication of the gate matrix with register's state vector. A set of classes were extended from \texttt{MGate} to model specific single qubit gates. They provide the necessary information, such as the target qubit and how the gate operates on a single qubit (i.e. $\alpha$ and $\beta$ in equation (34)), to \texttt{MGate} for it to generate an appropriate matrix for the gate.
 
-The \texttt{MGate} has a method called \texttt{initGate()} which creates the matrix representation of any single qubit gate. It requires . It implements the applyGate() method by performing the matrix multiplication of the register’s state vector with the gate matrix. The subclasses of MGate include: MXGate, MYGate, MZGate, MPhaseGate, MSGate, and MTGate.
+A similar design is used in functional representation. The \texttt{FGate} class implements the \texttt{applyGate(...)} method to perform the functional procedure for applying a single qubit gate on the register as mentioned in section \ref{sec:Gate representations}. To do so, it needs to know how that particular gate operates on a single qubit. This is supplied by the set of concrete classes which inherit \texttt{FGate} to represent a specific qubit gate. 
 
 \setlength{\extrarowheight}{3pt}
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{c | c | c}
 	Gate & Matrix Rep. Class & Functional Rep. Class \\ \hline
-	$G^H$ & \texttt{MHGate} & \texttt{FHGate} \\ 
-	$G^{not}$ & \texttt{MNOTGate} & \texttt{FNOTGate} \\
-	$G^{X}$ & \texttt{MXGate} & \texttt{FXGate} \\
-	$G^{Y}$ & \texttt{MYGate} & \texttt{FYGate} \\
-	$G^{Z}$ & \texttt{MZGate} & \texttt{FZGate} \\
-	$G^{S}$ & \texttt{MSGate} & \texttt{FSGate} \\
-	$G^{T}$ & \texttt{MTGate} & \texttt{FTGate} \\
-	$G^{\phi}$ & \texttt{MPhaseGate} & \texttt{FPhaseGate} \\	
+	$H$ & \texttt{MHGate} & \texttt{FHGate} \\ 
+	$X$ & \texttt{MXGate} & \texttt{FXGate} \\
+	$Y$ & \texttt{MYGate} & \texttt{FYGate} \\
+	$Z$ & \texttt{MZGate} & \texttt{FZGate} \\
+	$S$ & \texttt{MSGate} & \texttt{FSGate} \\
+	$T$ & \texttt{MTGate} & \texttt{FTGate} \\
+	$R_\phi$ & \texttt{MPhaseGate} & \texttt{FPhaseGate} \\	
 \end{tabular}
 \caption{A complete list of gates implemented in the programme.}
 \end{center}
 \end{table}
-	We know the representation of the gate would depend on the qubit that it is applied to in the register (i.e. the target qubit) and whether there are control qubits associated with gate. This leads to two options for designing the gates:
+	We know the representation of the gate would depend on the qubit that it is applied to (i.e. the target qubit) and the control qubits associated with gate. This leads to two options for designing the gates:
 \begin{enumerate}[(a)]
-	\item Construct a general form of the gate that would require the specification of the target and control qubits when it is applied.
-	\item Construct a specific form of the gate that would only work for a specific target and set of control qubits.
+	\item Construct a general form of the gate that would require one to specify the target qubit and the set of control qubits as parameters when the gate is applied to the register.
+	\item Construct a specific form of the gate that would only work for a specific target qubit and set of control qubits
+
 \end{enumerate}
-Although the first option keeps the gate class generic and more flexible, it requires the representation to be recalculated every time the gate is used. This may lead to a significant increase in computation time, hindering the programme performance. The latter option does not have such problem, as the gates are instantiated for a specific target qubit and set of control qubits. However, this has the side effect of consuming more memory, as we need to store multiple versions of the same gate for different targets and controls. We decided to design our gates based on the second option, as we believed such usage of memory is tolerable, and we would like to obtain results within a reasonable amount of time. In addition, it simplifies the task for building a quantum circuit. As each gate is pre-programmed to operate on a specific target with a specific set of controls, we would only need to store a list of gates to be applied, sparing the need for a complicated set of data about the target and control qubits for the gates. Furthermore, this design consideration highlights the reoccurring theme of memory-computation time trade-off in the project.
+Although the first option keeps the gate class generic and more flexible, it requires the representation to be recalculated every time the gate is used. This may lead to a significant increase in computation time, hindering the programme performance. The latter option does not have such problem, as the gates are instantiated for a specific target qubit and set of control qubits. However, this has the side effect of consuming more memory, as we need to store multiple versions of the same gate for different targets and controls. We decided to design our gates based on the second option, as we believed such usage of memory is tolerable, and we would like to obtain results within a reasonable amount of time. In addition, it simplifies the task for building a quantum circuit. As each gate is pre-programmed to operate on a specific target with a specific set of controls, we would only need to create a list of gates to be applied for building the circuit. We would not need store an extra, complicated set of instruction telling the gate which qubit it should operate on and the control qubits it has. In any case, this discussion highlights the problem of memory-computation time trade-off, which is reoccurring theme in this project. 
 	\item \textbf{Circuits}\\
-	A quantum circuit comprises of a series of gates that perform more complicated operations on the register. All circuits classes in the programme implements the QCircuit interface. They are required to implement the applyCircuit(QRegister reg) method, as they would perform some operations on the register. To allow one to build a general circuit with gates of different representations, we created the GateByGateCircuit class. 
+	The design structure for the circuits is similar to that for the gates. We created an interface called \texttt{QCircuit} that describes a general quantum circuit. The interface requires classes representing a quantum circuit to implement the \texttt{applyCircuit(QRegister reg)} method, as each circuit is expected to perform some operations on the register. We designed a general circuit class called \texttt{GateByGateCircuit} which allows the user to construct a circuit by assembling gates together, regardless of their representation. Furthermore, we take advantage of the universality of this circuit class by extending it to build the various circuits required for the quantum algorithms studied in this project. This includes the quantum Fourier transform circuits (\texttt{ForwardQFTCircuit} and \texttt{BackwardQFTCircuit}) and the circuit for Grover's algorithm (\texttt{GroverGateByGate}).
 	
 	\item \textbf{Implementation of the Quantum Algorithms}\\
+	\begin{myenumerate}
+		\item \textbf{Grover's Algorithm}\\
+		
+		
+		\item \textbf{Shor's Algorithm}\\
+		When implementing Shor's algorithm, the most important step was creating a functioning quantum Fourier transform. We had several options when deciding how to implement this as there are several different algorithms available. As we were on a rather tight deadline we decided to implement the easiest version of the algorithm. This ease of implementation came at the cost of higher computational complexity. The main benefit we got from implementing this version of the algorithm was that it only used gates which had already been implemented, so it became a simple task of applying the gates in the right order. 
+		
+In an actual quantum computer there would be two registers active in every run of the algorithm. As we are limited on the number of qubits we are able to represent and store in a classical computer (due to memory limitations), we decided to implement a classical equivalent to the second register. The second register simply defines the amplitudes of the different states of the first register. Using a classical modular exponentiation  algorithm and some random number generation the same results are achieved as using two registers, except that we had much more memory available for our QFT.
+
+The classical parts of the algorithm were easy to implement as most of them are very well known algorithms in computer science.  We required algorithms to find the highest common factor of two numbers, find the convergents of a continued fraction and do modular exponentiation of numbers. As the continued fraction algorithm was the most complex of them all we wrote a separate class for this. The other two algorithm were simply methods in our Shor's algorithm class.
+
+To ensure the algorithm only runs when it is required we added checks to the number being factorised. We check if it is even or if it has a factor in the form $a^b$ as these can be easily checked for in polynomial time. We also check if the input is prime. This ensures only numbers which two co-prime factors ever reach the quantum parts of the Shor's algorithm code as these are the most computationally expensive. 
+
+To factorise numbers which do not factorise into two primes, the user would have to run the code several times, each time factorising the factors returned by the previous run if they are not themselves prime.
+
+	\end{myenumerate}
 	
 \end{myenumerate}
 
@@ -848,7 +858,7 @@ The matrix multiplication is dealt with in a separate helper class called \textt
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{img/MatrixDesign.pdf}
+\includegraphics[width=0.85\textwidth]{img/MatrixDesign.pdf}
 \caption{A diagram of the class relationships of the Matrix library}
 \end{figure}
 
@@ -865,7 +875,7 @@ To accomplish the second and third goals, a variation of the Model-View-ViewMode
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{img/GuiOverall.pdf}
+	\includegraphics[width=0.75\textwidth]{img/GuiOverall.pdf}
 	\caption{A diagram of the classes used in the GUI code and how they communicate with other components}
 \end{figure}
 
@@ -873,7 +883,7 @@ The GUI window is composed entirely out of four Java swing components. The class
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{img/GuiDiagram.pdf}
+	\includegraphics[width=0.75\textwidth]{img/GuiDiagram.pdf}
 	\caption{A graphical representation of the GUI classes corresponding to where they lie in the running program.}
 \end{figure}
 
@@ -964,6 +974,11 @@ We note the following observations:
 \subsection{Matrix or functional representation}
 
 \subsection{Improvements and further steps}
+\subsubsection{What we did not have time to do}
+The program we were able to write during this project covers the criteria we set out at the beginning and it is able to do everything we want it to. This does not mean that we would not want to add more features if we had more time.
+A major feature we would have liked to add, is providing a full API which would allow anyone to create their own quantum circuits and run them. This would include functionality for creating an arbitrary circuit and running it. While this should currently be possible by extending the basic classes we created for gates and extending \texttt{GateByGateCircuit}. We feel like by slightly restructuring some of our code we would be able to provide a more robust framework for creating new circuits. This idea could then also be extended to the GUI, where a user could create their own circuits in real time. This could either involve a drag and drop interface where a user could select from a set of existing gates or our own scripting language where the user could write code which calls all of the gates. This would then be parsed into our program and it would deal with it all internally.
+Another major feature we would like to implement is some level of parallelisation. This could involve multithreading support for the matrix multiplications or the creation of the gates as they are both very well suited to parallelisation. Another option would be to use a GPGPU library, such as openCL, to offload the matrix multiplications to a GPU for even greater parallelisation.
+There are also some minor points we would like to improve upon. These are mainly small fixes for areas of the current program which we are not entirely happy with. Firstly, we would like some kind of way to combine gates as it would allow for less matrix multiplications overall if the gate is used many times. It may also make some of the syntax clearer when adding gates to a circuit as only one would have to be added instead a collection which do the same job.
 
 %-----------------------------------------------------------------------------------------
 % CONCLUSION

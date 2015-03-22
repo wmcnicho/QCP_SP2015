@@ -1,11 +1,11 @@
 package qcv1;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import Gui.QViewModel;
 
 /**
  * A gate by gate quantum circuit that is independent of the gate representation.
- * @author Michael
+ * @author Michael Chiang
  *
  */
 

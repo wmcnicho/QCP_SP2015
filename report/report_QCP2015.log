@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.15)  22 MAR 2015 14:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.15)  22 MAR 2015 22:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1862,14 +1862,14 @@ Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 )
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 152.
+(hyperref)                setting the option has no effect on input line 156.
 
-Package hyperref Info: Option `unicode' set `false' on input line 152.
-Package hyperref Info: Option `pdftoolbar' set `false' on input line 152.
-Package hyperref Info: Option `pdfmenubar' set `true' on input line 152.
-Package hyperref Info: Option `pdffitwindow' set `false' on input line 152.
-Package hyperref Info: Option `pdfnewwindow' set `true' on input line 152.
-Package hyperref Info: Option `colorlinks' set `true' on input line 152.
+Package hyperref Info: Option `unicode' set `false' on input line 156.
+Package hyperref Info: Option `pdftoolbar' set `false' on input line 156.
+Package hyperref Info: Option `pdfmenubar' set `true' on input line 156.
+Package hyperref Info: Option `pdffitwindow' set `false' on input line 156.
+Package hyperref Info: Option `pdfnewwindow' set `true' on input line 156.
+Package hyperref Info: Option `colorlinks' set `true' on input line 156.
 \c@definition=\count171
 
 LaTeX Warning: Unused global option(s):
@@ -1878,20 +1878,20 @@ LaTeX Warning: Unused global option(s):
 (./report_QCP2015.aux)
 \openout1 = `report_QCP2015.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 180.
-LaTeX Font Info:    ... okay on input line 180.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 180.
-LaTeX Font Info:    ... okay on input line 180.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 180.
-LaTeX Font Info:    ... okay on input line 180.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 180.
-LaTeX Font Info:    ... okay on input line 180.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 180.
-LaTeX Font Info:    ... okay on input line 180.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 180.
-LaTeX Font Info:    ... okay on input line 180.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 180.
-LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1941,21 +1941,21 @@ LaTeX Font Info:    ... okay on input line 180.
 \makeMPintoPDFobject=\count177
 \everyMPtoPDFconversion=\toks47
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 180.
+LaTeX Font Info:    Try loading font information for U+msa on input line 184.
  (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 180.
+LaTeX Font Info:    Try loading font information for U+msb on input line 184.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 180.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 184.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-Package xypdf Info: Line width: 0.39998pt on input line 180.
+Package xypdf Info: Line width: 0.39998pt on input line 184.
 \AtBeginShipoutBox=\box56
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
@@ -1970,8 +1970,8 @@ Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             or
 (lastpage)             http://www.ctan.org/tex-archive/ 
 (lastpage)             install/macros/latex/contrib/pageslts.tds.zip
-(lastpage)             ! on input line 180.
-Package hyperref Info: Link coloring ON on input line 180.
+(lastpage)             ! on input line 184.
+Package hyperref Info: Link coloring ON on input line 184.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1981,9 +1981,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count179
 )
-LaTeX Info: Redefining \ref on input line 180.
-LaTeX Info: Redefining \pageref on input line 180.
-LaTeX Info: Redefining \nameref on input line 180.
+LaTeX Info: Redefining \ref on input line 184.
+LaTeX Info: Redefining \pageref on input line 184.
+LaTeX Info: Redefining \nameref on input line 184.
 
 (./report_QCP2015.out) (./report_QCP2015.out)
 \@outlinefile=\write4
@@ -2000,125 +2000,137 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.224 \newpage
-               [1]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 246.
+l.228 \newpage
+               [1] [2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 250.
 
- (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 246.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 250.
 
 
-LaTeX Warning: Hyper reference `sec:Quantum Register' on page 2 undefined on in
-put line 261.
+LaTeX Warning: Hyper reference `sec:Quantum Register' on page 3 undefined on in
+put line 265.
 
-[2]
+[3]
 
-LaTeX Warning: Hyper reference `sec:Building a quantum computer' on page 3 unde
-fined on input line 276.
+LaTeX Warning: Hyper reference `sec:Building a quantum computer' on page 4 unde
+fined on input line 280.
 
-[3] [4] <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1
-147> <xymatrix 4x1 147> <xymatrix 4x1 147> [5] [6] [7] [8] <xymatrix 12x4
-1164> <xymatrix 12x4 1164> [9] <xymatrix 13x5 2239> <xymatrix 13x5 2239>
-<xymatrix 14x7 2445> <xymatrix 14x7 2445> [10]
-<img/QCPOverallArch.pdf, id=406, 380.68352pt x 304.15442pt>
+[4] [5] <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1
+147> <xymatrix 4x1 147> <xymatrix 4x1 147> [6] [7] [8] [9] <xymatrix 12x4
+1164> <xymatrix 12x4 1164> [10] <xymatrix 13x5 2239> <xymatrix 13x5 2239>
+<xymatrix 14x7 2445> <xymatrix 14x7 2445> [11]
+<img/QCPOverallArch.pdf, id=412, 380.68352pt x 304.15442pt>
 File: img/QCPOverallArch.pdf Graphic file (type pdf)
 
 <use img/QCPOverallArch.pdf>
-Package pdftex.def Info: img/QCPOverallArch.pdf used on input line 715.
+Package pdftex.def Info: img/QCPOverallArch.pdf used on input line 719.
 (pdftex.def)             Requested size: 298.75264pt x 238.70604pt.
- [11 <./img/QCPOverallArch.pdf>]
-<img/issue_example.pdf, id=431, 1019.81pt x 590.205pt>
+ [12] [13 <./img/QCPOverallArch.pdf>]
+<img/issue_example.pdf, id=448, 1019.81pt x 590.205pt>
 File: img/issue_example.pdf Graphic file (type pdf)
 
 <use img/issue_example.pdf>
-Package pdftex.def Info: img/issue_example.pdf used on input line 743.
+Package pdftex.def Info: img/issue_example.pdf used on input line 747.
 (pdftex.def)             Requested size: 341.43437pt x 197.60507pt.
- [12] [13 <./img/issue_example.pdf>]
-<img/QuantumSimDesign.pdf, id=465, 521.70512pt x 404.02724pt>
-File: img/QuantumSimDesign.pdf Graphic file (type pdf)
-
-<use img/QuantumSimDesign.pdf>
-Package pdftex.def Info: img/QuantumSimDesign.pdf used on input line 784.
-(pdftex.def)             Requested size: 341.43437pt x 264.42708pt.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 792.
+ [14 <./img/issue_example.pdf>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 778.
 
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [14 <./img/QuantumSimDesign.pdf>] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 827--828
+)
+<img/QuantumSimDesign.pdf, id=469, 521.70512pt x 404.02724pt>
+File: img/QuantumSimDesign.pdf Graphic file (type pdf)
+
+<use img/QuantumSimDesign.pdf>
+Package pdftex.def Info: img/QuantumSimDesign.pdf used on input line 782.
+(pdftex.def)             Requested size: 384.1096pt x 297.47739pt.
+ [15] [16 <./img/QuantumSimDesign.pdf>] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 826--827
 
  []
 
-[16] <img/MatrixDesign.pdf, id=508, 495.56082pt x 273.60458pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 828--829
+
+ []
+
+[18] <img/MatrixDesign.pdf, id=529, 495.56082pt x 273.60458pt>
 File: img/MatrixDesign.pdf Graphic file (type pdf)
 
 <use img/MatrixDesign.pdf>
-Package pdftex.def Info: img/MatrixDesign.pdf used on input line 851.
-(pdftex.def)             Requested size: 341.43437pt x 188.52016pt.
- [17 <./img/MatrixDesign.pdf>]
-<img/GuiDiagram.pdf, id=535, 462.73987pt x 407.81148pt>
-File: img/GuiDiagram.pdf Graphic file (type pdf)
-
-<use img/GuiDiagram.pdf>
-Package pdftex.def Info: img/GuiDiagram.pdf used on input line 868.
-(pdftex.def)             Requested size: 256.07741pt x 225.68466pt.
-
+Package pdftex.def Info: img/MatrixDesign.pdf used on input line 866.
+(pdftex.def)             Requested size: 362.77525pt x 200.30162pt.
+ [19]
 <img/GuiOverall.pdf, id=536, 448.20189pt x 404.45244pt>
 File: img/GuiOverall.pdf Graphic file (type pdf)
 
 <use img/GuiOverall.pdf>
-Package pdftex.def Info: img/GuiOverall.pdf used on input line 876.
-(pdftex.def)             Requested size: 256.07741pt x 231.08336pt.
- [18 <./img/GuiDiagram.pdf>]
-<img/program_example.pdf, id=560, 1004.75375pt x 730.73pt>
+Package pdftex.def Info: img/GuiOverall.pdf used on input line 883.
+(pdftex.def)             Requested size: 320.0935pt x 288.8542pt.
+ [20 <./img/MatrixDesign.pdf>]
+Overfull \hbox (38.43497pt too wide) in paragraph at lines 887--888
+[]\OT1/cmr/m/n/10 The GUI win-dow is com-posed en-tirely out of four Java swing
+ com-po-nents. The class \OT1/pcr/m/n/10 QuantumGuiFrame
+ []
+
+<img/GuiDiagram.pdf, id=562, 462.73987pt x 407.81148pt>
+File: img/GuiDiagram.pdf Graphic file (type pdf)
+
+<use img/GuiDiagram.pdf>
+Package pdftex.def Info: img/GuiDiagram.pdf used on input line 891.
+(pdftex.def)             Requested size: 320.0935pt x 282.10583pt.
+ [21 <./img/GuiOverall.pdf>]
+<img/program_example.pdf, id=587, 1004.75375pt x 730.73pt>
 File: img/program_example.pdf Graphic file (type pdf)
 
 <use img/program_example.pdf>
-Package pdftex.def Info: img/program_example.pdf used on input line 885.
+Package pdftex.def Info: img/program_example.pdf used on input line 901.
 (pdftex.def)             Requested size: 341.43437pt x 248.31111pt.
- [19 <./img/GuiOverall.pdf>]
-<img/pic_0.png, id=585, 752.8125pt x 752.8125pt>
+ [22 <./img/GuiDiagram.pdf>]
+<img/pic_0.png, id=610, 752.8125pt x 752.8125pt>
 File: img/pic_0.png Graphic file (type png)
  <use img/pic_0.png>
-Package pdftex.def Info: img/pic_0.png used on input line 903.
+Package pdftex.def Info: img/pic_0.png used on input line 919.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_3.png, id=587, 752.8125pt x 752.8125pt>
+<img/pic_3.png, id=612, 752.8125pt x 752.8125pt>
 File: img/pic_3.png Graphic file (type png)
  <use img/pic_3.png>
-Package pdftex.def Info: img/pic_3.png used on input line 907.
+Package pdftex.def Info: img/pic_3.png used on input line 923.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_6.png, id=588, 752.8125pt x 752.8125pt>
+<img/pic_6.png, id=613, 752.8125pt x 752.8125pt>
 File: img/pic_6.png Graphic file (type png)
  <use img/pic_6.png>
-Package pdftex.def Info: img/pic_6.png used on input line 911.
+Package pdftex.def Info: img/pic_6.png used on input line 927.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_9.png, id=589, 752.8125pt x 752.8125pt>
+<img/pic_9.png, id=614, 752.8125pt x 752.8125pt>
 File: img/pic_9.png Graphic file (type png)
  <use img/pic_9.png>
-Package pdftex.def Info: img/pic_9.png used on input line 915.
+Package pdftex.def Info: img/pic_9.png used on input line 931.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_12.png, id=590, 752.8125pt x 752.8125pt>
+<img/pic_12.png, id=615, 752.8125pt x 752.8125pt>
 File: img/pic_12.png Graphic file (type png)
  <use img/pic_12.png>
-Package pdftex.def Info: img/pic_12.png used on input line 919.
+Package pdftex.def Info: img/pic_12.png used on input line 935.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_13.png, id=591, 752.8125pt x 752.8125pt>
+<img/pic_13.png, id=616, 752.8125pt x 752.8125pt>
 File: img/pic_13.png Graphic file (type png)
  <use img/pic_13.png>
-Package pdftex.def Info: img/pic_13.png used on input line 923.
+Package pdftex.def Info: img/pic_13.png used on input line 939.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 Package hyperref Info: bookmark level for unknown subfigure defaults to 0 on in
-put line 926.
- [20 <./img/program_example.pdf>] [21 <./img/pic_0.png> <./img/pic_3.png> <./im
+put line 942.
+ [23 <./img/program_example.pdf>] [24 <./img/pic_0.png> <./img/pic_3.png> <./im
 g/pic_6.png> <./img/pic_9.png> <./img/pic_12.png> <./img/pic_13.png>]
 Package epstopdf Info: Source file: <img/Grover_Time_Performance.eps>
 (epstopdf)                    date: 2015-03-19 16:59:43
@@ -2129,16 +2141,17 @@ to.pdf>
 (epstopdf)                    size: 5668 bytes
 (epstopdf)             Command: <repstopdf --outfile=img/Grover_Time_Performanc
 e-eps-converted-to.pdf img/Grover_Time_Performance.eps>
-(epstopdf)             \includegraphics on input line 946.
+(epstopdf)             \includegraphics on input line 962.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Grover_Time_Performance-eps-converted-to.pdf, id=623, 457.71pt x 378.41376
+<img/Grover_Time_Performance-eps-converted-to.pdf, id=649, 457.71pt x 378.41376
 pt>
 File: img/Grover_Time_Performance-eps-converted-to.pdf Graphic file (type pdf)
  <use img/Grover_Time_Performance-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Time_Performance-eps-converted-to.pdf used 
-on input line 946.
+on input line 962.
 (pdftex.def)             Requested size: 384.1096pt x 317.57668pt.
+ [25 <./img/Grover_Time_Performance-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <img/Grover_Time_Performance_log.eps>
 (epstopdf)                    date: 2015-03-19 16:59:43
 (epstopdf)                    size: 15925 bytes
@@ -2148,41 +2161,44 @@ ted-to.pdf>
 (epstopdf)                    size: 7158 bytes
 (epstopdf)             Command: <repstopdf --outfile=img/Grover_Time_Performanc
 e_log-eps-converted-to.pdf img/Grover_Time_Performance_log.eps>
-(epstopdf)             \includegraphics on input line 984.
+(epstopdf)             \includegraphics on input line 1008.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Grover_Time_Performance_log-eps-converted-to.pdf, id=624, 457.71pt x 378.4
+<img/Grover_Time_Performance_log-eps-converted-to.pdf, id=660, 457.71pt x 378.4
 1376pt>
 File: img/Grover_Time_Performance_log-eps-converted-to.pdf Graphic file (type p
 df)
  <use img/Grover_Time_Performance_log-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Time_Performance_log-eps-converted-to.pdf u
-sed on input line 984.
+sed on input line 1008.
 (pdftex.def)             Requested size: 384.1096pt x 317.57668pt.
- [22 <./img/Grover_Time_Performance-eps-converted-to.pdf>] [23 <./img/Grover_Ti
-me_Performance_log-eps-converted-to.pdf>] (./report_QCP2015.bbl)
-
+ [26]
+[27 <./img/Grover_Time_Performance_log-eps-converted-to.pdf>]
+(./report_QCP2015.bbl) 
 AED: lastpage setting LastPage
-[24]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1014.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1014.
+[28]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1038.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1038.
  (./report_QCP2015.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1014.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1014.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1038.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1038.
 
 Package rerunfilecheck Info: File `report_QCP2015.out' has not changed.
-(rerunfilecheck)             Checksum: 16E4CF21981BDDA33BC031BBBB4C0775;2836.
+(rerunfilecheck)             Checksum: A94981E08E0B7D1EED025FEE664C22DE;2927.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1014.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1038.
  ) 
 Here is how much of TeX's memory you used:
- 19275 strings out of 493315
- 298652 string characters out of 6137904
- 515872 words of memory out of 5000000
- 22188 multiletter control sequences out of 15000+600000
+ 19288 strings out of 493315
+ 298846 string characters out of 6137904
+ 516967 words of memory out of 5000000
+ 22194 multiletter control sequences out of 15000+600000
  15083 words of font info for 60 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  44i,28n,46p,1429b,1286s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2208,10 +2224,10 @@ pe1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2013/texmf-dist/fonts
 /type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2013/texmf-dist/fo
 nts/type1/urw/courier/ucrr8a.pfb>
-Output written on report_QCP2015.pdf (25 pages, 825961 bytes).
+Output written on report_QCP2015.pdf (29 pages, 836030 bytes).
 PDF statistics:
- 766 PDF objects out of 1000 (max. 8388607)
- 671 compressed objects within 7 object streams
- 175 named destinations out of 1000 (max. 500000)
- 420 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 799 PDF objects out of 1000 (max. 8388607)
+ 700 compressed objects within 7 object streams
+ 182 named destinations out of 1000 (max. 500000)
+ 428 words of extra memory for PDF output out of 10000 (max. 10000000)
 
