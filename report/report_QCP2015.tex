@@ -230,13 +230,13 @@
 %
 \section{Introduction}
 %Provide an introduction of quantum computing at the level of the knowledge you had at the start of the course
-This report is part of the result within the context of the course 'Quantum Computing Project' at the University of Edinburgh and is meant to be comprehensible to 3rd year undergraduate students of physical science (especially informatics and physics).
+This report is an accumulation of knowledge and results from the course 'Quantum Computing Project' at the University of Edinburgh and is meant to be comprehensible to 3rd year undergraduate students of physical science (especially informatics and physics).
 
-We start off describing the \hyperref[sec:Aims]{aims} of the project and are going to provide a \hyperref[sec:Background]{background} for the topic of Quantum Computing. That is followed by a chapter about the \hyperref[sec:Theory]{theory} needed for the course which is, however, purposely not intended to be exhaustive (see \hyperref[sec:References]{references} for further information).
+The report will begin by describing the \hyperref[sec:Aims]{aims} of the project and providing a \hyperref[sec:Background]{background} for the topic of Quantum Computing. That is followed by a chapter about the \hyperref[sec:Theory]{theory} needed for the underlying mathematics of the program which is purposely not intended to be exhaustive (see \hyperref[sec:References]{references} for further information).
 
 After that we will describe the \hyperref[sec:Implementation]{implementation} of the project including how we organised the programming, which development environment we used, how we structured the program, etc.
 
-We finish with a chapter about the \hyperref[sec:Results]{results} followed by a \hyperref[sec:Discussion]{discussion}.
+We finish with a chapter about the \hyperref[sec:Results]{results} followed by a \hyperref[sec:Discussion]{discussion} of these results and what we would do differently if we were to recreate the programme.
 
 
 \subsection{Aims}\label{sec:Aims}
@@ -250,17 +250,17 @@ The aims of the project:
 	\item \textbf{Presenting results}\\
 	This includes not only this report and a verbal presentation but also proper documentation of the programming code to make it comprehensive to other programmers.
 	\item \textbf{Teamwork and organisation}\\
-	A project like this needs organisation and division of task but also successful communication between all group members. It is a further goal to encourage teamwork and organisation skills.
+	A project like this needs organisation and division of tasks but also successful communication between all group members. It is a further goal to encourage teamwork and organisation skills.
 \end{itemize} 
 
 \subsection{Background}\label{sec:Background}
 
 The history of computers reaches back to the middle of the 19th century when a design for an Analytical Engine
-was proposed by Charles Babbage who is considered to be one of the early pioneers of computation. However, for almost 100 years this branch stayed an interesting but rather conceptional one until the invention of the transistor in 1925. The first working computers were built in the 1940s and up to today computers work principally the same way.
+was proposed by Charles Babbage, one of the early pioneers of computation. However, for almost 100 years this branch stayed as an interesting but rather conceptional one until the invention of the transistor in 1925. The transistor was the core of classical computers as it provided a physical mechanism for reliably storing a bit of information that could be easily adjusted between two possible states. The first working computers were built in the 1940s and up to today computers work principally the same way. 
 
-Quantum computation on the other hand is a quite recent research field which emerged from the physics of quantum mechanics (1920s). In 1982 Richard Feynman theorised that there seemed to be essential difficulties in simulating quantum mechanical system on classical computers and suggested that a quantum computer would solve these issues.\citeS{Nielsen2010}
+Quantum computation on the other hand is a quite recent research field which emerged from the physics of quantum mechanics (1920s). In 1982 Richard Feynman theorised that there seemed to be essential difficulties in simulating quantum mechanical system on classical computers and suggested that a quantum computer would solve these issues.\citeS{Nielsen2010} At its core a quantum computer would not be limited to two states for each unit during computation but could theoretically be in any superposition of the units in it's circuit (see \hyperref[sec:Quantum Register]{quantum register}).
 
-Remarkable theoretical breakthroughs in the 1990s followed, when Peter \textbf{Shor} demonstrated that essential problems -- like factorising integers -- could be solved far more efficiently on quantum computers than on conventional, classical computers. Besides Shor's algorithm Lov \textbf{Grover} proposed another algorithm in 1995 (only one year later) showing that the problem of conducting a search through some unstructured search space is as well more efficient on quantum computers.
+The increased flexibility of a quantum computation led to remarkable theoretical breakthroughs in the 1990s, when Peter \textbf{Shor} demonstrated that essential problems -- like factorising integers -- could be solved far more efficiently on quantum computers than on conventional, classical computers. Besides Shor's algorithm Lov \textbf{Grover} proposed another algorithm in 1995 (only one year later) showing that the problem of conducting a search through some unstructured search space is as well more efficient on quantum computers.
 %•	Comparison between classical and quantum computing
 %•	Practical challenges for building a quantum computer
 
@@ -371,7 +371,7 @@ There is no way to separate this wave function into a (tensor) product of two st
 $\{ \ket{\Psi_{b_1}}, \ket{\Psi_{b_0}} \}$. Thus, the state $\ket{\Psi^\text{ent}}$ is called \textbf{entangled}.
 
 \subsection{Quantum Gates}\label{sec:Quantum gates}
-After defining the quantum register, we now want to process it through a number of so-called quantum gates. These are (mathematically spoken) \textbf{unitary operations} applied to our register in order to change its total state $\ket{\Psi^\text{tot}}$. Since we work in the Hilbert space, all our operations are \textbf{linear}, therefore we can represent any gate working on a $n$-qubit register by a $N \times N$ matrix.
+After defining the quantum register, we now want to process it through a number of so-called quantum gates. These are \textbf{unitary operations} applied to our register in order to change its total state $\ket{\Psi^\text{tot}}$. Since we work in the Hilbert space, all our operations are \textbf{linear}, therefore we can represent any gate working on a $n$-qubit register by a $N \times N$ matrix.
 
 In the following subsections we will first introduce the most important gates used in our project, and then speak about generalisations of these gates for bigger registers.
 
@@ -525,7 +525,7 @@ We wish to find the relationship between the new basis $\ket{x}'$ and the old ba
 \end{align}
 where we used the fact that $G$ only operates on the $k$th qubit. Using equation \ref{twostates}, we can see that every new basis state can be described by two, and only two, basis vectors from the old basis:
 \begin{align}
-	\ket{x}' &= \ket{x_{x-1}} \otimes \ket{x_{n-2}} \otimes \dotsm \otimes \left(\alpha(x_k)\ket{0} + \beta(x_k)\ket{1} \right)  \otimes \dotsm \otimes \ket{x_0}\\
+	\ket{x}' &= \ket{x_{n-1}} \otimes \ket{x_{n-2}} \otimes \dotsm \otimes \left(\alpha(x_k)\ket{0} + \beta(x_k)\ket{1} \right)  \otimes \dotsm \otimes \ket{x_0}\\
 	&= \alpha(x_k)\ket{x_{n-1}x_{n-2}\dotsm 0 \dotsm x_0} + \beta(x_k)\ket{x_{n-1}x_{n-2}\dotsm 1 \dotsm x_0}
 \end{align}
 
@@ -564,9 +564,10 @@ This leads to the consideration of the following three possible representations:
 		\end{enumerate}
 		The quantum register, however, has mostly non-zero entries for most of the steps of the usual algorithms.
 	\item \textbf{Sparse matrix representation}\\
-		A sparse matrix representation only stores non-zero elements of a matrix in a list. Therefore every non-zero element requires a positioning index and the number itself to store. 
+		A sparse matrix representation only stores non-zero elements of a matrix in a list. Therefore every non-zero element requires a positioning index and the number itself to store. This representation is particularly useful in representing the gates because there are a only two non-zero elements in each column of a gate matrix. Therefore on an N-qubit register a Sparse matrix representation will only require roughly $4N$ storage elements (the index and value of each non zero element in N columns). This is significantly smaller than the $N^2$ required elements in a dense matrix both speeds up computation and decrease memory pressure for higher values of N.
 	\item \textbf{Functional representation}\\
-		Since there are only two non-zero elements in a row (in our special case), a functional representation would be reasonable.
+		Another representation of the gates that deviates slightly from the underlying maths representation is to use a functional representation of the gates. The key difference between a matrix and functional representations is that a functional representation doesn't generate a final gate matrix to multiply to the register. Instead the elements for each column are calculated iteratively and then applied to the necessary elements of the register. This significantly decreases memory pressure as the program no longer has to create a matrix for each gate in the circuit. However, the increased computational complexity can make the program run more slowly in some cases. (See \hyperref[sec:Results]{Results} )
+		
 \end{enumerate}
 
 
@@ -705,7 +706,7 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 %Describe how your program is structured
 %Why have you made the design choices you did
 %perhaps you could also say what you would do differently in the light of your experience
-In this section we go over the approach used in this programme to tackle the task of simulating the aforementioned concepts on a classical computer. The problem of representing many different concepts, which both built on and used one another, naturally led to a large object-oriented design. Aside from modelling the quantum concepts that ultimately formed a simulation of a basic quantum computer this project also required the creation of the matrix libraries used in the underlying mathematics and a user interface to test and interact with the simulated computer. Thus the implementation of the program can be understood by understanding each of these three major components and how they interact. This section will begin by a discussion of what software development tools were leveraged in order to organise the project between the group members and create the simulator.  Following that is a more in depth discussion of how each component of the program is designed. (For even more detailed documentation of our project see the Javadoc documentation provided with the submission.)
+In this section we go over the approach we used to tackle the task of simulating the aforementioned concepts on a classical computer. The problem of representing many different concepts, which both built on and used one another, naturally led to a large object-oriented programme. Aside from modeling the quantum concepts that ultimately formed a simulation of a basic quantum computer this project also required the creation of the matrix libraries used in the underlying mathematics and a user interface to test and interact with the simulated computer. Thus the implementation of the program can be understood by understanding each of these three major components and how they interact. This section will begin by a discussion of what software development tools were leveraged in order to organise the project between the group members and create the simulator.  Following that is a more in depth discussion of how each component of the program is designed. (For even more detailed documentation of our project see the Javadoc documentation provided with the submission.)
 
 \subsection{Project organisation}
 %•	How tasks were distributed
@@ -726,10 +727,10 @@ There were many viable programming languages that could be used to implement thi
 	\item The resulting program should run on as many platforms as possible
 	\item All members of the group should be comfortable with the language
 \end{enumerate}
-The two primary languages that were ultimately considered were Java and C++. Java was chosen for two primary reasons: it provided an operating system agnostic, well-documented library for Graphical User Interface creation and more of our group members were familiar with the language. It is worth noting that a `lower level' programming language such as C++ would have allowed for more efficient memory management and optimisations but at the cost of increased complexity. However, since we only had limited time to complete our task we decided that we would forgo the speed benefits of C++ for the robustness and ease of Java.
+The two primary languages that were ultimately considered were Java and C++. Java was chosen for two primary reasons: it provided an operating system agnostic, well-documented library for Graphical User Interface creation and more of our group members were familiar with the language. It is worth noting that a `lower level' programming language such as C++ would have allowed for more efficient memory management and optimisations but at the cost of increased code complexity. Since we only had limited time to complete our task we decided that we would forgo the speed benefits of C++ for the robustness and ease of Java.
 
 \subsubsection{Git}
-Once an architecture and programming language were decided, the next task was to implement the program as a team. The primary challenge involved in this is allowing each group member to work on the project simultaneously without interfering with each another's progress.  The primary tool used in this project to solve this problem is Git source control. Git allows many contributors to simultaneously add changes to a working code base remotely by storing the iterations of the project on both a central server and also on each contributor's local device. In addition it provides many tools to assist in simultaneous development such as previous version recovery, conflict resolution when multiple contributors change the same lines of code in a file, and branch creation (which allows a developer to work in their own version of a project without seeing changes made by other contributors).   
+Once an architecture and programming language were decided, the next task was to implement the program as a team. The primary challenge involved in this is allowing each group member to work on the project simultaneously without interfering with each another's progress.  The primary tool used in this project to solve this problem is Git source control. Git allows many contributors to simultaneously add changes to a working code base remotely by storing the iterations of the project on both a central server and also on each contributor's local device. In addition it provides many tools to assist in simultaneous development such as previous version recovery, conflict resolution (when multiple contributors change the same lines of code in a file), and branch creation (which allows a developer to work in their own version of a project without seeing changes made by other contributors).   
 
 
 \subsection{Development environment}
