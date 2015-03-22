@@ -583,27 +583,23 @@ After defining quantum gates it is now simple to predict the next step: A so-cal
 %Explain how Grover’s algorithm works, and discusse its limitations
 
 \subsubsection{Grover's Algorithm}
-Grover's algorithm is also known as the quantum search algorithm. On a classical computer, searching through a non-ordered list with $N$ entries would require $O(N)$ operations. This can be sped up to $O(\sqrt{N})$ operations using a quantum circuit implementing Grover's algorithm. Different from normal search operations, this algorithm searches through the $index$ of the elements (which ranges from $0$ to $N-1$) rather than the elements themselves. The index of an element corresponds to a basis state in the register. By using a `black box' (also known as an \emph{oracle}) which can $recognise$, without $knowing$, the states associated with the solutions of the search problem, the algorithm finds the solutions by repeatedly performing a certain set of transformations on the register to maximise the probability of measuring the solution states.
+Grover's algorithm is also known as the quantum search algorithm. On a classical computer, searching through a non-ordered list with $N$ entries would require $O(N)$ operations. This can be sped up to $O(\sqrt{N})$ operations using a quantum circuit that implements Grover's algorithm.Different from normal search operations, this algorithm searches through the $index$ of the elements (which ranges from $0$ to $N-1$) rather than the elements themselves. The index of an element corresponds to a basis state in the register. By using a `black box' (also known as an \emph{oracle}) which can \emph{recognise} the solution states without $knowing$ them explicitly, the algorithm finds the solutions by repeatedly performing a certain set of transformations on the register to maximise the probability of measuring the solution states.
 
-Suppose we want to search through a list of $N$ elements, and there are $M$ solutions to the search, where $ 1 \leq M \leq N$. For simplicity, let $N = 2^n$ so that the index of the elements can be exactly represented by $n$ qubits in the quantum register. As mentioned above, the oracle has the ability to recognise the solution states. This is signalled by the change in state of a single qubit $\ket{q}$ in the oracle. Specifically, if $\ket{x}$ is the basis state associated with the index of a particular element, the oracle performs the following operation:
-
+Suppose we want to search through a list of $N$ elements, and there are $M$ solutions to the search, where $ 1 \leq M \leq N$. For simplicity, let $N = 2^n$ such that the index of the elements can be exactly represented by $n$ qubits in the register. As mentioned above, the oracle has the ability to recognise the solution states. This can be signalled by changing the state of a qubit $\ket{q}$ in the oracle. Specifically, if we let $\ket{x}$ to be a basis state associated with a particular element and let $f(x) = 1$ if $\ket{x}$ is a solution and $f(x) = 0$ if it is not, the oracle performs the following unitary operation (denoted as $O$):
 \begin{align}
 	\ket{x} \ket{q} \xrightarrow{O} \ket{x} \ket{q \oplus f(x)}
 \end{align}
-where $\oplus$ denotes the addition modulus 2, or XOR, operation. Hence, the
-By initialising the oracle qubit
-The key object in Grover's algorithm is the quantum \emph{oracle}, which has the ability to $recognise$ the solution states without \emph{knowing} them. Since we are interested in the algorithm itself, the exact mechanism how the oracle can identify the solution states is unimportant. The oracle marks the solution states by flipping the sign of the state.  Let $\ket{x}$ be one of the basis states and let $f(x) = 1$ if $\ket{x}$ is a solution state and $f(x) = 0$ if it is not a solution. The oracle performs the following linear operation (denoted as $O$):
+where $\oplus$ denotes the addition modulus 2 (which is the same as the binary XOR operation in this case). Hence, $\ket{q}$ would only change its state if $f(x) = 1$, which is when the oracle has recognised a solution. For convenience, we can prepare the qubit in the oracle to be $\ket{q} = (\ket{0} - \ket{1}) / \sqrt{2}$ such that it does not change in the operation:
 \begin{align}
-	\ket{x} \xrightarrow{O} (-1)^{f(x)}\ket{x}
+	\ket{x} \left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right) \xrightarrow{O} (-1)^{f(x)}\ket{x}\left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right)
+\end{align}
+Therefore, the oracle marks the solution states by applying a phase shift of -1 to them:
+\begin{align}
+	\ket{x} \xrightarrow{O} (-1)^{f(x)}\ket{x} 
 \end{align}
 
-What needs to be done now is to maximise the probability of observing one of the solution states. This cannot be achieved by re-applying the oracle right away, as this would undo the marking. Grover designed an algorithm to achieve this effect, and it is known as the Grover's diffusion operation. The procedure of the algorithm is as follows:
-
-
-The algorithm requires repeated applications of a set of operations on the circuit to achieve the desired result. Each iteration consists of the following steps:
-
+To maximise the probability of the solution states, the algorithm repeatedly applies the following set of operations on the register, which, as a whole, is known as the Grover's diffusion operation:
 \begin{enumerate}
-
 	\item Apply the oracle $O$
 	\item Apply the Hadamard operation on all qubits $H^{\otimes n}$ \label{step2}
 	\item Perform a phase shift of -1 on every state of the computational basis except $\ket{0}$:
@@ -614,6 +610,7 @@ The algorithm requires repeated applications of a set of operations on the circu
 		\end{align}
 	\item Apply the Hadamard operation on all qubits again $H^{\otimes n}$ \label{step4}
 \end{enumerate}
+
 Step \ref{step2} to step \ref{step4} is also known as the \emph{inversion about mean} operation. Mathematically, this iteration can be written compactly as:
 \begin{align}
 	G = \left(2\ket{\psi}\bra{\psi} - \mathbb{I}\right)O.
@@ -635,7 +632,7 @@ Step \ref{step2} to step \ref{step4} is also known as the \emph{inversion about 
 \end{figure}
 Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for Grover's algorithm.
 
-To determine the number of times the diffusion operation should be applied, we need to first
+To determine the number of times the diffusion operation should be applied, we need
 Geometrically, the iteration performs a rotation of the state vector $\ket{\Psi}$ towards the vector representing a uniform superposition of the solution states on the plane spanned by the 
 
 \begin{align}
@@ -773,6 +770,7 @@ The first point is fundamental as the project brief specifically asks us to crea
 To achieve the remaining specifications, we created an interface for each type of object in the program and adhered to common object oriented design patterns. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other?s representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The use of commonly used design architectures (such as the Factory Pattern and MVVM) allow for other programs to quickly understand the design and usage of the parts of the program. 
 
 \subsubsection{The Computer}\label{sec:The Computer}
+The computer is at the heart of our programme for simulating the quantum algorithms. Figure XX shows the overall structure of this part of the programme. Here we discuss the design choices we made for each of the three components of the computer
 %allow indentation in enumerate environment
 \newenvironment{myenumerate}{%
   \edef\backupindent{\the\parindent}%
@@ -788,9 +786,7 @@ To achieve the remaining specifications, we created an interface for each type o
 
 \begin{myenumerate}
 	\item \textbf{Register}\\
-	As discussed in section 2, the register is consists of an array of $n$ qubits that would be manipulated by the gates. From an object-orientated design perspective, it might be tempting to create a qubit object with the register storing an array of these objects. This, however, is unphysical as qubits can be entangled and may not be separable as shown in equation. Hence, we must treat the n qubits as a single system with an array storing the complex amplitudes of each basis state from $\ket{0}$ to $\ket{N-1}$. 
-
-The \texttt{QRegister} interface is developed with the above concept in mind. It requires any classes representing the register to have accessor methods for setting and getting the amplitudes of any of the basis states. It also requires the concrete class to have the method \texttt{measure()} for measuring the register, which is needed as a measurement is performed at the end of each circuit. We created a concrete class called \texttt{MRegister}. It stored the amplitudes of the basis state as a column vector. Since the amplitudes of most of the states would generally not be non-zero, we decided to use a regular dense matrix representation for the vector. 
+The register consists of an array of n qubits that would be manipulated by the gates. From an object-oriented perspective, one might be tempted to create a qubit object with the register storing an array of these objects. This, however, is unphysical as qubits can be entangled and may not be separable as shown in equation XX. Hence, we decided to treat the n qubits as a single system, and the register should store an array of the complex amplitudes of the basis states formed by the qubits (i.e. from $\ket{0}$to $\ket{N-1}$).We developed the \texttt{QRegister} interface with the above concept in mind. It requires the classes representing the register to have accessor methods for setting and getting the amplitudes of the basis states. It also requires these classes to provide a method for measuring the register, as such operation is required to obtain physical results after applying a circuit to the register. We created a concrete class called \texttt{MRegister} that complies with the interface. It stores the amplitudes of the basis state as a column vector. Since the amplitudes of most of the states would generally not be non-zero, we decided to use a regular dense matrix representation for the vector.
 
 	\item \textbf{Gates}\\
 	All quantum gates within the circuit implements the \texttt{QGate} interface. This interface requires any gate classes to implement the method called \texttt{applyGate(QReigster reg)}, as each gate must perform an operation on the register. It also requires the class to provide info about the type of gate it is representing, which would be useful for debugging the programme.
@@ -821,8 +817,7 @@ The \texttt{MGate} has a method called \texttt{initGate()} which creates the mat
 	\item Construct a general form of the gate that would require the specification of the target and control qubits when it is applied.
 	\item Construct a specific form of the gate that would only work for a specific target and set of control qubits.
 \end{enumerate}
-Although the first option keeps the gate class generic and more flexible, it would require computing the representation every time the gate is used. This may lead to a significant increase in computation time, hindering the programme performance. The latter option does not have such problem, as the gates are pre-programmed to apply to a specific target, but it has the unwelcoming side effect of consuming more memory, as more data are stored at the same time (notice this is only significant to matrix representation).  We decided to design our gates based on the second option, as it has the advantage of not requiring a list of . Nevertheless, this highlights the memory-computation time trade-off problem which is a key computational issue in this programme.
-
+Although the first option keeps the gate class generic and more flexible, it requires the representation to be recalculated every time the gate is used. This may lead to a significant increase in computation time, hindering the programme performance. The latter option does not have such problem, as the gates are instantiated for a specific target qubit and set of control qubits. However, this has the side effect of consuming more memory, as we need to store multiple versions of the same gate for different targets and controls. We decided to design our gates based on the second option, as we believed such usage of memory is tolerable, and we would like to obtain results within a reasonable amount of time. In addition, it simplifies the task for building a quantum circuit. As each gate is pre-programmed to operate on a specific target with a specific set of controls, we would only need to store a list of gates to be applied, sparing the need for a complicated set of data about the target and control qubits for the gates. Furthermore, this design consideration highlights the reoccurring theme of memory-computation time trade-off in the project.
 	\item \textbf{Circuits}\\
 	A quantum circuit comprises of a series of gates that perform more complicated operations on the register. All circuits classes in the programme implements the QCircuit interface. They are required to implement the applyCircuit(QRegister reg) method, as they would perform some operations on the register. To allow one to build a general circuit with gates of different representations, we created the GateByGateCircuit class. 
 	
