@@ -111,35 +111,15 @@ public abstract class Matrix {
 	public static Matrix Multiply(Matrix a, Matrix b){
 		Matrix out = null;
 
-		//both sparse
-		if(a.isSparse){
-			if(b.isSparse){
-				return MatrixMultiply.SSMultiply(a, b);
-			}
-			else if(b.isComplex){
-				return MatrixMultiply.SCMultiply(a,b);
-			}
-			else{
-				return MatrixMultiply.Multiply(a,b);
+		if(a.isGate){
+			if(b.isComplex){
+				if(b.column==1){
+					//optimised method only for gate-complex-vector
+					return MatrixMultiply.GCMultiply(a,b);
+				}
 			}
 		}
-		else if(a.isComplex && !a.isSparse){
-			if(b.isSparse){
-				return MatrixMultiply.CSMultiply(a, b);
-			}
-			else if(b.isComplex){
-				return MatrixMultiply.CCMultiply(a,b);
-			}
-			else if(!b.isComplex){
-				return MatrixMultiply.CRMultiply(a, b);
-			}
-			else{
-				return MatrixMultiply.Multiply(a,b);
-			}
-		}
-		else{
-			return MatrixMultiply.Multiply(a, b);
-		}
+		return MatrixMultiply.Multiply(a, b);
 	}
 
 	/**
@@ -166,7 +146,7 @@ public abstract class Matrix {
 		result.isComplex = this.isComplex;
 		result.isGate = this.isGate;
 		if(this.reMatrix!=null){
-		result.reMatrix = Arrays.copyOf(reMatrix, this.reMatrix.length);
+			result.reMatrix = Arrays.copyOf(reMatrix, this.reMatrix.length);
 		}
 		if(this.imMatrix!=null){
 			result.imMatrix = Arrays.copyOf(imMatrix, this.imMatrix.length);
@@ -176,41 +156,4 @@ public abstract class Matrix {
 		}
 		return result;
 	}
-
-	/*
-	public static ComplexMatrix Add(Matrix a, Matrix b){
-		return null;
-	}
-
-	public static RealMatrix Add(RealMatrix a, RealMatrix b){
-		int row = a.row;
-		int column = a.column;
-		RealMatrix result = new RealMatrix(row, column);
-		for (int i = 0; i < row*column; i++){
-			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
-		}
-		return result;
-	}
-
-	public static ComplexMatrix Add(ComplexMatrix a, RealMatrix b){
-		int row = a.row;
-		int column = a.column;
-		ComplexMatrix result = new ComplexMatrix(row, column);
-		for (int i = 0; i < row*column; i++){
-			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
-			result.reMatrix[i] = a.imMatrix[i];
-		}
-		return result;
-	}
-
-	public static ComplexMatrix Add(ComplexMatrix a, ComplexMatrix b){
-		int row = a.row;
-		int column = a.column;
-		ComplexMatrix result = new ComplexMatrix(row, column);
-		for (int i = 0; i < row*column; i++){
-			result.reMatrix[i] = a.reMatrix[i] + b.reMatrix[i];
-			result.imMatrix[i] = a.imMatrix[i] + b.imMatrix[i];
-		}
-		return result;
-	}*/
 }
