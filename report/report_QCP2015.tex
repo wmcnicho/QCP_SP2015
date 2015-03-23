@@ -941,35 +941,6 @@ and start a new simulation. Theoretically the programme's architecture could be 
 
 Basically, Grover's Algorithm can be depicted as a rotation in a two dimensional plane by projecting the current state vector. This is depicted in Fig.\,\ref{grover_rotation}. After each iteration of the loop in Grover's Algorithm (see Fig.\,\ref{fig:CircuitGrover}) the state vector approaches the solution state.
 
-\begin{figure}[H]
-	\begin{minipage}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{img/pic_0.png}
-		\subcaption{Iteration 1 (start)}
-	\end{minipage}
-	\begin{minipage}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{img/pic_3.png}
-		\subcaption{Iteration 4}
-	\end{minipage}
-	\begin{minipage}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{img/pic_6.png}
-		\subcaption{Iteration 7}
-	\end{minipage}\\
-	\begin{minipage}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{img/pic_9.png}
-		\subcaption{Iteration 10}
-	\end{minipage}
-	\begin{minipage}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{img/pic_12.png}
-		\subcaption{Iteration 13}
-	\end{minipage}
-	\begin{minipage}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{img/pic_13.png}
-		\subcaption{Iteration 14 (end)}
-	\end{minipage}
-	\caption{Depiction of Grover's Algorithm: The green vector depicts the non-solution vector, the blue vector depicts the vector of the solution. The red vector is the projection of the current state. With every consecutive iteration the state vector rotates towards the solution state.}
-	\label{grover_rotation}
-\end{figure}
-
 \subsubsection{Computational time}
 
 Fig.\,\ref{grover_time_performance} shows the computational time of Grover's algorithm. All the measurements were executed on the same computer by varying the number of qubits $n$ for the three different representations.
@@ -983,14 +954,43 @@ We note the following observations:
 	\item\textbf{Exponential behaviour}\\
 	All three representations show an exponential behaviour. To illustrate the point we plotted the same data in a log-plot (Fig.\,\ref{grover_time_performance_log}) and got a linear relation.
 \end{itemize}
-
+%
+\begin{figure}[H]
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_0.png}
+		\subcaption{Iteration 1 (start)}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_3.png}
+		\subcaption{Iteration 4}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_6.png}
+		\subcaption{Iteration 7}
+	\end{minipage}\\
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_9.png}
+		\subcaption{Iteration 10}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_12.png}
+		\subcaption{Iteration 13}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{img/pic_13.png}
+		\subcaption{Iteration 14 (end)}
+	\end{minipage}
+	\caption{Depiction of Grover's Algorithm: The green vector depicts the non-solution vector, the blue vector depicts the vector of the solution. The red vector is the projection of the current state. With every consecutive iteration the state vector rotates towards the solution state.}
+	\label{grover_rotation}
+\end{figure}
+%
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance.eps}
+	\includegraphics[width=0.85\textwidth]{img/Grover_Time_Performance.eps}
 	\caption{Computational time of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional).}
 	\label{grover_time_performance}
 \end{figure}
-
+%
 
 \subsubsection{Memory Usage}
 
@@ -1119,6 +1119,7 @@ The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig
 
 \phantomsection
 \addcontentsline{toc}{section}{References}
+\addcontentsline{toc}{subsection}{Literature}
 
 \nocite{Perry2012}
 \nocite{BasicConceptsQC}
@@ -1126,4 +1127,16 @@ The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig
 \phantomsection\label{sec:References}
 \bibliographystyle{plaindin}
 \bibliography{lit}
+
+\phantomsection
+\addcontentsline{toc}{subsection}{External Libraries}
+\subsection*{External Libraries}
+
+\begin{itemize}
+	\item \textbf{JFreeChart}\\
+	{\scriptsize \url{http://www.jfree.org/jfreechart/}}
+\end{itemize}
+
+
+
 \end{document}
