@@ -835,7 +835,7 @@ A similar design is used in functional representation. The \texttt{FGate} class 
 	\item Construct a specific form of the gate that would only work for a specific target qubit and set of control qubits
 
 \end{enumerate}
-Although the first option keeps the gate class generic and more flexible, it requires the representation to be recalculated every time the gate is used. This may lead to a significant increase in computation time, hindering the programme performance. The latter option does not have such problem, as the gates are instantiated for a specific target qubit and set of control qubits. However, this has the side effect of consuming more memory, as we need to store multiple versions of the same gate for different targets and controls. We decided to design our gates based on the second option, as we believed such usage of memory is tolerable, and we would like to obtain results within a reasonable amount of time. In addition, it simplifies the task for building a quantum circuit. As each gate is pre-programmed to operate on a specific target with a specific set of controls, we would only need to create a list of gates to be applied for building the circuit. We would not need store an extra, complicated set of instruction telling the gate which qubit it should operate on and the control qubits it has. In any case, this discussion highlights the problem of memory-computation time trade-off, which is reoccurring theme in this project. 
+Although the first option keeps the gate class generic and more flexible, it requires the representation to be recalculated every time the gate is used. This may lead to a significant increase in computation time, hindering the programme performance. The latter option does not have such problem, as the gates are instantiated for a specific target qubit and set of control qubits. However, this has the side effect of consuming more memory, as we need to store multiple versions of the same gate for different targets and controls. We decided to design our gates based on the second option, as we believed such usage of memory is tolerable, and we would like to obtain results within a reasonable amount of time. In addition, it simplifies the task for building a quantum circuit. As each gate is pre-programmed to operate on a specific target with a specific set of controls, we would only need to create a list of gates to be applied for building the circuit. We would not need store an extra, complicated set of instruction telling the gate which qubit it should operate on and the control qubits it has. 
 	\item \textbf{Circuits}\\
 	The design structure for the circuits is similar to that for the gates. We created an interface called \texttt{QCircuit} that describes a general quantum circuit. The interface requires classes representing a quantum circuit to implement the \texttt{applyCircuit(QRegister reg)} method, as each circuit is expected to perform some operations on the register. We designed a general circuit class called \texttt{GateByGateCircuit} which allows the user to construct a circuit by assembling gates together, regardless of their representation. Furthermore, we take advantage of the universality of this circuit class by extending it to build the various circuits required for the quantum algorithms studied in this project. This includes the quantum Fourier transform circuits (\texttt{ForwardQFTCircuit} and \texttt{BackwardQFTCircuit}) and the circuit for Grover's algorithm (\texttt{GroverGateByGate}).
 	
@@ -929,6 +929,7 @@ and start a new simulation. Theoretically the programme's architecture could be 
 %Plot of Results
 \subsubsection{Rotation of the state vector}
 
+Basically, Grover's Algorithm can be depicted as a rotation in a two dimensional plane by projecting the current state vector. This is depicted in Fig.\,\ref{grover_rotation}. After each iteration of the loop in Grover's Algorithm (see Fig.\,\ref{fig:CircuitGrover}) the state vector approaches the solution state.
 
 \begin{figure}[H]
 	\begin{minipage}{0.33\textwidth}
@@ -981,6 +982,27 @@ We note the following observations:
 \end{figure}
 
 
+\subsubsection{Memory Usage}
+
+Fig.\,\ref{grover_memory} shows the memory usage of Grover's algorithm. All the measurements were executed on the same computer by varying the number of qubits $n$ for the three different representations.
+
+We note the following observations:
+\begin{itemize}
+	\item\textbf{Dense representation at a disadvantage}\\
+	The memory usage of dense matrices is enormous. For only 11 qubits the execution requires working memory of 750\,megabytes. It is impossible to run the algorithm for 12 qubits since this already exceeds the working memory of a normal computer (~4 gigabyte).
+	\item\textbf{Spare vs. functional representation}\\
+	In terms of computational time the sparse representation was slightly faster than the functional representation. Measuring the memory usage, however, the functional representation uses almost no working memory (even for 17 qubits!), whereas the sparse representation, since it stores matrices in a compact way, has to increase dramatically at a certain number of qubits. In our case the working memory would be exceeded (using sparse representation) for less than 25 qubits.
+	\item\textbf{Exponential behaviour}\\
+	The dense and sparse representation show an exponential behaviour. To illustrate the point we plotted the same data in a log-plot (Fig.\,\ref{grover_memory_log}) and got a linear relation. The functional representation, however, shows no tendency for the range we investigated.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance.eps}
+	\caption{Memory Usage of Grover's Algorithm (in megabyte) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\label{grover_memory}
+\end{figure}
+
 
 
 \subsection{Shor's Algorithm}\label{sec:Shor}
@@ -993,6 +1015,11 @@ We note the following observations:
 \section{Discussion}\label{sec:Discussion}
 
 \subsection{Matrix or functional representation}
+
+In section \ref{sec:Grover} we've shown the results for the three different 
+
+As we have seen in  the \textbf{dense matrix representation} is at a disadvantage in every sense. 
+
 
 \subsection{Improvements and further steps}
 \subsubsection{What we did not have time to do}
@@ -1026,6 +1053,13 @@ There are also some minor points we would like to improve upon. These are mainly
 	\label{grover_time_performance_log}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance_log.eps}
+	\caption{Memory Usage of Grover's Algorithm (in megabyte, logarithmic) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\label{grover_memory_log}
+\end{figure}
+
 \subsection{Details}
 The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig.\,\ref{grover_time_performance_log}) was collected on a:
 
@@ -1049,6 +1083,5 @@ The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig
 \phantomsection\label{sec:References}
 \bibliographystyle{plaindin}
 \bibliography{lit}
-
 
 \end{document}
