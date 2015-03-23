@@ -507,6 +507,18 @@ As briefly mentioned before, any single qubit gate can by applied to the $k$th q
 		0 & g_{10} & 0 & g_{11}\\
 	\end{pmatrix}
 \end{align}
+
+%\begin{align}
+%	G_k \ket{b_{n-1} ... b_k ... b_0} = \alpha \ket{b_{n-1} ... 0 ... b_0} + \beta \ket{b_{n-1} ... 1 ... b_0}\\
+%	%
+%		\begin{pmatrix}
+%			0 &\rightarrow& g_{00}&\quad& 2 &\rightarrow& g_{10}\\
+%			5 &\rightarrow& g_{00}&\quad& 7 &\rightarrow& g_{10}\\
+%			8 &\rightarrow& g_{01}&\quad& 10 &\rightarrow& g_{11}\\
+%			13 &\rightarrow& g_{01}&\quad& 15 &\rightarrow& g_{11}\\
+%		\end{pmatrix}
+%\end{align}
+
 %
 %\begin{align*}
 %	\Qcircuit @C=.7em @R=.7em {
@@ -1025,7 +1037,7 @@ We did not include any data for the dense representation as the only number whic
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Shor_Time.eps}
-	\caption{}
+	\caption{The computational time of Shor's Algorithm (in sec) for the number factored. Jumps in computational time occur every time the register has to be extended in order to store the number (..., 128, 256, 512, ...).}
 	\label{shor_time}
 \end{figure}
 
