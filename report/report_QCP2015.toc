@@ -15,16 +15,15 @@
 \contentsline {subsubsection}{\numberline {2.3.6}Gate representations}{8}{subsubsection.2.3.6}
 \contentsline {subsection}{\numberline {2.4}Quantum algorithms}{9}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Grover's Algorithm}{9}{subsubsection.2.4.1}
-\contentsline {paragraph}{Limitations of Grover's Algorithm}{11}{section*.3}
 \contentsline {subsubsection}{\numberline {2.4.2}Shor's Algorithm}{11}{subsubsection.2.4.2}
 \contentsline {section}{\numberline {3}Implementation}{12}{section.3}
-\contentsline {subsection}{\numberline {3.1}Project organisation}{12}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.1}Project organisation}{13}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Java}{13}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Git}{13}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.2}Git}{14}{subsubsection.3.1.2}
 \contentsline {subsection}{\numberline {3.2}Development environment}{14}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Github}{14}{subsubsection.3.2.1}
-\contentsline {subsection}{\numberline {3.3}Programme structure}{14}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Overview}{14}{subsubsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3}Programme structure}{15}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Overview}{15}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}The Computer}{15}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}Matrix}{18}{subsubsection.3.3.3}
 \contentsline {subsubsection}{\numberline {3.3.4}Graphics User Interface}{20}{subsubsection.3.3.4}
@@ -43,4 +42,4 @@
 \contentsline {section}{\numberline {7}Appendix}{28}{section.7}
 \contentsline {subsection}{\numberline {7.1}Grover's Algorithm}{28}{subsection.7.1}
 \contentsline {subsection}{\numberline {7.2}Details}{29}{subsection.7.2}
-\contentsline {section}{References}{30}{section*.19}
+\contentsline {section}{References}{30}{section*.18}

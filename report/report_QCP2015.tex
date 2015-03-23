@@ -1,4 +1,4 @@
-\documentclass[bibliography=totocnumbered, 10pt]{article}
+\documentclass[bibliography=totocnumbered]{article}
 %\usepackage[T1]{fontenc} Verpixelt!
 
 %\bibliographystyle{plain}
@@ -588,62 +588,38 @@ After defining quantum gates it is now simple to predict the next step: A so-cal
 %Explain how Grover’s algorithm works, and discuss its limitations
 
 \subsubsection{Grover's Algorithm}
-Grover's algorithm is also known as the quantum search algorithm. On a classical computer, searching through a non-ordered list with $N$ entries would require $O(N)$ operations. This can be reduced remarkably to $O(\sqrt{N})$ operations using a quantum circuit that implements Grover's algorithm. 
-
-Different from most search operations, this algorithm searches through the \emph{index} of the elements (which ranges from $0$ to $N-1$) rather than the elements themselves. Each index corresponds to a basis state in the register. In addition, the algorithm requires a quantum `black box' (also known as an \emph{oracle}) which can \emph{recognise} the states associated with the solutions, or the solution states, without \emph{knowing} them explicitly. Using the oracle, the algorithm finds a solution to the search problem by repeatedly performing a certain set of transformations on the register to maximise the probability of measuring the solution states.\\
-
-\textbf{The Oracle}\\
-Suppose we want to search through a list of $N$ elements, and there are $M$ solutions to the search, where $ 1 \leq M \leq N$. For simplicity, let $N = 2^n$ such that the index of the elements can be exactly represented by $n$ qubits in the register. As mentioned above, the oracle has the ability to recognise the solution states. This is signalled by the state change of a qubit $\ket{q}$ in the oracle (i.e. $\ket{0} \rightarrow \ket{1} \textrm{or} \ket{1} \rightarrow \ket{0}$). In other words, if we let $\ket{x}$ to be a basis state of the register associated with a particular element such that $f(x) = 1$ if $\ket{x}$ is a solution and $f(x) = 0$ if it is not, the oracle performs the following unitary operation (denoted as $O$):
+Grover's algorithm is a search algorithm proposed by Lov Grover in 1996. On a classical computer, searching through an unsorted list with $N$ entries would require $O(N)$ operations. This can be reduced remarkably to $O(\sqrt{N})$ operations using a quantum circuit that implements Grover's algorithm. Different from most search operations, this algorithm searches through the \emph{index} of the elements (which ranges from $0$ to $N-1$) rather than the elements themselves. Each index corresponds to a basis state of the register (i.e. index $x \rightarrow \ket{x}$). With the aid of a quantum \emph{oracle}, the algorithm finds a solution to the search problem by repeatedly performing a set of transformations on the register to maximise the probability of measuring the states associated with the solutions.
+\begin{itemize}
+\item[] \textbf{The Oracle}\\
+The oracle is a device which has the ability to \emph{recognise} the solutions to the search problem without \emph{knowing} them explicitly \footnote{The difference between \emph{recognise} and \emph{knowing} the solutions is that it is possible to do the former without doing the latter.}. The exact mechanism how it achieve so does not matter, as we are only concerned with the algorithm itself. The oracle takes in a state $\ket{x}$ which corresponds to the index of a search element and a single qubit $\ket{q}$ known as the \emph{oracle qubit}. If the state is a solution to the search problem, the oracle signals this by flipping the state of $\ket{q}$ (i.e. $\ket{0} \rightarrow \ket{1} \textrm{or} \ket{1} \rightarrow \ket{0}$). In other words, if we define a function $f(x)$ such that $f(x) = 1$ if $\ket{x}$ is a solution and $f(x) = 0$ if it is not, the oracle performs the following unitary operation (denoted as $O$):
 \begin{align}
-	\ket{x} \ket{q} \xrightarrow{O} \ket{x} \ket{q \oplus f(x)}
+	\ket{x} \ket{q} \xrightarrow{O} \ket{x} X^{f(x)} \ket{q}
 \end{align}
-where $\oplus$ denotes the addition modulus 2  (i.e. $(q + f(x)) \;\textrm{mod}\; 2$). As the equation suggests, $\ket{q}$ would only change its state if $f(x) = 1$, which is when the oracle has recognised a solution. For convenience, we can prepare the qubit in the oracle to be $\ket{q} = (\ket{0} - \ket{1}) / \sqrt{2}$ such that the signal for recognising a solution is reflected on the basis state of the register:
+where $X$ is the Pauli-$X$ gate as shown previously. For convenience, we can prepare the oracle qubit to be $\ket{q} = (\ket{0} - \ket{1}) / \sqrt{2}$. If $\ket{x}$ is a solution, the oracle qubit would be flipped to $- (\ket{0} - \ket{1}) / \sqrt{2}$; otherwise, it would remain the same. These can be expressed as:
 \begin{align}
 	\ket{x} \left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right) \xrightarrow{O} (-1)^{f(x)}\ket{x}\left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right)
 \end{align}
-As $\ket{q}$ remains unchanged in the process, we can ignore it along with the internal workspace of the oracle completely for the rest of this discussion. We can simply think that the oracle marks the solution states by applying a phase shift of -1 to them:
+As $\ket{q}$ remains unchanged in the process, we can ignore it along with the internal workspace of the oracle completely for the rest of this discussion. We can simply think that the oracle marks the solutions by applying a phase shift of -1 to them:
 \begin{align}
 	\ket{x} \xrightarrow{O} (-1)^{f(x)}\ket{x} 
 \end{align}
-\\
 
-\textbf{Procedure of the Algorithm}\\
-The algorithm begins with setting the register to a uniform superposition state:
+\item[] \textbf{Procedure of the Algorithm}\\
+Suppose we want to search through a list of $N$ elements, and there are $M$ solutions to the search, where $ 1 \leq M \leq N$. For simplicity, let $N = 2^n$ such that the index of the elements can be exactly represented by $n$ qubits in the register. The algorithm begins with setting the register to a uniform superposition state:
 \begin{align}
 	\ket{\psi} = \frac{1}{\sqrt{N}} \sum_{x=0}^{N-1} \ket{x}
 \end{align}
 
-To maximise the probability of the solution states, the algorithm repeatedly applies the following set of operations on the register, which, as a whole, is known as the Grover's iteration (denoted as $G$):
-\begin{enumerate}
+The algorithm consists of the following set of operations, which is called the Grover iteration (denoted as $G$). It is repeatedly applied on the register for a certain number of times to maximise the probability of the solution states:
+\begin{enumerate}[(1)]
 	\item Apply the oracle $O$
 	\item Apply the Hadamard operation on all qubits $H^{\otimes n}$ \label{step2}
-	\item Perform a phase shift of -1 on every basis state of the register apart from $\ket{0}$:
+	\item Perform a phase shift of -1 on every basis state of the register apart from $\ket{0}$:\label{step3}
 		\begin{align}
 			\ket{x} \;\rightarrow\;  -(-1)^{\delta_{x0}}\ket{x}
 		\end{align}
-		It is easy to check that $2\ket{0}\bra{0} - \mathbb{I}$ would perform this transformation.
 	\item Apply the Hadamard operation on all qubits again $H^{\otimes n}$ \label{step4}
 \end{enumerate}
-
-Step \ref{step2} to step \ref{step4} is also known as the \emph{inversion about mean} operation. It can be written as:
-\begin{align}
-	H^{\otimes n}(2\ket{0}\bra{0} - \mathbb{I})H^{\otimes n} = 2\ket{\psi}\bra{\psi} - \mathbb{I}
-\end{align}
-So the operations in each iteration can be expressed compactly as:
-\begin{align}
-	G = \left(2\ket{\psi}\bra{\psi} - \mathbb{I}\right)O.
-\end{align}
-
-Geometrically, the iteration performs a rotation of the state vector $\ket{\psi}$ towards the vector representing a uniform superposition of the solution states on the plane spanned by the 
-
-\begin{align}
-	\ket{\alpha} &\equiv \frac{1}{\sqrt{N-M}} \sum_\textrm{solutions} \ket{x}\\
-	\ket{\beta} &\equiv \frac{1}{\sqrt{M}} \sum_\textrm{non solutions} \ket{x}
-\end{align}
-Substituting these to the state vector gives:
-\begin{align}
-	\ket{\Psi} &= \sqrt{\frac{N-M}{N}}\ket{\alpha} +\sqrt{\frac{M}{N}}\ket{\beta}
-\end{align}
 
 \begin{figure}[H]
 \begin{align*}
@@ -660,12 +636,31 @@ Substituting these to the state vector gives:
 \label{fig:CircuitGrover}
 \end{figure}
 
+Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for a Grover iteration. It is easy to see that $2\ket{0}\bra{0} - \mathbb{I}$ would perform the operation in step \ref{step3}. In addition, step \ref{step2} to step \ref{step4} is also known as the \emph{Grover's diffusion operation}, which can be written as:
+\begin{align}
+	H^{\otimes n}(2\ket{0}\bra{0} - \mathbb{I})H^{\otimes n} = 2\ket{\psi}\bra{\psi} - \mathbb{I}
+\end{align}
+Hence, the operations of a Grover iteration can be expressed compactly as:
+\begin{align}
+	G = \left(2\ket{\psi}\bra{\psi} - \mathbb{I}\right)O.
+\end{align}
 
-Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for Grover's algorithm.
+Geometrically, the Grover iteration performs a rotation on a two-dimensional plane. Define $\ket{\alpha}$ to be the (normalized) state that is a uniform superposition of the non-solutions and $\ket{\beta}$ be the state that is a uniform superposition of the solutions:
+\begin{align}
+	\ket{\alpha} &\equiv \frac{1}{\sqrt{N-M}} \sum_{x \; \in \;\textrm{non sol.}} \ket{x}\\
+	\ket{\beta} &\equiv \frac{1}{\sqrt{M}} \sum_{x \; \in \; \textrm{sol.}} \ket{x}
+\end{align}
+The starting state of the register can be expressed in terms of these two states:
+\begin{align}
+	\ket{\psi} &= \sqrt{\frac{N-M}{N}}\ket{\alpha} +\sqrt{\frac{M}{N}}\ket{\beta}
+\end{align}
+We notice the oracle changes the sign of the solution states (i.e. $O(a\ket{\alpha} + b\ket{\beta}) = a\ket{\alpha} - b\ket{\beta}$), so it performs a reflection about the vector $\ket{\alpha}$. On the other hand, the diffusion operation $2\ket{\psi}\bra{\psi} - \mathbb{I}$ performs a reflection about the vector $\ket{\psi}$. As these two reflections both occur on the plane spanned by $\ket{\alpha}$ and $\ket{\beta}$ and two reflections produce a rotation, each Grover iteration $G$ must be a rotation on this plane. Hence, repeated applications of $G$ would rotate the state vector of the register from $\ket{\beta}$ to $\ket{\alpha}$, increasing the chance of observing the solutions. In fact, it can be derived that the minimum number of iterations required to produce a rotation such that the state vector of the register is sufficiently near $\ket{\alpha}$ is approximately $\frac{\pi}{4} \sqrt{\frac{N}{M}}$. 
 
+%\item[] \textbf{Limitations of Grover's Algorithm}\\
+%Although
 
+\end{itemize}
 
-\paragraph{Limitations of Grover's Algorithm}
 
 \subsubsection{Shor's Algorithm}
 Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers who's factors are coprime. It is able to find non-trivial divisors in polynomial time and space (the number of gates required), whereas na\"ive classical algorithms run in exponential time. The best classical factoring algorithm, the general number field sieve, is able to factorise integers in sub-exponential time but it has so far been impossible to devise a classical algorithm which runs in polynomial time. 
@@ -839,7 +834,7 @@ Although the first option keeps the gate class generic and more flexible, it req
 	\item \textbf{Circuits}\\
 	The design structure for the circuits is similar to that for the gates. We created an interface called \texttt{QCircuit} that describes a general quantum circuit. The interface requires classes representing a quantum circuit to implement the \texttt{applyCircuit(QRegister reg)} method, as each circuit is expected to perform some operations on the register. We designed a general circuit class called \texttt{GateByGateCircuit} which allows the user to construct a circuit by assembling gates together, regardless of their representation. Furthermore, we take advantage of the universality of this circuit class by extending it to build the various circuits required for the quantum algorithms studied in this project. This includes the quantum Fourier transform circuits (\texttt{ForwardQFTCircuit} and \texttt{BackwardQFTCircuit}) and the circuit for Grover's algorithm (\texttt{GroverGateByGate}).
 	
-	\item \textbf{Implementation of the Quantum Algorithms}\\
+	\item \textbf{Implementation of the Quantum Algorithms}
 	\begin{myenumerate}
 		\item \textbf{Grover's Algorithm}\\
 		
