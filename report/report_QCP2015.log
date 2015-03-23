@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.18)  23 MAR 2015 16:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.18)  23 MAR 2015 16:53
 entering extended mode
 **C:/Users/Michael/Dropbox/Edinburgh/Courses/Year*2/Quantum*Computing*Project/Q
 CP_SP2015/report/report_QCP2015.tex
@@ -1946,14 +1946,14 @@ CP_SP2015\report\report_QCP2015.out")
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
-CP_SP2015\report\report_QCP2015.toc")
-\tf@toc=\write5
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
+CP_SP2015\report\report_QCP2015.toc"pdfTeX warning (ext4): destination with the
+ same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.228 \newpage
-               [1] [2]
+l.46 ...mberline {7.2}Details}{30}{subsection.7.2}
+                                                   [1])
+\tf@toc=\write5
+ [2]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 250.
 
 
@@ -1973,137 +1973,143 @@ LaTeX Warning: Hyper reference `sec:Building a quantum computer' on page 4 unde
 fined on input line 280.
 
 [4] [5] <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1
-147> <xymatrix 4x1 147> <xymatrix 4x1 147> [6] [7] [8] [9] <xymatrix 12x4
-1103> <xymatrix 12x4 1103> [10] [11] <xymatrix 13x5 2239> <xymatrix 13x5 2239>
-<xymatrix 14x7 2445> <xymatrix 14x7 2445> [12]
-<img/QCPOverallArch.pdf, id=428, 380.68352pt x 304.15442pt>
+147> <xymatrix 4x1 147> <xymatrix 4x1 147> [6] <xymatrix 5x2 341> <xymatrix
+5x2 341> [7] [8] [9] <xymatrix 12x4 1103> <xymatrix 12x4 1103> [10] [11]
+<xymatrix 13x5 2239> <xymatrix 13x5 2239> <xymatrix 14x7 2445> <xymatrix 14x7
+2445> [12] <img/QCPOverallArch.pdf, id=441, 380.68352pt x 304.15442pt>
 File: img/QCPOverallArch.pdf Graphic file (type pdf)
 
 <use img/QCPOverallArch.pdf>
-Package pdftex.def Info: img/QCPOverallArch.pdf used on input line 730.
+Package pdftex.def Info: img/QCPOverallArch.pdf used on input line 751.
 (pdftex.def)             Requested size: 298.75264pt x 238.70604pt.
  [13 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/QCPOverallArch.pdf>]
-<img/issue_example.pdf, id=455, 1019.81pt x 590.205pt>
+<img/issue_example.pdf, id=465, 1019.81pt x 590.205pt>
 File: img/issue_example.pdf Graphic file (type pdf)
 
 <use img/issue_example.pdf>
-Package pdftex.def Info: img/issue_example.pdf used on input line 758.
+Package pdftex.def Info: img/issue_example.pdf used on input line 779.
 (pdftex.def)             Requested size: 341.43437pt x 197.60507pt.
- [14 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
-ct/QCP_SP2015/report/img/issue_example.pdf>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 789.
+ [14] [15 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing 
+Project/QCP_SP2015/report/img/issue_example.pdf>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 810.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<img/QuantumSimDesign.pdf, id=473, 521.70512pt x 404.02724pt>
+<img/QuantumSimDesign.pdf, id=499, 521.70512pt x 404.02724pt>
 File: img/QuantumSimDesign.pdf Graphic file (type pdf)
 
 <use img/QuantumSimDesign.pdf>
-Package pdftex.def Info: img/QuantumSimDesign.pdf used on input line 793.
+Package pdftex.def Info: img/QuantumSimDesign.pdf used on input line 814.
 (pdftex.def)             Requested size: 384.1096pt x 297.47739pt.
- [15] [16 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing 
-Project/QCP_SP2015/report/img/QuantumSimDesign.pdf>] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 839--840
+ [16 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
+ct/QCP_SP2015/report/img/QuantumSimDesign.pdf>]
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 858--859
 
  []
 
-[18] <img/MatrixDesign.pdf, id=536, 495.56082pt x 273.60458pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 860--861
+
+ []
+
+[18] [19] <img/MatrixDesign.pdf, id=554, 495.56082pt x 273.60458pt>
 File: img/MatrixDesign.pdf Graphic file (type pdf)
 
 <use img/MatrixDesign.pdf>
-Package pdftex.def Info: img/MatrixDesign.pdf used on input line 877.
+Package pdftex.def Info: img/MatrixDesign.pdf used on input line 898.
 (pdftex.def)             Requested size: 362.77525pt x 200.30162pt.
- [19]
-<img/GuiOverall.pdf, id=542, 448.20189pt x 404.45244pt>
+ [20 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
+ct/QCP_SP2015/report/img/MatrixDesign.pdf>]
+<img/GuiOverall.pdf, id=580, 448.20189pt x 404.45244pt>
 File: img/GuiOverall.pdf Graphic file (type pdf)
 
 <use img/GuiOverall.pdf>
-Package pdftex.def Info: img/GuiOverall.pdf used on input line 894.
+Package pdftex.def Info: img/GuiOverall.pdf used on input line 915.
 (pdftex.def)             Requested size: 320.0935pt x 288.8542pt.
- [20 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
-ct/QCP_SP2015/report/img/MatrixDesign.pdf>]
-Overfull \hbox (38.43497pt too wide) in paragraph at lines 898--899
+
+Overfull \hbox (38.43497pt too wide) in paragraph at lines 919--920
 []\OT1/cmr/m/n/10 The GUI win-dow is com-posed en-tirely out of four Java swing
  com-po-nents. The class \OT1/pcr/m/n/10 QuantumGuiFrame
  []
 
-<img/GuiDiagram.pdf, id=568, 462.73987pt x 407.81148pt>
+<img/GuiDiagram.pdf, id=581, 462.73987pt x 407.81148pt>
 File: img/GuiDiagram.pdf Graphic file (type pdf)
 
 <use img/GuiDiagram.pdf>
-Package pdftex.def Info: img/GuiDiagram.pdf used on input line 902.
+Package pdftex.def Info: img/GuiDiagram.pdf used on input line 923.
 (pdftex.def)             Requested size: 320.0935pt x 282.10583pt.
  [21 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/GuiOverall.pdf>]
-<img/program_example.pdf, id=593, 1004.75375pt x 730.73pt>
+<img/program_example.pdf, id=606, 1004.75375pt x 730.73pt>
 File: img/program_example.pdf Graphic file (type pdf)
 
 <use img/program_example.pdf>
-Package pdftex.def Info: img/program_example.pdf used on input line 912.
+Package pdftex.def Info: img/program_example.pdf used on input line 933.
 (pdftex.def)             Requested size: 341.43437pt x 248.31111pt.
  [22 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/GuiDiagram.pdf>]
-<img/pic_0.png, id=618, 752.8125pt x 752.8125pt>
+<img/pic_0.png, id=631, 752.8125pt x 752.8125pt>
 File: img/pic_0.png Graphic file (type png)
  <use img/pic_0.png>
-Package pdftex.def Info: img/pic_0.png used on input line 931.
+Package pdftex.def Info: img/pic_0.png used on input line 952.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_3.png, id=620, 752.8125pt x 752.8125pt>
+<img/pic_3.png, id=633, 752.8125pt x 752.8125pt>
 File: img/pic_3.png Graphic file (type png)
  <use img/pic_3.png>
-Package pdftex.def Info: img/pic_3.png used on input line 935.
+Package pdftex.def Info: img/pic_3.png used on input line 956.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_6.png, id=621, 752.8125pt x 752.8125pt>
+<img/pic_6.png, id=634, 752.8125pt x 752.8125pt>
 File: img/pic_6.png Graphic file (type png)
  <use img/pic_6.png>
-Package pdftex.def Info: img/pic_6.png used on input line 939.
+Package pdftex.def Info: img/pic_6.png used on input line 960.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_9.png, id=622, 752.8125pt x 752.8125pt>
+<img/pic_9.png, id=635, 752.8125pt x 752.8125pt>
 File: img/pic_9.png Graphic file (type png)
  <use img/pic_9.png>
-Package pdftex.def Info: img/pic_9.png used on input line 943.
+Package pdftex.def Info: img/pic_9.png used on input line 964.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_12.png, id=623, 752.8125pt x 752.8125pt>
+<img/pic_12.png, id=636, 752.8125pt x 752.8125pt>
 File: img/pic_12.png Graphic file (type png)
  <use img/pic_12.png>
-Package pdftex.def Info: img/pic_12.png used on input line 947.
+Package pdftex.def Info: img/pic_12.png used on input line 968.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 
-<img/pic_13.png, id=624, 752.8125pt x 752.8125pt>
+<img/pic_13.png, id=637, 752.8125pt x 752.8125pt>
 File: img/pic_13.png Graphic file (type png)
  <use img/pic_13.png>
-Package pdftex.def Info: img/pic_13.png used on input line 951.
+Package pdftex.def Info: img/pic_13.png used on input line 972.
 (pdftex.def)             Requested size: 140.84192pt x 140.84184pt.
 Package hyperref Info: bookmark level for unknown subfigure defaults to 0 on in
-put line 954.
+put line 975.
  [23 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/program_example.pdf>]
 Package epstopdf Info: Source file: <img/Grover_Time_Performance.eps>
-(epstopdf)                    date: 2015-03-19 16:59:43
-(epstopdf)                    size: 11712 bytes
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 13461 bytes
 (epstopdf)             Output file: <img/Grover_Time_Performance-eps-converted-
 to.pdf>
-(epstopdf)                    date: 2015-03-23 10:27:39
-(epstopdf)                    size: 5668 bytes
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 5191 bytes
 (epstopdf)             Command: <epstopdf --outfile=img/Grover_Time_Performance
 -eps-converted-to.pdf img/Grover_Time_Performance.eps>
-(epstopdf)             \includegraphics on input line 974.
+(epstopdf)             \includegraphics on input line 995.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Grover_Time_Performance-eps-converted-to.pdf, id=644, 457.71pt x 378.41376
-pt>
+<img/Grover_Time_Performance-eps-converted-to.pdf, id=657, 655.44875pt x 392.46
+625pt>
 File: img/Grover_Time_Performance-eps-converted-to.pdf Graphic file (type pdf)
  <use img/Grover_Time_Performance-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Time_Performance-eps-converted-to.pdf used 
-on input line 974.
-(pdftex.def)             Requested size: 384.1096pt x 317.57668pt.
+on input line 995.
+(pdftex.def)             Requested size: 384.1096pt x 229.99605pt.
  [24 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/pic_0.png> <C:/Users/Michael/Dropbox/Edinburgh/Courses
 /Year 2/Quantum Computing Project/QCP_SP2015/report/img/pic_3.png> <C:/Users/Mi
@@ -2113,101 +2119,122 @@ omputing Project/QCP_SP2015/report/img/pic_9.png> <C:/Users/Michael/Dropbox/Edi
 nburgh/Courses/Year 2/Quantum Computing Project/QCP_SP2015/report/img/pic_12.pn
 g> <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Project
 /QCP_SP2015/report/img/pic_13.png>]
-Package epstopdf Info: Source file: <img/Grover_Memory_Performance.eps>
-(epstopdf)                    date: 2015-03-23 10:27:39
-(epstopdf)                    size: 11903 bytes
-(epstopdf)             Output file: <img/Grover_Memory_Performance-eps-converte
-d-to.pdf>
-(epstopdf)                    date: 2015-03-23 10:27:39
-(epstopdf)                    size: 6118 bytes
-(epstopdf)             Command: <epstopdf --outfile=img/Grover_Memory_Performan
-ce-eps-converted-to.pdf img/Grover_Memory_Performance.eps>
-(epstopdf)             \includegraphics on input line 996.
-Package epstopdf Info: Output file is already uptodate.
-
-<img/Grover_Memory_Performance-eps-converted-to.pdf, id=661, 457.71pt x 378.413
-76pt>
-File: img/Grover_Memory_Performance-eps-converted-to.pdf Graphic file (type pdf
-)
- <use img/Grover_Memory_Performance-eps-converted-to.pdf>
-Package pdftex.def Info: img/Grover_Memory_Performance-eps-converted-to.pdf use
-d on input line 996.
-(pdftex.def)             Requested size: 384.1096pt x 317.57668pt.
- [25 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
-ct/QCP_SP2015/report/img/Grover_Time_Performance-eps-converted-to.pdf>] [26 <C:
-/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Project/QCP_S
-P2015/report/img/Grover_Memory_Performance-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <img/Grover_Time_Performance_log.eps>
-(epstopdf)                    date: 2015-03-19 16:59:43
-(epstopdf)                    size: 15925 bytes
-(epstopdf)             Output file: <img/Grover_Time_Performance_log-eps-conver
-ted-to.pdf>
-(epstopdf)                    date: 2015-03-23 10:27:39
-(epstopdf)                    size: 7158 bytes
-(epstopdf)             Command: <epstopdf --outfile=img/Grover_Time_Performance
-_log-eps-converted-to.pdf img/Grover_Time_Performance_log.eps>
-(epstopdf)             \includegraphics on input line 1046.
-Package epstopdf Info: Output file is already uptodate.
-
-<img/Grover_Time_Performance_log-eps-converted-to.pdf, id=682, 457.71pt x 378.4
-1376pt>
-File: img/Grover_Time_Performance_log-eps-converted-to.pdf Graphic file (type p
-df)
- <use img/Grover_Time_Performance_log-eps-converted-to.pdf>
-Package pdftex.def Info: img/Grover_Time_Performance_log-eps-converted-to.pdf u
-sed on input line 1046.
-(pdftex.def)             Requested size: 384.1096pt x 317.57668pt.
- [27]
 Package epstopdf Info: Source file: <img/Grover_Memory_Performance_log.eps>
-(epstopdf)                    date: 2015-03-23 10:27:39
-(epstopdf)                    size: 13664 bytes
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 15137 bytes
 (epstopdf)             Output file: <img/Grover_Memory_Performance_log-eps-conv
 erted-to.pdf>
-(epstopdf)                    date: 2015-03-23 10:27:39
-(epstopdf)                    size: 6501 bytes
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 5903 bytes
 (epstopdf)             Command: <epstopdf --outfile=img/Grover_Memory_Performan
 ce_log-eps-converted-to.pdf img/Grover_Memory_Performance_log.eps>
-(epstopdf)             \includegraphics on input line 1053.
+(epstopdf)             \includegraphics on input line 1017.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Grover_Memory_Performance_log-eps-converted-to.pdf, id=688, 421.575pt x 31
-7.185pt>
+<img/Grover_Memory_Performance_log-eps-converted-to.pdf, id=674, 677.53125pt x 
+435.6275pt>
 File: img/Grover_Memory_Performance_log-eps-converted-to.pdf Graphic file (type
  pdf)
  <use img/Grover_Memory_Performance_log-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Memory_Performance_log-eps-converted-to.pdf
- used on input line 1053.
-(pdftex.def)             Requested size: 384.1096pt x 289.00177pt.
- [28 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
-ct/QCP_SP2015/report/img/Grover_Time_Performance_log-eps-converted-to.pdf>] [29
+ used on input line 1017.
+(pdftex.def)             Requested size: 426.79135pt x 274.42018pt.
+
+[25 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Projec
+t/QCP_SP2015/report/img/Grover_Time_Performance-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <img/Shor_Time.eps>
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 12205 bytes
+(epstopdf)             Output file: <img/Shor_Time-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 5455 bytes
+(epstopdf)             Command: <epstopdf --outfile=img/Shor_Time-eps-converted
+-to.pdf img/Shor_Time.eps>
+(epstopdf)             \includegraphics on input line 1034.
+Package epstopdf Info: Output file is already uptodate.
+
+<img/Shor_Time-eps-converted-to.pdf, id=685, 610.28pt x 398.48875pt>
+File: img/Shor_Time-eps-converted-to.pdf Graphic file (type pdf)
+
+<use img/Shor_Time-eps-converted-to.pdf>
+Package pdftex.def Info: img/Shor_Time-eps-converted-to.pdf used on input line 
+1034.
+(pdftex.def)             Requested size: 426.79135pt x 278.68484pt.
+ [26 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
+ct/QCP_SP2015/report/img/Grover_Memory_Performance_log-eps-converted-to.pdf>] [
+27 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Project
+/QCP_SP2015/report/img/Shor_Time-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <img/Grover_Time_Performance_log.eps>
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 17275 bytes
+(epstopdf)             Output file: <img/Grover_Time_Performance_log-eps-conver
+ted-to.pdf>
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 6510 bytes
+(epstopdf)             Command: <epstopdf --outfile=img/Grover_Time_Performance
+_log-eps-converted-to.pdf img/Grover_Time_Performance_log.eps>
+(epstopdf)             \includegraphics on input line 1097.
+Package epstopdf Info: Output file is already uptodate.
+
+<img/Grover_Time_Performance_log-eps-converted-to.pdf, id=707, 565.11125pt x 40
+2.50375pt>
+File: img/Grover_Time_Performance_log-eps-converted-to.pdf Graphic file (type p
+df)
+ <use img/Grover_Time_Performance_log-eps-converted-to.pdf>
+Package pdftex.def Info: img/Grover_Time_Performance_log-eps-converted-to.pdf u
+sed on input line 1097.
+(pdftex.def)             Requested size: 426.79135pt x 303.9898pt.
+ [28]
+Package epstopdf Info: Source file: <img/Grover_Memory_Performance.eps>
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 13154 bytes
+(epstopdf)             Output file: <img/Grover_Memory_Performance-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2015-03-23 16:49:59
+(epstopdf)                    size: 5520 bytes
+(epstopdf)             Command: <epstopdf --outfile=img/Grover_Memory_Performan
+ce-eps-converted-to.pdf img/Grover_Memory_Performance.eps>
+(epstopdf)             \includegraphics on input line 1106.
+Package epstopdf Info: Output file is already uptodate.
+
+<img/Grover_Memory_Performance-eps-converted-to.pdf, id=713, 601.24625pt x 402.
+50375pt>
+File: img/Grover_Memory_Performance-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use img/Grover_Memory_Performance-eps-converted-to.pdf>
+Package pdftex.def Info: img/Grover_Memory_Performance-eps-converted-to.pdf use
+d on input line 1106.
+(pdftex.def)             Requested size: 426.79135pt x 285.72438pt.
+ [29 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
+ct/QCP_SP2015/report/img/Grover_Time_Performance_log-eps-converted-to.pdf>] [30
  <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Project/Q
-CP_SP2015/report/img/Grover_Memory_Performance_log-eps-converted-to.pdf>]
+CP_SP2015/report/img/Grover_Memory_Performance-eps-converted-to.pdf>]
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
 CP_SP2015\report\report_QCP2015.bbl") 
 AED: lastpage setting LastPage
-[30]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1082.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1082.
+[31]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1134.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1134.
 
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
 CP_SP2015\report\report_QCP2015.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1082.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1082.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1134.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1134.
 
 Package rerunfilecheck Info: File `report_QCP2015.out' has not changed.
-(rerunfilecheck)             Checksum: 2CA60E96C6DDF564E2EBF20CB3C9EC10;3044.
+(rerunfilecheck)             Checksum: 52D31A2556966E0CAADDA70FE8C1179E;3196.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1082.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1134.
  ) 
 Here is how much of TeX's memory you used:
- 20060 strings out of 493921
- 323812 string characters out of 3144870
- 519847 words of memory out of 3000000
- 22849 multiletter control sequences out of 15000+200000
- 17203 words of font info for 68 fonts, out of 3000000 for 9000
+ 20082 strings out of 493921
+ 324228 string characters out of 3144870
+ 522851 words of memory out of 3000000
+ 22863 multiletter control sequences out of 15000+200000
+ 17805 words of font info for 70 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  45i,28n,46p,10484b,1337s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
@@ -2235,9 +2262,9 @@ mti8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols
 /msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symb
 ols/msbm7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a
 .pfb>
-Output written on report_QCP2015.pdf (31 pages, 958407 bytes).
+Output written on report_QCP2015.pdf (32 pages, 967901 bytes).
 PDF statistics:
- 836 PDF objects out of 1000 (max. 8388607)
- 188 named destinations out of 1000 (max. 500000)
- 446 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 862 PDF objects out of 1000 (max. 8388607)
+ 195 named destinations out of 1000 (max. 500000)
+ 467 words of extra memory for PDF output out of 10000 (max. 10000000)
 

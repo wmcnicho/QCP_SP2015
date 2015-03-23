@@ -1,4 +1,4 @@
-\documentclass[bibliography=totocnumbered]{article}
+\documentclass[bibliography=totocnumbered, 10pt]{article}
 %\usepackage[T1]{fontenc} Verpixelt!
 
 %\bibliographystyle{plain}
@@ -454,7 +454,28 @@ The Hadamard gate already uses special properties of quantum computation, but al
 %
 
 \subsubsection{Control Gates}
-Apart from single qubit gates, there are also control gates. The gate 
+Apart from single qubit gates, there are also control gates. A control qubit $\ket{b_0}$ is used to control the output of a second qubit $\ket{b_1}$, while it itself remains untouched:
+
+\begin{align*}
+ \Qcircuit @C=.7em @R=.7em {
+  \lstick{\ket{b_0}}    & \qw & \ctrl{1}          & \qw & \rstick{\ket{b_0}}\\
+  \lstick{\ket{b_1}}    & \qw & \gate{C_\textsc{Not}} & \qw & \rstick{\ket{b_0 \oplus b_1}}
+ }
+\end{align*}
+
+For the $C_\textsc{Not}$-Gate the $\oplus$ is a $\textsc{Xor}$ operation, therefore the matrix looks like:
+
+\begin{align}
+	C_\textsc{Not} & = 
+		\begin{pmatrix}
+			1 &  0 &  0 &  0\\
+			0 &  1 &  0 &  0\\
+			0 &  0 &  0 &  1\\
+			0 &  0 &  1 &  0\\
+		\end{pmatrix}\\
+	C_\textsc{Not} \ket{0}\ket{b_1} & = \ket{0}\ket{b_1}\\
+	C_\textsc{Not} \ket{0}\ket{b_1} & = \ket{1}\ket{1-b_1}
+\end{align}
 
 \subsubsection{Extension to bigger registers}\label{sec:Extension to bigger registers}
 As roughly mentioned before, any single qubit gate can by applied to the $k$th qubit of a $n$-qubit register. The challenge now is how to construct a matrix representation of a single qubit gate is when it is applied to a register with multiple qubits. Mathematically, this involves taking the tensor product of the matrix representing the gate on the desired target qubit with the identity on others. Consider the example of applying a single qubit gate $G$ on the left qubit in a 2-qubit system. The resulting matrix $G_\text{tot}$ is:
@@ -834,7 +855,7 @@ Although the first option keeps the gate class generic and more flexible, it req
 	\item \textbf{Circuits}\\
 	The design structure for the circuits is similar to that for the gates. We created an interface called \texttt{QCircuit} that describes a general quantum circuit. The interface requires classes representing a quantum circuit to implement the \texttt{applyCircuit(QRegister reg)} method, as each circuit is expected to perform some operations on the register. We designed a general circuit class called \texttt{GateByGateCircuit} which allows the user to construct a circuit by assembling gates together, regardless of their representation. Furthermore, we take advantage of the universality of this circuit class by extending it to build the various circuits required for the quantum algorithms studied in this project. This includes the quantum Fourier transform circuits (\texttt{ForwardQFTCircuit} and \texttt{BackwardQFTCircuit}) and the circuit for Grover's algorithm (\texttt{GroverGateByGate}).
 	
-	\item \textbf{Implementation of the Quantum Algorithms}
+	\item \textbf{Implementation of the Quantum Algorithms}\\
 	\begin{myenumerate}
 		\item \textbf{Grover's Algorithm}\\
 		
@@ -993,14 +1014,27 @@ We note the following observations:
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance.eps}
-	\caption{Memory Usage of Grover's Algorithm (in megabyte) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
-	\label{grover_memory}
+	\includegraphics[width=\textwidth]{img/Grover_Memory_Performance_log.eps}
+	\caption{Memory Usage of Grover's Algorithm (in megabyte, logarithmic) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\label{grover_memory_log}
 \end{figure}
 
 
 
 \subsection{Shor's Algorithm}\label{sec:Shor}
+
+When colleting runtime data, we decided to only focus on the QFT. To do this we only measured the computational time when the QFT code is actually called and we only measured how long the QFT took to set up and run. This is because the other parts of the code add a negligible amount of runtime when considering the numbers we used. Furthermore, this was an exercise in quantum computing so the quantum parts of the algorithm are, in our opinion, the most important and interesting.
+The results show a very clear pattern. As there is a step whenever the number to be factorised requires another classical bit to represent it. For example there is a major jump in computation time when going from 255 to 257, but no jump from 257 to 511. This is because the runtime of Shor's algorithm only depends on the number of qubits required which is proportional to the number of classical bits required to represent the number.
+When comparing sparse and functional representation it is very clear to see that the functional representation is slightly faster. Unfortunately, the sparse representation requires too much memory to factorise any number greater than 255 so it is not very easy to infer any long term trends in the data.
+We did not include any data for the dense representation as the only number which can be factorised using it is 15. The next number with co-prime factors is 21 which already requires more quits than can be represented with this representation.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Shor_Time.eps}
+	\caption{}
+	\label{shor_time}
+\end{figure}
 
 
 %-----------------------------------------------------------------------------------------
@@ -1011,9 +1045,24 @@ We note the following observations:
 
 \subsection{Matrix or functional representation}
 
-In section \ref{sec:Grover} we've shown the results for the three different 
+In section \ref{sec:Grover} we've shown the results for the three different representations:
 
-As we have seen in  the \textbf{dense matrix representation} is at a disadvantage in every sense. 
+As we have seen the \textbf{dense matrix representation} is at a disadvantage in every sense. Both the computational time and the memory usage limit the manageable size for the quantum register to approximately $n=12$ qubits. Above that it's just not possible to execute the algorithm on a normal computer primarily because of lacking working memory resources. This representation is clearly the worst of the three investigated representations.
+
+The \textbf{sparse matrix representation} is a reasonable improvement of the dense matrix representation in terms of computational time and memory. In the logarithmic plot the slope of the memory usage of sparse matrix representation $\text{M}_\text{sparse}$ is roughly just half of the slope of the dense matrix representation $\text{M}_\text{dense}$ (see Fig\,\ref{grover_memory_log}). This makes sense due to the following rough estimate:
+%
+\begin{align*}
+	\text{M}_\text{dense} \quad&\propto\quad N^2 = 2^{2 n}\\
+	\Rightarrow \ln\left[\text{M}_\text{dense}\right] \quad&\propto\quad 2 n\\
+	\text{M}_\text{sparse} \quad&\propto\quad N = 2^n\\
+	\Rightarrow \ln\left[\text{M}_\text{sparse}\right] \quad&\propto\quad n
+\end{align*}
+%
+Nevertheless, the memory limit (of a conventional computer) for the sparse matrix representation is reached for approximately $n=25$ qubits.
+
+The \textbf{functional representation} doesn't have this problem because it needn't store a huge list of numbers for the gates. Therefore the memory usage is still tiny for even 17 qubits. However, this method goes at the expense of the computational time but only as a constant factor (approx. 2), as Fig.\,\ref{grover_time_performance_log} suggests.
+
+Therefore we conclude that the dense representation is undesirable due to its grave disadvantages, whereas we get a trade-off between sparse and functional representation: The sparse is fast and memory-intense, where the functional is a bit slower but is easy on memory.
 
 
 \subsection{Improvements and further steps}
@@ -1041,18 +1090,22 @@ There are also some minor points we would like to improve upon. These are mainly
 
 \subsection{Grover's Algorithm}
 
+\subsubsection{Computational Time}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance_log.eps}
+	\includegraphics[width=\textwidth]{img/Grover_Time_Performance_log.eps}
 	\caption{Computational time (log-scale) of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
 	\label{grover_time_performance_log}
 \end{figure}
 
+\subsubsection{Memory Usage}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance_log.eps}
-	\caption{Memory Usage of Grover's Algorithm (in megabyte, logarithmic) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
-	\label{grover_memory_log}
+	\includegraphics[width=\textwidth]{img/Grover_Memory_Performance.eps}
+	\caption{Memory Usage of Grover's Algorithm (in megabyte) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\label{grover_memory}
 \end{figure}
 
 \subsection{Details}
@@ -1078,5 +1131,4 @@ The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig
 \phantomsection\label{sec:References}
 \bibliographystyle{plaindin}
 \bibliography{lit}
-
 \end{document}
