@@ -585,60 +585,56 @@ After defining quantum gates it is now simple to predict the next step: A so-cal
 
 % - Explain why certain problems are rendered tractable by quantum computation with reference to the relevant concepts in quantum theory.
 
-%Explain how Grover’s algorithm works, and discusse its limitations
+%Explain how Grover’s algorithm works, and discuss its limitations
 
 \subsubsection{Grover's Algorithm}
-Grover's algorithm is also known as the quantum search algorithm. On a classical computer, searching through a non-ordered list with $N$ entries would require $O(N)$ operations. This can be sped up to $O(\sqrt{N})$ operations using a quantum circuit that implements Grover's algorithm.Different from normal search operations, this algorithm searches through the $index$ of the elements (which ranges from $0$ to $N-1$) rather than the elements themselves. The index of an element corresponds to a basis state in the register. By using a `black box' (also known as an \emph{oracle}) which can \emph{recognise} the solution states without $knowing$ them explicitly, the algorithm finds the solutions by repeatedly performing a certain set of transformations on the register to maximise the probability of measuring the solution states.
+Grover's algorithm is also known as the quantum search algorithm. On a classical computer, searching through a non-ordered list with $N$ entries would require $O(N)$ operations. This can be reduced remarkably to $O(\sqrt{N})$ operations using a quantum circuit that implements Grover's algorithm. 
 
-Suppose we want to search through a list of $N$ elements, and there are $M$ solutions to the search, where $ 1 \leq M \leq N$. For simplicity, let $N = 2^n$ such that the index of the elements can be exactly represented by $n$ qubits in the register. As mentioned above, the oracle has the ability to recognise the solution states. This can be signalled by changing the state of a qubit $\ket{q}$ in the oracle. Specifically, if we let $\ket{x}$ to be a basis state associated with a particular element and let $f(x) = 1$ if $\ket{x}$ is a solution and $f(x) = 0$ if it is not, the oracle performs the following unitary operation (denoted as $O$):
+Different from most search operations, this algorithm searches through the \emph{index} of the elements (which ranges from $0$ to $N-1$) rather than the elements themselves. Each index corresponds to a basis state in the register. In addition, the algorithm requires a quantum `black box' (also known as an \emph{oracle}) which can \emph{recognise} the states associated with the solutions, or the solution states, without \emph{knowing} them explicitly. Using the oracle, the algorithm finds a solution to the search problem by repeatedly performing a certain set of transformations on the register to maximise the probability of measuring the solution states.\\
+
+\textbf{The Oracle}\\
+Suppose we want to search through a list of $N$ elements, and there are $M$ solutions to the search, where $ 1 \leq M \leq N$. For simplicity, let $N = 2^n$ such that the index of the elements can be exactly represented by $n$ qubits in the register. As mentioned above, the oracle has the ability to recognise the solution states. This is signalled by the state change of a qubit $\ket{q}$ in the oracle (i.e. $\ket{0} \rightarrow \ket{1} \textrm{or} \ket{1} \rightarrow \ket{0}$). In other words, if we let $\ket{x}$ to be a basis state of the register associated with a particular element such that $f(x) = 1$ if $\ket{x}$ is a solution and $f(x) = 0$ if it is not, the oracle performs the following unitary operation (denoted as $O$):
 \begin{align}
 	\ket{x} \ket{q} \xrightarrow{O} \ket{x} \ket{q \oplus f(x)}
 \end{align}
-where $\oplus$ denotes the addition modulus 2 (which is the same as the binary XOR operation in this case). Hence, $\ket{q}$ would only change its state if $f(x) = 1$, which is when the oracle has recognised a solution. For convenience, we can prepare the qubit in the oracle to be $\ket{q} = (\ket{0} - \ket{1}) / \sqrt{2}$ such that it does not change in the operation:
+where $\oplus$ denotes the addition modulus 2  (i.e. $(q + f(x)) \;\textrm{mod}\; 2$). As the equation suggests, $\ket{q}$ would only change its state if $f(x) = 1$, which is when the oracle has recognised a solution. For convenience, we can prepare the qubit in the oracle to be $\ket{q} = (\ket{0} - \ket{1}) / \sqrt{2}$ such that the signal for recognising a solution is reflected on the basis state of the register:
 \begin{align}
 	\ket{x} \left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right) \xrightarrow{O} (-1)^{f(x)}\ket{x}\left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right)
 \end{align}
-Therefore, the oracle marks the solution states by applying a phase shift of -1 to them:
+As $\ket{q}$ remains unchanged in the process, we can ignore it along with the internal workspace of the oracle completely for the rest of this discussion. We can simply think that the oracle marks the solution states by applying a phase shift of -1 to them:
 \begin{align}
 	\ket{x} \xrightarrow{O} (-1)^{f(x)}\ket{x} 
 \end{align}
+\\
 
-To maximise the probability of the solution states, the algorithm repeatedly applies the following set of operations on the register, which, as a whole, is known as the Grover's diffusion operation:
+\textbf{Procedure of the Algorithm}\\
+The algorithm begins with setting the register to a uniform superposition state:
+\begin{align}
+	\ket{\psi} = \frac{1}{\sqrt{N}} \sum_{x=0}^{N-1} \ket{x}
+\end{align}
+
+To maximise the probability of the solution states, the algorithm repeatedly applies the following set of operations on the register, which, as a whole, is known as the Grover's iteration (denoted as $G$):
 \begin{enumerate}
 	\item Apply the oracle $O$
 	\item Apply the Hadamard operation on all qubits $H^{\otimes n}$ \label{step2}
-	\item Perform a phase shift of -1 on every state of the computational basis except $\ket{0}$:
+	\item Perform a phase shift of -1 on every basis state of the register apart from $\ket{0}$:
 		\begin{align}
-			\ket{x} \quad 
-			\xrightarrow 
-			\quad -(-1)^{\delta_{x0}}\ket{x}
+			\ket{x} \;\rightarrow\;  -(-1)^{\delta_{x0}}\ket{x}
 		\end{align}
+		It is easy to check that $2\ket{0}\bra{0} - \mathbb{I}$ would perform this transformation.
 	\item Apply the Hadamard operation on all qubits again $H^{\otimes n}$ \label{step4}
 \end{enumerate}
 
-Step \ref{step2} to step \ref{step4} is also known as the \emph{inversion about mean} operation. Mathematically, this iteration can be written compactly as:
+Step \ref{step2} to step \ref{step4} is also known as the \emph{inversion about mean} operation. It can be written as:
+\begin{align}
+	H^{\otimes n}(2\ket{0}\bra{0} - \mathbb{I})H^{\otimes n} = 2\ket{\psi}\bra{\psi} - \mathbb{I}
+\end{align}
+So the operations in each iteration can be expressed compactly as:
 \begin{align}
 	G = \left(2\ket{\psi}\bra{\psi} - \mathbb{I}\right)O.
 \end{align}
 
-\begin{figure}[H]
-\begin{align*}
- \Qcircuit @C=1em @R=.7em {
-                   &         &                      &                         &                      & \ustick{\text{Grover diffusion operator}} \\
-  \lstick{\ket{0}} & /^n \qw & \gate{H^{\otimes n}} & \multigate{1}{U_\omega} & \gate{H^{\otimes n}} & \gate{2 \ket{0^n}\bra{0^n} - I_n}         & \gate{H^{\otimes n}} & \qw & \cdots & & \meter & \cw \\
-  \lstick{\ket{1}} & \qw     & \gate{H}             & \ghost{U_\omega}        & \qw                  & \qw                                       & \qw                  & \qw & \cdots & \\
-                   &         &                      &                         &                      & \dstick{\text{Repeat $O(\sqrt{N})$ times}}
-  \gategroup{2}{5}{2}{7}{.7em}{^\}}
-  \gategroup{2}{4}{3}{10}{.7em}{_\}}
- }
-\end{align*}
-\caption{Circuit of Grover's Algorithm\citeS{GroversAlgo}}
-\label{fig:CircuitGrover}
-\end{figure}
-Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for Grover's algorithm.
-
-To determine the number of times the diffusion operation should be applied, we need
-Geometrically, the iteration performs a rotation of the state vector $\ket{\Psi}$ towards the vector representing a uniform superposition of the solution states on the plane spanned by the 
+Geometrically, the iteration performs a rotation of the state vector $\ket{\psi}$ towards the vector representing a uniform superposition of the solution states on the plane spanned by the 
 
 \begin{align}
 	\ket{\alpha} &\equiv \frac{1}{\sqrt{N-M}} \sum_\textrm{solutions} \ket{x}\\
@@ -649,12 +645,37 @@ Substituting these to the state vector gives:
 	\ket{\Psi} &= \sqrt{\frac{N-M}{N}}\ket{\alpha} +\sqrt{\frac{M}{N}}\ket{\beta}
 \end{align}
 
+\begin{figure}[H]
+\begin{align*}
+ \Qcircuit @C=1em @R=.7em {
+                   &         &                      &                         &                      & \ustick{\text{Grover diffusion operator}} \\
+  \lstick{\ket{0}} & /^n \qw & \gate{H^{\otimes n}} & \multigate{1}{O} & \gate{H^{\otimes n}} & \gate{2 \ket{0^n}\bra{0^n} - I_n}         & \gate{H^{\otimes n}} & \qw & \cdots & & \meter & \cw \\
+  \lstick{\ket{0} - \ket{1}}  &  \qw   & \qw   & \ghost{O}        & \qw                  & \qw                                       & \qw                  & \qw & \cdots & \\
+                   &         &                      &                         &                      & \dstick{\text{Repeat $O(\sqrt{N})$ times}}
+  \gategroup{2}{5}{2}{7}{.7em}{^\}}
+  \gategroup{2}{4}{3}{10}{.7em}{_\}}
+ }
+\end{align*}
+\caption{Circuit of Grover's Algorithm\citeS{GroversAlgo}}
+\label{fig:CircuitGrover}
+\end{figure}
+
+
+Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for Grover's algorithm.
+
+
+
 \paragraph{Limitations of Grover's Algorithm}
 
 \subsubsection{Shor's Algorithm}
-Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers who's factors are coprime. It is able to find non-trivial divisors in polynomial time and space (the number of gates required), whereas na\"ive classical algorithms run in exponential time. The best classical factoring algorithm, the general number field sieve, is able to factorise integers in sub-exponential time but it has so far been impossible to devise a classical algorithm which runs in polynomial time. This could have vast impacts on modern cryptography: Many encryption systems (like RSA) rely on the fact, that it is impossible to factorise integers in a reasonable amount time. Shor's algorithm showed that it is (theoretically) possible for quantum computers to achieve this goal, however the practical difficulties of building a real quantum computer are still preventing Shor's algorithm from undermining modern cryptography.
-Shor's algorithm is able to reduce the factoring problem to an on order finding one. (p. 233 in the big book of knowledge) The order finding problem itself is simply the phase estimation algorithm applied to the unitary operator (\S5.36 in the book). The proof of this is provided in ``Quantum computation and quantum information''The most interesting part of all of these algorithms must be the Quantum Fourier Transform. Mathematically it performs the same function as the Classical Fourier Transform, except that it acts on a quantum register instead of a vector.
-As seen in figure xx, Shor's algorithm requires the use of two registers. The first is the one the QFT acts on but it is first prepared by the second. The second register has the unitary operator mentioned above applied to it. The states of the two registers are then entangles and when the second register is measured it causes a partial collapse in the first. This leaves only the states which satisfy the equation $x^j \textrm{mod} N = 1$. By then applying the QFT, the period of the function can be very easily determined.
+Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers who's factors are coprime. It is able to find non-trivial divisors in polynomial time and space (the number of gates required), whereas na\"ive classical algorithms run in exponential time. The best classical factoring algorithm, the general number field sieve, is able to factorise integers in sub-exponential time but it has so far been impossible to devise a classical algorithm which runs in polynomial time. 
+
+This could have vast impacts on modern cryptography: Many encryption systems (like RSA) rely on the fact, that it is impossible to factorise integers in a reasonable amount time. Shor's algorithm showed that it is (theoretically) possible for quantum computers to achieve this goal, however the practical difficulties of building a real quantum computer are still preventing Shor's algorithm from undermining modern cryptography.
+
+Shor's algorithm is able to reduce the factoring problem to an on order finding one. (p. 233 in the big book of knowledge) The order finding problem itself is simply the phase estimation algorithm applied to the unitary operator (\S5.36 in the book). The proof of this is provided in ``Quantum computation and quantum information''
+The most interesting part of all of these algorithms must be the Quantum Fourier Transform. Mathematically it performs the same function as the Classical Fourier Transform, except that it acts on a quantum register instead of a vector.
+
+As seen in figure xx, Shor's algorithm requires the use of two registers. The first is the one the QFT acts on but it is first prepared by the second. The second register has the unitary operator mentioned above applied to it. The states of the two registers are then entangles and when the second register is measured it causes a partial collapse in the first. This leaves only the states which satisfy the equation $x^j \textrm{mod} N = 1$. By then applying the QFT, the period of the function can be very easily determined.
 
 Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorithm.
 
@@ -751,9 +772,9 @@ As mentioned earlier Github was not only a means of hosting the git repository o
 % •	OO Design (include our design diagrams)
 As mentioned previously, the architecture for this simulator contains three major components.
 \begin{enumerate}
-	\item The Quantum computer
+	\item The quantum computer
 	\item The underlying matrix library
-	\item The Graphical User Interface for testing the computer
+	\item The graphical user interface for testing the computer
 \end{enumerate}
 This section will presented some overall design considerations and then will go in-depth in describing the design and implementations of each of the components.
 
@@ -976,9 +997,12 @@ We note the following observations:
 \subsection{Improvements and further steps}
 \subsubsection{What we did not have time to do}
 The program we were able to write during this project covers the criteria we set out at the beginning and it is able to do everything we want it to. This does not mean that we would not want to add more features if we had more time.
-A major feature we would have liked to add, is providing a full API which would allow anyone to create their own quantum circuits and run them. This would include functionality for creating an arbitrary circuit and running it. While this should currently be possible by extending the basic classes we created for gates and extending \texttt{GateByGateCircuit}. We feel like by slightly restructuring some of our code we would be able to provide a more robust framework for creating new circuits. This idea could then also be extended to the GUI, where a user could create their own circuits in real time. This could either involve a drag and drop interface where a user could select from a set of existing gates or our own scripting language where the user could write code which calls all of the gates. This would then be parsed into our program and it would deal with it all internally.
-Another major feature we would like to implement is some level of parallelisation. This could involve multithreading support for the matrix multiplications or the creation of the gates as they are both very well suited to parallelisation. Another option would be to use a GPGPU library, such as openCL, to offload the matrix multiplications to a GPU for even greater parallelisation.
-There are also some minor points we would like to improve upon. These are mainly small fixes for areas of the current program which we are not entirely happy with. Firstly, we would like some kind of way to combine gates as it would allow for less matrix multiplications overall if the gate is used many times. It may also make some of the syntax clearer when adding gates to a circuit as only one would have to be added instead a collection which do the same job.
+
+A major feature we would have liked to add, is providing a full API which would allow anyone to create their own quantum circuits and run them. This would include functionality for creating an arbitrary circuit and running it. While this should currently be possible by extending the basic classes we created for gates and extending \texttt{GateByGateCircuit}. We feel like by slightly restructuring some of our code we would be able to provide a more robust framework for creating new circuits. This idea could then also be extended to the GUI, where a user could create their own circuits in real time. This could either involve a drag and drop interface where a user could select from a set of existing gates or our own scripting language where the user could write code which calls all of the gates. This would then be parsed into our program and it would deal with it all internally.
+
+Another major feature we would like to implement is some level of parallelisation. This could involve multithreading support for the matrix multiplications or the creation of the gates as they are both very well suited to parallelisation. Another option would be to use a GPGPU library, such as openCL, to offload the matrix multiplications to a GPU for even greater parallelisation.
+
+There are also some minor points we would like to improve upon. These are mainly small fixes for areas of the current program which we are not entirely happy with. Firstly, we would like some kind of way to combine gates as it would allow for less matrix multiplications overall if the gate is used many times. It may also make some of the syntax clearer when adding gates to a circuit as only one would have to be added instead a collection which do the same job.
 
 %-----------------------------------------------------------------------------------------
 % CONCLUSION
