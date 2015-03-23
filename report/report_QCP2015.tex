@@ -454,7 +454,29 @@ The Hadamard gate already uses special properties of quantum computation, but al
 %
 
 \subsubsection{Control Gates}
-Apart from single qubit gates, there are also control gates. The gate 
+Apart from single qubit gates, there are also control gates. A control qubit $\ket{b_0}$ is used to control the output of a second qubit $\ket{b_1}$, while it itself remains untouched:
+
+\begin{align*}
+ \Qcircuit @C=.7em @R=.7em {
+  \lstick{\ket{b_0}}    & \qw & \ctrl{1}          & \qw & \rstick{\ket{b_0}}\\
+  \lstick{\ket{b_1}}    & \qw & \gate{C_\textsc{Not}} & \qw & \rstick{\ket{b_0 \oplus b_1}}
+ }
+\end{align*}
+
+For the $C_\textsc{Not}$-Gate the $\oplus$ is a $\textsc{Xor}$ operation, therefore the matrix looks like:
+
+\begin{align}
+	C_\textsc{Not} & = 
+		\begin{pmatrix}
+			1 &  0 &  0 &  0\\
+			0 &  1 &  0 &  0\\
+			0 &  0 &  0 &  1\\
+			0 &  0 &  1 &  0\\
+		\end{pmatrix}\\
+	C_\textsc{Not} \ket{0}\ket{b_1} & = \ket{0}\ket{b_1}\\
+	C_\textsc{Not} \ket{0}\ket{b_1} & = \ket{1}\ket{1-b_1}
+\end{align}
+
 
 \subsubsection{Extension to bigger registers}\label{sec:Extension to bigger registers}
 As roughly mentioned before, any single qubit gate can by applied to the $k$th qubit of a $n$-qubit register. The challenge now is how to construct a matrix representation of a single qubit gate is when it is applied to a register with multiple qubits. Mathematically, this involves taking the tensor product of the matrix representing the gate on the desired target qubit with the identity on others. Consider the example of applying a single qubit gate $G$ on the left qubit in a 2-qubit system. The resulting matrix $G_\text{tot}$ is:
@@ -884,7 +906,7 @@ To accomplish the second and third goals, a variation of the Model-View-ViewMode
 	\caption{A diagram of the classes used in the GUI code and how they communicate with other components}
 \end{figure}
 
-The GUI window is composed entirely out of four Java swing components. The class \texttt{QuantumGuiFrame} contains all of the other created classes that ultimately form the overall GUI. These include \texttt{QuantumMenuBar} and \texttt{QuantumGuiPanel} (which contains a \texttt{QAnimationTabbedPane}). Note that \texttt{QAnimationTabbedPane} uses the JFreeChart open source library to create the graphs and animations in the program and it's code was not written by us.
+The GUI window is composed entirely out of four Java swing components. The class \texttt{Quantum\-Gui\-Frame} contains all of the other created classes that ultimately form the overall GUI. These include \texttt{QuantumMenuBar} and \texttt{QuantumGuiPanel} (which contains a \texttt{QAnimationTabbedPane}). Note that \texttt{QAnimationTabbedPane} uses the JFreeChart open source library to create the graphs and animations in the program and it's code was not written by us.
 
 \begin{figure}[H]
 	\centering
@@ -982,14 +1004,22 @@ We note the following observations:
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance.eps}
-	\caption{Memory Usage of Grover's Algorithm (in megabyte) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
-	\label{grover_memory}
+	\includegraphics[width=\textwidth]{img/Grover_Memory_Performance_log.eps}
+	\caption{Memory Usage of Grover's Algorithm (in megabyte, logarithmic) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\label{grover_memory_log}
 \end{figure}
 
 
 
 \subsection{Shor's Algorithm}\label{sec:Shor}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Shor_Time.eps}
+	\caption{}
+	\label{shor_time}
+\end{figure}
+
 
 
 %-----------------------------------------------------------------------------------------
@@ -1000,9 +1030,11 @@ We note the following observations:
 
 \subsection{Matrix or functional representation}
 
-In section \ref{sec:Grover} we've shown the results for the three different 
+In section \ref{sec:Grover} we've shown the results for the three different representations:
 
-As we have seen in  the \textbf{dense matrix representation} is at a disadvantage in every sense. 
+As we have seen the \textbf{dense matrix representation} is at a disadvantage in every sense. Both the computational time and the memory usage limit the manageable size for the quantum register to approximately $n=12$ qubits. Above that it's just not possible to execute the algorithm on a normal computer primarily because of lacking working memory resources. This representation is clearly the worst of the three investigated representations.
+
+The \textbf{sparse matrix representation} is a reasonable improvement of the dense matrix representation in terms of computational time and memory. The memory limit for the sparse matrix representation is reached for approximately $n=25$ qubits. 
 
 
 \subsection{Improvements and further steps}
@@ -1039,10 +1071,12 @@ There are also some minor points we would like to improve upon. These are mainly
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance_log.eps}
-	\caption{Memory Usage of Grover's Algorithm (in megabyte, logarithmic) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
-	\label{grover_memory_log}
+	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance.eps}
+	\caption{Memory Usage of Grover's Algorithm (in megabyte) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\label{grover_memory}
 \end{figure}
+
+
 
 \subsection{Details}
 The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig.\,\ref{grover_time_performance_log}) was collected on a:
