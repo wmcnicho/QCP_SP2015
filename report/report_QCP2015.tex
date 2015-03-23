@@ -1048,7 +1048,20 @@ In section \ref{sec:Grover} we've shown the results for the three different repr
 
 As we have seen the \textbf{dense matrix representation} is at a disadvantage in every sense. Both the computational time and the memory usage limit the manageable size for the quantum register to approximately $n=12$ qubits. Above that it's just not possible to execute the algorithm on a normal computer primarily because of lacking working memory resources. This representation is clearly the worst of the three investigated representations.
 
-The \textbf{sparse matrix representation} is a reasonable improvement of the dense matrix representation in terms of computational time and memory. The memory limit for the sparse matrix representation is reached for approximately $n=25$ qubits. 
+The \textbf{sparse matrix representation} is a reasonable improvement of the dense matrix representation in terms of computational time and memory. In the logarithmic plot the slope of the memory usage of sparse matrix representation $\text{M}_\text{sparse}$ is roughly just half of the slope of the dense matrix representation $\text{M}_\text{dense}$ (see Fig\,\ref{grover_memory_log}). This makes sense due to the following rough estimate:
+%
+\begin{align*}
+	\text{M}_\text{dense} \quad&\propto\quad N^2 = 2^{2 n}\\
+	\Rightarrow \ln\left[\text{M}_\text{dense}\right] \quad&\propto\quad 2 n\\
+	\text{M}_\text{sparse} \quad&\propto\quad N = 2^n\\
+	\Rightarrow \ln\left[\text{M}_\text{sparse}\right] \quad&\propto\quad n
+\end{align*}
+%
+Nevertheless, the memory limit (of a conventional computer) for the sparse matrix representation is reached for approximately $n=25$ qubits.
+
+The \textbf{functional representation} doesn't have this problem because it needn't store a huge list of numbers for the gates. Therefore the memory usage is still tiny for even 17 qubits. However, this method goes at the expense of the computational time but only as a constant factor (approx. 2), as Fig.\,\ref{grover_time_performance_log} suggests.
+
+Therefore we conclude that the dense representation is undesirable due to its grave disadvantages, whereas we get a trade-off between sparse and functional representation: The sparse is fast and memory-intense, where the functional is a bit slower but is easy on memory.
 
 
 \subsection{Improvements and further steps}
