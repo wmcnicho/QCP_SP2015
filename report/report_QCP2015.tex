@@ -652,9 +652,14 @@ Substituting these to the state vector gives:
 \paragraph{Limitations of Grover's Algorithm}
 
 \subsubsection{Shor's Algorithm}
-Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers who's factors are coprime. It is able to find non-trivial divisors in polynomial time and space (the number of gates required), whereas na\"ive classical algorithms run in exponential time. The best classical factoring algorithm, the general number field sieve, is able to factorise integers in sub-exponential time but it has so far been impossible to devise a classical algorithm which runs in polynomial time. This could have vast impacts on modern cryptography: Many encryption systems (like RSA) rely on the fact, that it is impossible to factorise integers in a reasonable amount time. Shor's algorithm showed that it is (theoretically) possible for quantum computers to achieve this goal, however the practical difficulties of building a real quantum computer are still preventing Shor's algorithm from undermining modern cryptography.
-Shor's algorithm is able to reduce the factoring problem to an on order finding one. (p. 233 in the big book of knowledge) The order finding problem itself is simply the phase estimation algorithm applied to the unitary operator (\S5.36 in the book). The proof of this is provided in ``Quantum computation and quantum information''The most interesting part of all of these algorithms must be the Quantum Fourier Transform. Mathematically it performs the same function as the Classical Fourier Transform, except that it acts on a quantum register instead of a vector.
-As seen in figure xx, Shor's algorithm requires the use of two registers. The first is the one the QFT acts on but it is first prepared by the second. The second register has the unitary operator mentioned above applied to it. The states of the two registers are then entangles and when the second register is measured it causes a partial collapse in the first. This leaves only the states which satisfy the equation $x^j \textrm{mod} N = 1$. By then applying the QFT, the period of the function can be very easily determined.
+Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers who's factors are coprime. It is able to find non-trivial divisors in polynomial time and space (the number of gates required), whereas na\"ive classical algorithms run in exponential time. The best classical factoring algorithm, the general number field sieve, is able to factorise integers in sub-exponential time but it has so far been impossible to devise a classical algorithm which runs in polynomial time. 
+
+This could have vast impacts on modern cryptography: Many encryption systems (like RSA) rely on the fact, that it is impossible to factorise integers in a reasonable amount time. Shor's algorithm showed that it is (theoretically) possible for quantum computers to achieve this goal, however the practical difficulties of building a real quantum computer are still preventing Shor's algorithm from undermining modern cryptography.
+
+Shor's algorithm is able to reduce the factoring problem to an on order finding one. (p. 233 in the big book of knowledge) The order finding problem itself is simply the phase estimation algorithm applied to the unitary operator (\S5.36 in the book). The proof of this is provided in ``Quantum computation and quantum information''
+The most interesting part of all of these algorithms must be the Quantum Fourier Transform. Mathematically it performs the same function as the Classical Fourier Transform, except that it acts on a quantum register instead of a vector.
+
+As seen in figure xx, Shor's algorithm requires the use of two registers. The first is the one the QFT acts on but it is first prepared by the second. The second register has the unitary operator mentioned above applied to it. The states of the two registers are then entangles and when the second register is measured it causes a partial collapse in the first. This leaves only the states which satisfy the equation $x^j \textrm{mod} N = 1$. By then applying the QFT, the period of the function can be very easily determined.
 
 Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorithm.
 
@@ -908,6 +913,7 @@ and start a new simulation. Theoretically the programme's architecture could be 
 %Plot of Results
 \subsubsection{Rotation of the state vector}
 
+Basically, Grover's Algorithm can be depicted as a rotation in a two dimensional plane by projecting the current state vector. This is depicted in Fig.\,\ref{grover_rotation}. After each iteration of the loop in Grover's Algorithm (see Fig.\,\ref{fig:CircuitGrover}) the state vector approaches the solution state.
 
 \begin{figure}[H]
 	\begin{minipage}{0.33\textwidth}
@@ -960,6 +966,27 @@ We note the following observations:
 \end{figure}
 
 
+\subsubsection{Memory Usage}
+
+Fig.\,\ref{grover_memory} shows the memory usage of Grover's algorithm. All the measurements were executed on the same computer by varying the number of qubits $n$ for the three different representations.
+
+We note the following observations:
+\begin{itemize}
+	\item\textbf{Dense representation at a disadvantage}\\
+	The memory usage of dense matrices is enormous. For only 11 qubits the execution requires working memory of 750\,megabytes. It is impossible to run the algorithm for 12 qubits since this already exceeds the working memory of a normal computer (~4 gigabyte).
+	\item\textbf{Spare vs. functional representation}\\
+	In terms of computational time the sparse representation was slightly faster than the functional representation. Measuring the memory usage, however, the functional representation uses almost no working memory (even for 17 qubits!), whereas the sparse representation, since it stores matrices in a compact way, has to increase dramatically at a certain number of qubits. In our case the working memory would be exceeded (using sparse representation) for less than 25 qubits.
+	\item\textbf{Exponential behaviour}\\
+	The dense and sparse representation show an exponential behaviour. To illustrate the point we plotted the same data in a log-plot (Fig.\,\ref{grover_memory_log}) and got a linear relation. The functional representation, however, shows no tendency for the range we investigated.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance.eps}
+	\caption{Memory Usage of Grover's Algorithm (in megabyte) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\label{grover_memory}
+\end{figure}
+
 
 
 \subsection{Shor's Algorithm}\label{sec:Shor}
@@ -973,12 +1000,20 @@ We note the following observations:
 
 \subsection{Matrix or functional representation}
 
+In section \ref{sec:Grover} we've shown the results for the three different 
+
+As we have seen in  the \textbf{dense matrix representation} is at a disadvantage in every sense. 
+
+
 \subsection{Improvements and further steps}
 \subsubsection{What we did not have time to do}
 The program we were able to write during this project covers the criteria we set out at the beginning and it is able to do everything we want it to. This does not mean that we would not want to add more features if we had more time.
-A major feature we would have liked to add, is providing a full API which would allow anyone to create their own quantum circuits and run them. This would include functionality for creating an arbitrary circuit and running it. While this should currently be possible by extending the basic classes we created for gates and extending \texttt{GateByGateCircuit}. We feel like by slightly restructuring some of our code we would be able to provide a more robust framework for creating new circuits. This idea could then also be extended to the GUI, where a user could create their own circuits in real time. This could either involve a drag and drop interface where a user could select from a set of existing gates or our own scripting language where the user could write code which calls all of the gates. This would then be parsed into our program and it would deal with it all internally.
-Another major feature we would like to implement is some level of parallelisation. This could involve multithreading support for the matrix multiplications or the creation of the gates as they are both very well suited to parallelisation. Another option would be to use a GPGPU library, such as openCL, to offload the matrix multiplications to a GPU for even greater parallelisation.
-There are also some minor points we would like to improve upon. These are mainly small fixes for areas of the current program which we are not entirely happy with. Firstly, we would like some kind of way to combine gates as it would allow for less matrix multiplications overall if the gate is used many times. It may also make some of the syntax clearer when adding gates to a circuit as only one would have to be added instead a collection which do the same job.
+
+A major feature we would have liked to add, is providing a full API which would allow anyone to create their own quantum circuits and run them. This would include functionality for creating an arbitrary circuit and running it. While this should currently be possible by extending the basic classes we created for gates and extending \texttt{GateByGateCircuit}. We feel like by slightly restructuring some of our code we would be able to provide a more robust framework for creating new circuits. This idea could then also be extended to the GUI, where a user could create their own circuits in real time. This could either involve a drag and drop interface where a user could select from a set of existing gates or our own scripting language where the user could write code which calls all of the gates. This would then be parsed into our program and it would deal with it all internally.
+
+Another major feature we would like to implement is some level of parallelisation. This could involve multithreading support for the matrix multiplications or the creation of the gates as they are both very well suited to parallelisation. Another option would be to use a GPGPU library, such as openCL, to offload the matrix multiplications to a GPU for even greater parallelisation.
+
+There are also some minor points we would like to improve upon. These are mainly small fixes for areas of the current program which we are not entirely happy with. Firstly, we would like some kind of way to combine gates as it would allow for less matrix multiplications overall if the gate is used many times. It may also make some of the syntax clearer when adding gates to a circuit as only one would have to be added instead a collection which do the same job.
 
 %-----------------------------------------------------------------------------------------
 % CONCLUSION
@@ -1000,6 +1035,13 @@ The program we were able to write during this project covers the criteria we set
 	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance_log.eps}
 	\caption{Computational time (log-scale) of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
 	\label{grover_time_performance_log}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance_log.eps}
+	\caption{Memory Usage of Grover's Algorithm (in megabyte, logarithmic) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\label{grover_memory_log}
 \end{figure}
 
 \subsection{Details}

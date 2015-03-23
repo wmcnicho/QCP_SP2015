@@ -32,13 +32,14 @@
 \BOOKMARK [2][-]{subsection.4.1}{Grover's Algorithm}{section.4}% 32
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Rotation of the state vector}{subsection.4.1}% 33
 \BOOKMARK [3][-]{subsubsection.4.1.2}{Computational time}{subsection.4.1}% 34
-\BOOKMARK [2][-]{subsection.4.2}{Shor's Algorithm}{section.4}% 35
-\BOOKMARK [1][-]{section.5}{Discussion}{}% 36
-\BOOKMARK [2][-]{subsection.5.1}{Matrix or functional representation}{section.5}% 37
-\BOOKMARK [2][-]{subsection.5.2}{Improvements and further steps}{section.5}% 38
-\BOOKMARK [3][-]{subsubsection.5.2.1}{What we did not have time to do}{subsection.5.2}% 39
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 40
-\BOOKMARK [1][-]{section.7}{Appendix}{}% 41
-\BOOKMARK [2][-]{subsection.7.1}{Grover's Algorithm}{section.7}% 42
-\BOOKMARK [2][-]{subsection.7.2}{Details}{section.7}% 43
-\BOOKMARK [1][-]{section*.17}{References}{}% 44
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Memory Usage}{subsection.4.1}% 35
+\BOOKMARK [2][-]{subsection.4.2}{Shor's Algorithm}{section.4}% 36
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 37
+\BOOKMARK [2][-]{subsection.5.1}{Matrix or functional representation}{section.5}% 38
+\BOOKMARK [2][-]{subsection.5.2}{Improvements and further steps}{section.5}% 39
+\BOOKMARK [3][-]{subsubsection.5.2.1}{What we did not have time to do}{subsection.5.2}% 40
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 41
+\BOOKMARK [1][-]{section.7}{Appendix}{}% 42
+\BOOKMARK [2][-]{subsection.7.1}{Grover's Algorithm}{section.7}% 43
+\BOOKMARK [2][-]{subsection.7.2}{Details}{section.7}% 44
+\BOOKMARK [1][-]{section*.19}{References}{}% 45
