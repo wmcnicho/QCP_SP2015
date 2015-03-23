@@ -12,21 +12,7 @@ public class ShorsAlgorithm {
 	private int numOfQubits;
 	private int numOfStates;
 	private int x;
-	public static void main(String[] args) {
-		int num = 21;
-		for(int i=0; i<10; i++){
-			ShorsAlgorithm test = new ShorsAlgorithm("functional", num);
-			int[] vals = test.run();
-			System.out.println(Arrays.toString(vals));
-			if(vals[0]*vals[1]==num){
-				System.out.println("Pass");
-			}else{
-				System.out.println("Fail");
-				System.out.println(vals[0]);
-				System.out.println(vals[1]);
-			}
-		}
-	}
+
 	//constructor
 	public ShorsAlgorithm(String rep, int num){
 		gateRep = rep;
@@ -43,7 +29,6 @@ public class ShorsAlgorithm {
 		//find highest common factor
 		int factor = gcd(x,number);
 		if (factor != 1){
-			//System.out.println("Got lucky");
 			return new int [] {factor, gcd(number/factor, number)};
 		}
 
@@ -51,7 +36,7 @@ public class ShorsAlgorithm {
 		int r = orderFinding();
 		int y = this.modularPow(x, r/2, number);
 		if (y==-1){
-			System.out.println("something broke");
+			System.err.println("something broke");
 			return null;
 		}
 		int[] out = new int[2];
@@ -107,7 +92,6 @@ public class ShorsAlgorithm {
 				}
 			}
 		}
-		System.out.println("What happened?");
 		return -1;
 	}
 
