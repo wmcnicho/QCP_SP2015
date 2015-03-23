@@ -1028,9 +1028,15 @@ We note the following observations:
 
 \subsection{Shor's Algorithm}\label{sec:Shor}
 
+When colleting runtime data, we decided to only focus on the QFT. To do this we only measured the computational time when the QFT code is actually called and we only measured how long the QFT took to set up and run. This is because the other parts of the code add a negligible amount of runtime when considering the numbers we used. Furthermore, this was an exercise in quantum computing so the quantum parts of the algorithm are, in our opinion, the most important and interesting.
+The results show a very clear pattern. As there is a step whenever the number to be factorised requires another classical bit to represent it. For example there is a major jump in computation time when going from 255 to 257, but no jump from 257 to 511. This is because the runtime of Shor's algorithm only depends on the number of qubits required which is proportional to the number of classical bits required to represent the number.
+When comparing sparse and functional representation it is very clear to see that the functional representation is slightly faster. Unfortunately, the sparse representation requires too much memory to factorise any number greater than 255 so it is not very easy to infer any long term trends in the data.
+We did not include any data for the dense representation as the only number which can be factorised using it is 15. The next number with co-prime factors is 21 which already requires more quits than can be represented with this representation.
+
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Shor_Time.eps}
+	\includegraphics[width=\textwidth]{img/Shor_Time.eps}
 	\caption{}
 	\label{shor_time}
 \end{figure}
@@ -1089,16 +1095,20 @@ There are also some minor points we would like to improve upon. These are mainly
 
 \subsection{Grover's Algorithm}
 
+\subsubsection{Computational Time}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Grover_Time_Performance_log.eps}
+	\includegraphics[width=\textwidth]{img/Grover_Time_Performance_log.eps}
 	\caption{Computational time (log-scale) of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
 	\label{grover_time_performance_log}
 \end{figure}
 
+\subsubsection{Memory Usage}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Grover_Memory_Performance.eps}
+	\includegraphics[width=\textwidth]{img/Grover_Memory_Performance.eps}
 	\caption{Memory Usage of Grover's Algorithm (in megabyte) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
 	\label{grover_memory}
 \end{figure}
