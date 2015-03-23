@@ -74,9 +74,9 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		r.setSeriesPaint(2, Color.blue.darker());
 		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
 		NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
-        domain.setRange(-1.5, 1.5);
+        domain.setRange(-0.2, 1.5);
 		NumberAxis range = (NumberAxis) xyPlot.getRangeAxis();
-        range.setRange(-1.5, 1.5);
+        range.setRange(-0.2, 1.3);
         
 		vecChart = new JFreeChart(xyPlot);
 		ChartPanel vecPanel = new ChartPanel(vecChart);
@@ -132,9 +132,9 @@ public class QAnimationTabbedPane extends JTabbedPane {
 		r.setSeriesPaint(2, Color.blue.darker());
 		XYPlot xyPlot = new XYPlot(vecDataset, new NumberAxis("Axis X"), new NumberAxis("Axis Y"), r);
 		NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
-        domain.setRange(-1.5, 1.5);
+        domain.setRange(-0.2, 1.5);
 		NumberAxis range = (NumberAxis) xyPlot.getRangeAxis();
-        range.setRange(-1.5, 1.5);
+        range.setRange(-0.2, 1.3);
 		vecChart = new JFreeChart(xyPlot);
 		ChartPanel vecPanel = new ChartPanel(vecChart);
 		

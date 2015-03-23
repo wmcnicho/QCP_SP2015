@@ -28,7 +28,7 @@ public class GroverTest {
 				long t1 = System.nanoTime();
 				Runtime.getRuntime().gc();
 				MRegister reg = new MRegister(numQubits, "complex");//change to refresh register		
-				QCircuit q = new GroverGateByGate("functional", numOfStates, new int[]{1}, numQubits, numOfStates);
+				QCircuit q = new GroverGateByGate("functional", new int[]{1}, numQubits, false);
 				//q.applyCircuit(reg);
 				Runtime.getRuntime().gc();
 				//System.out.println(j + "," + i+"th trial: "+(System.nanoTime()-t1));
@@ -48,7 +48,7 @@ public class GroverTest {
 				long t1 = System.nanoTime();
 				Runtime.getRuntime().gc();
 				MRegister reg = new MRegister(numQubits, "complex");//change to refresh register		
-				QCircuit q = new GroverGateByGate("gate", numOfStates, new int[]{1}, numQubits, numOfStates);
+				QCircuit q = new GroverGateByGate("gate", new int[]{1}, numQubits, false);
 				//q.applyCircuit(reg);
 				Runtime.getRuntime().gc();
 				//System.out.println(j + "," + i+"th trial: "+(System.nanoTime()-t1));
@@ -68,7 +68,7 @@ public class GroverTest {
 				long t1 = System.nanoTime();
 				Runtime.getRuntime().gc();
 				MRegister reg = new MRegister(numQubits, "complex");//change to refresh register		
-				QCircuit q = new GroverGateByGate("complex", numOfStates, new int[]{1}, numQubits, numOfStates);
+				QCircuit q = new GroverGateByGate("complex", new int[]{1}, numQubits, false);
 				//q.applyCircuit(reg);
 				Runtime.getRuntime().gc();
 				//System.out.println("" + i+"th trial: "+(System.nanoTime()-t1));

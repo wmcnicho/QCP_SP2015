@@ -43,7 +43,7 @@ public class ShorsAlgorithm {
 		//find highest common factor
 		int factor = gcd(x,number);
 		if (factor != 1){
-			System.out.println("Got lucky");
+			//System.out.println("Got lucky");
 			return new int [] {factor, gcd(number/factor, number)};
 		}
 

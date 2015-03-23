@@ -2,42 +2,54 @@ package qcv1;
 
 import Gui.QViewModel;
 
+/**
+ * The main class of the simulator. It allows one to run 
+ * the Grover's algorithm and Shor's algorithm.
+ * @author Michael Chiang
+ *
+ */
 public class QProcess {
 	//final needed because a separate thread is generated
-	
+	/**
+	 * Create a thread to run Grover's algorithm or Shor's algorithm
+	 * @param simulationType Type of simulation (Grover's algorithm or Shor's algorithm)
+	 * @param numQubits Number of qubits
+	 * @param gateRep Representation of the gate
+	 * @param data Data required for each algorithm
+	 * @param updateGui Whether or not to update gui
+	 */
 	public QProcess(final String simulationType, final int numQubits,
-			final String gateRep, final String speedUpString, final int [] indexOfVal){
+			final String gateRep, final int [] data, final boolean updateGui){
 			Thread runThread = new Thread(){
 			public void run(){
 			//call constructor	
-				int numOfStates = (int) Math.pow(2,numQubits);
-				MRegister reg = new MRegister(numQubits, "complex");//change to refresh register		
-
+				MRegister reg = new MRegister(numQubits, "complex");
+				
 				QViewModel.printToConsole("Starting Calculation...");
 				long t1 = System.nanoTime();
 				
 				QCircuit q = null;
 				switch (simulationType){
+				//run Grover's algorithm
 				case "Grover's algorithm":
-					q = new GroverGateByGate(gateRep, numOfStates, indexOfVal, numQubits, numOfStates);
+					q = new GroverGateByGate(gateRep, data, numQubits, updateGui);
 					q.applyCircuit(reg);
+					int result = reg.measure();
+					QViewModel.printToConsole(String.format("Found index: %d", result));
 					break;
+					
+				//run Shor's algorithm
 				case "Shor's algorithm":
-					int num = indexOfVal[0];
+					int num = data[0];
 					ShorsAlgorithm shors = new ShorsAlgorithm(gateRep, num);
 					int [] factors = shors.run();
 					QViewModel.printToConsole("The factors of " + num + " are " + factors[0] + " and " + factors[1]);
 					break;
 				default:
-					
+					//do nothing
 				}
-				double totalProb = 0;
-				for (int i = 0; i < reg.numOfStates(); i++){
-					double prob = Complex.magSquare(reg.getAmplitude(i));
-					QViewModel.printToConsole("The probability of state " + i + " is: " + prob);
-					totalProb += prob;
-				}
-				QViewModel.printToConsole(totalProb);
+				
+				//output statistics of the run time
 				double runtime = (System.nanoTime()-t1)/(Math.pow(10,9));
 				int runtimeMins = (int) Math.floor(runtime/60.0);
 				int runtimeSecs = (int) (Math.floor(runtime) % 60);

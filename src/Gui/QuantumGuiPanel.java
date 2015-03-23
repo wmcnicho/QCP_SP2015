@@ -214,7 +214,7 @@ public class QuantumGuiPanel extends JPanel implements ActionListener {
 					data = new int [] {(int) inputSpinner.getValue()};
 				break;
 			}
-			QProcess sim = new QProcess(simulationType, numQubits, gateString, speedUpString, data);
+			QProcess sim = new QProcess(simulationType, numQubits, gateString, data, true);
 		}
 		else if(e.getSource() == simType){
 			if(simType.getSelectedItem().toString().equalsIgnoreCase("Grover's Algorithm")){
