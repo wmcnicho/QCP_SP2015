@@ -80,8 +80,8 @@ public abstract class MGate implements QGate{
 	}
 	
 	/**
-	 * Perform the matrix multiplication of applying the gate onto the register
-	 * 
+	 * Apply the gate to the register (i.e perform the matrix multiplication of 
+	 * the gate with the state vector of the register)
 	 * @param reg Register storing the qubits
 	 */
 	public void applyGate(QRegister reg){

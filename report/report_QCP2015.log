@@ -1,10 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.18)  23 MAR 2015 16:53
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.18)  23 MAR 2015 17:08
 entering extended mode
-**C:/Users/Michael/Dropbox/Edinburgh/Courses/Year*2/Quantum*Computing*Project/Q
-CP_SP2015/report/report_QCP2015.tex
+**report_QCP2015.tex
 
-("C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Project/Q
-CP_SP2015/report/report_QCP2015.tex"
+("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
+CP_SP2015\report\report_QCP2015.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -2236,7 +2235,7 @@ Here is how much of TeX's memory you used:
  22863 multiletter control sequences out of 15000+200000
  17805 words of font info for 70 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 45i,28n,46p,10484b,1337s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,28n,46p,10390b,1337s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
@@ -2262,7 +2261,7 @@ mti8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols
 /msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symb
 ols/msbm7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a
 .pfb>
-Output written on report_QCP2015.pdf (32 pages, 967901 bytes).
+Output written on report_QCP2015.pdf (32 pages, 967898 bytes).
 PDF statistics:
  862 PDF objects out of 1000 (max. 8388607)
  195 named destinations out of 1000 (max. 500000)

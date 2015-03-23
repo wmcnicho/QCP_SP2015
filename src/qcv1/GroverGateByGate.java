@@ -124,8 +124,8 @@ public class GroverGateByGate extends GateByGateCircuit {
 			 * compute the projection of the state vector on the solutions 
 			 * and non-solutions vectors:
 			 */
-			Matrix solComp = MatrixMultiply.Multiply(solutionVector, reg.getAmplitude());
-			Matrix nonSolComp = MatrixMultiply.Multiply(nonSolutionVector, reg.getAmplitude());
+			Matrix solComp = Matrix.Multiply(solutionVector, reg.getAmplitude());
+			Matrix nonSolComp = Matrix.Multiply(nonSolutionVector, reg.getAmplitude());
 			
 			//update gui 
 			if (updateGui){				

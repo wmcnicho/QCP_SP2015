@@ -30,16 +30,19 @@ public abstract class FGate implements QGate {
 	public abstract Matrix resultForOff();//result for gate applied to state |1>
 	
 	/**
-	 * Apply the 
+	 * Apply the gate to the register (i.e. directly multiply the non-zero elements
+	 * to the appropriate components of the state vector of the register
 	 */
 	public void applyGate(QRegister reg){
 		Matrix amps = MatrixFactory.create(reg.numOfStates(), 1, "complex");
+		//create a mask for determining whether the target qubit is zero or one
 		final int mask = 1 << target;
 		
 		//check if there are any control qubits
-		if (controls != null){
+		if (controls != null){//have control qubits
+			//find the elements in each column of the matrix
 			for (int i = 0; i < reg.numOfStates(); i++){
-				//check if one of the controlQbit is nonzero
+				//check if any of the control qubit is zero
 				boolean allOn = true;
 				for (int j = 0; j < controls.length; j++){
 					int tempMask = 1 << controls[j];
@@ -48,6 +51,14 @@ public abstract class FGate implements QGate {
 						break;
 					}
 				}
+
+				/*
+				 * find the two elements in this column (column i) of the matrix
+				 * using the results when gate operates on a single qubit and 
+				 * checking whether the target qubit is zero or one. The elements are
+				 * then directly multiplied to the appropriate components of the 
+				 * state vector of the register
+				 */
 				if (allOn){
 					int pos = i ^ mask;
 					if ((i & mask) == mask){//qubit is 1
@@ -62,6 +73,10 @@ public abstract class FGate implements QGate {
 								resultForOff().getElement(1,0), reg.getAmplitude(i))));
 					}
 				} else {
+					/*
+					 * the state is not affected not all control qubits are non zero. 
+					 * this means the only element in this column (column i) must be G(i,i) = 1
+					 */
 					amps.setElement(i, 0, Complex.add(amps.getElement(i,0),reg.getAmplitude(i)));
 				}
 			}
@@ -69,6 +84,11 @@ public abstract class FGate implements QGate {
 		//if there is no control qubits
 		} else {
 			for (int i = 0; i < reg.numOfStates(); i++){
+				/*
+				 * find the two elements in each column of the matrix and directly 
+				 * multiply them to the appropriate components of the 
+				 * state vector of the register
+				 */
 				int pos = i ^ mask;
 				if ((i & mask) == mask){//qubit is 1
 					amps.setElement(i, 0, Complex.add(amps.getElement(i,0), Complex.multiply( 

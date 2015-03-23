@@ -79,6 +79,7 @@ public class GateByGateCircuit implements QCircuit {
 			int iterations = gates.size();
 			final int updateFreq = iterations / 10;
 			for (int i = 0; i < gates.size(); i++){
+				//apply individual gate to the register
 				gates.get(i).applyGate(reg);
 				//compute the percentage of the calculations done
 				if (i % updateFreq == 0){
@@ -91,9 +92,9 @@ public class GateByGateCircuit implements QCircuit {
 			QViewModel.updateHistogramValues(reg.getProbabilities());
 		} else {
 			for (int i = 0; i < gates.size(); i++){
+				//apply individual gate to the register
 				gates.get(i).applyGate(reg);
 			}
 		}
-		
 	}
 }

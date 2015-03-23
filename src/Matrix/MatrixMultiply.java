@@ -44,7 +44,7 @@ public class MatrixMultiply {
 	}
 
 	//standard matrix multiplication, not much to say about it. always returns a complex matrix
-	public static Matrix Multiply(Matrix a, Matrix b){
+	protected static Matrix Multiply(Matrix a, Matrix b){
 		Matrix out = MatrixFactory.create(a.row, b.column, "complex");
 		for(int i=0; i<a.row; i++){
 			for(int j=0; j<b.column; j++){
