@@ -4,13 +4,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+/**
+ * Calculates the continued fraction of x/y
+ * Can also work out convergents
+ * @author Gennaro
+ *
+ */
 public class ContinuedFraction {
 
 	private int x,y;
+	//used to store values while computations are carried out
 	private ArrayList<Integer> tempCoeff = new ArrayList<Integer>();
 	private int[] coeff;
 	private ArrayList<int[]> convergents = new ArrayList<int[]>();
 	
+	/**
+	 * Creates a continued fraction object from which the coefficients and convergents can be retrieved
+	 * @param x numerator of the fraction
+	 * @param y	denominator of the fraction
+	 */
 public ContinuedFraction(int x, int y){
 		if(x!=0){
 			this.x=x;
@@ -32,6 +44,7 @@ public ContinuedFraction(int x, int y){
 		}
 	}
 	
+	//recursive method to calculate the coefficients
 	private void generateCoeffs(int x, int y){
 		int a=y/x;
 		int y1=x;
@@ -42,11 +55,13 @@ public ContinuedFraction(int x, int y){
 		}
 	}
 	
+	//calculates a single step of the convergents
 	private int[] convergentStep(int a, int b, int n){
 		int x = b;
 		int y = a*b+n;
 		return ContinuedFraction.Simplify(x,y);
 	}
+	
 	
 	private int[] convergent(int start){
 		int[] result = new int[]{1,coeff[start]};
@@ -55,6 +70,7 @@ public ContinuedFraction(int x, int y){
 		}
 		return new int[]{result[1], result[0]};
 	}
+	
 	
 	private void calcConvergents(){
 		//first one is always 1/a1
@@ -65,12 +81,23 @@ public ContinuedFraction(int x, int y){
 		convergents.add(ContinuedFraction.Simplify(x, y));
 	}
 	
+	/**
+	 *Returns the convergents in an array list, each entry contains an array [x,y]
+	 * which represents the fraction x/y
+	 * @return Array list of convergents
+	 */
 	public ArrayList<int[]> getConvergents(){
 		return convergents;
 	}
 	
-	public static int[] Simplify(int a, int b){
-		int x=a,y=b;
+	/**
+	 * simplifies the fraction x/y and returns it in an array [x,y]
+	 * @param a numerator of the fraction
+	 * @param b denominator of the fraction
+	 * @return an array containing the fraction
+	 */
+	private static int[] Simplify(int _x, int _y){
+		int x=_x,y=_y;
 		int z = ContinuedFraction.gcd(x,y);
 		while(z!=1){
 			z = ContinuedFraction.gcd(x,y);
@@ -80,21 +107,18 @@ public ContinuedFraction(int x, int y){
 		return new int[]{x,y};
 	}
 	
-	public static int gcd(int a, int b){
+	/**
+	 * Finds the highest common factor of two numbers
+	 * @param a a number
+	 * @param b another number
+	 * @return the highest common factor of a and b
+	 */
+	private static int gcd(int a, int b){
 		while (b != 0){
 			int t = b;
 			b = a % b;
 			a = t;
 		}
 		return a;
-	}
-	
-	public static void main(String[] args) {
-		ContinuedFraction frac = new ContinuedFraction(4915, 8192);
-		System.out.println(Arrays.toString(frac.coeff));
-		ArrayList<int[]> convergents=frac.convergents;
-		for(int i=0; i<convergents.size(); i++){
-			System.out.println(Arrays.toString(convergents.get(i)));
-		}
 	}
 }

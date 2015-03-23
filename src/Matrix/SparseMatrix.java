@@ -1,7 +1,13 @@
 package Matrix;
 
-import java.util.Arrays;
-
+/**
+ * General sparse matrix class. Uses a hash table to store values until all the values have been set
+ * Then converted to the same data structure as the other matrices to allow for faster matrix multiplication
+ * Never used in this project, unoptimised and very slow
+ * 
+ * @author Gennaro
+ * @deprecated Slow, inefficient and possibly still contains bugs. Use SparseGateMatrix instead.
+ */
 public class SparseMatrix extends Matrix{
 
 	protected int size;
@@ -104,11 +110,5 @@ public class SparseMatrix extends Matrix{
 		hashMatrix.EntryReal.clear();
 		hashMatrix.EntryImag.clear();
 		Runtime.getRuntime().gc();
-	}
-	
-	public void print(){
-		System.out.println(Arrays.toString(reMatrix));
-		System.out.println(Arrays.toString(imMatrix));
-		System.out.println(Arrays.toString(rowIndex));
 	}
 }

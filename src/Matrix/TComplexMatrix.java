@@ -1,5 +1,12 @@
 package Matrix;
 
+/**
+ * Allows transposes to be taken by overriding get and set methods.
+ * @author Gennaro
+ * @deprecated Not required in the project anymore
+ *
+ */
+
 public class TComplexMatrix extends ComplexMatrix{
 
 	protected TComplexMatrix(ComplexMatrix m) {
