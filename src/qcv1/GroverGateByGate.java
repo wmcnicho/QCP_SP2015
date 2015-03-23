@@ -40,8 +40,8 @@ public class GroverGateByGate extends GateByGateCircuit {
 		 * create the solution and non-solution vectors that span the plane
 		 * where the state vector is rotating on
 		 */
-		solutionVector = MatrixFactory.create(1, numOfStates, rep);
-		nonSolutionVector = MatrixFactory.create(1, numOfStates, rep);
+		solutionVector = MatrixFactory.create(1, numOfStates, "complex");
+		nonSolutionVector = MatrixFactory.create(1, numOfStates, "complex");
 		double solutionFactor = 1.0/Math.sqrt(targets.length);
 		double nonSolutionFactor = 1.0/Math.sqrt(numOfStates - targets.length);
 		int j = 0;
