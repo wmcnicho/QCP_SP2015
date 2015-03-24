@@ -1,7 +1,10 @@
 #Running the program
-From eclipse: Run the main program located in QuantumGuiFrame as a Java Application
+
 
 From jar.: Simply open the provided jar file
+
+From eclipse: Run the main program located in QuantumGuiFrame as a Java Application
+(note: You may need to set import the JFreeChart .jar file to do this. See https://github.com/wmcnicho/QCP_SP2015/issues/11 for more information)
 
 #  Basic Usage 
 
@@ -23,3 +26,6 @@ Note: Shor's Algorithm will occasionally return obvious factors (i.e. the input 
 ## Gate Representation
 
 For best results use the 'Functional' gate representation. Sparse Matrix works slightly faster than Functional (and Dense Matrix) but can not run on as many qubits.
+
+##JFreeChart
+This program uses the JFreeChart open source library for it's graph outputs. See http://www.jfree.org/jfreechart/ for more information.
