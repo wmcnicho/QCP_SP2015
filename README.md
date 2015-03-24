@@ -1,4 +1,14 @@
-#Running the program
+#Quantum Computing Project (Spring 2015)
+A quantum computer emulator made by students at the University of Edinburgh.
+
+by:
+*  Michael Chiang
+*  Gennaro Di Pietro
+*  Wiliam Hunter McNichols
+*  Christoph Messmer
+
+
+##Running the program
 
 
 From jar.: Simply open the provided jar file
@@ -6,7 +16,7 @@ From jar.: Simply open the provided jar file
 From eclipse: Run the main program located in QuantumGuiFrame as a Java Application
 (note: You may need to set import the JFreeChart .jar file to do this. See https://github.com/wmcnicho/QCP_SP2015/issues/11 for more information)
 
-#  Basic Usage 
+##  Basic Usage 
 
 *   Use the drop down menu to the left to choose between running Shor's or Grover's algorithm.
 *   Select the proper input value(s) for the simulation.
