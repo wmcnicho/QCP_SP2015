@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.18)  23 MAR 2015 23:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.18)  24 MAR 2015 23:06
 entering extended mode
 **C:/Users/Michael/Dropbox/Edinburgh/Courses/Year*2/Quantum*Computing*Project/Q
 CP_SP2015/report/report_QCP2015.tex
@@ -442,6 +442,161 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \NC@list=\toks32
 \extratabsurround=\skip51
 \backup@length=\skip52
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\textcomp.sty"
+Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.def"
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+Now handling font encoding TS1 ...
+... processing UTF-8 mapping file for font encoding TS1
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.dfu"
+File: ts1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A2 (decimal 162)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00A4 (decimal 164)
+   defining Unicode char U+00A5 (decimal 165)
+   defining Unicode char U+00A6 (decimal 166)
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00A8 (decimal 168)
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AC (decimal 172)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00AF (decimal 175)
+   defining Unicode char U+00B0 (decimal 176)
+   defining Unicode char U+00B1 (decimal 177)
+   defining Unicode char U+00B2 (decimal 178)
+   defining Unicode char U+00B3 (decimal 179)
+   defining Unicode char U+00B4 (decimal 180)
+   defining Unicode char U+00B5 (decimal 181)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+00B9 (decimal 185)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+00BC (decimal 188)
+   defining Unicode char U+00BD (decimal 189)
+   defining Unicode char U+00BE (decimal 190)
+   defining Unicode char U+00D7 (decimal 215)
+   defining Unicode char U+00F7 (decimal 247)
+   defining Unicode char U+0192 (decimal 402)
+   defining Unicode char U+02C7 (decimal 711)
+   defining Unicode char U+02D8 (decimal 728)
+   defining Unicode char U+02DD (decimal 733)
+   defining Unicode char U+0E3F (decimal 3647)
+   defining Unicode char U+2016 (decimal 8214)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+203B (decimal 8251)
+   defining Unicode char U+203D (decimal 8253)
+   defining Unicode char U+2044 (decimal 8260)
+   defining Unicode char U+204E (decimal 8270)
+   defining Unicode char U+2052 (decimal 8274)
+   defining Unicode char U+20A1 (decimal 8353)
+   defining Unicode char U+20A4 (decimal 8356)
+   defining Unicode char U+20A6 (decimal 8358)
+   defining Unicode char U+20A9 (decimal 8361)
+   defining Unicode char U+20AB (decimal 8363)
+   defining Unicode char U+20AC (decimal 8364)
+   defining Unicode char U+20B1 (decimal 8369)
+   defining Unicode char U+2103 (decimal 8451)
+   defining Unicode char U+2116 (decimal 8470)
+   defining Unicode char U+2117 (decimal 8471)
+   defining Unicode char U+211E (decimal 8478)
+   defining Unicode char U+2120 (decimal 8480)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2126 (decimal 8486)
+   defining Unicode char U+2127 (decimal 8487)
+   defining Unicode char U+212E (decimal 8494)
+   defining Unicode char U+2190 (decimal 8592)
+   defining Unicode char U+2191 (decimal 8593)
+   defining Unicode char U+2192 (decimal 8594)
+   defining Unicode char U+2193 (decimal 8595)
+   defining Unicode char U+2329 (decimal 9001)
+   defining Unicode char U+232A (decimal 9002)
+   defining Unicode char U+2422 (decimal 9250)
+   defining Unicode char U+25E6 (decimal 9702)
+   defining Unicode char U+25EF (decimal 9711)
+   defining Unicode char U+266A (decimal 9834)
+))
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 311.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 312.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 313.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 314.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 315.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 316.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 317.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 318.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 319.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 320.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 321.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 322.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 323.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 324.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 326.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 327.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 328.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 329.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 330.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 331.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 332.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 333.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 334.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 335.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 336.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
 Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
@@ -1814,14 +1969,14 @@ Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 )
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 156.
+(hyperref)                setting the option has no effect on input line 157.
 
-Package hyperref Info: Option `unicode' set `false' on input line 156.
-Package hyperref Info: Option `pdftoolbar' set `false' on input line 156.
-Package hyperref Info: Option `pdfmenubar' set `true' on input line 156.
-Package hyperref Info: Option `pdffitwindow' set `false' on input line 156.
-Package hyperref Info: Option `pdfnewwindow' set `true' on input line 156.
-Package hyperref Info: Option `colorlinks' set `true' on input line 156.
+Package hyperref Info: Option `unicode' set `false' on input line 157.
+Package hyperref Info: Option `pdftoolbar' set `false' on input line 157.
+Package hyperref Info: Option `pdfmenubar' set `true' on input line 157.
+Package hyperref Info: Option `pdffitwindow' set `false' on input line 157.
+Package hyperref Info: Option `pdfnewwindow' set `true' on input line 157.
+Package hyperref Info: Option `colorlinks' set `true' on input line 157.
 \c@definition=\count170
 
 LaTeX Warning: Unused global option(s):
@@ -1830,20 +1985,28 @@ LaTeX Warning: Unused global option(s):
 
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
 CP_SP2015\report\report_QCP2015.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 184.
-LaTeX Font Info:    ... okay on input line 184.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 184.
-LaTeX Font Info:    ... okay on input line 184.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 184.
-LaTeX Font Info:    ... okay on input line 184.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 184.
-LaTeX Font Info:    ... okay on input line 184.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 184.
-LaTeX Font Info:    ... okay on input line 184.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 184.
-LaTeX Font Info:    ... okay on input line 184.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 184.
-LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 185.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 185.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 185.
+LaTeX Font Info:    ... okay on input line 185.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1893,21 +2056,21 @@ LaTeX Font Info:    ... okay on input line 184.
 \makeMPintoPDFobject=\count176
 \everyMPtoPDFconversion=\toks47
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 184.
+LaTeX Font Info:    Try loading font information for U+msa on input line 185.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 184.
+LaTeX Font Info:    Try loading font information for U+msb on input line 185.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 184.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 185.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\wasysym\uwasy.fd"
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-Package xypdf Info: Line width: 0.39998pt on input line 184.
+Package xypdf Info: Line width: 0.39998pt on input line 185.
 \AtBeginShipoutBox=\box56
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
@@ -1922,8 +2085,8 @@ Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             or
 (lastpage)             http://www.ctan.org/tex-archive/ 
 (lastpage)             install/macros/latex/contrib/pageslts.tds.zip
-(lastpage)             ! on input line 184.
-Package hyperref Info: Link coloring ON on input line 184.
+(lastpage)             ! on input line 185.
+Package hyperref Info: Link coloring ON on input line 185.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1933,9 +2096,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count178
 )
-LaTeX Info: Redefining \ref on input line 184.
-LaTeX Info: Redefining \pageref on input line 184.
-LaTeX Info: Redefining \nameref on input line 184.
+LaTeX Info: Redefining \ref on input line 185.
+LaTeX Info: Redefining \pageref on input line 185.
+LaTeX Info: Redefining \nameref on input line 185.
 
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
 CP_SP2015\report\report_QCP2015.out")
@@ -1954,140 +2117,130 @@ l.46 ...mberline {7.2}Details}{31}{subsection.7.2}
                                                    [1])
 \tf@toc=\write5
  [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 250.
-
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 250.
-
 
 LaTeX Warning: Hyper reference `sec:Quantum Register' on page 3 undefined on in
-put line 265.
+put line 266.
 
-[3]
+[3] [4]
 
-LaTeX Warning: Hyper reference `sec:Building a quantum computer' on page 4 unde
-fined on input line 280.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 383.
 
-[4] [5] <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 383.
+
+[5] <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1 147> <xymatrix 4x1
 147> <xymatrix 4x1 147> <xymatrix 4x1 147> [6] <xymatrix 5x2 341> <xymatrix
-5x2 341> [7] [8] [9] <xymatrix 12x4 1164> <xymatrix 12x4 1164> [10] [11]
-<xymatrix 13x5 2239> <xymatrix 13x5 2239> <xymatrix 14x7 2445> <xymatrix 14x7
-2445> [12] <img/QCPOverallArch.pdf, id=450, 380.68352pt x 304.15442pt>
+5x2 341> [7] [8] [9] [10] <xymatrix 12x4 1164> <xymatrix 12x4 1164> [11]
+<xymatrix 13x5 2239> <xymatrix 13x5 2239> [12] <xymatrix 14x7 2445> <xymatrix
+14x7 2445> <img/QCPOverallArch.pdf, id=453, 380.68352pt x 304.15442pt>
 File: img/QCPOverallArch.pdf Graphic file (type pdf)
 
 <use img/QCPOverallArch.pdf>
-Package pdftex.def Info: img/QCPOverallArch.pdf used on input line 762.
+Package pdftex.def Info: img/QCPOverallArch.pdf used on input line 757.
 (pdftex.def)             Requested size: 298.75264pt x 238.70604pt.
  [13] [14 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing 
 Project/QCP_SP2015/report/img/QCPOverallArch.pdf>]
-<img/issue_example.pdf, id=484, 1019.81pt x 590.205pt>
+<img/issue_example.pdf, id=488, 1019.81pt x 590.205pt>
 File: img/issue_example.pdf Graphic file (type pdf)
 
 <use img/issue_example.pdf>
-Package pdftex.def Info: img/issue_example.pdf used on input line 790.
+Package pdftex.def Info: img/issue_example.pdf used on input line 785.
 (pdftex.def)             Requested size: 341.43437pt x 197.60507pt.
  [15 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/issue_example.pdf>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 821.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 816.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<img/QuantumSimDesign.pdf, id=505, 521.70512pt x 404.02724pt>
+<img/QuantumSimDesign.pdf, id=508, 521.70512pt x 404.02724pt>
 File: img/QuantumSimDesign.pdf Graphic file (type pdf)
 
 <use img/QuantumSimDesign.pdf>
-Package pdftex.def Info: img/QuantumSimDesign.pdf used on input line 825.
+Package pdftex.def Info: img/QuantumSimDesign.pdf used on input line 820.
 (pdftex.def)             Requested size: 384.1096pt x 297.47739pt.
  [16] [17 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing 
 Project/QCP_SP2015/report/img/QuantumSimDesign.pdf>] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 869--870
+Underfull \hbox (badness 10000) in paragraph at lines 872--873
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 871--872
-
- []
-
-[19] <img/MatrixDesign.pdf, id=566, 495.56082pt x 273.60458pt>
+[19] [20] <img/MatrixDesign.pdf, id=579, 495.56082pt x 273.60458pt>
 File: img/MatrixDesign.pdf Graphic file (type pdf)
 
 <use img/MatrixDesign.pdf>
-Package pdftex.def Info: img/MatrixDesign.pdf used on input line 903.
+Package pdftex.def Info: img/MatrixDesign.pdf used on input line 908.
 (pdftex.def)             Requested size: 362.77525pt x 200.30162pt.
- [20]
-<img/GuiOverall.pdf, id=572, 448.20189pt x 404.45244pt>
+ [21 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
+ct/QCP_SP2015/report/img/MatrixDesign.pdf>]
+<img/GuiOverall.pdf, id=604, 448.20189pt x 404.45244pt>
 File: img/GuiOverall.pdf Graphic file (type pdf)
 
 <use img/GuiOverall.pdf>
-Package pdftex.def Info: img/GuiOverall.pdf used on input line 920.
-(pdftex.def)             Requested size: 320.0935pt x 288.8542pt.
- [21 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
-ct/QCP_SP2015/report/img/MatrixDesign.pdf>]
-Overfull \hbox (38.43497pt too wide) in paragraph at lines 924--925
+Package pdftex.def Info: img/GuiOverall.pdf used on input line 925.
+(pdftex.def)             Requested size: 341.43437pt x 308.11526pt.
+
+Overfull \hbox (38.43497pt too wide) in paragraph at lines 929--930
 []\OT1/cmr/m/n/10 The GUI win-dow is com-posed en-tirely out of four Java swing
  com-po-nents. The class \OT1/pcr/m/n/10 QuantumGuiFrame
  []
 
-<img/GuiDiagram.pdf, id=598, 462.73987pt x 407.81148pt>
+<img/GuiDiagram.pdf, id=605, 462.73987pt x 407.81148pt>
 File: img/GuiDiagram.pdf Graphic file (type pdf)
 
 <use img/GuiDiagram.pdf>
-Package pdftex.def Info: img/GuiDiagram.pdf used on input line 928.
+Package pdftex.def Info: img/GuiDiagram.pdf used on input line 933.
 (pdftex.def)             Requested size: 320.0935pt x 282.10583pt.
  [22 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/GuiOverall.pdf>]
-<img/program_example.pdf, id=623, 1004.75375pt x 730.73pt>
+<img/program_example.pdf, id=631, 1004.75375pt x 730.73pt>
 File: img/program_example.pdf Graphic file (type pdf)
 
 <use img/program_example.pdf>
-Package pdftex.def Info: img/program_example.pdf used on input line 938.
+Package pdftex.def Info: img/program_example.pdf used on input line 943.
 (pdftex.def)             Requested size: 341.43437pt x 248.31111pt.
  [23 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/GuiDiagram.pdf>]
-<img/pic_0.png, id=650, 752.8125pt x 752.8125pt>
+<img/pic_0.png, id=658, 752.8125pt x 752.8125pt>
 File: img/pic_0.png Graphic file (type png)
  <use img/pic_0.png>
-Package pdftex.def Info: img/pic_0.png used on input line 971.
+Package pdftex.def Info: img/pic_0.png used on input line 976.
 (pdftex.def)             Requested size: 128.0387pt x 128.03386pt.
 
-<img/pic_3.png, id=652, 752.8125pt x 752.8125pt>
+<img/pic_3.png, id=660, 752.8125pt x 752.8125pt>
 File: img/pic_3.png Graphic file (type png)
  <use img/pic_3.png>
-Package pdftex.def Info: img/pic_3.png used on input line 975.
+Package pdftex.def Info: img/pic_3.png used on input line 980.
 (pdftex.def)             Requested size: 128.0387pt x 128.03386pt.
 
-<img/pic_6.png, id=653, 752.8125pt x 752.8125pt>
+<img/pic_6.png, id=661, 752.8125pt x 752.8125pt>
 File: img/pic_6.png Graphic file (type png)
  <use img/pic_6.png>
-Package pdftex.def Info: img/pic_6.png used on input line 979.
+Package pdftex.def Info: img/pic_6.png used on input line 984.
 (pdftex.def)             Requested size: 128.0387pt x 128.03386pt.
 
-<img/pic_9.png, id=654, 752.8125pt x 752.8125pt>
+<img/pic_9.png, id=662, 752.8125pt x 752.8125pt>
 File: img/pic_9.png Graphic file (type png)
  <use img/pic_9.png>
-Package pdftex.def Info: img/pic_9.png used on input line 983.
+Package pdftex.def Info: img/pic_9.png used on input line 988.
 (pdftex.def)             Requested size: 128.0387pt x 128.03386pt.
 
-<img/pic_12.png, id=655, 752.8125pt x 752.8125pt>
+<img/pic_12.png, id=663, 752.8125pt x 752.8125pt>
 File: img/pic_12.png Graphic file (type png)
  <use img/pic_12.png>
-Package pdftex.def Info: img/pic_12.png used on input line 987.
+Package pdftex.def Info: img/pic_12.png used on input line 992.
 (pdftex.def)             Requested size: 128.0387pt x 128.03386pt.
 
-<img/pic_13.png, id=656, 752.8125pt x 752.8125pt>
+<img/pic_13.png, id=664, 752.8125pt x 752.8125pt>
 File: img/pic_13.png Graphic file (type png)
  <use img/pic_13.png>
-Package pdftex.def Info: img/pic_13.png used on input line 991.
+Package pdftex.def Info: img/pic_13.png used on input line 996.
 (pdftex.def)             Requested size: 128.0387pt x 128.03386pt.
 Package hyperref Info: bookmark level for unknown subfigure defaults to 0 on in
-put line 994.
+put line 999.
 Package epstopdf Info: Source file: <img/Grover_Time_Performance.eps>
 (epstopdf)                    date: 2015-03-23 16:49:59
 (epstopdf)                    size: 13461 bytes
@@ -2097,15 +2250,15 @@ to.pdf>
 (epstopdf)                    size: 5191 bytes
 (epstopdf)             Command: <epstopdf --outfile=img/Grover_Time_Performance
 -eps-converted-to.pdf img/Grover_Time_Performance.eps>
-(epstopdf)             \includegraphics on input line 1000.
+(epstopdf)             \includegraphics on input line 1005.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Grover_Time_Performance-eps-converted-to.pdf, id=657, 655.44875pt x 392.46
+<img/Grover_Time_Performance-eps-converted-to.pdf, id=665, 655.44875pt x 392.46
 625pt>
 File: img/Grover_Time_Performance-eps-converted-to.pdf Graphic file (type pdf)
  <use img/Grover_Time_Performance-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Time_Performance-eps-converted-to.pdf used 
-on input line 1000.
+on input line 1005.
 (pdftex.def)             Requested size: 362.77525pt x 217.22247pt.
  [24 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/program_example.pdf>] [25 <C:/Users/Michael/Dropbox/Ed
@@ -2128,16 +2281,16 @@ erted-to.pdf>
 (epstopdf)                    size: 5903 bytes
 (epstopdf)             Command: <epstopdf --outfile=img/Grover_Memory_Performan
 ce_log-eps-converted-to.pdf img/Grover_Memory_Performance_log.eps>
-(epstopdf)             \includegraphics on input line 1022.
+(epstopdf)             \includegraphics on input line 1027.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Grover_Memory_Performance_log-eps-converted-to.pdf, id=694, 677.53125pt x 
+<img/Grover_Memory_Performance_log-eps-converted-to.pdf, id=703, 677.53125pt x 
 435.6275pt>
 File: img/Grover_Memory_Performance_log-eps-converted-to.pdf Graphic file (type
  pdf)
  <use img/Grover_Memory_Performance_log-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Memory_Performance_log-eps-converted-to.pdf
- used on input line 1022.
+ used on input line 1027.
 (pdftex.def)             Requested size: 426.79135pt x 274.42018pt.
 
 [26 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Projec
@@ -2150,15 +2303,15 @@ Package epstopdf Info: Source file: <img/Shor_Time.eps>
 (epstopdf)                    size: 5291 bytes
 (epstopdf)             Command: <epstopdf --outfile=img/Shor_Time-eps-converted
 -to.pdf img/Shor_Time.eps>
-(epstopdf)             \includegraphics on input line 1039.
+(epstopdf)             \includegraphics on input line 1046.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Shor_Time-eps-converted-to.pdf, id=706, 647.41875pt x 387.4475pt>
+<img/Shor_Time-eps-converted-to.pdf, id=714, 647.41875pt x 387.4475pt>
 File: img/Shor_Time-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/Shor_Time-eps-converted-to.pdf>
 Package pdftex.def Info: img/Shor_Time-eps-converted-to.pdf used on input line 
-1039.
+1046.
 (pdftex.def)             Requested size: 426.79135pt x 255.41463pt.
  [27 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/Shor_Time-eps-converted-to.pdf>] [28]
@@ -2171,16 +2324,16 @@ ted-to.pdf>
 (epstopdf)                    size: 6510 bytes
 (epstopdf)             Command: <epstopdf --outfile=img/Grover_Time_Performance
 _log-eps-converted-to.pdf img/Grover_Time_Performance_log.eps>
-(epstopdf)             \includegraphics on input line 1103.
+(epstopdf)             \includegraphics on input line 1108.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Grover_Time_Performance_log-eps-converted-to.pdf, id=724, 565.11125pt x 40
+<img/Grover_Time_Performance_log-eps-converted-to.pdf, id=732, 565.11125pt x 40
 2.50375pt>
 File: img/Grover_Time_Performance_log-eps-converted-to.pdf Graphic file (type p
 df)
  <use img/Grover_Time_Performance_log-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Time_Performance_log-eps-converted-to.pdf u
-sed on input line 1103.
+sed on input line 1108.
 (pdftex.def)             Requested size: 426.79135pt x 303.9898pt.
  [29]
 Package epstopdf Info: Source file: <img/Grover_Memory_Performance.eps>
@@ -2192,16 +2345,16 @@ d-to.pdf>
 (epstopdf)                    size: 5520 bytes
 (epstopdf)             Command: <epstopdf --outfile=img/Grover_Memory_Performan
 ce-eps-converted-to.pdf img/Grover_Memory_Performance.eps>
-(epstopdf)             \includegraphics on input line 1112.
+(epstopdf)             \includegraphics on input line 1117.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/Grover_Memory_Performance-eps-converted-to.pdf, id=730, 601.24625pt x 402.
+<img/Grover_Memory_Performance-eps-converted-to.pdf, id=738, 601.24625pt x 402.
 50375pt>
 File: img/Grover_Memory_Performance-eps-converted-to.pdf Graphic file (type pdf
 )
  <use img/Grover_Memory_Performance-eps-converted-to.pdf>
 Package pdftex.def Info: img/Grover_Memory_Performance-eps-converted-to.pdf use
-d on input line 1112.
+d on input line 1117.
 (pdftex.def)             Requested size: 426.79135pt x 285.72438pt.
  [30 <C:/Users/Michael/Dropbox/Edinburgh/Courses/Year 2/Quantum Computing Proje
 ct/QCP_SP2015/report/img/Grover_Time_Performance_log-eps-converted-to.pdf>] [31
@@ -2209,65 +2362,64 @@ ct/QCP_SP2015/report/img/Grover_Time_Performance_log-eps-converted-to.pdf>] [31
 CP_SP2015/report/img/Grover_Memory_Performance-eps-converted-to.pdf>]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 1133.
+(hyperref)                be the same. Added a new anchor on input line 1138.
 
 
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
 CP_SP2015\report\report_QCP2015.bbl") 
 AED: lastpage setting LastPage
 [32]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1153.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1153.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1158.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1158.
 
 ("C:\Users\Michael\Dropbox\Edinburgh\Courses\Year 2\Quantum Computing Project\Q
 CP_SP2015\report\report_QCP2015.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1153.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1153.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1158.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1158.
 
 Package rerunfilecheck Info: File `report_QCP2015.out' has not changed.
-(rerunfilecheck)             Checksum: 7E3F8C3F20BFA4BADD220A27FBEAE49B;3320.
+(rerunfilecheck)             Checksum: 22ED2E077D6523498457F35E9B84F1DA;3320.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1153.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1158.
  ) 
 Here is how much of TeX's memory you used:
- 20088 strings out of 493921
- 324294 string characters out of 3144870
- 523990 words of memory out of 3000000
- 22865 multiletter control sequences out of 15000+200000
- 17805 words of font info for 70 fonts, out of 3000000 for 9000
+ 20550 strings out of 493921
+ 331080 string characters out of 3144870
+ 523459 words of memory out of 3000000
+ 23324 multiletter control sequences out of 15000+200000
+ 16547 words of font info for 65 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 45i,28n,46p,10484b,1337s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files
- (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x
-86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mti8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols
-/msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symb
-ols/msbm7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a
-.pfb>
-Output written on report_QCP2015.pdf (33 pages, 974382 bytes).
+ 45i,28n,46p,10484b,1330s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users
+\Michael\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.p
+k><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Prog
+ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/symbols/msbm7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/urw/courier/ucrr8a.pfb>
+Output written on report_QCP2015.pdf (33 pages, 957878 bytes).
 PDF statistics:
- 882 PDF objects out of 1000 (max. 8388607)
- 199 named destinations out of 1000 (max. 500000)
+ 888 PDF objects out of 1000 (max. 8388607)
+ 198 named destinations out of 1000 (max. 500000)
  483 words of extra memory for PDF output out of 10000 (max. 10000000)
 

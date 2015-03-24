@@ -21,6 +21,7 @@
 \usepackage{multirow}
 \usepackage{wasysym}\usepackage{amsthm}
 \usepackage{array}
+\usepackage{textcomp}
 \usepackage{enumerate} % for producing lists indexed with letters
 \usepackage{epstopdf}
 \epstopdfsetup{update}
@@ -104,7 +105,7 @@
 %-----------------------------------------------------------------------------------------
 \newcommand{\titlename}{}
 
-\newcommand{\authorname}{Michael Chiang, Gennaro di Pietro, William McNichols \& Christoph Meßmer}
+\newcommand{\authorname}{Michael Chiang, Gennaro Di Pietro, William McNichols \& Christoph Meßmer}
 
 \newcommand{\citeS}[1]{\textsuperscript{\cite{#1}}}
 \newcommand{\imgref}[1]{Fig.\,\ref{#1}}
@@ -210,7 +211,7 @@
 	{\large
 	by\\
 	\textsc{Michael Chiang\\
-	Gennaro di Pietro\\
+	Gennaro Di Pietro\\
 	William McNichols\\
 	Christoph Meßmer}
 	}
@@ -234,11 +235,11 @@
 %
 \section{Introduction}
 %Provide an introduction of quantum computing at the level of the knowledge you had at the start of the course
-This report is an accumulation of knowledge and results from the course 'Quantum Computing Project' at the University of Edinburgh and is meant to be comprehensible to 3rd year undergraduate students of physical science (especially informatics and physics).
+This report is an accumulation of knowledge and results from the course `Quantum Computing Project' at the University of Edinburgh and is meant to be comprehensible to 3rd year undergraduate students of physical science (especially informatics and physics).
 
-The report will begin by describing the \hyperref[sec:Aims]{aims} of the project and providing a \hyperref[sec:Background]{background} for the topic of Quantum Computing. That is followed by a chapter about the \hyperref[sec:Theory]{theory} needed for the underlying mathematics of the program which is purposely not intended to be exhaustive (see \hyperref[sec:References]{references} for further information).
+The report will begin by describing the \hyperref[sec:Aims]{aims} of the project and providing a \hyperref[sec:Background]{background} for the topic of Quantum Computing. This is followed by a chapter about the \hyperref[sec:Theory]{theory} needed for the underlying mathematics of the programme which is purposely not intended to be exhaustive (see \hyperref[sec:References]{references} for further information).
 
-After that we will describe the \hyperref[sec:Implementation]{implementation} of the project including how we organised the programming, which development environment we used, how we structured the program, etc.
+After that we will describe the \hyperref[sec:Implementation]{implementation} of the project including how we organised the programming, which development environment we used, how we structured the programme, etc.
 
 We finish with a chapter about the \hyperref[sec:Results]{results} followed by a \hyperref[sec:Discussion]{discussion} of these results and what we would do differently if we were to recreate the programme.
 
@@ -248,13 +249,13 @@ We finish with a chapter about the \hyperref[sec:Results]{results} followed by a
 The aims of the project:
 \begin{itemize}
 	\item \textbf{Comprehend quantum computing}\\
-	One goal is to get familiar with quantum computing as a generalisation of conventional computing.
-	\item \textbf{Programming}\\
-	The main goal is to simulate a quantum computer on a conventional classical computer. This includes programming basic concepts like \hyperref[sec:Qubits]{qubits}, \hyperref[sec:Quantum register]{quantum registers} and \hyperref[sec:Quantum gates]{quantum gates}. Finally it should be possible to run \hyperref[sec:Quantum algorithms]{quantum algorithms} like \hyperref[sec:Grover]{Grover's algorithm} (optional: \hyperref[sec:Shor]{Shor's algorithm}).
+	One goal is to get familiar with the basic concepts and theory behind quantum computing.
+	\item \textbf{programming}\\
+	The main goal is to simulate a circuit-model quantum computer on a conventional classical computer. This includes programming basic concepts like \hyperref[sec:Qubits]{qubits}, \hyperref[sec:Quantum register]{quantum registers} and \hyperref[sec:Quantum gates]{quantum gates}. Finally it should be possible to run \hyperref[sec:Quantum algorithms]{quantum algorithms} like \hyperref[sec:Grover]{Grover's algorithm} and  \hyperref[sec:Shor]{Shor's algorithm}.
 	\item \textbf{Presenting results}\\
 	This includes not only this report and a verbal presentation but also proper documentation of the programming code to make it comprehensive to other programmers.
 	\item \textbf{Teamwork and organisation}\\
-	A project like this needs organisation and division of tasks but also successful communication between all group members. It is a further goal to encourage teamwork and organisation skills.
+	A project like this needs organisation and division of tasks but also effective communication between all group members. It is a further goal to encourage teamwork and organisation skills.
 \end{itemize} 
 
 \subsection{Background}\label{sec:Background}
@@ -262,13 +263,13 @@ The aims of the project:
 The history of computers reaches back to the middle of the 19th century when a design for an Analytical Engine
 was proposed by Charles Babbage, one of the early pioneers of computation. However, for almost 100 years this branch stayed as an interesting but rather conceptional one until the invention of the transistor in 1925. The transistor was the core of classical computers as it provided a physical mechanism for reliably storing a bit of information that could be easily adjusted between two possible states. The first working computers were built in the 1940s and up to today computers work principally the same way. 
 
-Quantum computation on the other hand is a quite recent research field which emerged from the physics of quantum mechanics (1920s). In 1982 Richard Feynman theorised that there seemed to be essential difficulties in simulating quantum mechanical system on classical computers and suggested that a quantum computer would solve these issues.\citeS{Nielsen2010} At its core a quantum computer would not be limited to two states for each unit during computation but could theoretically be in any superposition of the units in it's circuit (see \hyperref[sec:Quantum Register]{quantum register}).
+Quantum computation, on the other hand, is a quite recent research field which emerged from the physics of quantum mechanics (1920s). In 1982, Richard Feynman theorised that there seemed to be essential difficulties in simulating quantum mechanical systems on classical computers and suggested that a quantum computer would solve these issues.\citeS{Nielsen2010} At its core a quantum computer would not be limited to two states for each unit during computation but could theoretically be in any superposition of the units in its circuit (see \hyperref[sec:Quantum Register]{quantum register}).
 
-The increased flexibility of a quantum computation led to remarkable theoretical breakthroughs in the 1990s, when Peter \textbf{Shor} demonstrated that essential problems -- like factorising integers -- could be solved far more efficiently on quantum computers than on conventional, classical computers. Besides Shor's algorithm Lov \textbf{Grover} proposed another algorithm in 1995 (only one year later) showing that the problem of conducting a search through some unstructured search space is as well more efficient on quantum computers.
+The increased flexibility of a quantum computation led to remarkable theoretical breakthroughs in the 1990s, when Peter \textbf{Shor} demonstrated that essential problems -- like factorising integers -- could be solved far more efficiently on quantum computers than on conventional, classical computers. Besides Shor's algorithm, Lov \textbf{Grover} proposed another algorithm in 1996 (only one year later) showing that the problem of conducting a search through some unstructured search space can as well be more efficient on quantum computers.
 %•	Comparison between classical and quantum computing
 %•	Practical challenges for building a quantum computer
 
-The practical challenges for building a quantum computer are high and therefore the realisation of real quantum computers is still in it's infancy. However, in 2001 the first real quantum computer was able to factorise 15 into its prime numbers (3 and 5) by using a 7-qubit system.\citeS{ShorsAlgoReal} Since then experimental progress is booming but the state-of-the-art is still a fair way off from practical (and even less daily-life) usage.
+The practical challenges for building a quantum computer are high and therefore the realisation of real quantum computers is still in its infancy. However, in 2001 the first real quantum computer was able to factorise 15 into its prime numbers (3 and 5) by using a 7-qubit system.\citeS{ShorsAlgoReal} Since then experimental progress is booming but the state-of-the-art is still a fair way off from practical (and even less daily-life) usage.
 
 
 %-----------------------------------------------------------------------------------------
@@ -277,7 +278,7 @@ The practical challenges for building a quantum computer are high and therefore 
 %
 \section{Theory}\label{sec:Theory}
 
-In this chapter we introduce the basic concepts of quantum computation, starting off with definitions of \hyperref[sec:Qubits]{\textbf{qubits}}, \hyperref[sec:Quantum register]{\textbf{quantum registers}} and the presentation of several \hyperref[sec:Quantum gates]{\textbf{quantum gates}}. Afterwards we will talk about two \hyperref[sec:Quantum algorithms]{\textbf{quantum algorithms}} that we implemented in our virtual quantum computer. The last chapter will briefly talk about the challenges of \hyperref[sec:Building a quantum computer]{\textbf{building a real quantum computer}}.
+In this chapter we introduce the basic concepts of quantum computation, starting off with definitions of \hyperref[sec:Qubits]{\textbf{qubits}} and \hyperref[sec:Quantum register]{\textbf{quantum registers}} and the presentation of several \hyperref[sec:Quantum gates]{\textbf{quantum gates}}. Afterwards, we will talk about two \hyperref[sec:Quantum algorithms]{\textbf{quantum algorithms}} that we implemented in our virtual quantum computer.
 
 \subsection{Qubits}\label{sec:Qubits}
 
@@ -295,7 +296,7 @@ at the same time, whereas a qubit is able to be in a state $\ket{\Psi}$ which is
 \end{align}
 %
 %
-One can depict the states via matrices with basis $(\ket{0}, \ket{1})$:
+One can depict the states via matrices with basis $\{\ket{0}, \ket{1}\}$:
 \begin{align}
 	\ket{0} = \begin{pmatrix}1\\0 \end{pmatrix}, \quad\quad \ket{1} = \begin{pmatrix}0\\1 \end{pmatrix}, \quad\quad \ket{\Psi} = \begin{pmatrix}\alpha\\\beta \end{pmatrix}
 \end{align}
@@ -305,7 +306,7 @@ One can depict the states via matrices with basis $(\ket{0}, \ket{1})$:
 The superposition of states leads to a new understanding of measurement. There are two things to consider:
 \begin{enumerate}
 	\item \textbf{Probabilities $P$}\\
-	Given a classical state ($\ket{\Psi}$ either $\ket{0}$ or $\ket{1}$) the result of a measurement is certain (and trivial). That's no longer true for the quantum state: Given the state $\ket{\Psi}$ in Eq.\,\ref{eq:Superpos of qubit}, it is solely possible to calculate the \textbf{probabilities $P_\Psi$} of the outcome:
+	Given a classical state (either $\ket{0}$ or $\ket{1}$), the result of a measurement is certain (and trivial). This is no longer true for the quantum state: Given the state $\ket{\Psi}$ in Eq.\,\ref{eq:Superpos of qubit}, it is solely possible to calculate the \textbf{probabilities $P_\Psi$} of the outcome:
 	%
 	\begin{align}
 		P_\Psi(0) = \left|\braket{0}{\Psi}\right|^2 &= \left|   \alpha \underbrace{\braket{0}{0}}_{=1} + \beta \underbrace{\braket{0}{1}}_{=0}   \right|^2 = |\alpha|^2\\
@@ -313,7 +314,7 @@ The superposition of states leads to a new understanding of measurement. There a
 	\end{align}
 	
 	\item \textbf{Collapse of $\ket{\Psi}$}\\
-	In classical measurements it is fair to say that the measurement itself has no (noticeable) influence on the result. This is no longer true in quantum mechanics: The wave function $\ket{\Psi}_i$ \textbf{collapses after a measurement} to a projection onto the measured eigenstate and therefore becomes a different state $\ket{\Psi}_f$:
+	In classical measurements it is fair to say that the measurement itself has no (noticeable) influence on the result. This is no longer true in quantum mechanics: The wave function $\ket{\Psi}_i$ \textbf{collapses after a measurement} onto the measured eigenstate and therefore becomes a different state $\ket{\Psi}_f$:
 	%
 	\begin{align}
 		\ket{\Psi}_i = \alpha \ket{0} + \beta \ket{1}
@@ -355,7 +356,7 @@ We call this collection the \textbf{computational basis} of our register.
 
 However, in contrast to a classical system, a quantum register is able to be in a \textbf{state of superposition} which turns out to be the fundamental advantage for quantum computation. If for example the second qubit is set to a superposition $\ket{\Psi_{b_1}}=\tfrac{1}{\sqrt{2}}\left(\begin{smallmatrix}
 +1\\-1
-\end{smallmatrix}\right)$ the total state of the register will be:
+\end{smallmatrix}\right)$, the total state of the register will be:
 %
 \begin{align}
 	\ket{\Psi^\text{tot}} &= \ket{\Psi_{b_2}} \otimes \ket{\Psi_{b_1}} \otimes \ket{\Psi_{b_0}}\label{eq:stateProduct}\\
@@ -365,7 +366,7 @@ However, in contrast to a classical system, a quantum register is able to be in 
 \end{align} 
 %
 %Entangled states
-Eq.\,\ref{eq:stateProduct2} is always reducible to a (tensor) product of three single states, as Eq.\,\ref{eq:stateProduct} suggests. This is not always the case. Consider the 2-qubit system where
+Eq.\,\ref{eq:stateProduct2} is always reducible to a (tensor) product of three single states, as Eq.\,\ref{eq:stateProduct} suggests. However, not all states are reducible. Consider the 2-qubit system where
 %
 \begin{align}
 	\ket{\Psi^\text{ent}} = \tfrac{1}{\sqrt{2}}  \left[ \ket{00} + \ket{11} \right]. \label{eq:entangled}
@@ -375,12 +376,12 @@ There is no way to separate this wave function into a (tensor) product of two st
 $\{ \ket{\Psi_{b_1}}, \ket{\Psi_{b_0}} \}$. Thus, the state $\ket{\Psi^\text{ent}}$ is called \textbf{entangled}.
 
 \subsection{Quantum Gates}\label{sec:Quantum gates}
-After defining the quantum register, we now want to process it through a number of so-called quantum gates. These are \textbf{unitary operations} applied to our register in order to change its total state $\ket{\Psi^\text{tot}}$. Since we work in the Hilbert space, all our operations are \textbf{linear}, therefore we can represent any gate working on a $n$-qubit register by a $N \times N$ matrix.
+After defining the quantum register, we now want to process it through a number of so-called quantum gates. These are \textbf{unitary operations} applied to our register in order to change its total state $\ket{\Psi^\text{tot}}$. Since we work in the Hilbert space, all our operations are \textbf{linear}, therefore we can represent any gate working on a $n$-qubit register by a $2^n \times 2^n$ (or $N \times N$) matrix.
 
-In the following subsections we will first introduce the most important gates used in our project, and then speak about generalisations of these gates for bigger registers.
+In the following subsections, we will first introduce the most important gates used in our project and then speak about the generalisations of these gates for bigger registers.
 
-\subsubsection{Pauli-X Gate}
-The first example for a simple 1-qubit gate is the Pauli-X gate. It simply maps the state $\ket{0}\rightarrow\ket{1}$ and vice versa and is therefore equivalent to the logic \textsc{Not}. The representing matrix in the computational basis $\{\ket{0}, \ket{1}\}$ is:
+\subsubsection{Pauli-$X$ Gate}
+The first example for a simple 1-qubit gate is the Pauli-$X$ gate. It simply maps the state $\ket{0}\rightarrow\ket{1}$ and vice versa and is therefore equivalent to the logic \textsc{Not}. The representing matrix in the basis $\{\ket{0}, \ket{1}\}$ is:
 %
 \begin{align}
 	& X =
@@ -389,9 +390,10 @@ The first example for a simple 1-qubit gate is the Pauli-X gate. It simply maps 
 		1 & 0
 	\end{pmatrix}\\
 	& X \ket{0} = \ket{1}\\
-	& X \ket{1} = \ket{0}\\
+	& X \ket{1} = \ket{0}
 %
 \end{align}
+A circuit representation of this gate is shown below:
 \begin{align*}
 	\Qcircuit @C=.7em @R=.7em {
 		  \lstick{\ket{b}}    & \gate{X} & \qw & \rstick{\ket{1-b}}
@@ -402,7 +404,6 @@ The first example for a simple 1-qubit gate is the Pauli-X gate. It simply maps 
 
 \subsubsection{Hadamard Gate}
 A common gate in quantum computation is the Hadamard gate. It performs the Hadamard transformation on a single qubit system in the following way:
-%
 \begin{align}
 	H & = 
 		\frac{1}{\sqrt{2}}
@@ -421,10 +422,7 @@ A common gate in quantum computation is the Hadamard gate. It performs the Hadam
 %
 The Hadamard gate is a `real' quantum gate since it is able to set the state to a superposition of basic states.
 
-For a $n$-qubit system it is necessary to define on which qubit a gate is acting. In the following we will use the subscript to depict this: The gate $G_k$ is acting on the $k$-th qubit.
-
-Note that a combination of Hadamard gates acting on every single qubit in a $n$-qubit register with initial state $\ket{\Psi}=\ket{00...0}$ will lead to an \textbf{uniform superposition} of all basic states:
-%
+For a $n$-qubit system it is necessary to define on which qubit a gate is acting. In the following we will use the subscript to depict this: The gate $G_k$ is acting on the $k$th qubit. Note that a combination of Hadamard gates acting on every single qubit in a $n$-qubit register with initial state $\ket{\Psi}=\ket{00...0}$ will lead to an \textbf{uniform superposition} of all basic states:
 \begin{align}
 	\left(  \prod_{k=0}^{n-1} H_k  \right) \ket{\Psi}
 	&= H_{n-1} \underbrace{\ket{b_{n-1}}}_{=\ket{0}} \otimes ... \otimes H_{0} \underbrace{\ket{b_{0}}}_{=\ket{0}}\\
@@ -432,11 +430,8 @@ Note that a combination of Hadamard gates acting on every single qubit in a $n$-
 	&= 2^{-\frac{n}{2}} \sum_{k=0}^{N-1} \ket{k}
 \end{align}
 
-%
-
 \subsubsection{Phase Gate}
 The Hadamard gate already uses special properties of quantum computation, but all operations are part of the real subspace of the Hilbert space. In general the gates and quantum register can operate on a complex vector space. The phase gate is such a gate which is defined for a single qubit system as:
-%
 \begin{align}
 	R_\phi & = 
 			\begin{pmatrix}
@@ -451,20 +446,26 @@ The Hadamard gate already uses special properties of quantum computation, but al
 		  \lstick{\ket{b}}    & \gate{R_\phi} & \qw & \rstick{e^{i b \phi}\ket{b}}
 	}
 \end{align*}
-%
 
 \subsubsection{Control Gates}
-Apart from single qubit gates, there are also control gates. A control qubit $\ket{b_0}$ is used to control the output of a second qubit $\ket{b_1}$, while it itself remains untouched:
+Apart from single qubit gates, there are also control gates. These gates use a set \emph{control qubits} $\{\ket{c_i}\}$ to \emph{conditionally} perform a (unitary) operation $U$ on a \emph{target qubit} $\ket{x}$. Specifically, if the control qubits are all turned on (i.e. $\ket{c_i}$ = $\ket{1}$), the operation $U$ is applied to the target; otherwise, the target is left unchanged. The control qubits themselves remain untouched throughout this process. The control gate operation can be summarised as:
+\begin{align}
+	U^{c_1c_2\dotsm c_i\dotsm} \ket{x} = \left\{ 
+	\begin{array}{ll}
+		U\ket{x}  &  \quad\textrm{if}\quad \{c_i\} = 1\\[5pt]
+		\mathbb{I}\ket{x} & \quad \textrm{otherwise}
+	\end{array}
+	\right.
+\end{align}
 
+An example of this type of gate is the controlled-NOT gate, which has one control qubit $\ket{b_0}$ and performs a conditional Pauli-$X$ operation on the target qubit $\ket{b_1}$:
 \begin{align*}
  \Qcircuit @C=.7em @R=.7em {
   \lstick{\ket{b_0}}    & \qw & \ctrl{1}          & \qw & \rstick{\ket{b_0}}\\
   \lstick{\ket{b_1}}    & \qw & \gate{C_\textsc{Not}} & \qw & \rstick{\ket{b_0 \oplus b_1}}
  }
 \end{align*}
-
-For the $C_\textsc{Not}$-Gate the $\oplus$ is a $\textsc{Xor}$ operation, therefore the matrix looks like:
-
+where $\oplus$ is the $\textsc{Xor}$ operation (in this situation). Therefore, the matrix looks like:
 \begin{align}
 	C_\textsc{Not} & = 
 		\begin{pmatrix}
@@ -472,14 +473,13 @@ For the $C_\textsc{Not}$-Gate the $\oplus$ is a $\textsc{Xor}$ operation, theref
 			0 &  1 &  0 &  0\\
 			0 &  0 &  0 &  1\\
 			0 &  0 &  1 &  0\\
-		\end{pmatrix}\\
+		\end{pmatrix}\\[10pt]
 	C_\textsc{Not} \ket{0}\ket{b_1} & = \ket{0}\ket{b_1}\\
 	C_\textsc{Not} \ket{0}\ket{b_1} & = \ket{1}\ket{1-b_1}
 \end{align}
 
 \subsubsection{Extension to bigger registers}\label{sec:Extension to bigger registers}
 As briefly mentioned before, any single qubit gate can by applied to the $k$th qubit of a $n$-qubit register. The challenge now is how to construct a matrix representation of a single qubit gate is when it is applied to a register with multiple qubits. Mathematically, this involves taking the tensor product of the matrix representing the gate on the desired target qubit with the identity on others. Consider the example of applying a single qubit gate $G$ on the left qubit in a 2-qubit system. The resulting matrix $G_\text{tot}$ is:
-%
 \begin{align}
 	G_\text{tot} 
 	&= G_1 \otimes \underbrace{G_0}_{=\mathbb{I}_2}\\
@@ -528,7 +528,6 @@ As briefly mentioned before, any single qubit gate can by applied to the $k$th q
 %\end{align*}
 %
 The general expression for $n$-qubit systems is analogous:
-%
 \begin{align}
 	G_\text{tot} 
 	&= G_{n-1} \otimes ... \otimes G_k \otimes ...\otimes G_0\\
@@ -541,7 +540,6 @@ The general expression for $n$-qubit systems is analogous:
 	\right)
 	\otimes ...\otimes \mathbb{I}_2
 \end{align}
-%
 
 Instead of carrying out this tensor product explicitly, which is likely to be computationally expensive and inefficient, we notice that the linear operation serves as an active transformation of the state vector. From linear algebra, we know the columns within the matrix that describes such a transformation are the basis vectors of the transformed basis (or the new basis) expressed in terms of the old basis. Therefore, we can construct the matrix for this transformation easily if we know how each basis state in the new basis is described by the old basis. 
 
@@ -550,15 +548,16 @@ This turns out to be a simple task to do on a classical computer using bitwise o
 	G\ket{0} &= \alpha_0 \ket{0} + \beta_0 \ket{1}\\
 	G\ket{1} &= \alpha_1 \ket{0} + \beta_1 \ket{1}
 \end{align} 
+
 We can write this more compactly as
 \begin{align}
  G\ket{y} = \alpha(y)\ket{0} + \beta(y)\ket{1}, \label{twostates}
 \end{align}
  where we let $\alpha(0) = \alpha_0$, $\alpha(1) = \alpha_1$ and similarly for $\beta$.
-We wish to find the relationship between the new basis $\ket{x}'$ and the old basis $\ket{x}$ such that $\ket{x}' = G\ket{x}$. For this discussion, it would be most convenient to write each basis state in terms of the computational basis, which is $\ket{x} \equiv \ket{x_{n-1}x_{n-2}\dotsm x_0}$ where $x = x_{n-1}2^{n-1} + x_{n-2}2^{n-2} + \dotsb + x_0 2^0$. The new basis state $\ket{x}'$ is therefore given by:
+We wish to find the relationship between the new basis $\ket{x}'$ and the old basis $\ket{x}$ such that $\ket{x}' = G\ket{x}$. For this discussion, it would be most convenient to write each basis state in terms of the computational basis, which is $\ket{x} \equiv \ket{x_{n-1}x_{n-2}\dotsm x_0}$ where $x = x_{n-1}2^{n-1} + x_{n-2}2^{n-2} + \dotsb + x_0 2^0$. The new basis state $\ket{x}'$ is therefore given by
 \begin{align}
 	\ket{x}' &= G\ket{x} = G\left(\ket{x_{n-1}} \ket{x_{n-2}} \dotsm \ket{x_k} \dotsm \ket{x_0}\right)\\
-	&= \ket{x_{n-1}} \otimes \ket{x_{n-2}} \otimes \dotsm \otimes G\ket{x_k} \otimes \dotsm \otimes \ket{x_0}
+	&= \ket{x_{n-1}} \otimes \ket{x_{n-2}} \otimes \dotsm \otimes G\ket{x_k} \otimes \dotsm \otimes \ket{x_0},
 \end{align}
 where we used the fact that $G$ only operates on the $k$th qubit. Using equation \ref{twostates}, we can see that every new basis state can be described by two, and only two, basis vectors from the old basis:
 \begin{align}
@@ -571,10 +570,10 @@ This means that there would only be two elements in each column within the matri
 	G(x_{n-1}x_{n-2}\dotsm0\dotsm x_0,\;x_{n-1}x_{n-2}\dotsm x_k\dotsm x_0) &= \alpha(x_k)\label{offResult}\\ 
 	G(x_{n-1}x_{n-2}\dotsm1\dotsm x_0,\;x_{n-1}x_{n-2}\dotsm x_k\dotsm x_0) &= \beta(x_k) \label{onResult}
 \end{align}
-Therefore, we can find all elements of the matrix by iterating over the column index $x$, $x \in [0,\,N-1]$. We notice the value of the element depends on $x_k$, or whether the $k$th bit is $0$ or $1$. This can be found by performing the bitwise AND operation between $x$ and $2^{k}$ (the second value is also known as the mask). If the result is zero, $x_k = 0$; otherwise, $x_k = 1$. We can also toggle the $k$th bit in $x$ to find the row index of the two elements by performing an XOR operation between $x$ and $2^{k-1}$.
 
-The matrix representation of a control gate can also be found using the same procedure. From the previous section, we know the operation in a control gate is only performed if the control qubits are all 1. Consider the gate $G$ that is controlled by $m$ qubits with values $c_1, c_2, \dotsc, c_m$, $c_i \in \{0, 1\}$. The new basis is related to the old basis by:
+Therefore, we can find all elements of the matrix by iterating over the column index $x$, $x \in [0,\,2^n-1]$. We notice the value of the element depends on $x_k$, or whether the $k$th bit is $0$ or $1$. This can be found by performing the bitwise \textsc{And} operation between $x$ and $2^{k}$ (the second value is also known as the \emph{mask}). If the result is zero, $x_k = 0$; otherwise, $x_k = 1$. We can also toggle the $k$th bit in $x$ to find the row index of the two elements by performing an \textsc{Xor} operation between $x$ and $2^{k}$.
 
+The matrix representation of a control gate can also be found using the same procedure. From the previous section, we know the operation in a control gate is only performed if the control qubits are all 1. Consider the gate $G$ that is controlled by $m$ qubits with values $c_1, c_2, \dotsc, c_m$, $c_i \in \{0, 1\}$. The new basis is related to the old basis by
 \begin{align}
 	\ket{x}' = G^{c_1c_2\dotsm c_m} \ket{x} = \left\{ 
 	\begin{array}{ll}
@@ -584,26 +583,26 @@ The matrix representation of a control gate can also be found using the same pro
 	\right.
 \end{align}
 
-Hence, we can still iterate over the column index $x$ to find the elements, except we need to check whether each of the control bits $\{c_i\}$ in $x$ is 1 using the AND operation as described above. If the bits are all 1, we would obtain the two elements as stated in equation \ref{offResult} and \ref{onResult}; otherwise, the new basis state would be the same as the old basis state, so the only non-zero element in column $x$ would be $G(x,\,x) = 1$.
+Hence, we can still iterate over the column index $x$ to find the elements, except we need to check whether each of the control bits $\{c_i\}$ in $x$ is 1 using the AND operation as described above. If the bits are all 1, we would obtain the two elements as stated in equation \ref{offResult} and \ref{onResult}; otherwise, the new basis state would be the same as the old one, so the only non-zero element in column $x$ would be $G(x,\,x) = 1$.
 
 \subsubsection{Gate representations}\label{sec:Gate representations}
-The resulting matrix $G_\text{tot}$ is in general a $N \times N$-matrix with two and only two non-zero entries in every row and column. That means that only $2\cdot 2^n$ of $2^{n^2}$ entries are non-zero. The ratio is $2^{1-n}$ which rapidly goes towards zero for big $n$. Thus, most entries of the gate matrices will be zero.
+The resulting matrix $G_\text{tot}$ of a single qubit gate applied to a multiple qubit register is in general a $2^n \times 2^n$ matrix with two and only two non-zero elements in every row and column. This means that only $2\cdot 2^n$ of $2^{n^2}$ entries are non-zero. The ratio is $2^{1-n}$ which rapidly goes towards zero for big $n$. Thus, most elements of the gate matrices will be zero.
 
 This leads to the consideration of the following three possible representations:
 \begin{enumerate}
 	\item \textbf{Dense matrix representation}\\
-		A dense matrix representation is the standard representation, storing every single entry of a matrix. This leads to two major disadvantages in our special case:		
+		A dense matrix representation is the standard representation, storing every single element of a matrix. This leads to two major disadvantages in our special case:		
 		\begin{enumerate}
 			\item \textit{Memory}\\
-			A classical computer reserves a certain amount of memory for every entry of a conventional matrix, no matter if the value is zero or non-zero. Therefore using dense matrices for big quantum registers might cause a serious lack of working memory.
+			A classical computer reserves a certain amount of memory for every entry of a conventional matrix, no matter if the value is zero or non-zero. Therefore using dense matrices for the gates applied to a big quantum register might cause a serious lack of working memory.
 			\item \textit{Calculation}\\
 			We get a lot of trivial (and unnecessary) calculations using the standard matrix multiplication rule.
 		\end{enumerate}
 		The quantum register, however, has mostly non-zero entries for most of the steps of the usual algorithms.
 	\item \textbf{Sparse matrix representation}\\
-		A sparse matrix representation only stores non-zero elements of a matrix in a list. Therefore every non-zero element requires a positioning index and the number itself to store. This representation is particularly useful in representing the gates because there are a only two non-zero elements in each column of a gate matrix. Therefore on an N-qubit register a Sparse matrix representation will only require roughly $4N$ storage elements (the index and value of each non zero element in N columns). This is significantly smaller than the $N^2$ required elements in a dense matrix both speeds up computation and decrease memory pressure for higher values of N.
+		A sparse matrix representation only stores non-zero elements of a matrix in a list. Therefore, every non-zero element requires a positioning index and the number itself to store. This representation is particularly useful in representing the gates because there are only two non-zero elements in each column of a gate matrix. Hence, when applied on a $n$-qubit register, a sparse matrix representation of the gate will only require roughly $4 \cdot 2^n \equiv 4N$ storage elements (the index and value of each non-zero element in $N$ columns). This is significantly smaller than $N^2$ elements in a dense matrix, which speeds up computation and decreases memory pressure for higher values of $N$.
 	\item \textbf{Functional representation}\\
-		Another representation of the gates that deviates slightly from the underlying maths representation is to use a functional representation of the gates. The key difference between a matrix and functional representations is that a functional representation doesn't generate a final gate matrix to multiply to the register. Instead the elements for each column are calculated iteratively and then applied to the necessary elements of the register. This significantly decreases memory pressure as the program no longer has to create a matrix for each gate in the circuit. However, the increased computational complexity can make the program run more slowly in some cases. (See \hyperref[sec:Results]{Results} )
+		Another representation of the gates that deviates slightly from the underlying maths representation is to use a functional representation of the gates. The key difference between a matrix and functional representation is that a functional representation does not generate a final gate matrix to multiply to the register. Instead, the elements for each column are calculated iteratively and then applied to the appropriate elements of the register. This significantly decreases memory pressure as the programme no longer has to create a matrix for each gate in the circuit. However, the increased computational complexity can make the programme run more slowly in some cases. (See \hyperref[sec:Results]{Grover's result}).
 		
 \end{enumerate}
 
@@ -624,13 +623,13 @@ After defining quantum gates it is now simple to predict the next step: A so-cal
 Grover's algorithm is a search algorithm proposed by Lov Grover in 1996. On a classical computer, searching through an unsorted list with $N$ entries would require $O(N)$ operations. This can be reduced remarkably to $O(\sqrt{N})$ operations using a quantum circuit that implements Grover's algorithm. Different from most search operations, this algorithm searches through the \emph{index} of the elements (which ranges from $0$ to $N-1$) rather than the elements themselves. Each index corresponds to a basis state of the register (i.e. index $x \rightarrow \ket{x}$). With the aid of a quantum \emph{oracle}, the algorithm finds a solution to the search problem by repeatedly performing a set of transformations on the register to maximise the probability of measuring the states associated with the solutions.
 \begin{itemize}
 \item[] \textbf{The Oracle}\\
-The oracle is a device which has the ability to \emph{recognise} the solutions to the search problem without \emph{knowing} them explicitly \footnote{The difference between \emph{recognise} and \emph{knowing} the solutions is that it is possible to do the former without doing the latter. Consider we want to search through a list f}. The exact mechanism how it achieve so does not matter, as we are only concerned with the algorithm itself. The oracle takes in a state $\ket{x}$ which corresponds to the index of a search element and a single qubit $\ket{q}$ known as the \emph{oracle qubit}. If the state is a solution to the search problem, the oracle signals this by flipping the state of $\ket{q}$ (i.e. $\ket{0} \rightarrow \ket{1} \textrm{or} \ket{1} \rightarrow \ket{0}$). In other words, if we define a function $f(x)$ such that $f(x) = 1$ if $\ket{x}$ is a solution and $f(x) = 0$ if it is not, the oracle performs the following unitary operation (denoted as $O$):
+The oracle is a device which has the ability to \emph{recognise} the solutions to the search problem without \emph{knowing} them explicitly. The exact mechanism how it achieve so does not matter, as we are only concerned with the algorithm itself. The oracle takes in a state $\ket{x}$ which corresponds to the index of a search element and a single qubit $\ket{q}$ known as the \emph{oracle qubit}. If the state is a solution to the search problem, the oracle signals this by flipping the state of $\ket{q}$ (i.e. $\ket{0} \rightarrow \ket{1} \textrm{or} \ket{1} \rightarrow \ket{0}$). In other words, if we define a function $f(x)$ such that $f(x) = 1$ if $\ket{x}$ is a solution and $f(x) = 0$ if it is not, the oracle performs the following unitary operation (denoted as $O$):
 \begin{align}
 	\ket{x} \ket{q} \xrightarrow{O} \ket{x} X^{f(x)} \ket{q}
 \end{align}
 where $X$ is the Pauli-$X$ gate as shown previously. For convenience, we can prepare the oracle qubit to be $\ket{q} = (\ket{0} - \ket{1}) / \sqrt{2}$. If $\ket{x}$ is a solution, the oracle qubit would be flipped to $- (\ket{0} - \ket{1}) / \sqrt{2}$; otherwise, it would remain the same. These can be expressed as:
 \begin{align}
-	\ket{x} \left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right) \xrightarrow{O} (-1)^{f(x)}\ket{x}\left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right)
+	\ket{x} \left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right) \xrightarrow{O} (-1)^{f(x)}\ket{x}\left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right) \label{oracleQbit}
 \end{align}
 As $\ket{q}$ remains unchanged in the process, we can ignore it along with the internal workspace of the oracle completely for the rest of this discussion. We can simply think that the oracle marks the solutions by applying a phase shift of -1 to them:
 \begin{align}
@@ -653,7 +652,6 @@ The algorithm consists of the following set of operations, which is called the G
 		\end{align}
 	\item Apply the Hadamard operation on all qubits again $H^{\otimes n}$ \label{step4}
 \end{enumerate}
-
 \begin{figure}[H]
 \begin{align*}
  \Qcircuit @C=1em @R=.7em {
@@ -665,11 +663,11 @@ The algorithm consists of the following set of operations, which is called the G
   \gategroup{2}{4}{3}{10}{.7em}{_\}}
  }
 \end{align*}
-\caption{Circuit of Grover's Algorithm\citeS{GroversAlgo}}
+\caption{Circuit of Grover's Algorithm\citeS{GroversAlgo}. Notice there are two set of registers in this diagram. The above one corresponds to our search index register while the bottom one corresponds to the workspace of the oracle, which, as shown in equation \ref{oracleQbit}, can be ignored to simplify the discussion of the algorithm.}
 \label{fig:CircuitGrover}
 \end{figure}
 
-Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for a Grover iteration. It is easy to see that $2\ket{0}\bra{0} - \mathbb{I}$ would perform the operation in step \ref{step3}. In addition, step \ref{step2} to step \ref{step4} is also known as the \emph{Grover's diffusion operation}, which can be written as:
+Fig.\,\ref{fig:CircuitGrover} shows a schematic circuit diagram for a Grover iteration. It is easy to see that the operation in step \ref{step3} can be represented by $2\ket{0}\bra{0} - \mathbb{I}$. In addition, step \ref{step2} to step \ref{step4} is also known as the \emph{Grover's diffusion operation}, which can be written as:
 \begin{align}
 	H^{\otimes n}(2\ket{0}\bra{0} - \mathbb{I})H^{\otimes n} = 2\ket{\psi}\bra{\psi} - \mathbb{I}
 \end{align}
@@ -683,28 +681,25 @@ Geometrically, the Grover iteration performs a rotation on a two-dimensional pla
 	\ket{\alpha} &\equiv \frac{1}{\sqrt{N-M}} \sum_{x \; \in \;\textrm{non sol.}} \ket{x}\\
 	\ket{\beta} &\equiv \frac{1}{\sqrt{M}} \sum_{x \; \in \; \textrm{sol.}} \ket{x},
 \end{align}
-the starting state of the register $\ket{\psi}$ can be expressed in terms of these two states
+the initial state of the register $\ket{\psi}$ can be expressed in terms of these two states
 \begin{align}
 	\ket{\psi} &= \sqrt{\frac{N-M}{N}}\ket{\alpha} +\sqrt{\frac{M}{N}}\ket{\beta}
 \end{align}
-so it must be lying on the plane spanned by these vectors. We notice the oracle changes the sign of the solution states (i.e. $O(a\ket{\alpha} + b\ket{\beta}) = a\ket{\alpha} - b\ket{\beta}$), so it performs a reflection about the vector $\ket{\alpha}$. On the other hand, the diffusion operation $2\ket{\psi}\bra{\psi} - \mathbb{I}$ performs a reflection about the vector $\ket{\psi}$. As these two reflections both occur on the plane spanned by $\ket{\alpha}$ and $\ket{\beta}$ and two reflections produce a rotation, each Grover iteration $G$ must be a rotation on this plane. Hence, repeated applications of $G$ would rotate the state vector of the register from $\ket{\alpha}$ to $\ket{\beta}$, increasing the chance of observing the solutions. In fact, it can be derived that the minimum number of iterations required to produce a rotation such that the state vector is sufficiently near $\ket{\beta}$ is approximately $\frac{\pi}{4} \sqrt{\frac{N}{M}}$ \citeS{Nielsen2010}, and hence th. 
+so it must be lying on the plane spanned by these vectors. We notice the oracle changes the sign of the solution states (i.e. $O(a\ket{\alpha} + b\ket{\beta}) = a\ket{\alpha} - b\ket{\beta}$), so it performs a reflection about the vector $\ket{\alpha}$. On the other hand, the diffusion operation $2\ket{\psi}\bra{\psi} - \mathbb{I}$ performs a reflection about the vector $\ket{\psi}$. As these two reflections both occur on the plane spanned by $\ket{\alpha}$ and $\ket{\beta}$ and two reflections produce a rotation, each Grover iteration $G$ must be a rotation on this plane. Hence, repeated applications of $G$ would rotate the state vector of the register from $\ket{\alpha}$ to $\ket{\beta}$, increasing the chance of observing the solutions. In fact, it can be derived that the number of iterations required to produce a rotation such that the state vector is sufficiently near $\ket{\beta}$ is approximately $\frac{\pi}{4} \sqrt{\frac{N}{M}}$ \citeS{Nielsen2010}. Hence, the algorithm only requires $O(\sqrt{N/M})$ operations to find a solution to the search problem, which is a quadratic improvement over classical computation. 
 
 \item[] \textbf{Limitations of Grover's Algorithm}\\
-Although the algorithm seems promising for increasing the efficiency in large data searches, there are some limitations to this algorithm. Firstly, it requires a non-trivial translation of the search problem into one that can implemented by algorithm. As the algorithm searches for the index rather than the element itself, one has to first convert the database into such representation, which may take as long as the actual search itself. Furthermore, one has to be able to create an oracle that can recognise the solutions, which may be challenging. This is compounded by the issue that the oracle is usually created for a specific search problem with specific solutions, which means that a new oracle would be needed for a new search with different solutions. Secondly, it can be shown that Grover's algorithm is already optimised. This means that there are no other quantum algorithms that can perform the search task  . This suggests that there 
+Although the algorithm seems promising for increasing the efficiency in large data searches, there are some limitations to this algorithm. Firstly, it requires a potentially complicated conversion of the search problem into one that can implemented by algorithm. As the algorithm searches for the index rather than the elements themselves, one has to first convert the database into such representation, which may take as long as the actual search itself. Furthermore, one has to be able to create an oracle that can recognise the solutions, which may be challenging. This is compounded by the issue that the oracle is usually created for specific solutions to a search problem, which means that a new oracle would be needed for a new search with different solutions. Secondly, it can be shown that Grover's algorithm is already optimised \citeS{Nielsen2010}. This means that any quantum algorithms using the oracle to perform the search task would require at least as many operations as Grover's algorithm. This optimality thus limits any further improvement in efficiency. 
 \end{itemize}
 
 
 \subsubsection{Shor's Algorithm}
-Shor's algorithm was published 1994 by Peter Shor and proposes an procedure for factorising integers who's factors are coprime. It is able to find non-trivial divisors in polynomial time and space (the number of gates required), whereas na\"ive classical algorithms run in exponential time. The best classical factoring algorithm, the general number field sieve, is able to factorise integers in sub-exponential time but it has so far been impossible to devise a classical algorithm which runs in polynomial time. 
+Shor's algorithm was published 1994 by Peter Shor. It is a procedure for factorising integers whose factors are coprime. It is able to find non-trivial divisors in polynomial time and space (i.e. the number of gates required), whereas na\"ive classical algorithms run in exponential time. The best classical factoring algorithm, the general number field sieve, is able to factorise integers in sub-exponential time, but it has so far been impossible to devise a classical algorithm which runs in polynomial time. 
 
-This could have vast impacts on modern cryptography: Many encryption systems (like RSA) rely on the fact, that it is impossible to factorise integers in a reasonable amount time. Shor's algorithm showed that it is (theoretically) possible for quantum computers to achieve this goal, however the practical difficulties of building a real quantum computer are still preventing Shor's algorithm from undermining modern cryptography.
+This could have vast impacts on modern cryptography. Many encryption systems (like RSA) rely on the fact that it is impossible to factorise integers in a reasonable amount time. Shor's algorithm showed that it is (theoretically) possible for quantum computers to achieve this goal; however, the practical difficulties of building a real quantum computer are still preventing Shor's algorithm from undermining modern cryptography.
 
-Shor's algorithm is able to reduce the factoring problem to an on order finding one. (p. 233 in the big book of knowledge) The order finding problem itself is simply the phase estimation algorithm applied to the unitary operator (\S5.36 in the book). The proof of this is provided in ``Quantum computation and quantum information''
-The most interesting part of all of these algorithms must be the Quantum Fourier Transform. Mathematically it performs the same function as the Classical Fourier Transform, except that it acts on a quantum register instead of a vector.
+Shor's algorithm is able to reduce the factoring problem to an order finding one (see p. 233 in \citeS{Nielsen2010}). The order finding problem itself is simply the phase estimation algorithm applied to the unitary operator (e.q. 5.36 in \citeS{Nielsen2010}). The most interesting part of all of these algorithms must be the quantum Fourier transform (QFT). Mathematically, it performs the same function as the Classical Fourier Transform, except that it acts on a quantum register instead of a vector. Figure \ref{fig:QFT} shows the quantum circuit for this operation
 
-As seen in figure xx, Shor's algorithm requires the use of two registers. The first is the one the QFT acts on but it is first prepared by the second. The second register has the unitary operator mentioned above applied to it. The states of the two registers are then entangles and when the second register is measured it causes a partial collapse in the first. This leaves only the states which satisfy the equation $x^j \textrm{mod} N = 1$. By then applying the QFT, the period of the function can be very easily determined.
-
-Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorithm.
+Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorithm. The algorithm requires the use of two registers. The first is the one the QFT acts on but it is first prepared by the second. The second register has the unitary operator mentioned above applied to it. The states of the two registers are entangled, and when the second register is measured, it causes a partial collapse in the first. This leaves only the states which satisfy the equation $x^j \;\textrm{mod}\; N = 1$. By then applying the QFT, the period of the function can be very easily determined.
 
 \begin{figure}[H]
 \begin{align*}
@@ -732,7 +727,7 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
   \lstick{\ket{x_1}}     & \ghost{\text{QFT}_{n-1}}        & \gate{R_{\pi/2^{n-1}}} & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_n}} \qw
  }
 \end{align*}
-\caption{Circuit of Quantum Fourier Transforms\citeS{QFT}}
+\caption{Circuit for the Quantum Fourier Transform\citeS{QFT}}
 \label{fig:QFT}
 \end{figure}
 
@@ -747,40 +742,40 @@ Fig.\,\ref{fig:CircuitShor} shows a schematic circuit diagram for Shor's algorit
 %-----------------------------------------------------------------------------------------
 %
 \section{Implementation}\label{sec:Implementation}
-%Describe how your program is structured
+%Describe how your programme is structured
 %Why have you made the design choices you did
 %perhaps you could also say what you would do differently in the light of your experience
-In this section we go over the approach we used to tackle the task of simulating the aforementioned concepts on a classical computer. The problem of representing many different concepts, which both built on and used one another, naturally led to a large object-oriented programme. Aside from modeling the quantum concepts that ultimately formed a simulation of a basic quantum computer this project also required the creation of the matrix libraries used in the underlying mathematics and a user interface to test and interact with the simulated computer. Thus the implementation of the program can be understood by understanding each of these three major components and how they interact. This section will begin by a discussion of what software development tools were leveraged in order to organise the project between the group members and create the simulator.  Following that is a more in depth discussion of how each component of the program is designed. (For even more detailed documentation of our project see the Javadoc documentation provided with the submission.)
+In this section we will go over the approach we used to tackle the task of simulating the aforementioned concepts on a classical computer. The problem of representing many different concepts, which both built on and used one another, naturally led to a large object-oriented programme. Aside from modeling the quantum concepts that ultimately formed a simulation of a basic quantum computer, this project also required the creation of the matrix libraries used in the underlying mathematics and a user interface to test and interact with the simulated computer. Thus the implementation of the programme can be understood by understanding each of these three major components and how they interact. This section will begin by a discussion of what software development tools were leveraged in order to organise the project between the group members and to create the simulator.  Following that is a more in depth discussion of how each component of the programme is designed. (For even more detailed documentation of our project see the Javadoc documentation provided with the submission).
 
 \subsection{Project organisation}
 %•	How tasks were distributed
-% - Describing our medium-scale application program and the work of our a co-operative team.
+% - Describing our medium-scale application programme and the work of our a co-operative team.
 %   How you organised your group, and how well it worked together
-Prior to implementing the program an overall architecture was formed in order to define the interfaces by which each of the various parts of the program would communicate with one another. A simplified view of this architecture is provided below. The full design includes the interfaces used to communicate between these components, including the method names expected inputs and expected outputs.
+Prior to implementing the programme, an overall architecture was formed in order to define the interfaces by which each of the various parts of the programme would communicate with one another. A simplified view of this architecture is provided below. The full design includes the interfaces used to communicate between these components, including the method names, expected inputs, and expected outputs.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{img/QCPOverallArch.pdf}
-\caption{An high level overview of how the three main components of the program interact}
+\caption{An high level overview of how the three main components of the programme interact}
 \end{figure}
 
 \subsubsection{Java}
 There were many viable programming languages that could be used to implement this simulator. The primary considerations in choosing the appropriate language were the following.
 \begin{enumerate}
-	\item The language should readily support large object oriented design implementations
-	\item The program should be able to efficiently simulate as large of a quantum register as possible
-	\item The resulting program should run on as many platforms as possible
-	\item All members of the group should be comfortable with the language
+	\item The language should readily support large object-oriented design implementations.
+	\item The programme should be able to efficiently simulate as large of a quantum register as possible.
+	\item The resulting programme should run on as many platforms as possible.
+	\item All members of the group should be comfortable with the language.
 \end{enumerate}
-The two primary languages that were ultimately considered were Java and C++. Java was chosen for two primary reasons: it provided an operating system agnostic, well-documented library for Graphical User Interface creation and more of our group members were familiar with the language. It is worth noting that a `lower level' programming language such as C++ would have allowed for more efficient memory management and optimisations but at the cost of increased code complexity. Since we only had limited time to complete our task we decided that we would forgo the speed benefits of C++ for the robustness and ease of Java.
+The two primary languages that were ultimately considered were Java and C++. Java was chosen for two primary reasons: it provided an operating system agnostic, well-documented library for Graphical User Interface creation and more of our group members were familiar with the language. It is worth noting that a `lower level' programming language such as C++ would have allowed far more efficient memory management and optimisations but at the cost of increased code complexity. Since we only had limited time to complete our task, we decided that we would forgo the speed benefits of C++ for the robustness and ease of Java.
 
 \subsubsection{Git}
-Once an architecture and programming language were decided, the next task was to implement the program as a team. The primary challenge involved in this is allowing each group member to work on the project simultaneously without interfering with each another's progress.  The primary tool used in this project to solve this problem is Git source control. Git allows many contributors to simultaneously add changes to a working code base remotely by storing the iterations of the project on both a central server and also on each contributor's local device. In addition it provides many tools to assist in simultaneous development such as previous version recovery, conflict resolution (when multiple contributors change the same lines of code in a file), and branch creation (which allows a developer to work in their own version of a project without seeing changes made by other contributors).   
+Once an architecture and programming language were decided, the next task was to implement the programme as a team. The primary challenge involved in this is allowing each group member to work on the project simultaneously without interfering with each other's progress.  The primary tool used in this project to solve this problem is Git source control. Git allows many contributors to simultaneously add changes to a working code based remotely by storing the iterations of the project on both a central server and also on each contributor's local device. In addition, it provides many tools to assist in simultaneous development such as previous version recovery, conflict resolution (when multiple contributors change the same lines of code in a file), and branch creation (which allows a developer to work in their own version of a project without seeing changes made by other contributors).   
 
 
 \subsection{Development environment}
 % - Describing collaborative development tools (Java) (such as version control systems (Git)).
 %•	Java Git Eclipse
-Two primary software solutions were used in order to implement our project.  The first was Github, which was used to host the Git repository and also functioned as a communication tool. The second was Eclipse and Integrated Development Environment (IDE), which was the primary text editor and compiler used to create and test the program. Eclipse also contained a built in unit-testing environment called JUnit. This was we used in data collection because it allowed testing that bypassed the GUI to speed up how quickly the results were obtained.
+Two primary software solutions were used in order to implement our project.  The first was Github, which was used to host the Git repository and also functioned as a communication tool. The second was Eclipse and Integrated Development Environment (IDE), which was the primary text editor and compiler used to create and test the programme. Eclipse also contained a built-in unit-testing environment called JUnit. This was  used in data collection because it allowed testing that bypassed the GUI to speed up how quickly the results were obtained.
 
 \subsubsection{Github}
 As mentioned earlier Github was not only a means of hosting the git repository of our project but also one of the primary means of communication between the group members. The primary feature of the software that was leveraged for this was the issue tracker, which was used as a forum, to-do list, and bug reporting platform. The primary advantage of having this platform is that it allowed the group members to work remotely from one another and still have consistent communication about changes and problems that arose during development.
@@ -791,7 +786,7 @@ As mentioned earlier Github was not only a means of hosting the git repository o
 \caption{A sample issue tracked on Github with communication between members}
 \end{figure}
 
-\subsection{Programme structure}
+\subsection{programme structure}
 
 %
 \subsubsection{Overview}
@@ -813,9 +808,9 @@ The design of the quantum computer simulator requires a careful consideration as
 	\item It should maximise code reusability.
 	\item It should be stable and user friendly.
 \end{enumerate}
-The first point is fundamental as the project brief specifically asks us to create a simulator of a circuit-model quantum computer. We therefore design the programme based on the physical objects that exist in such computer. This includes the register, which is an array storing n qubits, the quantum gates, and the circuits, which consist of a series of gates that perform more complex operations on the register, such as the quantum search algorithm. These form the three main groups of classes for the computer part of the programme. 
+The first point is fundamental as the project brief specifically asks us to create a simulator of a circuit-model quantum computer. We therefore design the programme based on the physical objects that exist in such computer. This includes the register, the quantum gates, and the circuits, which consist of a series of gates that perform more complex operations on the register, such as the quantum search algorithm. These form the three main groups of classes for the computer part of the programme. 
 
-To achieve the remaining specifications, we created an interface for each type of object in the program and adhered to common object oriented design patterns. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other's representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The use of commonly used design architectures (such as the Factory Pattern and MVVM) allow for other developers to quickly understand the design and usage of the parts of the program. 
+To achieve the remaining specifications, we created an interface for each type of object in the programme and adhered to common object oriented design patterns. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other's representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The use of commonly used design architectures (such as the Factory Pattern and MVVM) allows other developers to quickly understand the design and usage of the parts of the programme. 
 
 \subsubsection{The Computer}\label{sec:The Computer}
 The computer is at the heart of our programme for simulating the quantum algorithms. Figure \ref{fig:QuantumSimDesign} shows the overall structure of this part of the programme. As discussed above, we designed the programme based on the components of the computer, which are the register, the gates, and the circuits. We developed an interface for each of these components, and they are \texttt{QRegister}, \texttt{QGate}, and \texttt{QCircuit} respectively. Below we describe in detail the programme structure and design choices we made for each component.
@@ -836,7 +831,7 @@ We developed the \texttt{QRegister} interface with the above concept in mind. It
 	\item \textbf{Gates}\\
 As discussed in section \ref{sec:Quantum gates}, there are many single qubit gates and their associated operations on the register can be represented as a matrix or a function. To maximise code reusability, we developed an inheritance structure for modelling the gates. We first constructed an interface called \texttt{QGate} to describe a general quantum gate. The interface requires any gate classes to implement the method called \texttt{applyGate(QReigster reg)}, as each gate must perform an operation on the register. We then created an abstract class for each representation of the gate: \texttt{MGate} for matrix representation and \texttt{FGate} for functional representation. These classes handle the generic behaviours associated with the corresponding gate representation. Finally, we constructed a set of concrete classes that inherit from these abstract classes to model the specific single qubit gates (e.g. Hadamard, Pauli-X gate, etc.).	
 
-In matrix representation, the \texttt{MGate} class has a method called \texttt{initGate(...)} which can create the matrix for any single qubit gate using the procedure described in section \ref{sec:Extension to bigger registers}. The class also implements the \texttt{applyGate(...)} method from \texttt{QGate} to perform the matrix multiplication of the gate matrix with register's state vector. A set of classes were extended from \texttt{MGate} to model specific single qubit gates. They provide the necessary information, such as the target qubit and how the gate operates on a single qubit (i.e. $\alpha$ and $\beta$ in equation (34)), to \texttt{MGate} for it to generate an appropriate matrix for the gate.
+In matrix representation, the \texttt{MGate} class has a method called \texttt{initGate(...)} which can create the matrix for any single qubit gate using the procedure described in section \ref{sec:Extension to bigger registers}. The class also implements the \texttt{applyGate(...)} method from \texttt{QGate} to perform the matrix multiplication of the gate matrix with register's state vector. A set of classes were extended from \texttt{MGate} to model specific single qubit gates (see table \ref{table:list of gates}). They provide the necessary information, such as the target qubit and how the gate operates on a single qubit (i.e. $\alpha$ and $\beta$ in equation \ref{twostates}), to \texttt{MGate} for it to generate an appropriate matrix for the gate.
 
 A similar design is used in functional representation. The \texttt{FGate} class implements the \texttt{applyGate(...)} method to perform the functional procedure for applying a single qubit gate on the register as mentioned in section \ref{sec:Gate representations}. To do so, it needs to know how that particular gate operates on a single qubit. This is supplied by the set of concrete classes which inherit \texttt{FGate} to represent a specific qubit gate. 
 
@@ -854,89 +849,99 @@ A similar design is used in functional representation. The \texttt{FGate} class 
 	$R_\phi$ & \texttt{MPhaseGate} & \texttt{FPhaseGate} \\	
 \end{tabular}
 \caption{A complete list of gates implemented in the programme.}
+\label{table:list of gates}
 \end{center}
 \end{table}
 	We know the representation of the gate would depend on the qubit that it is applied to (i.e. the target qubit) and the control qubits associated with gate. This leads to two options for designing the gates:
 \begin{enumerate}[(a)]
 	\item Construct a general form of the gate that would require one to specify the target qubit and the set of control qubits as parameters when the gate is applied to the register.
 	\item Construct a specific form of the gate that would only work for a specific target qubit and set of control qubits
-
 \end{enumerate}
-Although the first option keeps the gate class generic and more flexible, it requires the representation to be recalculated every time the gate is used. This may lead to a significant increase in computation time, hindering the programme performance. The latter option does not have such problem, as the gates are instantiated for a specific target qubit and set of control qubits. However, this has the side effect of consuming more memory, as we need to store multiple versions of the same gate for different targets and controls. We decided to design our gates based on the second option, as we believed such usage of memory is tolerable, and we would like to obtain results within a reasonable amount of time. In addition, it simplifies the task for building a quantum circuit. As each gate is pre-programmed to operate on a specific target with a specific set of controls, we would only need to create a list of gates to be applied for building the circuit. We would not need store an extra, complicated set of instruction telling the gate which qubit it should operate on and the control qubits it has. 
+Although the first option keeps the gate class generic and more flexible, it requires the representation to be recalculated every time the gate is used. This may lead to a significant increase in computation time, hindering the programme performance. The latter option does not have such problem, as the gates are instantiated for a specific target qubit and set of control qubits. However, this has the side effect of consuming more memory, as we need to store multiple versions of the same gate for different targets and controls. We decided to design our gates based on the second option, as we believed such usage of memory is tolerable, and we would like to obtain results within a reasonable amount of time. In addition, it simplifies the task for building a quantum circuit. As each gate is pre-programmed to operate on a specific target with a specific set of controls, we would only need to create a list of gates to be applied for building the circuit. We would not need store an extra, complicated set of instruction telling the gate which qubit it should operate on and the control qubits it has. Moreover, this option seems to be a more physical representation of a gate, as a gate is usually designed to work for a specific set of parameters.
+
+To simplify the process of instantiating the different types of quantum gates with various representations, we adopted the factory pattern and created a class called \texttt{GateFactory}. This class is responsible for instantiating the gates according to the specifications provided by the user.
+
 	\item \textbf{Circuits}\\
 	The design structure for the circuits is similar to that for the gates. We created an interface called \texttt{QCircuit} that describes a general quantum circuit. The interface requires classes representing a quantum circuit to implement the \texttt{applyCircuit(QRegister reg)} method, as each circuit is expected to perform some operations on the register. We designed a general circuit class called \texttt{GateByGateCircuit} which allows the user to construct a circuit by assembling gates together, regardless of their representation. Furthermore, we take advantage of the universality of this circuit class by extending it to build the various circuits required for the quantum algorithms studied in this project. This includes the quantum Fourier transform circuits (\texttt{ForwardQFTCircuit} and \texttt{BackwardQFTCircuit}) and the circuit for Grover's algorithm (\texttt{GroverGateByGate}).
 	
-	\item \textbf{Implementation of the Quantum Algorithms}\\
+	\item \textbf{Implementation of the Quantum Algorithms}
 	\begin{myenumerate}
 		\item \textbf{Grover's Algorithm}\\
+		To implement Grover's algorithm, we took advantage of the comprehensive quantum gate library which we have developed. We utilised the \texttt{GateByGateCircuit} class to build the circuit for a Grover's iteration by assembling the required gates in the appropriate order as shown in figure \ref{fig:CircuitGrover}. A problem which we encountered is that there is no direct way to represent the oracle $O$ and the conditional phase shift operation $2\ket{0}\bra{0} - \mathbb{I}$ (see step \ref{step3} in Grover's iteration) in terms of the standard gates. We decided to simply develope a specialised \texttt{QGate} for each of these operations that directly applies the desired results onto the relevant components of the register.
 		
+		On the other hand, the Grover's iteration is repeatedly applied to the register to maximise the chance of measuring the states associated with the solutions. Physically, this repetition is achieved by building multiple sets of the same circuit that corresponds to the number of iterations required and applying each of them to the register. With a limited amount of memory, we cannot simulate such effect. We decided to create the circuit for only one iteration and have a for-loop to produce the required number of iterations.\\
 		
 		\item \textbf{Shor's Algorithm}\\
-		When implementing Shor's algorithm, the most important step was creating a functioning quantum Fourier transform. We had several options when deciding how to implement this as there are several different algorithms available. As we were on a rather tight deadline we decided to implement the easiest version of the algorithm. This ease of implementation came at the cost of higher computational complexity. The main benefit we got from implementing this version of the algorithm was that it only used gates which had already been implemented, so it became a simple task of applying the gates in the right order. 
+		When implementing Shor's algorithm, the most important step was creating a functioning quantum Fourier transform (QFT). We had several options when deciding how to implement this as there are several different algorithms available. As we were on a rather tight deadline, we decided to implement the easiest version of the algorithm. This ease of implementation came at the cost of higher computational complexity. The main benefit we got from implementing this version of the algorithm was that it only used gates which had already been implemented, so it became a simple task of applying the gates in the right order. 
 		
-In an actual quantum computer there would be two registers active in every run of the algorithm. As we are limited on the number of qubits we are able to represent and store in a classical computer (due to memory limitations), we decided to implement a classical equivalent to the second register. The second register simply defines the amplitudes of the different states of the first register. Using a classical modular exponentiation  algorithm and some random number generation the same results are achieved as using two registers, except that we had much more memory available for our QFT.
+In an actual quantum computer there would be two registers active in every run of the algorithm. As we are limited on the number of qubits we are able to represent and store in a classical computer (due to memory limitations), we decided to implement a classical equivalent to the second register. The second register simply defines the amplitudes of the different states of the first register. Using a classical modular exponentiation  algorithm and some random number generation, the same results are achieved as using two registers, except that we had much more memory available for our QFT.
 
-The classical parts of the algorithm were easy to implement as most of them are very well known algorithms in computer science.  We required algorithms to find the highest common factor of two numbers, find the convergents of a continued fraction and do modular exponentiation of numbers. As the continued fraction algorithm was the most complex of them all we wrote a separate class for this. The other two algorithm were simply methods in our Shor's algorithm class.
+The classical parts of the algorithm were easy to implement as most of them are very well known algorithms in computer science.  We required algorithms to find the highest common factor of two numbers, find the convergents of a continued fraction, and do modular exponentiation of numbers. As the continued fraction algorithm was the most complex of them all we wrote a separate class for this. The other two algorithms were simply methods in our Shor's algorithm class.
 
-To ensure the algorithm only runs when it is required we added checks to the number being factorised. We check if it is even or if it has a factor in the form $a^b$ as these can be easily checked for in polynomial time. We also check if the input is prime. This ensures only numbers which two co-prime factors ever reach the quantum parts of the Shor's algorithm code as these are the most computationally expensive. 
+To ensure the algorithm only runs when it is required we added checks to the number being factorised. We check if it is even or if it has a factor in the form $a^b$, as these can be easily checked for in polynomial time. We also check if the input is prime. This ensures only numbers which have two co-prime factors ever reach the quantum parts of the Shor's algorithm code, as these are the most computationally expensive. 
 
 To factorise numbers which do not factorise into two primes, the user would have to run the code several times, each time factorising the factors returned by the previous run if they are not themselves prime.
-
-	\end{myenumerate}
-	
+\end{myenumerate}
 \end{myenumerate}
 
 \subsubsection{Matrix}
-After deciding that we wanted to implement a variety of gate implementations. We decided that for our code to be as user friendly as possible we should be able to switch between our 2 different matrix representations by only changing a single argument that is passed to the Matrix package. The package should hide the representation from the user and deal with all of the messiness internally.
+After deciding that we wanted to implement a variety of gate implementations, we decided that, for our code to be as user friendly as possible, we should be able to switch between our two different matrix representations by only changing a single argument that is passed to the \texttt{Matrix} package. The package should hide the representation from the user and deal with all of the messiness internally.
+
 To achieve this we created an abstract class \texttt{Matrix} which is then implemented by all of our concrete matrix representations. The user only ever has to deal with this abstract class. This presented some challenges in implementing this design. The first challenge we encountered was how to call the constructors for the different implementations from a single method call, where one of the arguments decided the type of the Matrix. To solve this problem we employed a simple factory design pattern. Our \texttt{MatrixFactory} contains a static method, \texttt{MatrixFactory.create(int i, int j, String type)} which returns a matrix of the type specified in the by the string passed in the method.
-The Matrix class contains methods for all of the matrix manipulations we require in our project. This is mainly involves getting and setting elements and multiplication of matrices. Each of the concrete implementations of Matrix overrides the get and set methods in Matrix as they need to be written specifically for the data structure which each implementation uses.
-The two main types of matrices we implemented were dense and sparse matrices. The dense matrix itself comes in two different types, real and complex. These two share some common features such as the fact that each element is explicitly stored even if it is a zero. The data structure is discussed later on. 
-We made several choices in our data structures which are related to the performance of the dense matrices. Firstly we decided that the overhead created by two dimensional arrays is too much as it results in more memory lookups and more cache misses. This can be reduced by using a single array to store all the matrix entries. It then requires some trivial arithmetic to retrieve the array indices (element read and writes are still O(1) as with multi-dimensional arrays). The cost of calculating these indices is lower than the time wasted by cache misses. 
-The next optimisation we implemented was not storing complex numbers in a complex object. This would again introduce a non-negligible amount of overhead, both in terms of object allocation and a general memory overhead associated with every Java object. Instead we use two arrays to store the two parts of the complex number. Obviously, in \texttt{RealMatrix} the array which stores the imaginary values is never initialised. To avoid errors caused by attempting to access complex values of a real matrix, zero is returned whenever a complex value is requested.
-Our sparse matrix implementation contains both a general sparse matrix class as well as a specially optimised class designed for gates. In section \ref{sec:Quantum gates} we saw that each gate can be represented by a matrix containing two elements in each column. This allowed us to design a data structure specifically tailored towards this problem.
-The \texttt{SparseGateMatrix} class only stores the non-zero entries in the matrix. As we know each column only contains two entries, it is enough to store the value and the row index of the element. As long as the entries for each column are stored in order, the true index can be easily recovered with trivial arithmetic in O(1) operations.
-The matrix multiplication is dealt with in a separate helper class called \texttt{MatrixMultiply}. It contains a very general and naïve implementation of a matrix multiplication algorithm. It then contains further methods which are optimised towards each of our implementations, the most important of these being the multiplication of a complex matrix by a sparse matrix representing a gate. This method is where almost of the computational resources are spent when applying our circuits to the register. It turns out that, as the operator is Hermitian, it is possible to write a more efficient sparse-dense multiplication algorithm if we consider $\bra{\psi} U$ rather than $U \ket{\psi}$. This is because in this case we know that there are only 2 elements in each column of the sparse matrix which are very quick to access as they will be located next to each other in the memory. It is then only required to find the two corresponding elements in the register to be able to calculate the corresponding element in the answer. While this approach incurs a small overhead due to having to convert from $\bra{\psi}$ to $\ket{\psi}$ and back again at the end, this can be minimised very easily and the final code runs faster than if this approach wasn’t used.
+
+The \texttt{Matrix} class contains methods for all of the matrix manipulations we require in our project. This mainly involves getting and setting elements and multiplication of matrices. Each of the concrete implementations of \texttt{Matrix} overrides the get and set methods as they need to be written specifically for the data structure which each implementation uses.
+
+The two main types of matrices we implemented were dense and sparse matrices. The dense matrix itself comes in two different types: real and complex. These two share some common features such as the fact that each element is explicitly stored even if it is a zero. The data structure is discussed later on. 
+We made several choices in our data structures which are related to the performance of the dense matrices. Firstly we decided that the overhead created by two dimensional arrays is too much, as it results in more memory lookups and more cache misses. This can be reduced by using a single array to store all the matrix entries. It then requires some trivial arithmetic to retrieve the array indices (element read and writes are still $O(1)$ as with multi-dimensional arrays). The cost of calculating these indices is lower than the time wasted by cache misses. 
+
+The next optimisation we implemented was not storing complex numbers in a complex object. This would again introduce a non-negligible amount of overhead, both in terms of object allocation and a general memory overhead associated with every Java object. Instead we used two arrays to store the two parts of the complex number. Obviously, in \texttt{RealMatrix} the array which stores the imaginary values is never initialised. To avoid errors caused by attempting to access complex values of a real matrix, zero is returned whenever a complex value is requested.
+
+Our sparse matrix implementation contains both a general sparse matrix class as well as a specially optimised class designed for gates. In section \ref{sec:Extension to bigger registers} we saw that each gate can be represented by a matrix containing two elements in each column. This allowed us to design a data structure specifically tailored towards this problem.
+
+The \texttt{SparseGateMatrix} class only stores the non-zero entries in the matrix. As we know each column only contains two entries, it is enough to store the value and the row index of the element. As long as the entries for each column are stored in order, the true index can be easily recovered with trivial arithmetic in $O(1)$ operations.
+
+The matrix multiplication is dealt with in a separate helper class called \texttt{MatrixMultiply}. It contains a very general and naïve implementation of a matrix multiplication algorithm. It then contains further methods which are optimised towards each of our implementations, the most important of these being the multiplication of a complex matrix by a sparse matrix representing a gate. This method is where almost of the computational resources are spent when applying our circuits to the register. It turns out that, as most of the operators are Hermitian, it is possible to write a more efficient sparse-dense multiplication algorithm if we consider $\bra{\psi} U$ rather than $U \ket{\psi}$. This is because in this case we know that there are only two elements in each column of the sparse matrix which are very quick to access as they will be located next to each other in the memory. It is then only required to find the two corresponding elements in the register to be able to calculate the corresponding element in the answer. While this approach incurs a small overhead due to having to convert from $\bra{\psi}$ to $\ket{\psi}$ and back again at the end, this can be minimised very easily and the final code runs faster than if this approach was not used.
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{img/MatrixDesign.pdf}
-\caption{A diagram of the class relationships of the Matrix library}
+\caption{A diagram of the class relationships of the \texttt{Matrix} library}
 \end{figure}
 
 \subsubsection{Graphics User Interface}
-The Graphics User Interface (GUI) for this program is constructed through the use of the Java swing library and one external, open source library for graphing called JFreeChart. In designing the GUI there were a couple of goals in mind. 
+The Graphics User Interface (GUI) for this programme is constructed through the use of the Java swing library and one external, open source library for graphing called JFreeChart. In designing the GUI there were a couple of goals in mind:
 \begin{enumerate}
 	\item Make it easy to use
 	\item Have it display as much of the potential of the simulator as possible
 	\item Ensure its usage does not significantly slow down the simulation process
 \end{enumerate}
-To accomplish the first goal the entire interface is limited to a small selection of buttons and drop down menus that requires the user to do very little to start a simulation. The GUI also dynamically changes itself in an attempt to instruct the end-user on how to use the programme. The programme also has a built in help window with instructions on how to perform the various simulations.
+To accomplish the first goal the entire interface is limited to a small selection of buttons and drop down menus that requires the user to do very little to start a simulation. The GUI also dynamically changes itself in an attempt to instruct the end-user on how to use the programme. The programme also has a built-in help window with instructions on how to perform the various simulations.
 
-To accomplish the second and third goals, a variation of the Model-View-ViewModel interface was implemented.  In this architecture, the Model (i.e. the quantum simulator) would communicate relevant data changes to the ViewModel (\texttt{QViewModel}) through static methods. The ViewModel would then perform any necessary conversion or reinterpretation of the data and then would instruct the view (i.e. the animations and console window) to update what it is displaying. This accomplished the goal of not slowing down the program because the simulation code does not need to wait for the GUI to render to continue its simulation. It achieves the second goal because it provides a simple interface for the people working on the model code to use in order to make changes to the GUI and facilitates communication between the View and Model programmers.
+To accomplish the second and third goals, a variation of the Model-View-ViewModel interface was implemented.  In this architecture, the Model (i.e. the quantum simulator) would communicate relevant data changes to the ViewModel (\texttt{QViewModel}) through static methods. The ViewModel would then perform any necessary conversion or reinterpretation of the data and then would instruct the view (i.e. the animations and console window) to update what it is displaying. This accomplishes the goal of not slowing down the programme because the simulation code does not need to wait for the GUI to render to continue its simulation. It achieves the second goal because it provides a simple interface for the people working on the model code to use in order to make changes to the GUI and facilitates communications between the View and Model programmers.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\textwidth]{img/GuiOverall.pdf}
+	\includegraphics[width=0.8\textwidth]{img/GuiOverall.pdf}
 	\caption{A diagram of the classes used in the GUI code and how they communicate with other components}
 \end{figure}
 
-The GUI window is composed entirely out of four Java swing components. The class \texttt{QuantumGuiFrame} contains all of the other created classes that ultimately form the overall GUI. These include \texttt{QuantumMenuBar} and \texttt{QuantumGuiPanel} (which contains a \texttt{QAnimationTabbedPane}). Note that \texttt{QAnimationTabbedPane} uses the JFreeChart open source library to create the graphs and animations in the program and it's code was not written by us.
+The GUI window is composed entirely out of four Java swing components. The class \texttt{QuantumGuiFrame} contains all of the other created classes that ultimately form the overall GUI. These include \texttt{QuantumMenuBar} and \texttt{QuantumGuiPanel} (which contains a \texttt{QAnimationTabbedPane}). Note that \texttt{QAnimationTabbedPane} uses the JFreeChart open source library to create the graphs and animations in the programme and its code was not written by us.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\textwidth]{img/GuiDiagram.pdf}
-	\caption{A graphical representation of the GUI classes corresponding to where they lie in the running program.}
+	\caption{A graphical representation of the GUI classes corresponding to where they lie in the running programme.}
 \end{figure}
 
-\subsection{Programme execution}
-The execution flow of the program is a two threaded system but could be expanded to many more threads in the event this program is extended to have multi-core or GPU support. When the program is started the main function in \texttt{QuantumGuiFrame} creates the GUI and waits for user input.  Once the user has selected the type of simulation and the associated data they will then press the start button which will create a \texttt{QProcess} object.  This object will launch a new thread in its constructor that will create a quantum circuit based off of the specifications that the user provided and run that circuit on the inputted data. The GUI thread and the simulation thread will then run in parallel until the simulation is complete. As the simulation runs it updates the GUI informing the user of the progress through various animation elements and a console window. Upon completion of the simulation, the simulation thread ends and the GUI thread waits for the user to input new data
-and start a new simulation. Theoretically the programme's architecture could be extended to support multiple threads in a simulation or even multiple parallel simulations with minor changes to the ViewModel code to handle multiple sources of view update requests.
+\subsection{Programme Execution}
+The execution flow of the programme is a two threaded system but could be expanded to many more threads in the event this programme is extended to have multi-core or GPU support. When the programme is started the main function in \texttt{QuantumGuiFrame} creates the GUI and waits for user input.  Once the user has selected the type of simulation and the associated data, they will then press the start button which will create a \texttt{QProcess} object.  This object will launch a new thread in its constructor that will create a quantum circuit based off of the specifications that the user provided and run that circuit on the inputted data. The GUI thread and the simulation thread will then run in parallel until the simulation is completed. As the simulation runs it updates the GUI, informing the user of the progress through various animation elements and a console window. Upon completion of the simulation, the simulation thread ends and the GUI thread waits for the user to input new data
+and start a new simulation. Theoretically, the programme's architecture could be extended to support multiple threads in a simulation or even multiple parallel simulations with minor changes to the ViewModel code to handle multiple sources of view update requests.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/program_example.pdf}
-\caption{A screen shot of the program after running a sample simulation of Grover's algorithm}
+\caption{A screen shot of the programme after running a sample simulation of Grover's algorithm}
 \end{figure}
 
 %-----------------------------------------------------------------------------------------
@@ -950,7 +955,7 @@ and start a new simulation. Theoretically the programme's architecture could be 
 %Plot of Results
 \subsubsection{Rotation of the state vector}
 
-Basically, Grover's Algorithm can be depicted as a rotation in a two dimensional plane by projecting the current state vector. This is depicted in Fig.\,\ref{grover_rotation}. After each iteration of the loop in Grover's Algorithm (see Fig.\,\ref{fig:CircuitGrover}) the state vector approaches the solution state.
+Basically, Grover's algorithm can be depicted as a rotation in a two dimensional plane by projecting the current state vector. This is depicted in Fig.\,\ref{grover_rotation}. After each iteration of the loop in Grover's algorithm (see Fig.\,\ref{fig:CircuitGrover}), the state vector approaches the solution state.
 
 \subsubsection{Computational time}
 
@@ -959,9 +964,9 @@ Fig.\,\ref{grover_time_performance} shows the computational time of Grover's alg
 We note the following observations:
 \begin{itemize}
 	\item\textbf{Dense representation at a disadvantage}\\
-	One can see that the dense representation is the slowest one since for already $n\geq 10$ first noticeable computation times occur whereas the algorithm using functional and spare representation is still immediately executed. However, when they start to show noticeable computational times, the dense representation already takes a unbearable amount of time.
-	\item\textbf{Spare vs. functional representation}\\
-	Considering computational time the sparse representation is superior to the functional representation. It appears to be roughly a factor 2, but since we don't have data for bigger registers, this quantitative observation is quite vague.
+	One can see that the dense representation is the slowest one since for already $n\geq 10$ first noticeable computation times occur whereas the algorithm using functional and sparse representation is still immediately executed. However, when they start to show noticeable computational times, the dense representation already takes a unbearable amount of time.
+	\item\textbf{Sparse vs. functional representation}\\
+	Considering computational time the sparse representation is superior to the functional representation. It appears to be roughly a factor of two, but since we do not have data for bigger registers, this quantitative observation is quite vague.
 	\item\textbf{Exponential behaviour}\\
 	All three representations show an exponential behaviour. To illustrate the point we plotted the same data in a log-plot (Fig.\,\ref{grover_time_performance_log}) and got a linear relation.
 \end{itemize}
@@ -991,14 +996,14 @@ We note the following observations:
 		\includegraphics[width=\textwidth]{img/pic_13.png}
 		\subcaption{Iteration 14 (end)}
 	\end{minipage}
-	\caption{Depiction of Grover's Algorithm: The green vector depicts the non-solution vector, the blue vector depicts the vector of the solution. The red vector is the projection of the current state. With every consecutive iteration the state vector rotates towards the solution state.}
+	\caption{Depiction of Grover's algorithm: The green vector depicts the non-solution vector, the blue vector depicts the vector of the solution. The red vector is the projection of the current state. With every consecutive iteration the state vector rotates towards the solution state.}
 	\label{grover_rotation}
 \end{figure}
 %
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{img/Grover_Time_Performance.eps}
-	\caption{Computational time of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional).}
+	\caption{Computational time of Grover's algorithm (in seconds) as a function of the quantum register size $n$ for the three different forms of representation (dense, sparse, functional).}
 	\label{grover_time_performance}
 \end{figure}
 %
@@ -1010,8 +1015,8 @@ Fig.\,\ref{grover_memory} shows the memory usage of Grover's algorithm. All the 
 We note the following observations:
 \begin{itemize}
 	\item\textbf{Dense representation at a disadvantage}\\
-	The memory usage of dense matrices is enormous. For only 11 qubits the execution requires working memory of 750\,megabytes. It is impossible to run the algorithm for 12 qubits since this already exceeds the working memory of a normal computer (~4 gigabyte).
-	\item\textbf{Spare vs. functional representation}\\
+	The memory usage of dense matrices is enormous. For only 11 qubits the execution requires working memory of 750 megabytes. It is impossible to run the algorithm for 12 qubits since this already exceeds the working memory of a normal computer (\texttildelow 4 gigabyte).
+	\item\textbf{Sparse vs. functional representation}\\
 	In terms of computational time the sparse representation was slightly faster than the functional representation. Measuring the memory usage, however, the functional representation uses almost no working memory (even for 17 qubits!), whereas the sparse representation, since it stores matrices in a compact way, has to increase dramatically at a certain number of qubits. In our case the working memory would be exceeded (using sparse representation) for less than 25 qubits.
 	\item\textbf{Exponential behaviour}\\
 	The dense and sparse representation show an exponential behaviour. To illustrate the point we plotted the same data in a log-plot (Fig.\,\ref{grover_memory_log}) and got a linear relation. The functional representation, however, shows no tendency for the range we investigated.
@@ -1020,7 +1025,7 @@ We note the following observations:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Grover_Memory_Performance_log.eps}
-	\caption{Memory Usage of Grover's Algorithm (in megabyte, logarithmic) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\caption{Memory usage of Grover's algorithm (in megabyte, logarithmic) as a function of the quantum register size $n$ for the three different representations (dense, sparse, functional).}
 	\label{grover_memory_log}
 \end{figure}
 
@@ -1028,16 +1033,18 @@ We note the following observations:
 
 \subsection{Shor's Algorithm}\label{sec:Shor}
 
-When colleting runtime data, we decided to only focus on the QFT. To do this we only measured the computational time when the QFT code is actually called and we only measured how long the QFT took to set up and run. This is because the other parts of the code add a negligible amount of runtime when considering the numbers we used. Furthermore, this was an exercise in quantum computing so the quantum parts of the algorithm are, in our opinion, the most important and interesting.
-The results show a very clear pattern. As there is a step whenever the number to be factorised requires another classical bit to represent it. For example there is a major jump in computation time when going from 255 to 257, but no jump from 257 to 511. This is because the runtime of Shor's algorithm only depends on the number of qubits required which is proportional to the number of classical bits required to represent the number.
+When colleting runtime data, we decided to only focus on the QFT. To do this we only considered the computational time when the QFT code is actually called, and we only measured how long the QFT took to set up and run. This is because the other parts of the code add a negligible amount of runtime when considering the numbers we used. Furthermore, this was an exercise in quantum computing so the quantum parts of the algorithm are, in our opinion, the most important and interesting.
+
+The results show a very clear pattern. There is a step whenever the number to be factorised requires another classical bit to represent it. For example there is a major jump in computation time when going from 255 to 257, but no jump from 257 to 511. This is because the runtime of Shor's algorithm only depends on the number of qubits required which is proportional to the number of classical bits required to represent the number.
+
 When comparing sparse and functional representation it is very clear to see that the functional representation is slightly faster. Unfortunately, the sparse representation requires too much memory to factorise any number greater than 255 so it is not very easy to infer any long term trends in the data.
-We did not include any data for the dense representation as the only number which can be factorised using it is 15. The next number with co-prime factors is 21 which already requires more quits than can be represented with this representation.
+We did not include any data for the dense representation as the only number which can be factorised using it is 15. The next number with co-prime factors is 21, which already requires more qubits than can be represented with this representation.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Shor_Time.eps}
-	\caption{The computational time of Shor's Algorithm (in sec) for the number factored. Jumps in computational time occur every time the register has to be extended in order to store the number (..., 128, 256, 512, ...).}
+	\caption{The computational time of Shor's Algorithm (in seconds) for the number factored. Jumps in computational time occur every time the register has to be extended in order to store the number (..., 128, 256, 512, ...).}
 	\label{shor_time}
 \end{figure}
 
@@ -1050,9 +1057,7 @@ We did not include any data for the dense representation as the only number whic
 
 \subsection{Matrix or functional representation}
 
-In section \ref{sec:Grover} we've shown the results for the three different representations:
-
-As we have seen the \textbf{dense matrix representation} is at a disadvantage in every sense. Both the computational time and the memory usage limit the manageable size for the quantum register to approximately $n=12$ qubits. Above that it's just not possible to execute the algorithm on a normal computer primarily because of lacking working memory resources. This representation is clearly the worst of the three investigated representations.
+In section \ref{sec:Grover} we have shown the results for the three different representations. As we have seen, the \textbf{dense matrix representation} is at a disadvantage in every sense. Both the computational time and the memory usage limit the manageable size for the quantum register to approximately $n=12$ qubits. Above that it is just not possible to execute the algorithm on a normal computer primarily because of lacking working memory resources. This representation is clearly the worst of the three investigated representations.
 
 The \textbf{sparse matrix representation} is a reasonable improvement of the dense matrix representation in terms of computational time and memory. In the logarithmic plot the slope of the memory usage of sparse matrix representation $\text{M}_\text{sparse}$ is roughly just half of the slope of the dense matrix representation $\text{M}_\text{dense}$ (see Fig\,\ref{grover_memory_log}). This makes sense due to the following rough estimate:
 %
@@ -1065,20 +1070,20 @@ The \textbf{sparse matrix representation} is a reasonable improvement of the den
 %
 Nevertheless, the memory limit (of a conventional computer) for the sparse matrix representation is reached for approximately $n=25$ qubits.
 
-The \textbf{functional representation} doesn't have this problem because it needn't store a huge list of numbers for the gates. Therefore the memory usage is still tiny for even 17 qubits. However, this method goes at the expense of the computational time but only as a constant factor (approx. 2), as Fig.\,\ref{grover_time_performance_log} suggests.
+The \textbf{functional representation} does not have this problem because it does not require to store a huge list of numbers for the gates. Therefore, the memory usage is still tiny for even 17 qubits. However, this method goes at the expense of the computational time but only as a constant factor (approx. 2), as Fig.\,\ref{grover_time_performance_log} suggests.
 
-Therefore we conclude that the dense representation is undesirable due to its grave disadvantages, whereas we get a trade-off between sparse and functional representation: The sparse is fast and memory-intense, where the functional is a bit slower but is easy on memory.
+Therefore we conclude that the dense representation is undesirable due to its grave disadvantages, whereas we get a trade-off between sparse and functional representation; the sparse is fast and memory-intense, where the functional is a bit slower but is easy on memory.
 
 
 \subsection{Improvements and further steps}
 \subsubsection{What we did not have time to do}
-The program we were able to write during this project covers the criteria we set out at the beginning and it is able to do everything we want it to. This does not mean that we would not want to add more features if we had more time.
+The programme we were able to write during this project covers the criteria we set out at the beginning and it is able to do everything we want it to. This does not mean that we would not want to add more features if we had more time.
 
-A major feature we would have liked to add, is providing a full API which would allow anyone to create their own quantum circuits and run them. This would include functionality for creating an arbitrary circuit and running it. While this should currently be possible by extending the basic classes we created for gates and extending \texttt{GateByGateCircuit}. We feel like by slightly restructuring some of our code we would be able to provide a more robust framework for creating new circuits. This idea could then also be extended to the GUI, where a user could create their own circuits in real time. This could either involve a drag and drop interface where a user could select from a set of existing gates or our own scripting language where the user could write code which calls all of the gates. This would then be parsed into our program and it would deal with it all internally.
+A major feature we would have liked to add is to provide a full API which would allow anyone to create their own quantum circuits and run them. This would include functionality for creating an arbitrary circuit and running it. While this should currently be possible by extending the basic classes we created for gates and extending \texttt{GateByGateCircuit}, we feel like by slightly restructuring some of our code we would be able to provide a more robust framework for creating new circuits. This idea could also be extended to the GUI, where a user could create their own circuits in real time. This could either involve a drag and drop interface where a user could select from a set of existing gates or our own scripting language, where the user could write codes which call all of the gates. This would then be parsed into our programme, and it would deal with it all internally.
 
-Another major feature we would like to implement is some level of parallelisation. This could involve multithreading support for the matrix multiplications or the creation of the gates as they are both very well suited to parallelisation. Another option would be to use a GPGPU library, such as openCL, to offload the matrix multiplications to a GPU for even greater parallelisation.
+Another major feature we would like to implement is some level of parallelisation. This could involve multithreading support for the matrix multiplications or the creation of the gates, as they are both very well suited to parallelisation. Another option would be to use a GPGPU library, such as openCL, to offload the matrix multiplications to a GPU for even greater parallelisation.
 
-There are also some minor points we would like to improve upon. These are mainly small fixes for areas of the current program which we are not entirely happy with. Firstly, we would like some kind of way to combine gates as it would allow for less matrix multiplications overall if the gate is used many times. It may also make some of the syntax clearer when adding gates to a circuit as only one would have to be added instead a collection which do the same job.
+There are also some minor points we would like to improve upon. These are mainly small fixes for areas of the current programme which we are not entirely happy with. For example, we would like to have some kind of way to combine gates, as it would allow for less matrix multiplications overall if the gate is used many times. This may also make some of the syntax clearer when adding gates to a circuit, as only one gate would have to be added instead of a collection which do the same job.
 
 %-----------------------------------------------------------------------------------------
 % CONCLUSION
@@ -1086,7 +1091,7 @@ There are also some minor points we would like to improve upon. These are mainly
 %
 \section{Conclusion}
 
-In conclusion, we have successfully simulated a circuit based quantum computer. We have done this through creating a java based object-oriented quantum circuit simulator.  This simulator was created by modeling  behavior of Quantum gates as they are applied to a quantum register.  We have also provided a brief background theory of quantum computing theory necessary for our simulation.  To support this simulator we also wrote an underlying complex matrix library and a graphical user interface.  The user interface was then used to test the performance of the circuit on two quantum algorithms (Shor's Algorithm and Grover's Algorithm).  From this we compared the results of the running speeds and memory pressures of various gate representations. We have noted that  these increase at an exponential rate which was expected.  We also found that the Sparse Matrix and Functional representations both were superior to the Dense in both runtime and memory usage. The comparison between sparse and functional is dependent on the algorithm.  For Grover's,  Sparse runtimes are roughly faster but required more memory usage. On the other hand, Shor's Functional runtimes were superior to Sparse Gate in both speed and memory pressure.  Finally we expressed areas in which our program could be improved and extended further.
+In conclusion, we have successfully simulated a circuit-based quantum computer. We have done this through creating a Java based object-oriented quantum circuit simulator.  This simulator was created by modelling the behaviors of quantum gates as they are applied to a quantum register.  We have also provided a brief background of quantum computing theory necessary for our simulation. To support this simulator, we also wrote an underlying complex matrix library and a graphical user interface.  The user interface was then used to test the performance of the circuit on two quantum algorithms (i.e. Shor's algorithm and Grover's algorithm).  From this we compared the results of the running speeds and memory pressures of various gate representations. We have noted that  these increase at an exponential rate which was expected.  We also found that both the sparse matrix and functional representations were superior to the dense matrix representation in both runtime and memory usage. The comparison between sparse and functional is dependent on the algorithm. For Grover's,  sparse runtimes were roughly faster but required more memory usage. On the other hand, Shor's functional runtimes were superior to sparse in both speed and memory pressure.  Finally we expressed areas in which our programme could be improved and extended further.
 
 %-----------------------------------------------------------------------------------------
 % APPENDIX
@@ -1101,7 +1106,7 @@ In conclusion, we have successfully simulated a circuit based quantum computer. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Grover_Time_Performance_log.eps}
-	\caption{Computational time (log-scale) of Grover's Algorithm in nanoseconds as a function of the quantum register size for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
+	\caption{Computational time (log-scale) of Grover's algorithm (in seconds) as a function of the quantum register size $n$ for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
 	\label{grover_time_performance_log}
 \end{figure}
 
@@ -1110,12 +1115,12 @@ In conclusion, we have successfully simulated a circuit based quantum computer. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Grover_Memory_Performance.eps}
-	\caption{Memory Usage of Grover's Algorithm (in megabyte) as a function the quantum register size $n$ for the three different representations (dense, sparse, functional).}
+	\caption{Memory usage of Grover's algorithm (in megabytes) as a function of the quantum register size $n$ for the three different representations (dense, sparse, functional).}
 	\label{grover_memory}
 \end{figure}
 
 \subsection{Details}
-The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig.\,\ref{grover_time_performance_log}) was collected on a:
+The data for the computational time (Fig.\,\ref{grover_time_performance} and Fig.\,\ref{grover_time_performance_log}) was collected on a computer with the following specifications:
 
 \begin{quotation}
 	Intel i5 3570@3.4\,GHz\quad\quad 2x4\,GB 1600\,Mhz Ram \quad\quad Windows 7

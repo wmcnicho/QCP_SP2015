@@ -7,14 +7,14 @@
 \contentsline {subsubsection}{\numberline {2.1.2}Measurement}{4}{subsubsection.2.1.2}
 \contentsline {subsection}{\numberline {2.2}Quantum Register}{5}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Quantum Gates}{5}{subsection.2.3}
-\contentsline {subsubsection}{\numberline {2.3.1}Pauli-X Gate}{6}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.1}Pauli-$X$ Gate}{6}{subsubsection.2.3.1}
 \contentsline {subsubsection}{\numberline {2.3.2}Hadamard Gate}{6}{subsubsection.2.3.2}
 \contentsline {subsubsection}{\numberline {2.3.3}Phase Gate}{6}{subsubsection.2.3.3}
 \contentsline {subsubsection}{\numberline {2.3.4}Control Gates}{7}{subsubsection.2.3.4}
 \contentsline {subsubsection}{\numberline {2.3.5}Extension to bigger registers}{7}{subsubsection.2.3.5}
 \contentsline {subsubsection}{\numberline {2.3.6}Gate representations}{9}{subsubsection.2.3.6}
 \contentsline {subsection}{\numberline {2.4}Quantum algorithms}{9}{subsection.2.4}
-\contentsline {subsubsection}{\numberline {2.4.1}Grover's Algorithm}{9}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.1}Grover's Algorithm}{10}{subsubsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.2}Shor's Algorithm}{12}{subsubsection.2.4.2}
 \contentsline {section}{\numberline {3}Implementation}{13}{section.3}
 \contentsline {subsection}{\numberline {3.1}Project organisation}{13}{subsection.3.1}
@@ -22,20 +22,20 @@
 \contentsline {subsubsection}{\numberline {3.1.2}Git}{14}{subsubsection.3.1.2}
 \contentsline {subsection}{\numberline {3.2}Development environment}{15}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Github}{15}{subsubsection.3.2.1}
-\contentsline {subsection}{\numberline {3.3}Programme structure}{15}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.3}programme structure}{15}{subsection.3.3}
 \contentsline {subsubsection}{\numberline {3.3.1}Overview}{15}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}The Computer}{16}{subsubsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.3}Matrix}{19}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.3}Matrix}{20}{subsubsection.3.3.3}
 \contentsline {subsubsection}{\numberline {3.3.4}Graphics User Interface}{21}{subsubsection.3.3.4}
-\contentsline {subsection}{\numberline {3.4}Programme execution}{23}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.4}Programme Execution}{23}{subsection.3.4}
 \contentsline {section}{\numberline {4}Results}{24}{section.4}
 \contentsline {subsection}{\numberline {4.1}Grover's Algorithm}{24}{subsection.4.1}
 \contentsline {subsubsection}{\numberline {4.1.1}Rotation of the state vector}{24}{subsubsection.4.1.1}
 \contentsline {subsubsection}{\numberline {4.1.2}Computational time}{24}{subsubsection.4.1.2}
 \contentsline {subsubsection}{\numberline {4.1.3}Memory Usage}{26}{subsubsection.4.1.3}
 \contentsline {subsection}{\numberline {4.2}Shor's Algorithm}{27}{subsection.4.2}
-\contentsline {section}{\numberline {5}Discussion}{27}{section.5}
-\contentsline {subsection}{\numberline {5.1}Matrix or functional representation}{27}{subsection.5.1}
+\contentsline {section}{\numberline {5}Discussion}{28}{section.5}
+\contentsline {subsection}{\numberline {5.1}Matrix or functional representation}{28}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}Improvements and further steps}{28}{subsection.5.2}
 \contentsline {subsubsection}{\numberline {5.2.1}What we did not have time to do}{28}{subsubsection.5.2.1}
 \contentsline {section}{\numberline {6}Conclusion}{29}{section.6}
