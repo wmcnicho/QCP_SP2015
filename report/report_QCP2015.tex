@@ -583,7 +583,7 @@ The matrix representation of a control gate can also be found using the same pro
 	\right.
 \end{align}
 
-Hence, we can still iterate over the column index $x$ to find the elements, except we need to check whether each of the control bits $\{c_i\}$ in $x$ is 1 using the AND operation as described above. If the bits are all 1, we would obtain the two elements as stated in equation \ref{offResult} and \ref{onResult}; otherwise, the new basis state would be the same as the old one, so the only non-zero element in column $x$ would be $G(x,\,x) = 1$.
+Hence, we can still iterate over the column index $x$ to find the elements, except we need to check whether each of the control bits $\{c_i\}$ in $x$ is 1 using the \textsc{And} operation as described above. If the bits are all 1, we would obtain the two elements as stated in equation \ref{offResult} and \ref{onResult}; otherwise, the new basis state would be the same as the old one, so the only non-zero element in column $x$ would be $G(x,\,x) = 1$.
 
 \subsubsection{Gate representations}\label{sec:Gate representations}
 The resulting matrix $G_\text{tot}$ of a single qubit gate applied to a multiple qubit register is in general a $2^n \times 2^n$ matrix with two and only two non-zero elements in every row and column. This means that only $2\cdot 2^n$ of $2^{n^2}$ entries are non-zero. The ratio is $2^{1-n}$ which rapidly goes towards zero for big $n$. Thus, most elements of the gate matrices will be zero.
@@ -603,10 +603,7 @@ This leads to the consideration of the following three possible representations:
 		A sparse matrix representation only stores non-zero elements of a matrix in a list. Therefore, every non-zero element requires a positioning index and the number itself to store. This representation is particularly useful in representing the gates because there are only two non-zero elements in each column of a gate matrix. Hence, when applied on a $n$-qubit register, a sparse matrix representation of the gate will only require roughly $4 \cdot 2^n \equiv 4N$ storage elements (the index and value of each non-zero element in $N$ columns). This is significantly smaller than $N^2$ elements in a dense matrix, which speeds up computation and decreases memory pressure for higher values of $N$.
 	\item \textbf{Functional representation}\\
 		Another representation of the gates that deviates slightly from the underlying maths representation is to use a functional representation of the gates. The key difference between a matrix and functional representation is that a functional representation does not generate a final gate matrix to multiply to the register. Instead, the elements for each column are calculated iteratively and then applied to the appropriate elements of the register. This significantly decreases memory pressure as the programme no longer has to create a matrix for each gate in the circuit. However, the increased computational complexity can make the programme run more slowly in some cases. (See \hyperref[sec:Results]{Grover's result}).
-		
 \end{enumerate}
-
-
 
 %This is a hint that a (dense) matrix representation for single qubit gates acting on a big quantum register is an incredibly inefficient way of storing gate data.
 
@@ -813,7 +810,7 @@ The first point is fundamental as the project brief specifically asks us to crea
 To achieve the remaining specifications, we created an interface for each type of object in the programme and adhered to common object oriented design patterns. Each interface describes the fundamental behaviours of the corresponding object that are independent of the representation. This allows objects to interact without having to be concerned about each other's representation. It thus separates the task of representing an object and using it to build circuits for implementing the algorithms, which is key for maximising code reusability and making the programme extendible. The use of commonly used design architectures (such as the Factory Pattern and MVVM) allows other developers to quickly understand the design and usage of the parts of the programme. 
 
 \subsubsection{The Computer}\label{sec:The Computer}
-The computer is at the heart of our programme for simulating the quantum algorithms. Figure \ref{fig:QuantumSimDesign} shows the overall structure of this part of the programme. As discussed above, we designed the programme based on the components of the computer, which are the register, the gates, and the circuits. We developed an interface for each of these components, and they are \texttt{QRegister}, \texttt{QGate}, and \texttt{QCircuit} respectively. Below we describe in detail the programme structure and design choices we made for each component.
+The computer is at the heart of our programme for simulating the quantum algorithms. Figure \ref{fig:QuantumSimDesign} shows the overall structure of this part of the programme. As discussed above, we designed the programme based on the components of the computer, which are the register, the gates and the circuits. We developed an interface for each of these components, and they are \texttt{QRegister}, \texttt{QGate}, and \texttt{QCircuit} respectively. Below we describe in detail the programme structure and design choices we made for each component.
 
 \begin{figure}[H]
 \centering
@@ -829,7 +826,7 @@ The register consists of an array of $n$ qubits that would be manipulated by the
 We developed the \texttt{QRegister} interface with the above concept in mind. It requires the classes representing the register to have accessor methods for setting and getting the amplitudes of the basis states. It also requires these classes to provide a method for measuring the register, as such operation is required to obtain physical results after applying a circuit to the register. We created a concrete class called \texttt{MRegister} that complies with the interface. It stores the amplitudes of the basis state as a column vector. Since the amplitudes of most of the states would generally not be non-zero, we decided to use a regular dense matrix representation for the vector.
 
 	\item \textbf{Gates}\\
-As discussed in section \ref{sec:Quantum gates}, there are many single qubit gates and their associated operations on the register can be represented as a matrix or a function. To maximise code reusability, we developed an inheritance structure for modelling the gates. We first constructed an interface called \texttt{QGate} to describe a general quantum gate. The interface requires any gate classes to implement the method called \texttt{applyGate(QReigster reg)}, as each gate must perform an operation on the register. We then created an abstract class for each representation of the gate: \texttt{MGate} for matrix representation and \texttt{FGate} for functional representation. These classes handle the generic behaviours associated with the corresponding gate representation. Finally, we constructed a set of concrete classes that inherit from these abstract classes to model the specific single qubit gates (e.g. Hadamard, Pauli-X gate, etc.).	
+As discussed in section \ref{sec:Quantum gates}, there are many single qubit gates and their associated operations on the register can be represented as a matrix or a function. To maximise code reusability, we developed an inheritance structure for modelling the gates. We first constructed an interface called \texttt{QGate} to describe a general quantum gate. The interface requires any gate classes to implement the method called \texttt{applyGate(QReigster reg)} as each gate must perform an operation on the register. We then created an abstract class for each representation of the gate: \texttt{MGate} for matrix representation and \texttt{FGate} for functional representation. These classes handle the generic behaviours associated with the corresponding gate representation. Finally, we constructed a set of concrete classes that inherit from these abstract classes to model the specific single qubit gates (e.g. Hadamard, Pauli-X gate, etc.).	
 
 In matrix representation, the \texttt{MGate} class has a method called \texttt{initGate(...)} which can create the matrix for any single qubit gate using the procedure described in section \ref{sec:Extension to bigger registers}. The class also implements the \texttt{applyGate(...)} method from \texttt{QGate} to perform the matrix multiplication of the gate matrix with register's state vector. A set of classes were extended from \texttt{MGate} to model specific single qubit gates (see table \ref{table:list of gates}). They provide the necessary information, such as the target qubit and how the gate operates on a single qubit (i.e. $\alpha$ and $\beta$ in equation \ref{twostates}), to \texttt{MGate} for it to generate an appropriate matrix for the gate.
 
@@ -862,7 +859,7 @@ Although the first option keeps the gate class generic and more flexible, it req
 To simplify the process of instantiating the different types of quantum gates with various representations, we adopted the factory pattern and created a class called \texttt{GateFactory}. This class is responsible for instantiating the gates according to the specifications provided by the user.
 
 	\item \textbf{Circuits}\\
-	The design structure for the circuits is similar to that for the gates. We created an interface called \texttt{QCircuit} that describes a general quantum circuit. The interface requires classes representing a quantum circuit to implement the \texttt{applyCircuit(QRegister reg)} method, as each circuit is expected to perform some operations on the register. We designed a general circuit class called \texttt{GateByGateCircuit} which allows the user to construct a circuit by assembling gates together, regardless of their representation. Furthermore, we take advantage of the universality of this circuit class by extending it to build the various circuits required for the quantum algorithms studied in this project. This includes the quantum Fourier transform circuits (\texttt{ForwardQFTCircuit} and \texttt{BackwardQFTCircuit}) and the circuit for Grover's algorithm (\texttt{GroverGateByGate}).
+	The design structure for the circuits is similar to that for the gates. We created an interface called \texttt{QCircuit} that describes a general quantum circuit. The interface requires classes representing a quantum circuit to implement the \texttt{applyCircuit(QRegister reg)} method, as each circuit is expected to perform some operations on the register. We designed a general circuit class called \texttt{GateByGateCircuit} that allows the user to construct a circuit by assembling gates together, regardless of their representation. Furthermore, we take advantage of the universality of this circuit class by extending it to build the various circuits required for the quantum algorithms studied in this project. This includes the quantum Fourier transform circuits (\texttt{ForwardQFTCircuit} and \texttt{BackwardQFTCircuit}) and the circuit for Grover's algorithm (\texttt{GroverGateByGate}).
 	
 	\item \textbf{Implementation of the Quantum Algorithms}
 	\begin{myenumerate}
@@ -901,7 +898,6 @@ Our sparse matrix implementation contains both a general sparse matrix class as 
 The \texttt{SparseGateMatrix} class only stores the non-zero entries in the matrix. As we know each column only contains two entries, it is enough to store the value and the row index of the element. As long as the entries for each column are stored in order, the true index can be easily recovered with trivial arithmetic in $O(1)$ operations.
 
 The matrix multiplication is dealt with in a separate helper class called \texttt{MatrixMultiply}. It contains a very general and naïve implementation of a matrix multiplication algorithm. It then contains further methods which are optimised towards each of our implementations, the most important of these being the multiplication of a complex matrix by a sparse matrix representing a gate. This method is where almost of the computational resources are spent when applying our circuits to the register. It turns out that, as most of the operators are Hermitian, it is possible to write a more efficient sparse-dense multiplication algorithm if we consider $\bra{\psi} U$ rather than $U \ket{\psi}$. This is because in this case we know that there are only two elements in each column of the sparse matrix which are very quick to access as they will be located next to each other in the memory. It is then only required to find the two corresponding elements in the register to be able to calculate the corresponding element in the answer. While this approach incurs a small overhead due to having to convert from $\bra{\psi}$ to $\ket{\psi}$ and back again at the end, this can be minimised very easily and the final code runs faster than if this approach was not used.
-
 
 \begin{figure}[H]
 \centering
@@ -1016,6 +1012,7 @@ We note the following observations:
 \begin{itemize}
 	\item\textbf{Dense representation at a disadvantage}\\
 	The memory usage of dense matrices is enormous. For only 11 qubits the execution requires working memory of 750 megabytes. It is impossible to run the algorithm for 12 qubits since this already exceeds the working memory of a normal computer (\texttildelow 4 gigabyte).
+
 	\item\textbf{Sparse vs. functional representation}\\
 	In terms of computational time the sparse representation was slightly faster than the functional representation. Measuring the memory usage, however, the functional representation uses almost no working memory (even for 17 qubits!), whereas the sparse representation, since it stores matrices in a compact way, has to increase dramatically at a certain number of qubits. In our case the working memory would be exceeded (using sparse representation) for less than 25 qubits.
 	\item\textbf{Exponential behaviour}\\
@@ -1074,7 +1071,6 @@ The \textbf{functional representation} does not have this problem because it doe
 
 Therefore we conclude that the dense representation is undesirable due to its grave disadvantages, whereas we get a trade-off between sparse and functional representation; the sparse is fast and memory-intense, where the functional is a bit slower but is easy on memory.
 
-
 \subsection{Improvements and further steps}
 \subsubsection{What we did not have time to do}
 The programme we were able to write during this project covers the criteria we set out at the beginning and it is able to do everything we want it to. This does not mean that we would not want to add more features if we had more time.
@@ -1106,7 +1102,7 @@ In conclusion, we have successfully simulated a circuit-based quantum computer. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Grover_Time_Performance_log.eps}
-	\caption{Computational time (log-scale) of Grover's algorithm (in seconds) as a function of the quantum register size $n$ for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
+	\caption{Computational time (log-scale) of Grover's Algorithm in seconds as a function of the quantum register size $n$ for the three different forms of representation (dense, sparse, functional). Note that only the behaviour for bigger registers is meaningful (linear).}
 	\label{grover_time_performance_log}
 \end{figure}
 
