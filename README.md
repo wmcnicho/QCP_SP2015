@@ -1,4 +1,4 @@
-#Quantum Computing Project (Spring 2015)
+# Quantum Computing Project (Spring 2015)
 A quantum computer emulator made by students at the University of Edinburgh.
 
 by:
@@ -7,8 +7,12 @@ by:
 *  Wiliam Hunter McNichols
 *  Christoph Messmer
 
+# About
+This report is an accumulation of knowledge and results from the course 'Quantum Computing Project' at the University of Edinburgh. In this project we simulated the physics of a quantum computer by modeling the interactions of qubits. On top of this simulator, we ran a handful of algorithms to experiment with the possibilities of a quantum computer. Lastly, to aid in experimentation we built a custom Graphical User Interface to interact with the underlying simulator code.
 
-##Running the program
+In addition, we experimented with a few different implementations for qubits and compared their performance. For a full report on our findings and an overview on the underlying mathematics see our report [here](https://github.com/wmcnicho/QCP_SP2015/blob/master/report/report_QCP2015.pdf).
+
+## Running the program
 
 
 From jar.: Simply open the provided jar file
@@ -37,5 +41,5 @@ Note: Shor's Algorithm will occasionally return obvious factors (i.e. the input 
 
 For best results use the 'Functional' gate representation. Sparse Matrix works slightly faster than Functional (and Dense Matrix) but can not run on as many qubits.
 
-##JFreeChart
+## JFreeChart
 This program uses the JFreeChart open source library for it's graph outputs. See http://www.jfree.org/jfreechart/ for more information.
