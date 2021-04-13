@@ -15,7 +15,9 @@ In addition, we experimented with a few different implementations for qubits and
 ## Running the program
 
 
-From jar.: Simply open the provided jar file
+From jar.: Run the .jar file `QCP_v2.jar` located in the root directory
+
+![Sample runtime](https://github.com/wmcnicho/QCP_SP2015/blob/master/report/img/program_example.pdf)
 
 From eclipse: Run the main program located in QuantumGuiFrame as a Java Application
 (note: You may need to set import the JFreeChart .jar file to do this. See https://github.com/wmcnicho/QCP_SP2015/issues/11 for more information)
